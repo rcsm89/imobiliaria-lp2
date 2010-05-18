@@ -1,9 +1,3 @@
-/*
- * ATENCAO, AINDA EH NECESSARIO TRATAR AS VERIFICACOES DE ENTRADA
- * 
- * VERIFICACAO CONSTRUTOR: FALTA VERIFICAR DATA
- */
-
 /**
  * Package com as classes usadas pelo sistema 
  */
@@ -57,6 +51,10 @@ public abstract class Pessoa {
 		if (VerificaInvalido.numeroFormatado(cpf, TAM_CPF_FORMATADO))
 			throw new Exception("CPF invalido");
 		// Verif Data Nascimento
+		if ((VerificaInvalido.maiorIdade(dataNascimento))
+				|| VerificaInvalido.idade(dataNascimento)) {
+			throw new Exception("Data de nascimento invalida");
+		}
 
 		this.dataNascimento = dataNascimento;
 		this.endereco = endereco;
@@ -69,7 +67,7 @@ public abstract class Pessoa {
 	/**
 	 * Acesso a data de nascimento
 	 * 
-	 * @return A dataNascimento da pessoa
+	 * @return A data de nascimento da pessoa
 	 */
 	public Calendar getDataNascimento() {
 		return dataNascimento;
@@ -80,8 +78,17 @@ public abstract class Pessoa {
 	 * 
 	 * @param dataNascimento
 	 *            A nova data de nascimento a definir
+	 * @throws Exception
+	 *             Nao pode ser uma data invalida<br>
+	 *             (Olhar metodos <i>maiorIdade</i> e <i>idade</i> da classe
+	 *             <i>VerificaInvalido</i>)
 	 */
-	public void setDataNascimento(Calendar dataNascimento) {
+	public void setDataNascimento(Calendar dataNascimento) throws Exception {
+		// Verif Data Nascimento
+		if ((VerificaInvalido.maiorIdade(dataNascimento))
+				|| VerificaInvalido.idade(dataNascimento)) {
+			throw new Exception("Data de nascimento invalida");
+		}
 		this.dataNascimento = dataNascimento;
 	}
 
@@ -101,7 +108,8 @@ public abstract class Pessoa {
 	 *            O novo endereco a ser definido
 	 * @throws Exception
 	 *             Nao pode ser um endereco invalido<br>
-	 *             (Olhar metodo <i>basico</i> da classe <i>VerificaInvalido</i>)
+	 *             (Olhar metodo <i>basico</i> da classe
+	 *             <i>VerificaInvalido</i>)
 	 */
 	public void setEndereco(String endereco) throws Exception {
 		// Verif Endereco
