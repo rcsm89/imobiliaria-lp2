@@ -1,3 +1,4 @@
+//ATENCAO: ColecaoImoveis ainda DEVE SER implementado.
 package imobiliaria.processamento;
 
 import java.util.Calendar;
@@ -10,9 +11,9 @@ import java.util.Calendar;
  */
 public class Cliente extends Pessoa {
 
-	private ColecaoImoveis historicoCompras;
+/*	private ColecaoImoveis historicoCompras;
 	private ColecaoImoveis pedidos;
-	private TipoImovel preferencia;
+*/	private TipoImovel preferencia;
 
 	/**
 	 * Construtor responsavel por criar um novo cliente
@@ -25,9 +26,10 @@ public class Cliente extends Pessoa {
 	 *            Representa o endereco de um cliente
 	 * @param nome
 	 *            Representa o nome de um cliente
+	 * @throws Exception 
 	 */
 	public Cliente(String cpf, Calendar dataNascimento, String endereco,
-			String nome, TipoImovel preferencia) {
+			String nome, TipoImovel preferencia) throws Exception {
 		super(cpf, dataNascimento, endereco, nome);
 		this.preferencia = preferencia;
 	}
@@ -37,19 +39,19 @@ public class Cliente extends Pessoa {
 	 * 
 	 * @return O historico das compras de um cliente
 	 */
-	public ColecaoImoveis getHistoricoCompras() {
+/*	public ColecaoImoveis getHistoricoCompras() {
 		return historicoCompras;
 	}
-
+*/
 	/**
 	 * Metodo acessador aos pedidos de um cliente
 	 * 
 	 * @return Os pedidos que um cliente efetuou
 	 */
-	public ColecaoImoveis getColecao() {
+/*	public ColecaoImoveis getColecao() {
 		return pedidos;
 	}
-
+*/
 	/**
 	 * Metodo acessador a preferencia do cliente
 	 * 
