@@ -15,6 +15,7 @@ public class Imovel {
 	private double valor;
 	private Area area;
 	private int registroImovel;
+	private EstadoImovel estadoDoImovel; // bruno
 	private TipoImovel tipoDoImovel;
 	private TipoContratual tipoContratual;
 
@@ -30,9 +31,11 @@ public class Imovel {
 	 * @param area
 	 *            Area do Imovel
 	 * @param tipoDoImovel
-	 *            Tipo Do Imovel
+	 *            Tipo do Imovel
 	 * @param tipoContratual
 	 *            Tipo Contratual do Imovel
+	 * @param estadoDoImovel
+	 *            Estado do Imovel
 	 * @throws Exception
 	 *             Lanca Exception caso algum parametro seja invalido
 	 */
@@ -180,6 +183,25 @@ public class Imovel {
 	 */
 	public void setTipoContratual(TipoContratual tipoContratual) {
 		this.tipoContratual = tipoContratual;
+	}
+
+	/**
+	 * Metodo Acessador para o estado atual do imovel
+	 * 
+	 * @return Estado do Imovel
+	 */
+	public EstadoImovel getEstadoDoImovel() {
+		return estadoDoImovel;
+	}
+
+	/**
+	 * Metodo modificador para o estado atual do imovel
+	 * 
+	 * @param estadoDoImovel
+	 *            Representa o estado do imovel
+	 */
+	public void setEstadoDoImovel(EstadoImovel estadoDoImovel) {
+		this.estadoDoImovel = estadoDoImovel;
 	}
 
 	/*
