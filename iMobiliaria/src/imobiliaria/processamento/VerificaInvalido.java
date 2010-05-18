@@ -46,6 +46,18 @@ public class VerificaInvalido {
 
 		return false;
 	}
+	
+	public static boolean numero(String numero) {
+		
+		if (basico(numero))
+			return true;
+
+		for (int i = 0; i < numero.length(); i++) {
+			if (!(Character.isDigit(numero.charAt(i))))
+				return true;
+		}
+		return false;
+	}
 
 	/**
 	 * Metodo responsavel por verificar se um numero esta na formatacao <br>
@@ -56,8 +68,8 @@ public class VerificaInvalido {
 	 * @param tamanho
 	 *            Representa a quantidade de algarismos que o numero passado
 	 *            deve ter
-	 * @return True, se passar no teste basico, conter apenas digitos e conter o
-	 *         tamanho adequado <br>
+	 * @return True, se passar no teste basico, conter apenas digitos e conter
+	 *         o tamanho adequado <br>
 	 *         False, caso contrario
 	 */
 	public static boolean numeroFormatado(String numeroString, int tamanho) {
