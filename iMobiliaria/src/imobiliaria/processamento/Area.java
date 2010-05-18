@@ -3,7 +3,7 @@ package imobiliaria.processamento;
 /**
  * Classe Area que guarda informacoes e classificacoes de uma determinada Area
  * 
- * @version IT 1.0
+ * @version IT 1.1
  */
 public class Area {
 
@@ -22,34 +22,20 @@ public class Area {
 	 *             Lanca Excecao caso Comprimento ou Largura sejam negativas
 	 */
 	public Area(double comprimento, double largura) throws Exception {
-		if (comprimento <= 0) {
-			throw new Exception("Comprimento invalido");
-		}
+		String mensagemDeErro = "";
+		if (comprimento <= 0)
+			mensagemDeErro += "Comprimento invalido\n";
 
-		if (largura <= 0) {
-			throw new Exception("Largura invalida");
-		}
+		if (largura <= 0)
+			mensagemDeErro += "Largura invalida\n";
+		
+		if (mensagemDeErro.length() != 0)
+			throw new Exception(mensagemDeErro);
 
 		this.comprimento = comprimento;
 		this.largura = largura;
 
-		double area = comprimento * largura;
-
-		/* Areas Menores ou iguais a 25m² */
-
-		if (area <= 25) {
-			this.classificacao = TipoArea.PEQUENA;
-
-			/* Areas menores ou iguais a 100m² e mais de 25 */
-
-		} else if (area <= 100) {
-			this.classificacao = TipoArea.MEDIA;
-
-			/* Areas maiores que 100m² */
-
-		} else {
-			this.classificacao = TipoArea.GRANDE;
-		}
+		atualizaClassificacao();
 
 	}
 
@@ -73,6 +59,7 @@ public class Area {
 			throw new Exception("Comprimento invalido");
 		}
 		this.comprimento = comprimento;
+		atualizaClassificacao();
 	}
 
 	/**
@@ -89,8 +76,12 @@ public class Area {
 	 * @param largura
 	 *            Nova Largura
 	 */
-	public void setLargura(double largura) {
+	public void setLargura(double largura) throws Exception {
+		if (largura <= 0) {
+			throw new Exception("Largura invalida");
+		}
 		this.largura = largura;
+		atualizaClassificacao();
 	}
 
 	/**
@@ -102,22 +93,38 @@ public class Area {
 	}
 
 	/**
-	 * Metodo Modificador da Classificacao
-	 * @param classificacao
-	 *            Nova Classificacao
-	 */
-	public void setClassificacao(TipoArea classificacao) {
-		this.classificacao = classificacao;
-	}
-	
-	/**
 	 * toString contendo informacoes da Area
-	 * (Formato Exemplo: 4|5|TipoArea.PEQUENA)
+	 * (Formato Exemplo: 4.0|5.0|PEQUENA)
 	 */
 	
 	@Override
 	public String toString() {
 		return comprimento + "|" + largura + "|" + classificacao;
+	}
+	
+	
+	
+	
+	
+	/* Atualizador de Classificacao */
+	
+	private void atualizaClassificacao() {
+		double area = largura * comprimento;
+		
+		if (area <= 25) {
+			this.classificacao = TipoArea.PEQUENA;
+
+			/* Areas menores ou iguais a 100m² e mais de 25 */
+
+		} else if (area <= 100) {
+			this.classificacao = TipoArea.MEDIA;
+
+			/* Areas maiores que 100m² */
+
+		} else {
+			this.classificacao = TipoArea.GRANDE;
+		}
+		
 	}
 
 }
