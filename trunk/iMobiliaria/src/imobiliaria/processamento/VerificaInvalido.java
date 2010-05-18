@@ -1,14 +1,57 @@
 package imobiliaria.processamento;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 /**
  * Classe que verifica entradas invalidas
  * 
- * @author bruno
+ * @author Bruno Fabio, Jeanderson Barros
  * @version IT01
  */
 public class VerificaInvalido {
+
+	// Tratamento de Datas (Jeanderson)
+	// ------------------------------------------------------------------------
+
+	private static Calendar dataAtual = new GregorianCalendar();
+
+	/**
+	 * Metodo que verifica maior idade de uma pessoa
+	 * 
+	 * @param dataNascimento
+	 *            A data a ser a analisada
+	 * @return True, se a pessoa for menor de idade<br>
+	 *         False, caso contrario
+	 */
+	@SuppressWarnings("static-access")
+	public static boolean maiorIdade(Calendar dataNascimento) {
+		final int MAIOR_IDADE = 18;
+		int idadeVerificada = dataAtual.YEAR - dataNascimento.YEAR;
+
+		if (idadeVerificada < MAIOR_IDADE) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Metodo que verifica se uma data vem depois da data atual
+	 * 
+	 * @param data
+	 *            A data a ser verificada
+	 * @return True, se a data analisada vier depois da data atual <br>
+	 *         False, caso contrario
+	 */
+	public static boolean data(Calendar data) {
+		if (data.after(dataAtual)) {
+			return true;
+		}
+		return false;
+	}
+
+	// ------------------------------------------------------------------------
 
 	/**
 	 * Metodo responsavel por verificacao basica
@@ -46,9 +89,9 @@ public class VerificaInvalido {
 
 		return false;
 	}
-	
+
 	public static boolean numero(String numero) {
-		
+
 		if (basico(numero))
 			return true;
 
@@ -68,8 +111,8 @@ public class VerificaInvalido {
 	 * @param tamanho
 	 *            Representa a quantidade de algarismos que o numero passado
 	 *            deve ter
-	 * @return True, se passar no teste basico, conter apenas digitos e conter
-	 *         o tamanho adequado <br>
+	 * @return True, se passar no teste basico, conter apenas digitos e conter o
+	 *         tamanho adequado <br>
 	 *         False, caso contrario
 	 */
 	public static boolean numeroFormatado(String numeroString, int tamanho) {
@@ -103,62 +146,64 @@ public class VerificaInvalido {
 	 */
 	public static boolean pertenceAIntervalo(double numero, double min,
 			double max) {
-		
+
 		if (min >= max)
 			return false;
-		
+
 		if (numero < min)
 			return false;
-		
+
 		if (numero > max)
 			return false;
 
 		return true;
 	}
-	// Metodos de entrada ---------------------------------------------------------------
-	
-	public static String recebeString(){
+
+	// Metodos de entrada
+	// ---------------------------------------------------------------
+
+	public static String recebeString() {
 		String string = null;
 		Scanner entrada = new Scanner(System.in);
-		
-		while(basico(string)){
-			try{
+
+		while (basico(string)) {
+			try {
 				string = entrada.nextLine();
-			}catch(Exception e){
+			} catch (Exception e) {
 				entrada.next();
 				System.out.println("Entrada Invalida");
 			}
 		}
 		return string;
 	}
-	
-	public static double recebeDouble(){
+
+	public static double recebeDouble() {
 		double numero = 0;
 		boolean condicao = true;
 		Scanner entrada = new Scanner(System.in);
-		
-		while(condicao){
-			try{
+
+		while (condicao) {
+			try {
 				numero = entrada.nextDouble();
 				condicao = false;
-			}catch(Exception e){
+			} catch (Exception e) {
 				entrada.next();
 				System.out.println("Entrada Invalida");
 			}
 		}
 		return numero;
 	}
-	
-	public static int recebeInteiro(){
+
+	public static int recebeInteiro() {
 		int numero = 0;
 		boolean condicao = true;
 		Scanner entrada = new Scanner(System.in);
-		
-		while(condicao){
-			try{
+
+		while (condicao) {
+			try {
 				numero = entrada.nextInt();
 				condicao = false;
-			}catch(Exception e){
+			} catch (Exception e) {
 				entrada.next();
 				System.out.println("Entrada Invalida");
 			}
