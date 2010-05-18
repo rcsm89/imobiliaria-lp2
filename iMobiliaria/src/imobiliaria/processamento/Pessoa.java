@@ -34,8 +34,9 @@ public abstract class Pessoa {
 	 *            O nome da pessoa
 	 * @throws Exception
 	 *             O nome, data de nascimento, endereco e cpf devem ser validos<br>
-	 *             (olhar metodos <i>nome</i>, <i>basico</i> e
-	 *             <i>numeroFormatado</i>classe <i>VerificaInvalido</i>)
+	 *             (olhar metodos <i>nome</i>, <i>data</i>, <i>maiorIdade</i>,
+	 *             <i>basico</i> e <i>numeroFormatado</i> da classe
+	 *             <i>VerificaInvalido</i>)
 	 */
 	public Pessoa(String cpf, Calendar dataNascimento, String endereco,
 			String nome) throws Exception {
@@ -52,7 +53,7 @@ public abstract class Pessoa {
 			throw new Exception("CPF invalido");
 		// Verif Data Nascimento
 		if ((VerificaInvalido.maiorIdade(dataNascimento))
-				|| VerificaInvalido.idade(dataNascimento)) {
+				|| VerificaInvalido.data(dataNascimento)) {
 			throw new Exception("Data de nascimento invalida");
 		}
 
@@ -86,7 +87,7 @@ public abstract class Pessoa {
 	public void setDataNascimento(Calendar dataNascimento) throws Exception {
 		// Verif Data Nascimento
 		if ((VerificaInvalido.maiorIdade(dataNascimento))
-				|| VerificaInvalido.idade(dataNascimento)) {
+				|| VerificaInvalido.data(dataNascimento)) {
 			throw new Exception("Data de nascimento invalida");
 		}
 		this.dataNascimento = dataNascimento;
