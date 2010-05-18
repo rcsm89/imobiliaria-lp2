@@ -1,5 +1,7 @@
 /*
  * ATENCAO, AINDA EH NECESSARIO TRATAR AS VERIFICACOES DE ENTRADA
+ * 
+ * VERIFICACAO CONSTRUTOR: FALTA VERIFICAR DATA
  */
 
 /**
@@ -36,9 +38,25 @@ public abstract class Pessoa {
 	 *            O endereco de residencia da pessoa
 	 * @param nome
 	 *            O nome da pessoa
+	 * @throws Exception
+	 *             O nome, data de nascimento, endereco e cpf devem ser validos<br>
+	 *             (olhar metodos <i>nome</i>, <i>basico</i> e
+	 *             <i>numeroFormatado</i>classe <i>VerificaInvalido</i>)
 	 */
 	public Pessoa(String cpf, Calendar dataNascimento, String endereco,
-			String nome) {
+			String nome) throws Exception {
+
+		// Verif Nome
+		if (VerificaInvalido.nome(nome))
+			throw new Exception("Nome invalido");
+		// Verif Endereco
+		if (VerificaInvalido.basico(endereco))
+			throw new Exception("Endereco invalido");
+		// Verif CPF
+		final int TAM_CPF_FORMATADO = 11;
+		if (VerificaInvalido.numeroFormatado(cpf, TAM_CPF_FORMATADO))
+			throw new Exception("CPF invalido");
+		// Verif Data Nascimento
 
 		this.dataNascimento = dataNascimento;
 		this.endereco = endereco;
@@ -81,8 +99,15 @@ public abstract class Pessoa {
 	 * 
 	 * @param endereco
 	 *            O novo endereco a ser definido
+	 * @throws Exception
+	 *             Nao pode ser um endereco invalido<br>
+	 *             (Olhar metodo <i>basico</i> da classe <i>VerificaInvalido</i>)
 	 */
-	public void setEndereco(String endereco) {
+	public void setEndereco(String endereco) throws Exception {
+		// Verif Endereco
+		if (VerificaInvalido.basico(endereco)) {
+			throw new Exception("Endereco invalido");
+		}
 		this.endereco = endereco;
 	}
 
@@ -100,8 +125,14 @@ public abstract class Pessoa {
 	 * 
 	 * @param nome
 	 *            O nome a ser definido
+	 * @throws Exception
+	 *             O nome, deve ser valido<br>
+	 *             (Olhar metodo <i>nome</i> da classe <i>VerificaInvalido</i>)
 	 */
-	public void setNome(String nome) {
+	public void setNome(String nome) throws Exception {
+		// Verif Nome
+		if (VerificaInvalido.nome(nome))
+			throw new Exception("Nome invalido");
 		this.nome = nome;
 	}
 
@@ -119,8 +150,17 @@ public abstract class Pessoa {
 	 * 
 	 * @param cpf
 	 *            O CPF a ser definido
+	 * @throws Exception
+	 *             O cpf devem ser validos<br>
+	 *             (Olhar metodo <i>numeroFormatado</i> da classe
+	 *             <i>VerificaInvalido</i>)
 	 */
-	public void setCpf(String cpf) {
+	public void setCpf(String cpf) throws Exception {
+		// Verif CPF
+		final int TAM_CPF_FORMATADO = 11;
+		if (VerificaInvalido.numeroFormatado(cpf, TAM_CPF_FORMATADO)) {
+			throw new Exception("CPF invalido");
+		}
 		this.cpf = cpf;
 	}
 
