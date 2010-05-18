@@ -1,5 +1,9 @@
+/*
+ * ATENCAO, AINDA EH NECESSARIO TRATAR AS VERIFICACOES DE ENTRADA
+ */
+
 /**
- * Classes com 
+ * Package com as classes usadas pelo sistema 
  */
 package imobiliaria.processamento;
 
@@ -74,6 +78,7 @@ public abstract class Pessoa {
 
 	/**
 	 * Modifica o endereco
+	 * 
 	 * @param endereco
 	 *            O novo endereco a ser definido
 	 */
@@ -82,33 +87,61 @@ public abstract class Pessoa {
 	}
 
 	/**
-	 * @return the nome
+	 * Acesso ao nome
+	 * 
+	 * @return O nome da pessoa
 	 */
 	public String getNome() {
 		return nome;
 	}
 
 	/**
+	 * Modifica o nome
+	 * 
 	 * @param nome
-	 *            the nome to set
+	 *            O nome a ser definido
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
 	/**
-	 * @return the cpf
+	 * Acesso ao CPF
+	 * 
+	 * @return O CPF da pessoa
 	 */
 	public String getCpf() {
 		return cpf;
 	}
 
 	/**
+	 * Modifica o CPF
+	 * 
 	 * @param cpf
-	 *            the cpf to set
+	 *            O CPF a ser definido
 	 */
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public abstract boolean equals(Object obj);
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return getNome() + "|" + getCpf() + "|" + getEndereco() + "|"
+				+ getDataNascimento();
 	}
 
 }
