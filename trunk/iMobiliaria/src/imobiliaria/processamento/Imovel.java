@@ -3,7 +3,7 @@ package imobiliaria.processamento;
 /**
  * Classe Imovel que guarda informacoes de um Imovel
  * 
- * @version IT 1.0
+ * @version IT 1.1
  */
 public class Imovel {
 
@@ -13,7 +13,7 @@ public class Imovel {
 	private String nome;
 	private String endereco;
 	private double valor;
-	private String area;
+	private Area area;
 	private int registroImovel;
 	private TipoImovel tipoDoImovel;
 	private TipoContratual tipoContratual;
@@ -87,6 +87,7 @@ public class Imovel {
 
 	/**
 	 * Metodo Acessador para o Endereco do Imovel
+	 * 
 	 * @return Endereco do Imovel
 	 */
 	public String getEndereco() {
@@ -95,10 +96,11 @@ public class Imovel {
 
 	/**
 	 * Metodo Modificador para o Endereco do Imovel
+	 * 
 	 * @param endereco
 	 *            Novo endereco do Imovel
 	 */
-	public void setEndereco(String endereco) {
+	public void setEndereco(String endereco) throws Exception {
 		if (VerificaInvalido.basico(endereco)) {
 			throw new Exception("Endereco invalido");
 		}
@@ -107,6 +109,7 @@ public class Imovel {
 
 	/**
 	 * Metodo Acessador para Valor do Imovel
+	 * 
 	 * @return Valor do Imovel
 	 */
 	public double getValor() {
@@ -115,14 +118,16 @@ public class Imovel {
 
 	/**
 	 * Metodo Acessador para Area do Imovel
+	 * 
 	 * @return Area do Imovel
 	 */
-	public String getArea() {
+	public Area getArea() {
 		return area;
 	}
 
 	/**
 	 * Metodo Modificador para Area
+	 * 
 	 * @param area
 	 *            Nova Area
 	 */
@@ -132,6 +137,7 @@ public class Imovel {
 
 	/**
 	 * Metodo Acessador para Registro
+	 * 
 	 * @return Registro
 	 */
 	public int getRegistroImovel() {
@@ -140,6 +146,7 @@ public class Imovel {
 
 	/**
 	 * Metodo Acessador para Tipo do Imovel
+	 * 
 	 * @return Tipo de Imovel
 	 */
 	public TipoImovel getTipoDoImovel() {
@@ -148,6 +155,7 @@ public class Imovel {
 
 	/**
 	 * Metodo Modificador para Tipo do Imovel
+	 * 
 	 * @param tipoDoImovel
 	 *            Novo Tipo do Imovel
 	 */
@@ -157,6 +165,7 @@ public class Imovel {
 
 	/**
 	 * Metodo Acessador para Tipo Contratual
+	 * 
 	 * @return Tipo Contratual
 	 */
 	public TipoContratual getTipoContratual() {
@@ -165,6 +174,7 @@ public class Imovel {
 
 	/**
 	 * Metodo Modificador para Tipo Contratual
+	 * 
 	 * @param tipoContratual
 	 *            Novo Tipo Contratual
 	 */
@@ -173,8 +183,7 @@ public class Imovel {
 	}
 
 	/*
-	 * equals da Classe
-	 * Dois Imoveis sao iguais se possuem o mesmo registro
+	 * equals da Classe<br> Dois Imoveis sao iguais se possuem o mesmo registro
 	 */
 	@Override
 	public boolean equals(Object objeto) {
@@ -188,5 +197,15 @@ public class Imovel {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * toString da Classe contendo informacoes do Imovel
+	 */
+
+	@Override
+	public String toString() {
+		return registroImovel + "|" + nome + "|" + endereco + "|" + valor + "|"
+				+ area + "|" + tipoDoImovel + "|" + tipoContratual;
 	}
 }
