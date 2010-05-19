@@ -191,4 +191,20 @@ public class ColecaoImoveis {
 		return null;
 	}
 
+	/**
+	 * equals da Classe<br>
+	 * Duas Colecoes sao iguais se possuem os mesmos elementos
+	 */
+
+	@Override
+	public boolean equals(Object objeto) {
+		if (!(objeto instanceof ColecaoImoveis)) {
+			return false;
+		}
+		ColecaoImoveis outraColecao = (ColecaoImoveis) objeto;
+
+		return outraColecao.getImoveis().containsAll(colecaoImoveis)
+				&& colecaoImoveis.containsAll(outraColecao.getImoveis());
+	}
+
 }
