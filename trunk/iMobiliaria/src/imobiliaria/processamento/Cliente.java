@@ -1,4 +1,3 @@
-//ATENCAO: ColecaoImoveis ainda DEVE SER implementado.
 package imobiliaria.processamento;
 
 import java.util.Calendar;
@@ -51,6 +50,16 @@ public class Cliente extends Pessoa {
 	public ColecaoImoveis getPedidos() {
 		return pedidos;
 	}
+	
+	/**
+	 * 
+	 */
+	public void fazPedidos(Imovel pedido) throws Exception{
+		if (pedido == null){
+			throw new Exception("Pedido Invalido");
+		}
+		pedidos.adicionaImovel(pedido);
+	}
 
 	/**
 	 * Metodo acessador a preferencia do cliente
@@ -83,11 +92,7 @@ public class Cliente extends Pessoa {
 
 		Cliente outroCliente = (Cliente) objeto;
 
-		if (getCpf() != outroCliente.getCpf()) {
-			return false;
-		}
-
-		return true;
+		return getCpf().equals(outroCliente.getCpf());
+		
 	}
-
 }
