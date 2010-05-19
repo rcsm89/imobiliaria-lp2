@@ -1,4 +1,3 @@
-//ATENCAO GET CLIENTE POR PEDIDOS - INDECISO! CLASSE INCOMPLETA!
 package imobiliaria.processamento;
 
 import java.util.ArrayList;

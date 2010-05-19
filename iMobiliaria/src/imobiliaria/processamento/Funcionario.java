@@ -77,7 +77,7 @@ public class Funcionario extends Pessoa {
 	 * 		Lanca excecao caso o cliente ja exista na lista
 	 */
 	public void adicionaCliente(Cliente novoCliente) throws Exception {
-		if (!(listaDeClientes.adicionaClientes(novoCliente)))
+		if (!(listaDeClientes.adicionaCliente(novoCliente)))
 			throw new Exception("Cliente ja existente na lista");
 	}
 
@@ -95,7 +95,7 @@ public class Funcionario extends Pessoa {
 		if (VerificaInvalido.nome(nome))
 			throw new Exception("Nome invalido");
 			
-		for (Cliente c : listaDeClientes) {
+		for (Cliente c : listaDeClientes.getClientes()) {
 			if (c.getNome() == nome)
 				listaDeClientes.removeCliente(nome);
 				return true;
@@ -151,7 +151,7 @@ public class Funcionario extends Pessoa {
 	 * Reseta a lista de imoveis vendidos num mes
 	 */
 	public void resetaImoveisVendidosMes(){
-		historicoVendidoMes.clear();
+		historicoVendidoMes.getImoveis().clear();
 	}
 
 	/**

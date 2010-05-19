@@ -11,9 +11,9 @@ import java.util.Calendar;
  */
 public class Cliente extends Pessoa {
 
-/*	private ColecaoImoveis historicoCompras;
+	private ColecaoImoveis historicoCompras;
 	private ColecaoImoveis pedidos;
-*/	private TipoImovel preferencia;
+	private TipoImovel preferencia;
 
 	/**
 	 * Construtor responsavel por criar um novo cliente
@@ -39,19 +39,19 @@ public class Cliente extends Pessoa {
 	 * 
 	 * @return O historico das compras de um cliente
 	 */
-/*	public ColecaoImoveis getHistoricoCompras() {
+	public ColecaoImoveis getHistoricoCompras() {
 		return historicoCompras;
 	}
-*/
+
 	/**
 	 * Metodo acessador aos pedidos de um cliente
 	 * 
 	 * @return Os pedidos que um cliente efetuou
 	 */
-/*	public ColecaoImoveis getColecao() {
+	public ColecaoImoveis getPedidos() {
 		return pedidos;
 	}
-*/
+
 	/**
 	 * Metodo acessador a preferencia do cliente
 	 * 
