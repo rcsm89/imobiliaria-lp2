@@ -3,6 +3,7 @@
  */
 package imobiliaria.processamento;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -41,20 +42,24 @@ public abstract class Pessoa {
 	public Pessoa(String cpf, Calendar dataNascimento, String endereco,
 			String nome) throws Exception {
 
+		String promptErro = "";
 		// Verif Nome
 		if (VerificaInvalido.nome(nome))
-			throw new Exception("Nome invalido");
+			promptErro += "Nome invalido\n";
 		// Verif Endereco
 		if (VerificaInvalido.basico(endereco))
-			throw new Exception("Endereco invalido");
+			promptErro += "Endereco invalido\n";
 		// Verif CPF
 		final int TAM_CPF_FORMATADO = 11;
 		if (VerificaInvalido.numeroFormatado(cpf, TAM_CPF_FORMATADO))
-			throw new Exception("CPF invalido");
+			promptErro += "CPF invalido\n";
 		// Verif Data Nascimento
-		if ((VerificaInvalido.maiorIdade(dataNascimento))
-				|| VerificaInvalido.data(dataNascimento)) {
-			throw new Exception("Data de nascimento invalida");
+		if ((VerificaInvalido.data(dataNascimento))
+				|| VerificaInvalido.maiorIdade(dataNascimento)) {
+			promptErro += "Data de nascimento invalida";
+		}
+		if (promptErro.length() != 0) {
+			throw new Exception(promptErro);
 		}
 
 		this.dataNascimento = dataNascimento;
@@ -70,8 +75,9 @@ public abstract class Pessoa {
 	 * 
 	 * @return A data de nascimento da pessoa
 	 */
-	public Calendar getDataNascimento() {
-		return dataNascimento;
+	public String getDataNascimento() {
+		return new SimpleDateFormat("dd/MM/yyyy").format(dataNascimento
+				.getTime());
 	}
 
 	/**
@@ -130,7 +136,7 @@ public abstract class Pessoa {
 	}
 
 	/**
-	 * Modifica o nome
+	 * Modifccica o nome
 	 * 
 	 * @param nome
 	 *            O nome a ser definido
