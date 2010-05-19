@@ -1,9 +1,4 @@
-
-/*
- * Lembrando que essa classe pode ser alterada apos a 
- * criação das classes Cliente e ColecaoImoveis
- */
-
+//FALTANDO EFETUAR COMPRA DE CLIENTE!
 package imobiliaria.processamento;
 
 import java.util.Calendar;
