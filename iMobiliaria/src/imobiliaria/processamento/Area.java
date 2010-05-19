@@ -102,6 +102,23 @@ public class Area {
 		return comprimento + "|" + largura + "|" + classificacao;
 	}
 	
+	/**
+	 * equals da Classe<br>
+	 * Duas areas sao iguais se possuirem o mesmo comprimento e largura
+	 */
+	
+	@Override
+	public boolean equals(Object objeto) {
+		if (!(objeto instanceof Area)) {
+			return false;
+		}
+		Area outraArea = (Area) objeto;
+		if (outraArea.getComprimento() == comprimento && outraArea.getLargura() == largura) {
+			return true;
+		}
+		return false;
+	}
+	
 	
 	
 	
