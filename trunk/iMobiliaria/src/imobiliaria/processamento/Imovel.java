@@ -34,8 +34,6 @@ public class Imovel {
 	 *            Tipo do Imovel
 	 * @param tipoContratual
 	 *            Tipo Contratual do Imovel
-	 * @param estadoDoImovel
-	 *            Estado do Imovel
 	 * @throws Exception
 	 *             Lanca Exception caso algum parametro seja invalido
 	 */
@@ -43,16 +41,22 @@ public class Imovel {
 			TipoImovel tipoDoImovel, TipoContratual tipoContratual)
 			throws Exception {
 
-		if (VerificaInvalido.nome(nome)) {
-			throw new Exception("Nome invalido.");
+		String mensagemErro = "";
+
+		if (VerificaInvalido.basico(nome)) {
+			mensagemErro += "Nome invalido\n";
 		}
 
 		if (VerificaInvalido.basico(endereco)) {
-			throw new Exception("Endereco invalido.");
+			mensagemErro += "Endereco invalido\n";
 		}
 
-		if (VerificaInvalido.pertenceAIntervalo(valor, 0.0, Double.MAX_VALUE)) {
-			throw new Exception("Valor invalido.");
+		if (!(VerificaInvalido.pertenceAIntervalo(valor, 0.0, 999999999.0))) {
+			mensagemErro += "Valor invalido\n";
+		}
+
+		if (mensagemErro.length() != 0) {
+			throw new Exception(mensagemErro);
 		}
 
 		this.nome = nome;
@@ -62,6 +66,7 @@ public class Imovel {
 		this.tipoDoImovel = tipoDoImovel;
 		this.tipoContratual = tipoContratual;
 
+		estadoDoImovel = EstadoImovel.A_VENDA;
 		registroImovel = criadorDeRegistro;
 		criadorDeRegistro += 1;
 	}
@@ -82,7 +87,7 @@ public class Imovel {
 	 *            Novo nome do Imovel
 	 */
 	public void setNome(String nome) throws Exception {
-		if (VerificaInvalido.nome(nome)) {
+		if (VerificaInvalido.basico(nome)) {
 			throw new Exception("Nome invalido");
 		}
 		this.nome = nome;
@@ -117,6 +122,20 @@ public class Imovel {
 	 */
 	public double getValor() {
 		return valor;
+	}
+
+	/**
+	 * Metodo Modificador para Valor do Imovel
+	 * 
+	 * @param valor
+	 *            Novo valor do Imovel
+	 */
+	
+	public void setValor(double valor) throws Exception {
+		if (!(VerificaInvalido.pertenceAIntervalo(valor, 0, 999999999))) {
+			throw new Exception("Valor invalido");
+		}
+		this.valor = valor;
 	}
 
 	/**
@@ -228,6 +247,7 @@ public class Imovel {
 	@Override
 	public String toString() {
 		return registroImovel + "|" + nome + "|" + endereco + "|" + valor + "|"
-				+ area + "|" + tipoDoImovel + "|" + tipoContratual;
+				+ area + "|" + tipoDoImovel + "|" + tipoContratual + "|"
+				+ estadoDoImovel;
 	}
 }
