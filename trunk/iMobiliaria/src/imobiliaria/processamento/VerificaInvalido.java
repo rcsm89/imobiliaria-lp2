@@ -7,9 +7,13 @@ import java.util.Scanner;
 /**
  * Classe que verifica entradas invalidas
  * 
+<<<<<<< .mine
+ * @author Bruno Fabio de Farias Paiva
+=======
  * @author Bruno Fabio, Jeanderson Barros
+>>>>>>> .r23
  * @version IT01
- */
+ */ 
 public class VerificaInvalido {
 
 	// Tratamento de Datas (Jeanderson)
@@ -25,10 +29,12 @@ public class VerificaInvalido {
 	 * @return True, se a pessoa for menor de idade<br>
 	 *         False, caso contrario
 	 */
+
 	public static boolean maiorIdade(Calendar dataNascimento) {
 		final int MAIOR_IDADE = 18;
-		int idadeVerificada = dataAtual.get(Calendar.YEAR)
-				- dataNascimento.get(Calendar.YEAR);
+
+		int idadeVerificada = dataAtual.get(Calendar.YEAR) -
+		dataNascimento.get(Calendar.YEAR);
 
 		if (idadeVerificada < MAIOR_IDADE) {
 			return true;
@@ -81,12 +87,15 @@ public class VerificaInvalido {
 
 		if (basico(texto))
 			return true;
-
+		
 		texto = texto.replace(" ", "");
 		for (int i = 0; i < texto.length(); i++) {
 			if (!(Character.isLetter(texto.charAt(i))))
 				return true;
 		}
+		
+		if (Character.isTitleCase(texto.charAt(0)))
+			return true;
 
 		return false;
 	}
