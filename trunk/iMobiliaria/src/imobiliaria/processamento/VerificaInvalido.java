@@ -27,8 +27,8 @@ public class VerificaInvalido {
 	 */
 	public static boolean maiorIdade(Calendar dataNascimento) {
 		final int MAIOR_IDADE = 18;
-		int idadeVerificada = dataAtual.get(dataAtual.YEAR)
-				- dataNascimento.get(dataNascimento.YEAR);
+		int idadeVerificada = dataAtual.get(Calendar.YEAR)
+				- dataNascimento.get(Calendar.YEAR);
 
 		if (idadeVerificada < MAIOR_IDADE) {
 			return true;
