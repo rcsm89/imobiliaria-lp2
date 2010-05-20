@@ -54,7 +54,7 @@ public class Cliente extends Pessoa {
 	/**
 	 * Metodo modificador que adiciona um novo pedido nos pedidos do cliente.
 	 */
-	public void fazPedidos(Imovel pedido) throws Exception{
+	public void fazPedido(Imovel pedido) throws Exception{
 		if (pedido == null){
 			throw new Exception("Pedido Invalido");
 		}
