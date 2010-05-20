@@ -1,4 +1,4 @@
-//FALTANDO TESTAR O HISTORICO DE COMPRAS!
+//FALTANDO TESTAR O HISTORICO DE COMPRAS USANDO UM FUNCIONARIO
 package imobiliaria.testes;
 
 import imobiliaria.processamento.*;
@@ -18,7 +18,7 @@ public class ClienteTest {
 	private Cliente cliente3;
 	private Imovel imovel1;
 	private Imovel imovel2;
-	private Funcionario func;
+//	private Funcionario func;
 	
 	@Before
 	public void criaClientes() throws Exception {
@@ -50,10 +50,10 @@ public class ClienteTest {
 				25000, new Area(4, 6), TipoImovel.APARTAMENTO,
 				TipoContratual.VENDA);
 		
-		func = new Funcionario("40030020010",
+		/*func = new Funcionario("40030020010",
 				new GregorianCalendar(1991, 11, 03),
 				"Rua 1º de Maio",
-				"Bigode", "20921"); 
+				"Bigode", "20921"); */
 	}
 	
 	@Test
@@ -73,20 +73,20 @@ public class ClienteTest {
 		Assert.assertEquals(pedidos, cliente1.getPedidos());
 		Assert.assertEquals(0, cliente1.getPedidos().getImoveis().size());
 		
-		cliente1.fazPedidos(imovel1);
+		cliente1.fazPedido(imovel1);
 		pedidos.adicionaImovel(imovel1);
 		Assert.assertEquals(pedidos, cliente1.getPedidos());
 		
 		Assert.assertEquals(1, cliente1.getPedidos().getImoveis().size());
 		
-		cliente1.fazPedidos(imovel2);
+		cliente1.fazPedido(imovel2);
 		pedidos.adicionaImovel(imovel2);
 		Assert.assertEquals(pedidos, cliente1.getPedidos());
 		
 		Assert.assertEquals(2, cliente1.getPedidos().getImoveis().size());
 		
 		try{
-			cliente3.fazPedidos(null);
+			cliente3.fazPedido(null);
 		}catch(Exception e){
 			Assert.assertEquals("Pedido Invalido", e.getMessage());
 		}
@@ -98,12 +98,12 @@ public class ClienteTest {
 		
 		Assert.assertTrue(cliente1.getPedidos().equals(new ColecaoImoveis()));
 		
-		cliente2.fazPedidos(imovel1);
-		cliente2.fazPedidos(imovel2);
+		cliente2.fazPedido(imovel1);
+		cliente2.fazPedido(imovel2);
 		
 		Assert.assertEquals(2, cliente2.getPedidos().getImoveis().size());
 		
-		cliente3.fazPedidos(imovel1);
+		cliente3.fazPedido(imovel1);
 		
 		Assert.assertEquals(1, cliente3.getPedidos().getImoveis().size());
 		
