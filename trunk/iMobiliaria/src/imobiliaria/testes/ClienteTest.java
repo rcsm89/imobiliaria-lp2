@@ -65,7 +65,7 @@ public class ClienteTest {
 	}
 
 	@Test
-	public void testaFazPedidos() throws Exception {
+	public void testaFazPedido() throws Exception {
 
 		ColecaoImoveis pedidos = new ColecaoImoveis();
 
