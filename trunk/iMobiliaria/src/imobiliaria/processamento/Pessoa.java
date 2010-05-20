@@ -3,6 +3,8 @@
  */
 package imobiliaria.processamento;
 
+import imobiliaria.aux.VerificaInvalido;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
