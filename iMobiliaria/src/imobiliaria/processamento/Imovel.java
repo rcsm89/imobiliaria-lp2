@@ -1,5 +1,7 @@
 package imobiliaria.processamento;
 
+import imobiliaria.aux.VerificaInvalido;
+
 /**
  * Classe Imovel que guarda informacoes de um Imovel
  * 
