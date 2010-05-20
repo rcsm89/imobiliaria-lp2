@@ -3,9 +3,9 @@
  */
 package imobiliaria.processamento;
 
+import imobiliaria.aux.FormataEntrada;
 import imobiliaria.aux.VerificaInvalido;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -19,7 +19,7 @@ public abstract class Pessoa {
 
 	// Atributos
 
-	private Calendar dataNascimento; // data de nascimento da pessoa
+	private String dataNascimento; // data de nascimento da pessoa
 	private String endereco; // residencia da pessoa
 	private String nome; // nome da pessoa
 	private String cpf; // cpf da pessoa
@@ -64,10 +64,10 @@ public abstract class Pessoa {
 			throw new Exception(promptErro);
 		}
 
-		this.dataNascimento = dataNascimento;
-		this.endereco = endereco;
-		this.nome = nome;
-		this.cpf = cpf;
+		this.dataNascimento = FormataEntrada.data(dataNascimento);
+		this.endereco = FormataEntrada.capitalize(endereco);
+		this.nome = FormataEntrada.capitalize(nome);
+		this.cpf = FormataEntrada.cpf(cpf);
 	}
 
 	// Metodos
@@ -78,8 +78,7 @@ public abstract class Pessoa {
 	 * @return A data de nascimento da pessoa
 	 */
 	public String getDataNascimento() {
-		return new SimpleDateFormat("dd/MM/yyyy").format(dataNascimento
-				.getTime());
+		return dataNascimento;
 	}
 
 	/**
@@ -98,7 +97,7 @@ public abstract class Pessoa {
 				|| VerificaInvalido.data(dataNascimento)) {
 			throw new Exception("Data de nascimento invalida");
 		}
-		this.dataNascimento = dataNascimento;
+		this.dataNascimento = FormataEntrada.data(dataNascimento);
 	}
 
 	/**

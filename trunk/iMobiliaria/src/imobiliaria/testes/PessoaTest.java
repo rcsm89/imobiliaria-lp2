@@ -107,7 +107,7 @@ public class PessoaTest {
 	@Test
 	public void testGetEndereco() {
 		Assert.assertEquals("Retornou enderecos diferentes",
-				"Av EmTalLugar AquiPerto, 142", p1.getEndereco());
+				"Av Emtallugar Aquiperto, 142", p1.getEndereco());
 	}
 
 	/**
@@ -141,7 +141,7 @@ public class PessoaTest {
 	 */
 	@Test
 	public void testGetCpf() {
-		Assert.assertEquals("Retornou CPF diferente", "12345678910", p1
+		Assert.assertEquals("Retornou CPF diferente", "123.456.789-10", p1
 				.getCpf());
 	}
 
@@ -169,7 +169,7 @@ public class PessoaTest {
 	@Test
 	public void testToString() {
 		Assert.assertEquals("toStrings diferentes",
-				"Jean|12345678910|Av EmTalLugar AquiPerto, 142|08/05/1991", p1
+				"Jean|123.456.789-10|Av Emtallugar Aquiperto, 142|08/05/1991", p1
 						.toString());
 	}
 }
