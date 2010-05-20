@@ -62,9 +62,7 @@ public class ClienteTest {
 		ColecaoImoveis compras = new ColecaoImoveis();
 		
 		Assert.assertEquals(compras, cliente1.getHistoricoCompras());
-		/*So pode testar depois que o funcionario
-		 * puder efetuar a compra dos pedidos do cliente. 
-		 */
+
 	}
 	
 	@Test
