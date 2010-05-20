@@ -1,19 +1,15 @@
 //FALTANDO TESTAR O HISTORICO DE COMPRAS!
 package imobiliaria.testes;
 
-import imobiliaria.processamento.Area;
-import imobiliaria.processamento.Cliente;
-import imobiliaria.processamento.ColecaoImoveis;
-import imobiliaria.processamento.Funcionario;
-import imobiliaria.processamento.Imovel;
-import imobiliaria.processamento.TipoContratual;
-import imobiliaria.processamento.TipoImovel;
+import imobiliaria.processamento.*;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import junit.framework.Assert;
 
 import org.junit.Before;
+import org.junit.Test;
 
 public class ClienteTest {
 	
@@ -26,18 +22,20 @@ public class ClienteTest {
 	
 	@Before
 	public void criaClientes() throws Exception {
-		cliente1 = new Cliente("10020030040",
-				new GregorianCalendar(1991, 04, 03),
-				"Rua Antonio Joaquim Pequeno",
-				"Bruno Fabio", TipoImovel.CASA); // Casa
+		Calendar nascimento = new GregorianCalendar(1991, Calendar.APRIL,4);
+		String endereco = "Rua Alberto de Brito, 844";
+		TipoImovel preferencia = TipoImovel.CASA;
+		
+		cliente1 = new Cliente("12345678910", nascimento, endereco,
+				"Bruno", preferencia);
 		
 		cliente2 = new Cliente("10120230344",
-				new GregorianCalendar(1991, 04, 03),
+				new GregorianCalendar(1991, 14, 13),
 				"Rua 12 de Outubro",
 				"Thiago Ferreira", TipoImovel.APARTAMENTO); // Apartamento
 		
 		cliente3 = new Cliente("11022033040",
-				new GregorianCalendar(1991, 04, 03),
+				new GregorianCalendar(1991, 06, 23),
 				"Rua Antonio Joaquim Pequeno",
 				"Jean", TipoImovel.TERRENO); // Terreno
 		
@@ -53,11 +51,12 @@ public class ClienteTest {
 				TipoContratual.VENDA);
 		
 		func = new Funcionario("40030020010",
-				new GregorianCalendar(1991, 04, 03),
+				new GregorianCalendar(1991, 11, 03),
 				"Rua 1º de Maio",
 				"Bigode", "20921"); 
 	}
 	
+	@Test
 	public void testaGetHistoricoCompras() throws Exception {
 		
 		ColecaoImoveis compras = new ColecaoImoveis();
@@ -68,27 +67,51 @@ public class ClienteTest {
 		 */
 	}
 	
+	@Test
 	public void testaFazPedidos() throws Exception {
 		
 		ColecaoImoveis pedidos = new ColecaoImoveis();
 		
 		Assert.assertEquals(pedidos, cliente1.getPedidos());
+		Assert.assertEquals(0, cliente1.getPedidos().getImoveis().size());
 		
 		cliente1.fazPedidos(imovel1);
 		pedidos.adicionaImovel(imovel1);
 		Assert.assertEquals(pedidos, cliente1.getPedidos());
 		
+		Assert.assertEquals(1, cliente1.getPedidos().getImoveis().size());
+		
 		cliente1.fazPedidos(imovel2);
 		pedidos.adicionaImovel(imovel2);
 		Assert.assertEquals(pedidos, cliente1.getPedidos());
+		
+		Assert.assertEquals(2, cliente1.getPedidos().getImoveis().size());
+		
+		try{
+			cliente3.fazPedidos(null);
+		}catch(Exception e){
+			Assert.assertEquals("Pedido Invalido", e.getMessage());
+		}
+		
 	}
 	
-	public void testaGetPedidos() {
+	@Test
+	public void testaGetPedidos() throws Exception {
 		
 		Assert.assertTrue(cliente1.getPedidos().equals(new ColecaoImoveis()));
 		
+		cliente2.fazPedidos(imovel1);
+		cliente2.fazPedidos(imovel2);
+		
+		Assert.assertEquals(2, cliente2.getPedidos().getImoveis().size());
+		
+		cliente3.fazPedidos(imovel1);
+		
+		Assert.assertEquals(1, cliente3.getPedidos().getImoveis().size());
+		
 	}
 	
+	@Test
 	public void testaGetPreferencia() {
 		
 		Assert.assertEquals(TipoImovel.CASA,
@@ -100,6 +123,7 @@ public class ClienteTest {
 
 	}
 	
+	@Test
 	public void testaSetPreferencia() {
 		
 		cliente1.setPreferencia(TipoImovel.APARTAMENTO);
@@ -119,6 +143,7 @@ public class ClienteTest {
 		
 	}
 	
+	@Test
 	public void testaEquals() {
 		
 		Assert.assertTrue(cliente1.equals(cliente1));
