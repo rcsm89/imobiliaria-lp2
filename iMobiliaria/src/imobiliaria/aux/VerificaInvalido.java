@@ -8,7 +8,7 @@ import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 /**
- * Classe que verifica entradas invalidas
+ * Classe auxiliar que verifica entradas invalidas
  * 
  * @author Bruno Fabio de Farias Paiva
  * @version IT01
