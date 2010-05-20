@@ -10,8 +10,8 @@ import java.util.Calendar;
  */
 public class Cliente extends Pessoa {
 
-	private ColecaoImoveis historicoCompras;
-	private ColecaoImoveis pedidos;
+	private ColecaoImoveis historicoCompras = new ColecaoImoveis();
+	private ColecaoImoveis pedidos = new ColecaoImoveis();
 	private TipoImovel preferencia;
 
 	/**
@@ -50,9 +50,9 @@ public class Cliente extends Pessoa {
 	public ColecaoImoveis getPedidos() {
 		return pedidos;
 	}
-	
+
 	/**
-	 * 
+	 * Metodo modificador que adiciona um novo pedido nos pedidos do cliente.
 	 */
 	public void fazPedidos(Imovel pedido) throws Exception{
 		if (pedido == null){
@@ -60,7 +60,7 @@ public class Cliente extends Pessoa {
 		}
 		pedidos.adicionaImovel(pedido);
 	}
-
+ 
 	/**
 	 * Metodo acessador a preferencia do cliente
 	 * 
