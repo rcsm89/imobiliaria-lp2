@@ -49,7 +49,7 @@ public abstract class Pessoa {
 		if (VerificaInvalido.nome(nome))
 			promptErro += "Nome invalido\n";
 		// Verif Endereco
-		if (VerificaInvalido.basico(endereco))
+		if (VerificaInvalido.endereco(endereco))
 			promptErro += "Endereco invalido\n";
 		// Verif CPF
 		final int TAM_CPF_FORMATADO = 11;
@@ -58,16 +58,16 @@ public abstract class Pessoa {
 		// Verif Data Nascimento
 		if ((VerificaInvalido.data(dataNascimento))
 				|| VerificaInvalido.maiorIdade(dataNascimento)) {
-			promptErro += "Data de nascimento invalida";
+			promptErro += "Data de nascimento invalida\n";
 		}
 		if (promptErro.length() != 0) {
 			throw new Exception(promptErro);
 		}
 
 		this.dataNascimento = FormataEntrada.data(dataNascimento);
-		this.endereco = FormataEntrada.capitalize(endereco);
-		this.nome = FormataEntrada.capitalize(nome);
-		this.cpf = FormataEntrada.cpf(cpf);
+		this.endereco = FormataEntrada.capitalize(endereco).trim();
+		this.nome = FormataEntrada.capitalize(nome).trim();
+		this.cpf = FormataEntrada.cpf(cpf).trim();
 	}
 
 	// Metodos
@@ -121,10 +121,10 @@ public abstract class Pessoa {
 	 */
 	public void setEndereco(String endereco) throws Exception {
 		// Verif Endereco
-		if (VerificaInvalido.basico(endereco)) {
-			throw new Exception("Endereco invalido");
+		if (VerificaInvalido.endereco(endereco)) {
+			throw new Exception("Endereco invalido\n");
 		}
-		this.endereco = endereco;
+		this.endereco = FormataEntrada.capitalize(endereco).trim();
 	}
 
 	/**
@@ -148,7 +148,7 @@ public abstract class Pessoa {
 	public void setNome(String nome) throws Exception {
 		// Verif Nome
 		if (VerificaInvalido.nome(nome))
-			throw new Exception("Nome invalido");
+			throw new Exception("Nome invalido\n");
 		this.nome = nome;
 	}
 
@@ -175,7 +175,7 @@ public abstract class Pessoa {
 		// Verif CPF
 		final int TAM_CPF_FORMATADO = 11;
 		if (VerificaInvalido.numeroFormatado(cpf, TAM_CPF_FORMATADO)) {
-			throw new Exception("CPF invalido");
+			throw new Exception("CPF invalido\n");
 		}
 		this.cpf = cpf;
 	}
