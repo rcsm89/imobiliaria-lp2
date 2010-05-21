@@ -1,8 +1,5 @@
 package imobiliaria.processamento;
-/*
- *Cadastrar imovel
- * 
- */
+
 import imobiliaria.aux.VerificaInvalido;
 
 import java.util.Calendar;
@@ -18,9 +15,6 @@ public class Funcionario extends Pessoa {
 
 	private ColecaoImoveis historicoVendido = new ColecaoImoveis();
 	private ColecaoImoveis historicoVendidoMes = new ColecaoImoveis();
-	private ColecaoImoveis listaDeImoveis = new ColecaoImoveis();
-	private ColecaoClientes listaDeClientes = new ColecaoClientes();
-	
 	private String creci;
 	private double totalDeVendas = 0;
 
@@ -36,7 +30,7 @@ public class Funcionario extends Pessoa {
 			String nome, String creci) throws Exception {
 		super(cpf, dataNascimento, endereco, nome);
 		if (VerificaInvalido.numero(creci))
-			throw new Exception("Creci invalido");
+			throw new Exception("Creci invalido\n");
 		this.creci = creci;
 	}
 
@@ -48,7 +42,7 @@ public class Funcionario extends Pessoa {
 	public String getCreci() {
 		return creci;
 	}
-	
+
 	/**
 	 * Adiciona uma nova venda no total de vendas
 	 * 
@@ -59,7 +53,7 @@ public class Funcionario extends Pessoa {
 	 */
 	public void adicionaVenda(double valorDaVenda) throws Exception {
 		if (valorDaVenda < 0) {
-			throw new Exception("Valor da venda invalido");
+			throw new Exception("Valor da venda invalido\n");
 		}
 		totalDeVendas += valorDaVenda;
 	}
@@ -67,83 +61,12 @@ public class Funcionario extends Pessoa {
 	/**
 	 * Acessa o total de vendas
 	 * 
-	 * @return 
-	 * 		O total de vendas do funcionario
+	 * @return O total de vendas do funcionario
 	 */
 	public double getTotalDeVendas() {
 		return totalDeVendas;
 	}
 
-	/**
-	 * Adiciona um novo cliente na lista de clientes
-	 * 
-	 * @param novoCliente
-	 *            Cliente a ser adicionado
-	 * @return True, se o cliente foi adicionado <br>
-	 *  		False, caso contrario
-	 */
-	public boolean adicionaCliente(Cliente novoCliente) {
-		if (listaDeClientes.getClientes().contains(novoCliente)) {
-			return false;
-		}
-		return listaDeClientes.adicionaCliente(novoCliente);
-	}
-	
-	
-	/**
-	 * Remove um cliente da lista de clientes por nome
-	 * @param nome
-	 * 		Nome do cliente a ser removido
-	 * @return
-	 * 		True, se o cliente foi removido <br>
-	 *      False, caso contrario
-	 * @throws Exception
-	 * 		Caso o nome seja invalido
-	 */
-	
-	public boolean removeClientePorNome(String nome) throws Exception {
-		if (VerificaInvalido.nome(nome))
-			throw new Exception("Nome invalido");
-
-		for (Cliente c : listaDeClientes.getClientes()) {
-			if (c.getNome() == nome)
-				listaDeClientes.removeCliente(nome);
-			return true;
-		}
-		return false;
-	}
-	
-	/**
-	 * Remove um cliente da lista de clientes  por cpf
-	 * 
-	 * @param cpf
-	 *         Cpf do cliente a ser removido
-	 * @return True, se o cliente foi removido <br>
-	 *         False, caso contrario
-	 * @throws Exception
-	 *         Caso o cpf seja invalido
-	 */
-	public boolean removeClientePorCpf(String cpfCliente) throws Exception {
-		if (VerificaInvalido.numeroFormatado(cpfCliente, 11))
-			throw new Exception("Cpf invalido");
-
-		for (Cliente c : listaDeClientes.getClientes()) {
-			if (c.getCpf() == cpfCliente)
-				listaDeClientes.removeCliente(cpfCliente);
-			return true;
-		}
-		return false;
-	}
-	
-	/**
-	 * Acessa a lista de clientes
-	 * @return
-	 * 		Lista de clientes
-	 */
-	public ColecaoClientes getClientes(){
-		return listaDeClientes;
-	}
-	
 	/**
 	 * Acessa a lista de imoveis vendidos
 	 * 
@@ -161,56 +84,13 @@ public class Funcionario extends Pessoa {
 	public ColecaoImoveis getImoveisVendidosMes() {
 		return historicoVendidoMes;
 	}
-	
-	
-	/**
-	 * Adiciona um imovel na lista de imoveis 
-	 * @param imovel
-	 * 		Imovel a ser adicionado
-	 * @return
-	 * 		True, se o imovel foi adicionado
-	 * 		False, caso contrario
-	 */
-	public boolean addImovel(Imovel imovel) {
-		if (listaDeImoveis.getImoveis().contains(imovel)) {
-			return false;
-		}
-		return listaDeImoveis.adicionaImovel(imovel);
-	}
-	
-	/**
-	 * Acessa a lista de imoveis
-	 * 
-	 * @return
-	 * 		Lista de imoveis
-	 */
-	public ColecaoImoveis getImoveis() {
-		return listaDeImoveis;
-	}
-	
-	/**
-	 * Remove um imovel da lista de imovel
-	 * @param imovel
-	 * 		Imovel a ser removido
-	 * @return
-	 * 		True, se o imovel foi removido
-	 * 		False, caso contrario
-	 */
-	public boolean removeImovel(Imovel imovel){
-		if (!(listaDeImoveis.getImoveis().contains(imovel))) {
-			return false;
-		}
-		return listaDeImoveis.removeImovel(imovel.getRegistroImovel());
-	}
-	
 
 	/**
 	 * Adiciona um imovel na lista de imoveis vendidos
+	 * 
 	 * @param imovelVendido
-	 *      Imovel vendido a ser adicionado		
-	 * @return
-	 * 		True, se o imovel foi adicionado
-	 * 		False, caso contrario
+	 *            Imovel vendido a ser adicionado
+	 * @return True, se o imovel foi adicionado False, caso contrario
 	 */
 	public boolean addImovelVendido(Imovel imovelVendido) {
 		if (historicoVendido.getImoveis().contains(imovelVendido)) {
@@ -218,7 +98,7 @@ public class Funcionario extends Pessoa {
 		}
 		return historicoVendido.getImoveis().add(imovelVendido);
 	}
-	
+
 	/**
 	 * Adiciona um movel na lista de imoveis vendidos num mes
 	 * 
@@ -252,10 +132,10 @@ public class Funcionario extends Pessoa {
 	 * @throws Exception
 	 *             Caso os parametros sejam invalidos
 	 */
-	public boolean efetuaCompra(Cliente cliente, int registroImovel)
+/*	public boolean efetuaCompra(Cliente cliente, int registroImovel)
 			throws Exception {
 		if (registroImovel < 1) {
-			throw new Exception("Registro de imovel invalido");
+			throw new Exception("Registro de imovel invalido\n");
 		}
 
 		ColecaoImoveis listaDePedidos = cliente.getPedidos();
@@ -269,15 +149,13 @@ public class Funcionario extends Pessoa {
 				listaDePedidos.removeImovel(registroImovel);
 				addImovelVendido(imovel);
 				totalDeVendas += imovel.getValor();
-				//caixa += imovel.getValor();
+				// caixa += imovel.getValor();
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	
-
+*/
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof Funcionario)) {
