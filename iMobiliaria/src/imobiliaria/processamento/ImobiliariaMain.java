@@ -24,13 +24,15 @@ public class ImobiliariaMain {
 
 			case 1:
 
-				System.out.println("Digite seu Login: ");
+				System.out.print("Login: ");
 				String loginAdmin = VerificaInvalido.recebeString();
+				System.out.print("Senha: ");
 				String senhaAdmin = VerificaInvalido.recebeString();
 
 				if (!(loginAdmin.equals("admin") && senhaAdmin.equals("admin"))) {
 					System.out.println("Login e/ou Senha invalida!");
 				} else {
+					System.out.println("Administrador logado com Sucesso!");
 					opcoesAdmin();
 				}
 
@@ -52,7 +54,7 @@ public class ImobiliariaMain {
 						.getLoginClientes();
 				if (loginClientes.containsKey(loginCliente)) {
 					if (loginClientes.get(loginCliente).equals(senhaCliente)) {
-						System.out.println("Cliente Logado com Sucesso");
+						System.out.println("Cliente Logado com Sucesso!");
 						opcoesCliente();
 					} else {
 						System.out.println("Login e/ou Senha invalida!");
@@ -85,8 +87,11 @@ public class ImobiliariaMain {
 	private static String promptPrincipal() {
 		return " * ----------"
 				+ "------------- * Imobiliaria * ----------------------- * \n"
-				+ "1 - Administrador.\n" + "2 - Funcionario.\n"
-				+ "3 - Cliente.\n" + "4 - Cadastrar Cliente.\n" + "0 - Sair.\n"
+				+ "1 - Administrador.\n"
+				+ "2 - Funcionario.\n"
+				+ "3 - Cliente.\n" 
+				+ "4 - Cadastrar Cliente.\n" 
+				+ "0 - Sair.\n"
 				+ "-------------Digite o numero da opcao desejada-------------"
 				+ "\n" + "Número da opção: ";
 	}
@@ -116,8 +121,6 @@ public class ImobiliariaMain {
 	// SuppressWarnings pelo Cast do Object para HashMap
 	@SuppressWarnings("unchecked")
 	private static void opcoesAdmin() {
-		System.out
-				.println("\n" + "Menu de Administracao - iMobiliaria" + "1. ");
 		
 		boolean menuAdminRodando = true;
 		
