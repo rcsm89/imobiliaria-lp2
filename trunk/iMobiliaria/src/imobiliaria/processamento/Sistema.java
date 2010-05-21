@@ -119,6 +119,7 @@ public class Sistema {
 	 *         Boolean True se Ja Pagou esse mes e False se nao
 	 */
 	public Object[] getPagouNesseMes() {
+		atualizaPagamento();
 		return pagouNesseMes;
 	}
 
