@@ -10,34 +10,28 @@ public class ImobiliariaMain {
 	
 //	private static Sistema sistema = new Sistema();
 	
-	private static Scanner sc = new Scanner(System.in);
+//	private static Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) {
 		
 		boolean repete = true;
 		int opcao = 0;
+		String promptCliente = 	
+			" * ----------"
+			+ "------------- * Imobiliaria * ----------------------- * \n"
+			+ "1 - Listar Imoveis da Imobiliaria.\n"
+			+ "2 - Ver informacoes do cliente.\n"
+			+ "3 - Sair.\n"
+			+ "-------------Digite o numero da opcao desejada-------------"
+			+ "\n" + "Número da opção: ";
 //		Cliente cliente = null;
 //		Funcionario funcionario = null;
 
 		do {
 
-			System.out.print(" * ----------"
-				+ "------------- * Imobiliaria * ----------------------- * \n"
-				+ "1 - Administrador.\n"
-				+ "2 - Funcionario.\n"
-				+ "3 - Cliente.\n"
-				+ "4 - Cadastra Cliente.\n"
-				+ "0 - Sair.\n"
-				+ "-------------Digite o numero da opcao desejada-------------"
-				+ "\n" + "Número da opção: ");
+			System.out.print(promptPrincipal());
 
-			try {
-				opcao = sc.nextInt();
-			} catch (Exception e) {
-				sc.next();
-				System.out.println("\nDigite umas das opções sugeridas.");
-				continue;
-			}
+			opcao = recebeInteiroEntre(0, 4);
 
 			switch (opcao) {
 			
@@ -52,8 +46,7 @@ public class ImobiliariaMain {
 				} else {
 					opcoesAdmin();
 				}
-				
-				
+
 				break;
 				
 			case 2:
@@ -69,6 +62,9 @@ public class ImobiliariaMain {
 					repete = false;
 					break;
 				}
+				System.out.print(promptCliente);
+				
+				break;
 
 			case 4:
 				
@@ -89,6 +85,19 @@ public class ImobiliariaMain {
 		System.out.println("Programa Finalizado");
 	}
 	
+	
+	private static String promptPrincipal() {
+		return " * ----------"
+		+ "------------- * Imobiliaria * ----------------------- * \n"
+		+ "1 - Administrador.\n"
+		+ "2 - Funcionario.\n"
+		+ "3 - Cliente.\n"
+		+ "4 - Cadastra Cliente.\n"
+		+ "0 - Sair.\n"
+		+ "-------------Digite o numero da opcao desejada-------------"
+		+ "\n" + "Número da opção: ";
+	}
+
 	private static Cliente criaCliente() {
 		//cpf = recebe(cpf);
 		//nascimento = recebe(calendar - data);
@@ -106,7 +115,7 @@ public class ImobiliariaMain {
 			return null;
 		}
 	}
-	
+
 	
 	/* Metodos de Administrador */
 	
@@ -135,7 +144,6 @@ public class ImobiliariaMain {
 	         return recebeInteiroEntre(min, max);
 	      }
 	      return numero;
-	   }
-		
+	  } 
 
 }
