@@ -1,31 +1,20 @@
 package imobiliaria.processamento;
 
+import java.util.HashMap;
 import imobiliaria.aux.*;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class ImobiliariaMain {
 
 	private static Sistema sistema = new Sistema();
 
-
 	public static void main(String[] args) {
+		sistema.getLoginClientes().put("cliente", "1234");
 
 		boolean repete = true;
 		int opcao = 0;
-		
-		String promptCliente = 	
-			" * ----------"
-			+ "------------- * Imobiliaria * ----------------------- * \n"
-			+ "1 - Listar Imoveis da Imobiliaria.\n"
-			+ "2 - Ver informacoes do cliente.\n"
-			+ "3 - Sair.\n"
-			+ "-------------Digite o numero da opcao desejada-------------"
-			+ "\n" + "Número da opção: ";
-//		Cliente cliente = null;
-//		Funcionario funcionario = null;
 
 		do {
 
@@ -39,7 +28,6 @@ public class ImobiliariaMain {
 
 				System.out.println("Digite seu Login: ");
 				String loginAdmin = VerificaInvalido.recebeString();
-				System.out.println("Digite sua Senha: ");
 				String senhaAdmin = VerificaInvalido.recebeString();
 
 				if (!(loginAdmin.equals("admin") && senhaAdmin.equals("admin"))) {
@@ -53,18 +41,28 @@ public class ImobiliariaMain {
 			case 2:
 
 				System.out.println("Func AEW!");
+				break;
 
 			case 3:
 
-				try {
-					criaCliente();
-				} catch (Exception e) {
-					System.out.println(e.getMessage());
-					repete = false;
-					break;
+				System.out.print("Login: ");
+				String loginCliente = VerificaInvalido.recebeString();
+				System.out.print("Senha: ");
+				String senhaCliente = VerificaInvalido.recebeString();
+
+				HashMap<String, String> loginClientes = sistema
+						.getLoginClientes();
+				if (loginClientes.containsKey(loginCliente)) {
+					if (loginClientes.get(loginCliente).equals(senhaCliente)) {
+						System.out.println("Cliente Logado com Sucesso");
+						opcoesCliente();
+					} else {
+						System.out.println("Login e/ou Senha invalida!");
+					}
+				} else {
+					System.out.println("Login falhou");
 				}
-				System.out.print(promptCliente);
-				
+
 				break;
 
 			case 4:
@@ -83,39 +81,36 @@ public class ImobiliariaMain {
 			}
 
 		} while (repete);
-		System.out.println("Programa Finalizado");
+		System.out.println("Sistema Finalizado");
 	}
 
-	
 	private static String promptPrincipal() {
 		return " * ----------"
-		+ "------------- * Imobiliaria * ----------------------- * \n"
-		+ "1 - Administrador.\n"
-		+ "2 - Funcionario.\n"
-		+ "3 - Cliente.\n"
-		+ "4 - Cadastra Cliente.\n"
-		+ "0 - Sair.\n"
-		+ "-------------Digite o numero da opcao desejada-------------"
-		+ "\n" + "Número da opção: ";
+				+ "------------- * Imobiliaria * ----------------------- * \n"
+				+ "1 - Administrador.\n" + "2 - Funcionario.\n"
+				+ "3 - Cliente.\n" + "4 - Cadastrar Cliente.\n" + "0 - Sair.\n"
+				+ "-------------Digite o numero da opcao desejada-------------"
+				+ "\n" + "Número da opção: ";
 	}
 
-	private static Cliente criaCliente() {
-		// cpf = recebe(cpf);
-		// nascimento = recebe(calendar - data);
-		// endereco = recebe(endereco);
-		// nome = recebe(nome);
-		// preferencia = rece(TipoImovel.CASA);
-		Calendar nascimento = new GregorianCalendar(1991, Calendar.APRIL, 4);
-		String endereco = "Rua alBerto de brito, 844";
-		TipoImovel preferencia = TipoImovel.CASA;
+	/*
+	 * private static Cliente criaCliente() { //cpf = recebe(cpf); //nascimento
+	 * = recebe(calendar - data); //endereco = recebe(endereco); //nome =
+	 * recebe(nome); //preferencia = rece(TipoImovel.CASA); Calendar nascimento
+	 * = new GregorianCalendar(1991, Calendar.APRIL, 4); String endereco =
+	 * "Rua alBerto de brito, 844"; TipoImovel preferencia = TipoImovel.CASA;
+	 * 
+	 * try { return new Cliente("12345678910", nascimento, endereco, "Bruno",
+	 * preferencia); } catch (Exception e) { return null; }
+	 * 
+	 * try{ criaCliente(); }catch(Exception e){
+	 * System.out.println(e.getMessage()); repete = false; break; }
+	 * 
+	 * }
+	 */
 
-		try {
-			return new Cliente("12345678910", nascimento, endereco, "Bruno",
-					preferencia);
-		} catch (Exception e) {
-			return null;
-		}
-	}
+	/* Metodos de Administrador */
+
 
 	
 	/* Metodos de Administrador */
@@ -123,6 +118,8 @@ public class ImobiliariaMain {
 	// SuppressWarnings pelo Cast do Object para HashMap
 	@SuppressWarnings("unchecked")
 	private static void opcoesAdmin() {
+		System.out
+				.println("\n" + "Menu de Administracao - iMobiliaria" + "1. ");
 		
 		boolean menuAdminRodando = true;
 		
@@ -200,7 +197,7 @@ public class ImobiliariaMain {
 	}
 
 	/* Metodos Auxiliares ou de Entrada */
-	
+
 	private static int recebeInteiroEntre(int min, int max) {
 		Scanner entrada = new Scanner(System.in);
 		if (!entrada.hasNextInt()) {
@@ -210,12 +207,53 @@ public class ImobiliariaMain {
 		}
 
 		int numero = entrada.nextInt();
-		
-	      if (numero < min || numero > max) {
-	         System.out.println("Numero invalido! Digite novamente: ");
-	         return recebeInteiroEntre(min, max);
-	      }
-	      return numero;
+
+		if (numero < min || numero > max) {
+			System.out.println("Numero invalido! Digite novamente: ");
+			return recebeInteiroEntre(min, max);
+		}
+		return numero;
 	}
 
+	private static void opcoesCliente() {
+		boolean menuClienteRodando = true;
+
+		System.out
+				.print("_____________Menu de Cliente__________ \n"
+						+ "1 - Listar Imoveis da Imobiliaria.\n"
+						+ "2 - Ver informacoes do cliente.\n"
+						+ "3 - Deslogar.\n"
+						+ "-------------Digite o numero da opcao desejada-------------"
+						+ "\n" + "Número da opção: ");
+
+		int opcaoEscolhida = recebeInteiroEntre(1, 3);
+
+		switch (opcaoEscolhida) {
+
+		case 1:
+
+			System.out.println("Listando Imoveis da Imobiliaria\n");
+			break;
+
+		case 2:
+
+			System.out.println("Vendo Informacoes do Cliente\n");
+			break;
+
+		case 3:
+
+			System.out.println("Voce foi deslogado\n");
+			menuClienteRodando = false;
+			break;
+
+		default:
+
+			System.out.println("\nDigite umas das opções sugeridas.");
+			break;
+
+		}
+		if (menuClienteRodando) {
+			opcoesCliente();
+		}
+	}
 }
