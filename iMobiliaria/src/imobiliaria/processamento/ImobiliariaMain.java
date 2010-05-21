@@ -1,5 +1,7 @@
 package imobiliaria.processamento;
 
+
+import imobiliaria.aux.*;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
@@ -41,7 +43,17 @@ public class ImobiliariaMain {
 			
 			case 1:
 				
-				System.out.println("Admin AEW!");
+				System.out.println("Digite seu Login: ");
+				String loginAdmin = VerificaInvalido.recebeString();
+				String senhaAdmin = VerificaInvalido.recebeString();
+				
+				if (!(loginAdmin.equals("admin") && senhaAdmin.equals("admin"))) {
+					System.out.println("Login e/ou Senha invalida!");
+				} else {
+					opcoesAdmin();
+				}
+				
+				
 				break;
 				
 			case 2:
@@ -94,6 +106,36 @@ public class ImobiliariaMain {
 			return null;
 		}
 	}
+	
+	
+	/* Metodos de Administrador */
+	
+	
+	private static void opcoesAdmin() {
+		System.out.println("\n" +
+				"Menu de Administracao - iMobiliaria" +
+				"1. ");
+	}
+	
+	
+	/* Metodos Auxiliares ou de Entrada */
+	
+	private static int recebeInteiroEntre(int min, int max) {
+	      Scanner entrada = new Scanner(System.in);
+	      if (!entrada.hasNextInt()) {
+	         entrada.next();
+	         System.out.println("Numero invalido! Digite novamente: ");
+	         return recebeInteiroEntre(min, max);
+	      }
+	      
+	      int numero = entrada.nextInt();
+
+	      if (numero < min || numero > max) {
+	         System.out.println("Numero invalido! Digite novamente: ");
+	         return recebeInteiroEntre(min, max);
+	      }
+	      return numero;
+	   }
 		
 
 }
