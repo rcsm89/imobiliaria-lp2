@@ -1,24 +1,10 @@
 package imobiliaria.testes;
 
-//import imobiliaria.aux.VerificaInvalido;
-import imobiliaria.processamento.Area; 
-import imobiliaria.processamento.Cliente;
-//import imobiliaria.processamento.ColecaoImoveis;
-import imobiliaria.processamento.EstadoImovel;
-import imobiliaria.processamento.Funcionario;
-import imobiliaria.processamento.Imovel;
-import imobiliaria.processamento.TipoContratual;
-import imobiliaria.processamento.TipoImovel;
-
-
-//import java.util.Calendar;
+import imobiliaria.processamento.*;
 import java.util.GregorianCalendar;
-
 import junit.framework.Assert;
-
 import org.junit.Before;
 import org.junit.Test;
-
 
 public class FuncionarioTest {
 	
