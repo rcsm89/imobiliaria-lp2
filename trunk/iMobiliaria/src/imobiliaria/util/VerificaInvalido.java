@@ -1,7 +1,7 @@
 /**
  * Package com classes Auxiliares de Verificacao e Formatacao
  */
-package imobiliaria.aux;
+package imobiliaria.util;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
