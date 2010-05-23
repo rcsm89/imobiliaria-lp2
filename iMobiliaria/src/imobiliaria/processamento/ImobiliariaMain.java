@@ -1,7 +1,9 @@
 package imobiliaria.processamento;
 
 import java.util.HashMap;
-import imobiliaria.aux.*;
+
+import imobiliaria.util.*;
+
 import java.util.Scanner;
 
 public class ImobiliariaMain {

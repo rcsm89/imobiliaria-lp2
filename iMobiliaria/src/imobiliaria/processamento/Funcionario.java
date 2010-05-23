@@ -1,6 +1,6 @@
 package imobiliaria.processamento;
 
-import imobiliaria.aux.VerificaInvalido;
+import imobiliaria.util.VerificaInvalido;
 
 import java.util.Calendar;
 

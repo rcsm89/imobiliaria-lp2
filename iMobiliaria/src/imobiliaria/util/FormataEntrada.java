@@ -1,4 +1,4 @@
-package imobiliaria.aux;
+package imobiliaria.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
