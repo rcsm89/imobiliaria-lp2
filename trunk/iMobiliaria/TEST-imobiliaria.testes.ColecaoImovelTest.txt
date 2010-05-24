@@ -1,12 +1,3 @@
 Testsuite: imobiliaria.testes.ColecaoImovelTest
-Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 0,04 sec
-
-Testcase: testaColecoes(imobiliaria.testes.ColecaoImovelTest):	FAILED
-expected:<12|Casa imobiliada para Alugar|Rua Joaquim Caroca, Bodocongo, Num 2471, CG/PB|3500.0|4.0|6.0|PEQUENA|CASA|ALUGUEL|A_VENDA> but was:<null>
-junit.framework.AssertionFailedError: expected:<12|Casa imobiliada para Alugar|Rua Joaquim Caroca, Bodocongo, Num 2471, CG/PB|3500.0|4.0|6.0|PEQUENA|CASA|ALUGUEL|A_VENDA> but was:<null>
-	at imobiliaria.testes.ColecaoImovelTest.testaColecoes(Unknown Source)
-	at org.eclipse.ant.internal.ui.antsupport.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:32)
-	at org.eclipse.ant.internal.ui.antsupport.InternalAntRunner.run(InternalAntRunner.java:423)
-	at org.eclipse.ant.internal.ui.antsupport.InternalAntRunner.main(InternalAntRunner.java:137)
-
+Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0,075 sec
 

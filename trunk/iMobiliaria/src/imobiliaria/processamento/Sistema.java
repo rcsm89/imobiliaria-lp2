@@ -3,6 +3,7 @@ package imobiliaria.processamento;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * Classe Sistema para guardar informacoes de um Sistema Imobiliario
@@ -11,10 +12,10 @@ import java.util.HashMap;
  * @version IT 1
  */
 
- /*
-  * Essa Classe irá guardar todas as informacoes do Sistema, tais como banco de dados
-  * contendo os Imoveis, Clientes, Funcionarios e o Caixa da Empresa
-  */
+/*
+ * Essa Classe irá guardar todas as informacoes do Sistema, tais como banco de
+ * dados contendo os Imoveis, Clientes, Funcionarios e o Caixa da Empresa
+ */
 public class Sistema {
 
 	private final double SALARIO_DEFAULT = 500;
@@ -25,13 +26,12 @@ public class Sistema {
 	private ColecaoFuncionario todosFuncionarios = new ColecaoFuncionario();
 	private HashMap<String, String> loginClientes = new HashMap<String, String>();
 	private HashMap<String, String> loginFuncionarios = new HashMap<String, String>();
+	private TreeMap<Imovel, Cliente> listaPedidos = new TreeMap<Imovel, Cliente>();
+	private Calendar ultimoPagamento = new GregorianCalendar(2010, 06, 1);
+	private boolean pagouNesseMes = true;
 	private double caixaTotal;
 
-	private Object[] pagouNesseMes = { new GregorianCalendar(2010, 06, 1), true };
-
 	/*
-	 * pagouNesseMes = [DataDoUltimoPagamento, JaPagouNesseMes]
-	 * 
 	 * Para a primeira execucao coloquei que o pagamento ja foi efetuado e que
 	 * foi feito na data de 01/06/2010 :D
 	 */
@@ -51,9 +51,7 @@ public class Sistema {
 
 		atualizaPagamento();
 
-		boolean jaPagouEsseMes = (Boolean) pagouNesseMes[1];
-
-		if (jaPagouEsseMes) {
+		if (pagouNesseMes) {
 			throw new Exception("Pagamento ja efetuado esse mes");
 		}
 
@@ -71,6 +69,8 @@ public class Sistema {
 			salarioFuncionarios.put(funcionario.getNome(), salarioFuncionario);
 
 			despesas += salarioFuncionario;
+			
+			funcionario.resetaImoveisVendidosMes();
 		}
 
 		/*
@@ -82,8 +82,8 @@ public class Sistema {
 
 		caixaTotal -= despesas;
 
-		pagouNesseMes[0] = new GregorianCalendar();
-		pagouNesseMes[1] = true;
+		ultimoPagamento = new GregorianCalendar();
+		pagouNesseMes = true;
 
 		return folhaDePagamento;
 
@@ -96,20 +96,70 @@ public class Sistema {
 	 */
 
 	public void atualizaPagamento() {
-		GregorianCalendar dataUltimoPagamento = (GregorianCalendar) pagouNesseMes[0];
 		GregorianCalendar hoje = new GregorianCalendar();
 
 		// Se nao estiverem no Mes do Ano igual
 		// Entao quer dizer que ainda nao fez o pagamento do mes
 
-		if (!(dataUltimoPagamento.get(Calendar.YEAR) == hoje.get(Calendar.YEAR) && dataUltimoPagamento
+		if (!(ultimoPagamento.get(Calendar.YEAR) == hoje.get(Calendar.YEAR) && ultimoPagamento
 				.get(Calendar.MONTH) == hoje.get(Calendar.MONTH))) {
 			// Ainda nao pagou nesse mes
-			pagouNesseMes[1] = false;
+			pagouNesseMes = false;
 		}
 	}
+
+	/**
+	 * Metodo que adiciona um Pedido na lista de Pedidos
+	 * 
+	 * @param imovel
+	 *            Imovel a ser pedido
+	 * @param cliente
+	 *            Cliente que pediu o imovel
+	 * @throws Exception
+	 *             Lanca excecao caso o imovel ja tenha sido pedido
+	 */
+
+	public void adicionaPedido(Imovel imovel, Cliente cliente) throws Exception {
+		if (listaPedidos.containsKey(imovel)) {
+			throw new Exception("Imovel ja pedido");
+		}
+		cliente.fazPedido(imovel);
+		listaPedidos.put(imovel, cliente);
+		imovel.setEstadoDoImovel(EstadoImovel.PEDIDO);
+	}
 	
+	public void efetuaPedido(Imovel imovel, Funcionario funcionario) throws Exception {
+		if (imovel.getEstadoDoImovel() != EstadoImovel.PEDIDO) {
+			throw new Exception("Imovel nao pedido");
+		}
+		
+		funcionario.addImovelVendido(imovel);
+		imovel.setEstadoDoImovel(EstadoImovel.VENDIDO);
+		caixaTotal += imovel.getValor();
+	}
+	
+	public void removePedido(Imovel imovel) throws Exception {
+		if (!(listaPedidos.containsKey(imovel))) {
+			throw new Exception("Imovel nao pedido");
+		}
+		imovel.setEstadoDoImovel(EstadoImovel.A_VENDA);
+		listaPedidos.get(imovel).removePedido(imovel);
+		listaPedidos.remove(imovel);
+		
+	}
+
 	/* Getters e Setters */
+	
+	/**
+	 * Metodo acessador da Lista de Pedidos
+	 * @return TreeMap contendo Lista dos Pedidos
+	 */
+	
+	public TreeMap<Imovel, Cliente> getListaPedido() {
+		return listaPedidos;
+	}
+	
+	
 
 	/**
 	 * Metodo acessador das informacoes do Pagamento
@@ -118,7 +168,7 @@ public class Sistema {
 	 *         Calendar com a Data do Ultimo Pagamento<br>
 	 *         Boolean True se Ja Pagou esse mes e False se nao
 	 */
-	public Object[] getPagouNesseMes() {
+	public boolean getPagouNesseMes() {
 		atualizaPagamento();
 		return pagouNesseMes;
 	}
@@ -188,4 +238,5 @@ public class Sistema {
 	public void setCaixaTotal(double caixaTotal) {
 		this.caixaTotal = caixaTotal;
 	}
+
 }
