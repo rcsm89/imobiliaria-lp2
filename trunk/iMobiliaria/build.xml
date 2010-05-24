@@ -101,7 +101,7 @@
 	  	       esteja utilizando, no comando roda tem uma descrição melhor desse atributo 
 	  	haltonfailure - O usuário indica se deve ou não para a execução do Ant caso encontre
 	  	       algum erro nos testes -->
-	  	<junit printsummary="yes" fork="no" haltonfailure="no">
+	  	<junit printsummary="yes" fork="yes" haltonfailure="yes">
 	  		<classpath refid="classpath" />
 	  		<!-- Aqui será definido o tipo de report que o usuário quer
 	  		que seja gerado ao executar os testes. Possíveis 
