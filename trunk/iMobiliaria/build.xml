@@ -1,0 +1,153 @@
+<!-- Exemplo de arquivo de configuração de Ant
+	   Thiago Santana Batista - UFCG	
+ -->
+
+<!-- Cabeçalho do XML 
+	name - Nome do Projeto
+	default - Atividade (target) padrão a ser executada
+	basedir - Diretório a ser utilizado como raiz do projeto. "." Significa que vai
+			  ser considerado o diretório raiz de onde está o XML.
+-->
+<project name="iMobiliaria" default="roda" basedir=".">
+
+  <description>
+	Projeto de Laboratorio de Programação 2 (iMobiliaria)
+  	Grupo: Jeanderson Barros Candido
+  		   Bruno Fabio de Farias Paiwa
+  		   Thiago Ferreira Patricio
+		   Yuri Farias Gomes
+  	
+  </description>
+	
+  <!-- Definindo variáveis globais para esse build notem que
+  quando quero refenciar essas varíaveis deve ser utilizado ${var} onde
+  var é o valor que tem no atributo name.
+  O atributo value indica o valor a ser atribuído a variável. [Nome de pasta,
+  pasta onde já existe conteúdo, etc.] -->
+  <property name="src" value="src"/>
+  <property name="build" value="build"/>
+  <property name="dist"  value="dist"/>
+  <property name="docdir" value="javaDoc"/>
+  
+  <!-- Nesse trecho será definido o classpath do projeto
+  Alguns projetos necessitam de JAR´s externos para funcionarem
+  devido a utiliação de frameworks pronto, etc
+  Aqui deve ser definido quais JAR´s devem ser incluídos para que
+  o projeto compile com sucesso -->
+  <path id="classpath">
+  	<!-- Esse comando manda incluir no classpath todo .jar que ele encontrar
+  	no diretório "." (O raiz lembra?). Geralmente é legal criar uma pasta para
+  	armazenar os JAR´s externos (como JUnit e outros) e aí é só substituir o "." 
+  	por essa pasta -->
+  	<fileset dir="./jarsExternas">
+  		<include name="**.jar" />
+  	</fileset>
+  	<!-- Nesse trecho estou definindo onde estão os meus .class (Java compilado)
+  	a serem utilizados pelo resto das atividades. Nesse caso, será utilizado
+  	para o JUnit mais na frente -->
+  	<pathelement location="${build}"/>
+  </path>
+	
+	<!-- =================== comando limpa =================== -->
+  <target name="limpa">
+  	<echo message="Limpando informacoes antigas..."/>
+    <!-- Apaga tudo que tem no diretório do caminho ${build}, do ${dist} e do ${docdir} -->
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+  	<delete dir="${docdir}"/>
+  </target>
+
+	<!-- =================== comando compila =================== -->
+	<!-- Quando é utilizado depends como atributo na tag target, ele
+	indica uma dependência para que ele possa ser executado corretamente,
+	dessa forma, ele primeiro executa a dependência para poder executar
+	a target em questão -->
+  <target name="compila" depends="limpa">
+  	<echo message="Compilando o código..."/>
+  	<!-- Criando um diretório para ser utilizado na compilação -->
+  	<mkdir dir="${build}"/>
+    <!-- Compilando o código JAVA do caminho que está em ${src} no caminho da variável ${build} -->
+    <javac srcdir="${src}" destdir="${build}">
+    	<!-- Utilizando o classpath definido acima para a compilação -->
+    	<classpath refid="classpath" />	
+    </javac>
+  </target>
+	
+	<!-- =================== comando doc =================== -->
+	<!-- Não precisa dizer para que ser o atributo description né? XD -->
+    <target name="geradoc" description="Gera toda a documentacao das classes do sistema.">
+    	<echo message="Gerando a documentacao..."/>
+    	<mkdir dir="${docdir}"/>
+    	<!-- Esse é o trecho onde contém o comando para gerar o JavaDoc.
+    	sourcepath - A varíavel (ou caminho) que aponta onde está o src
+    	destdir - define para onde deve ser destinada a documentação gerada
+    	packagenames - caso queira tem como definir os pacotes que devem ser lidos 
+	    	para gerar a documentação utilizando: packagenames="beans.*,sistema.*,utilities.*,testes.*" 
+	    	caso seja default package não precisa especificar.
+	    	Se for utilizado o Default Package, ou seja, se não for criado nenhum
+	    	pacote, então em vez de usar packagenames deve ser utilizado a tag
+	    	sourcefiles definindo um por um os arquivos que devem ser lidos e
+	    	gerar a documentação-->
+		<javadoc sourcepath="${src}" destdir="${docdir}" packagenames="imobiliaria.processamento.*, imobiliaria.util.*"/>
+    </target>
+  
+	<!-- =================== comando testa =================== -->
+	  <target name="testa" description="Executará os testes de unidade">
+	  	<echo message="Executando os testes..."/>
+	  	<!-- O Ant possui uma tag específica para o junit também.
+	  	Essas são os principais atributos a serem definidos.
+	  	printsummary - O usuário define se quer que seja mostrado um resumo da execução
+	  	fork - No caso do JUnit deve ser escolhido "no" para que não crie outra JVM da que o Ant
+	  	       esteja utilizando, no comando roda tem uma descrição melhor desse atributo 
+	  	haltonfailure - O usuário indica se deve ou não para a execução do Ant caso encontre
+	  	       algum erro nos testes -->
+	  	<junit printsummary="yes" fork="no" haltonfailure="no">
+	  		<classpath refid="classpath" />
+	  		<!-- Aqui será definido o tipo de report que o usuário quer
+	  		que seja gerado ao executar os testes. Possíveis 
+	  		opções: plain, xml e brief. Plain e Brief criam arquivos .txt, já
+	  		o xml cria um XML =D -->
+	  		<formatter type="brief" />
+	  		<!-- Aqui será definido quais classes de testes unitários devem
+	  		ser executadas, caso não queira colocar um por um, é só criar uma
+	  		suite de testes e usar o mesmo comando chamando a classe que possui
+	  		a suite de testes -->
+			<test name="imobiliaria.testes.AreaTest"/>
+	  		<test name="imobiliaria.testes.ClienteTest"/>
+	  		<test name="imobiliaria.testes.ColecaoClientsTest"/>
+	  		<test name="imobiliaria.testes.ColecaoImovelTest"/>
+	  		<test name="imobiliaria.testes.FuncionarioTest"/>
+	  		<test name="imobiliaria.testes.ImovelTest"/>
+	  		<test name="imobiliaria.testes.PessoaTest"/>
+	  	</junit>
+	  </target>	
+	
+	<!-- =================== comando dist =================== -->
+  <target name="dist" depends="compila, testa, geradoc" description="Criará um arquivo JAR para distribuição">
+    <!-- Cria outro diretório para distribuição -->
+    <mkdir dir="${dist}"/>
+  	<echo message="Criando JAR da aplicação..."/>
+    <!-- Coloca tudo que foi compilado e que está em ${build} em um arquivo chamado OCR.jar 
+    	jarfile  - Nome e caminho do arquivo jar a ser criado
+    	basedir  - Local onde está o Java compilado (.class)
+    	manifest - localização do arquivo MANIFEST.MF onde contém informações importantes
+			       para o funcionamento do JAR. Informações como: Qual classe contém o Main,
+			       ClassPath do sistema, etc.
+    -->
+    <jar jarfile="${dist}/iMobiliaria.jar" basedir="${build}">
+  		<manifest>
+  			<attribute name="Main-Class" value="imobiliaria.processamento.ImobiliariaMain"/>
+  		</manifest>
+    </jar>
+  </target>
+
+  <!-- =================== comando roda =================== -->
+  <target name="roda" depends="dist" description="Executará o JAR automaticamente">
+  	<!-- Comando que executa um JAR.
+  	jar - Caminho onde se encontrar o JAR. 
+  	fork="true" quando esse atributo é fornecido, a execução é realizada 
+  		em uma nova instancia da JVM diferente da que está executando o ANT -->
+  	<java jar="dist/iMobiliaria.jar" fork="true"/>
+  </target>	
+	
+</project>

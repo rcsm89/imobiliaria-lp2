@@ -1,0 +1,12 @@
+Testsuite: imobiliaria.testes.ImovelTest
+Tests run: 2, Failures: 1, Errors: 0, Time elapsed: 0,076 sec
+
+Testcase: testaImoveis(imobiliaria.testes.ImovelTest):	FAILED
+null expected:<[4]|Casa imobiliada par...> but was:<[19]|Casa imobiliada par...>
+junit.framework.ComparisonFailure: null expected:<[4]|Casa imobiliada par...> but was:<[19]|Casa imobiliada par...>
+	at imobiliaria.testes.ImovelTest.testaImoveis(Unknown Source)
+	at org.eclipse.ant.internal.ui.antsupport.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:32)
+	at org.eclipse.ant.internal.ui.antsupport.InternalAntRunner.run(InternalAntRunner.java:423)
+	at org.eclipse.ant.internal.ui.antsupport.InternalAntRunner.main(InternalAntRunner.java:137)
+
+
