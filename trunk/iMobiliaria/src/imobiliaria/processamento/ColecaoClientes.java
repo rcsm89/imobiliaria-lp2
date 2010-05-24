@@ -45,19 +45,18 @@ public class ColecaoClientes {
 	 * @return True - Caso o cliente seja removido <br>
 	 *         False - Caso ele nao seja encontrado
 	 */
-	public boolean removeCliente(String cpfDoClienteASerRemovido) {
-		final int TAM_CPF_FORMATADO = 11;
+	public boolean removeCliente(String cpfASerRemovido) {
+		final int TAM_CPF_FORMATADO = 14;
 
-		if (VerificaInvalido.basico(cpfDoClienteASerRemovido))
+		if (VerificaInvalido.basico(cpfASerRemovido))
 			return false;
 
-		if (VerificaInvalido.numeroFormatado(cpfDoClienteASerRemovido,
-				TAM_CPF_FORMATADO)) {
+		if (!(cpfASerRemovido.length() == TAM_CPF_FORMATADO)) {
 			return false;
 		}
 
 		for (Cliente cliente : colecaoClientes) {
-			if (cliente.getCpf() == cpfDoClienteASerRemovido) {
+			if (cpfASerRemovido.equals(cliente.getCpf())) {
 				return colecaoClientes.remove(cliente);
 			}
 		}
@@ -66,6 +65,15 @@ public class ColecaoClientes {
 
 	// Metodos de Organizacao de clientes
 
+	/**
+	 * Metodo responsavel por retornar a quantidade de clientes
+	 * 
+	 * @return Inteiro, indicando o total de clientes cadastrados
+	 */
+	public int numeroTotalDeClientes() {
+		return colecaoClientes.size();
+	}
+	
 	/**
 	 * Metodo acessador de toda a colecao de clientes
 	 * 
@@ -76,15 +84,6 @@ public class ColecaoClientes {
 	}
 
 	/**
-	 * Metodo responsavel por retornar a quantidade de clientes
-	 * 
-	 * @return Inteiro, indicando o total de clientes cadastrados
-	 */
-	public int numeroTotalDeClientes() {
-		return colecaoClientes.size();
-	}
-
-	/**
 	 * Metodo responsavel por retornar os clientes com determinada preferencia
 	 * 
 	 * @param preferencia
@@ -92,7 +91,8 @@ public class ColecaoClientes {
 	 * 
 	 * @return Clientes com a dada preferencia de imovel passada
 	 */
-	public List<Cliente> getClientesPorPreferencia(TipoImovel preferencia) {
+	
+	public List<Cliente> getClientes(TipoImovel preferencia) {
 
 		List<Cliente> colecaoRetornada = new ArrayList<Cliente>();
 
@@ -112,7 +112,7 @@ public class ColecaoClientes {
 	 *            Tipo de Imovel para ser usado como Filtro
 	 * @return List contendo clientes com imovel em comum nos pedidos
 	 */
-	public List<Cliente> getClientesPorPedido(Imovel pedidoRequerido) {
+	public List<Cliente> getClientes(Imovel pedidoRequerido) {
 
 		List<Cliente> colecaoRetornada = new ArrayList<Cliente>();
 
@@ -126,6 +126,27 @@ public class ColecaoClientes {
 		}
 		return colecaoRetornada;
 
+	}
+	
+	/**
+	 * Metodo filtrador que retorna clientes com um determinado nome.
+	 * 
+	 * @param nome
+	 *            Representa o nome pelo qual seram pesquisados os novos
+	 *            clientes
+	 * @return List contendo os clientes que possuem o nome passado
+	 */
+	public List<Cliente> getClientes(String nome) {
+
+		List<Cliente> colecaoRetornada = new ArrayList<Cliente>();
+
+		for (Cliente cliente : colecaoClientes) {
+
+			if (cliente.getNome().contains(nome)) {
+				colecaoRetornada.add(cliente);
+			}
+		}
+		return colecaoRetornada;
 	}
 
 	/**
@@ -146,27 +167,6 @@ public class ColecaoClientes {
 			if (cliente.getNome().startsWith(letra.toUpperCase()))
 				colecaoRetornada.add(cliente);
 
-		}
-		return colecaoRetornada;
-	}
-
-	/**
-	 * Metodo filtrador que retorna clientes com um determinado nome.
-	 * 
-	 * @param nome
-	 *            Representa o nome pelo qual seram pesquisados os novos
-	 *            clientes
-	 * @return List contendo os clientes que possuem o nome passado
-	 */
-	public List<Cliente> getClientesPorNome(String nome) {
-
-		List<Cliente> colecaoRetornada = new ArrayList<Cliente>();
-
-		for (Cliente cliente : colecaoClientes) {
-
-			if (cliente.getNome().contains(nome)) {
-				colecaoRetornada.add(cliente);
-			}
 		}
 		return colecaoRetornada;
 	}
