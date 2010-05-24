@@ -44,26 +44,14 @@ public class Funcionario extends Pessoa {
 	}
 
 	/**
-	 * Adiciona uma nova venda no total de vendas
-	 * 
-	 * @param valorDaVenda
-	 *            O valor da venda a ser adicionada
-	 * @throws Exception
-	 *             Lanca excecao se o valor passado for menor que zero
-	 */
-	public void adicionaVenda(double valorDaVenda) throws Exception {
-		if (valorDaVenda < 0) {
-			throw new Exception("Valor da venda invalido\n");
-		}
-		totalDeVendas += valorDaVenda;
-	}
-
-	/**
 	 * Acessa o total de vendas
 	 * 
 	 * @return O total de vendas do funcionario
 	 */
 	public double getTotalDeVendas() {
+		for (Imovel imovel: historicoVendidoMes.getImoveis()){
+			totalDeVendas += imovel.getValor();
+		}
 		return totalDeVendas;
 	}
 
@@ -120,42 +108,6 @@ public class Funcionario extends Pessoa {
 		historicoVendidoMes.getImoveis().clear();
 	}
 
-	/**
-	 * Efetua compra de um imovel
-	 * 
-	 * @param cliente
-	 *            Cliente que efetuara a compra
-	 * @param registroImovel
-	 *            Registro do imovel a ser comprado
-	 * @return True, se o imovel for vendido False, se o imovel ja estiver
-	 *         vendido
-	 * @throws Exception
-	 *             Caso os parametros sejam invalidos
-	 */
-/*	public boolean efetuaCompra(Cliente cliente, int registroImovel)
-			throws Exception {
-		if (registroImovel < 1) {
-			throw new Exception("Registro de imovel invalido\n");
-		}
-
-		ColecaoImoveis listaDePedidos = cliente.getPedidos();
-
-		for (Imovel imovel : listaDePedidos.getImoveis()) {
-			if (imovel.getRegistroImovel() == registroImovel) {
-				if (imovel.getEstadoDoImovel() == EstadoImovel.VENDIDO) {
-					return false; // pois ja foi vendido
-				}
-				imovel.setEstadoDoImovel(EstadoImovel.VENDIDO);
-				listaDePedidos.removeImovel(registroImovel);
-				addImovelVendido(imovel);
-				totalDeVendas += imovel.getValor();
-				// caixa += imovel.getValor();
-				return true;
-			}
-		}
-		return false;
-	}
-*/
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof Funcionario)) {
