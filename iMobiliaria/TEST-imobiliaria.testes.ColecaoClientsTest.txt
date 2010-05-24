@@ -1,0 +1,15 @@
+Testsuite: imobiliaria.testes.ColecaoClientsTest
+Tests run: 1, Failures: 0, Errors: 1, Time elapsed: 0 sec
+
+Null Test: 	Caused an ERROR
+imobiliaria.testes.ColecaoClientsTest
+java.lang.ClassNotFoundException: imobiliaria.testes.ColecaoClientsTest
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:266)
+	at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:334)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at org.eclipse.ant.internal.ui.antsupport.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:32)
+	at org.eclipse.ant.internal.ui.antsupport.InternalAntRunner.run(InternalAntRunner.java:423)
+	at org.eclipse.ant.internal.ui.antsupport.InternalAntRunner.main(InternalAntRunner.java:137)
+
+
