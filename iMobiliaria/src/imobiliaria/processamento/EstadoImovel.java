@@ -2,6 +2,6 @@ package imobiliaria.processamento;
 
 public enum EstadoImovel {
 	
-	A_VENDA, VENDIDO;
+	A_VENDA, VENDIDO, PEDIDO;
 
 }
