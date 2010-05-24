@@ -78,11 +78,11 @@ public class ColecaoClientesTest {
 		clientes3.adicionaCliente(cliente3);
 
 		Assert.assertFalse(clientes1.removeCliente(""));
-		Assert.assertTrue(clientes1.removeCliente("12345678910"));
+		Assert.assertTrue(clientes1.removeCliente(cliente1.getCpf()));
 		Assert.assertFalse(clientes2.removeCliente("   "));
-		Assert.assertTrue(clientes2.removeCliente("10120230344"));
+		Assert.assertTrue(clientes2.removeCliente(cliente2.getCpf()));
 		Assert.assertFalse(clientes3.removeCliente("123"));
-		Assert.assertTrue(clientes3.removeCliente("11022033040"));
+		Assert.assertTrue(clientes3.removeCliente(cliente3.getCpf()));
 		Assert.assertFalse(clientes3.removeCliente(null));
 
 	}
@@ -117,7 +117,7 @@ public class ColecaoClientesTest {
 		clientes1.adicionaCliente(cliente4); // pref = TERRENO (ok)
 		clientes1.adicionaCliente(cliente5); // pref = TERRENO (ok)
 
-		Assert.assertEquals(3, clientes1.getClientesPorPreferencia(
+		Assert.assertEquals(3, clientes1.getClientes(
 				TipoImovel.TERRENO).size());
 
 	}
@@ -137,22 +137,22 @@ public class ColecaoClientesTest {
 		clientes1.adicionaCliente(cliente4);
 		clientes1.adicionaCliente(cliente5);
 
-		Assert.assertTrue(clientes1.getClientesPorPedido(imovel1).contains(
+		Assert.assertTrue(clientes1.getClientes(imovel1).contains(
 				cliente1));
-		Assert.assertTrue(clientes1.getClientesPorPedido(imovel1).contains(
+		Assert.assertTrue(clientes1.getClientes(imovel1).contains(
 				cliente2));
-		Assert.assertTrue(clientes1.getClientesPorPedido(imovel1).contains(
+		Assert.assertTrue(clientes1.getClientes(imovel1).contains(
 				cliente3));
-		Assert.assertFalse(clientes1.getClientesPorPedido(imovel1).contains(
+		Assert.assertFalse(clientes1.getClientes(imovel1).contains(
 				cliente4));
-		Assert.assertFalse(clientes1.getClientesPorPedido(imovel1).contains(
+		Assert.assertFalse(clientes1.getClientes(imovel1).contains(
 				cliente5));
 
-		Assert.assertTrue(clientes1.getClientesPorPedido(imovel2).contains(
+		Assert.assertTrue(clientes1.getClientes(imovel2).contains(
 				cliente1));
-		Assert.assertFalse(clientes1.getClientesPorPedido(imovel2).contains(
+		Assert.assertFalse(clientes1.getClientes(imovel2).contains(
 				cliente3));
-		Assert.assertTrue(clientes1.getClientesPorPedido(imovel2).contains(
+		Assert.assertTrue(clientes1.getClientes(imovel2).contains(
 				cliente5));
 
 	}
@@ -225,11 +225,11 @@ public class ColecaoClientesTest {
 		clientes1.adicionaCliente(cliente8);
 		clientes1.adicionaCliente(cliente9);
 
-		Assert.assertEquals(0, clientes1.getClientesPorNome("w").size());
-		Assert.assertEquals(4, clientes1.getClientesPorNome("Farias").size());
-		Assert.assertEquals(3, clientes1.getClientesPorNome("Brun").size());
-		Assert.assertEquals(5, clientes1.getClientesPorNome("u").size());
-		Assert.assertEquals(1, clientes1.getClientesPorNome("Thi").size());
+		Assert.assertEquals(0, clientes1.getClientes("w").size());
+		Assert.assertEquals(4, clientes1.getClientes("Farias").size());
+		Assert.assertEquals(3, clientes1.getClientes("Brun").size());
+		Assert.assertEquals(5, clientes1.getClientes("u").size());
+		Assert.assertEquals(1, clientes1.getClientes("Thi").size());
 
 	}
 
@@ -245,13 +245,14 @@ public class ColecaoClientesTest {
 		Assert
 			.assertEquals(5, clientes3.getClientesPorOrdemAlfabetica()
 						.size());
+		System.out.println(clientes3.getClientesPorOrdemAlfabetica().toString());
 		Assert
 			.assertEquals(
-					"[Bruno Paiva|12345678910|Rua Alberto de Brito, 84|04/04/1991,"
-				  + " Daniel Farias|12345678901|Rua Tocatins, 929|07/08/1991,"
-		          + " Jean|11022033040|Rua Antonio Joaquim Pequeno|23/07/1991,"
-				  + " Thiago Ferreira|10120230344|Rua 12 de Outubro|13/03/1992,"
-				  + " Yuri Farias|12345678912|Rua Argemiro de Figueiredo,"
+					"[Bruno Paiva|123.456.789-10|Rua Alberto De Brito, 84|04/04/1991,"
+				  + " Daniel Farias|123.456.789-01|Rua Tocatins, 929|07/08/1991,"
+		          + " Jean|110.220.330-40|Rua Antonio Joaquim Pequeno|23/07/1991,"
+				  + " Thiago Ferreira|101.202.303-44|Rua 12 De Outubro|13/03/1992,"
+				  + " Yuri Farias|123.456.789-12|Rua Argemiro De Figueiredo,"
 				  + " 207|04/04/1991]", clientes3
 						.getClientesPorOrdemAlfabetica().toString());
 	}
