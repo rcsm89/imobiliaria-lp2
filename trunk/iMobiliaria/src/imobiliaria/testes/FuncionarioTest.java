@@ -1,6 +1,7 @@
 package imobiliaria.testes;
 
 import imobiliaria.processamento.*;
+
 import java.util.GregorianCalendar;
 
 import junit.framework.Assert;
@@ -13,6 +14,9 @@ public class FuncionarioTest {
 	Funcionario func1;
 	Funcionario func2;
 	Funcionario func3;
+	Imovel imovel1;
+	Imovel imovel2;
+	
 	
 	@Before
 	public void setUp() throws Exception {
@@ -23,7 +27,17 @@ public class FuncionarioTest {
 				"Yuri Farias", "1234325"); 
 		
 		func3 = new Funcionario("12345678910",new GregorianCalendar(1991, 14, 13),"Rua 12 de Outubro",
-				"Yuri Farias", "1234325"); 
+				"Yuri Farias", "1234325");
+		
+		imovel1 = new Imovel("Casa imobiliada para Alugar",
+				"Rua Joaquim Caroca, Bodocongo, Num 2471, CG/PB", 3500.0,
+				new Area(4, 6), TipoImovel.CASA, TipoContratual.ALUGUEL);
+
+		imovel2 = new Imovel("Apartamento a Venda!!!",
+				"Rua Fernando Luiz Henrique dos Santos, num 2831, JP/PB,"
+						+ " Ed. Java, apto 1300", 25000, new Area(4, 6),
+				TipoImovel.APARTAMENTO, TipoContratual.VENDA);
+
 	}
 	
 	@Test
@@ -48,16 +62,14 @@ public class FuncionarioTest {
 		}
 	}
 	
-	/*@Test
+	@Test
 	public void testaAdicionaVenda() throws Exception{
+		func1.addImovelVendidoMes(imovel1);
+		func1.addImovelVendidoMes(imovel2);
+		Assert.assertEquals(28500.0, func1.getTotalDeVendas(),0.005);
 		
-		
-		func1.adicionaVenda(1000.0);
-		Assert.assertEquals(1000.0, func1.getTotalDeVendas(), 0.005);
-		func1.adicionaVenda(1500.0);
-		func1.adicionaVenda(1500.0);
-		Assert.assertEquals(4000.0, func1.getTotalDeVendas(), 0.005);
-	}*/
+	
+	}
 	
 	@Test
 	public void testaEquals() {
