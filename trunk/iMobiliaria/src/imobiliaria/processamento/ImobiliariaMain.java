@@ -134,6 +134,142 @@ public class ImobiliariaMain {
 	 * 
 	 * }
 	 */
+	
+	/* Metodos de Imovel */
+	
+	/* Metodos de Imovel */
+	
+	private static void CRUDimovel() throws Exception {
+		
+		boolean menuImovelRodando = true;
+
+		System.out.println("\n" + "Menu de Funcionario - iMobiliaria\n"
+				+ "1. Criar novo Imovel\n"
+				+ "2. Listar Imoveis\n"
+				+ "3. Modificar Imovel\n"
+				+ "4. Deletar Imovel\n"
+				+ "5. Sair");
+
+		int opcaoEscolhida = recebeInteiroEntre(1, 5);
+
+		switch (opcaoEscolhida) {
+
+		case 1:
+
+			//Criando Imovel
+			criaImovel();
+			break;
+
+		case 2:
+			
+			//Listando Imoveis
+			listagemDeImovel(sistema.getTodosImoveis().getImoveis());
+			break;
+			
+		case 3:
+			
+			System.out.println("Modifica Imovel");
+			break;
+		
+		case 4:
+			
+			System.out.println("Deleta Imovel");
+			removeImovel();
+			break;
+
+		case 5:
+			menuImovelRodando = false;
+			System.out.println("---------------------------------------------------------");
+			break;
+		}
+
+		
+		if (menuImovelRodando) {
+			opcoesAdmin();
+		}	
+		
+	}
+	
+	private static void removeImovel() {
+		final int NUMERO_IMOVEIS = sistema.getTodosImoveis().getImoveis().size();
+		int registroDoImovel;
+		int numeroDoImovel;
+		boolean removeImovel = false;
+		
+		while(!removeImovel)
+			
+			System.out.println(
+					"Digite o numero do imovel que deseja remover: \n");
+					listagemDeImovel(sistema.getTodosImoveis().getImoveis());
+			System.out.print("Numero do Imovel: ");
+			
+			numeroDoImovel = recebeInteiroEntre(1, NUMERO_IMOVEIS);
+			registroDoImovel = sistema.getTodosImoveis().getImoveis().
+				get(numeroDoImovel).getRegistroImovel();
+			
+			if (sistema.getTodosImoveis().removeImovel(registroDoImovel))
+				removeImovel = true;
+		
+	}
+
+	private static Imovel criaImovel() throws Exception{
+		String nome = null;
+		String endereco = null;
+		double preco = 0.0;
+		double comprimento = 0.0;
+		double largura = 0.0;
+		TipoImovel tipoDoImovel = null;
+		TipoContratual tipoContratualDoImovel = null;
+		int numero;
+		
+		System.out.print("Nome do imovel: ");
+		nome = recebeNome();
+		System.out.print("Endereco: ");
+		endereco = recebeEndereco();
+		System.out.print("Preco: ");
+		preco = VerificaInvalido.recebeDouble();
+		System.out.print("Comprimento: ");
+		comprimento = VerificaInvalido.recebeDouble();
+		System.out.print("Largura: ");
+		comprimento = VerificaInvalido.recebeDouble();
+		
+		while(tipoDoImovel == null){
+			System.out.print("Digite o numero correspondente ao tipo do imovel: \n" +
+					"1. CASA\n" +
+					"2. APARTAMENTO\n" +
+					"3. TERRENO\n" + 
+					"Numero: ");
+			numero = VerificaInvalido.recebeInteiro();
+			if (numero == 1)
+				tipoDoImovel = TipoImovel.CASA;
+			if (numero == 2)
+				tipoDoImovel = TipoImovel.APARTAMENTO;
+			if (numero == 3)
+				tipoDoImovel = TipoImovel.TERRENO;
+			else
+				System.out.println("Numero de terreno Invalido");		
+		}
+		
+		while (tipoContratualDoImovel == null){
+			System.out.print(
+					"Digite o numero correspondente ao tipo do imovel: \n" +
+					"1. ALUGUEL\n" +
+					"2. VENDA\n" + 
+					"Numero: ");
+			numero = VerificaInvalido.recebeInteiro();
+			if (numero == 1)
+				tipoContratualDoImovel = TipoContratual.ALUGUEL;
+			if (numero == 2)
+				tipoContratualDoImovel = TipoContratual.VENDA;
+			else
+				System.out.println(
+						"Numero do tipo contratual de imovel Invalido");	
+		}
+		
+		return new Imovel(nome, endereco, preco, new Area(comprimento, largura),
+				tipoDoImovel, tipoContratualDoImovel);
+		
+	}
 
 	/* Metodos de Cliente */
 
