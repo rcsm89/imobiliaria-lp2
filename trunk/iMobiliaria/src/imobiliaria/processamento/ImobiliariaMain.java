@@ -131,6 +131,93 @@ public class ImobiliariaMain {
 	 * }
 	 */
 
+	/* Metodos de Cliente */
+	
+	private static void opcoesCliente() {
+		boolean menuClienteRodando = true;
+
+		System.out.print("_____________Menu de Cliente__________ \n"
+				+ "1 - Listar Imoveis da Imobiliaria.\n"
+				+ "2 - Ver informacoes do cliente.\n" + "3 - Deslogar.\n"
+				+ "-------------Digite o numero da opcao desejada-------------"
+				+ "\n" + "Número da opção: ");
+
+		int opcaoEscolhida = recebeInteiroEntre(1, 3);
+
+		switch (opcaoEscolhida) {
+
+		case 1:
+
+			System.out.println("Listando Imoveis da Imobiliaria\n");
+			break;
+
+		case 2:
+
+			System.out.println("Vendo Informacoes do Cliente\n");
+			break;
+
+		case 3:
+
+			System.out.println("Voce foi deslogado\n");
+			menuClienteRodando = false;
+			break;
+
+		default:
+
+			System.out.println("\nDigite umas das opções sugeridas.");
+			break;
+
+		}
+		if (menuClienteRodando) {
+			opcoesCliente();
+		}
+	}
+
+	
+	/* Metodos de Funcionario */ 
+	
+	private static void opcoesFunc() {
+
+		boolean menuFuncRodando = true;
+
+		System.out.println("\n" + "Menu de Funcionario - iMobiliaria\n"
+				+ "1. Cadastrar, Verificar e Alterar dados de Clientes\n"
+				+ "2. Cadastrar, Verificar e Alterar dados de Imoveis\n"
+				+ "3. Efetua pedido de Cliente\n"
+				+ "4. Minhas informações\n"
+				+ "5. Sair");
+
+		int opcaoEscolhida = recebeInteiroEntre(1, 6);
+
+		switch (opcaoEscolhida) {
+
+		case 1:
+			//CRDUClientes();
+			break;
+		
+		case 2:
+			//CRDUImoveis();
+			break;
+			
+		case 3:
+			//efetuaPedido();
+			break;
+		
+		case 4:
+			//funcInfo();
+			break;
+
+		case 5:
+			menuFuncRodando = false;
+			break;
+		}
+
+		
+		if (menuFuncRodando) {
+			opcoesAdmin();
+		}
+	}
+
 	/* Metodos de Administrador */
 
 	// SuppressWarnings pelo Cast do Object para HashMap
@@ -229,92 +316,6 @@ public class ImobiliariaMain {
 			return recebeInteiroEntre(min, max);
 		}
 		return numero;
-	}
-
-	private static void opcoesCliente() {
-		boolean menuClienteRodando = true;
-
-		System.out.print("_____________Menu de Cliente__________ \n"
-				+ "1 - Listar Imoveis da Imobiliaria.\n"
-				+ "2 - Ver informacoes do cliente.\n" + "3 - Deslogar.\n"
-				+ "-------------Digite o numero da opcao desejada-------------"
-				+ "\n" + "Número da opção: ");
-
-		int opcaoEscolhida = recebeInteiroEntre(1, 3);
-
-		switch (opcaoEscolhida) {
-
-		case 1:
-
-			System.out.println("Listando Imoveis da Imobiliaria\n");
-			break;
-
-		case 2:
-
-			System.out.println("Vendo Informacoes do Cliente\n");
-			break;
-
-		case 3:
-
-			System.out.println("Voce foi deslogado\n");
-			menuClienteRodando = false;
-			break;
-
-		default:
-
-			System.out.println("\nDigite umas das opções sugeridas.");
-			break;
-
-		}
-		if (menuClienteRodando) {
-			opcoesCliente();
-		}
-	}
-	
-	private static void opcoesFunc() {
-
-		boolean menuFuncRodando = true;
-
-		System.out.println("\n" + "Menu de Funcionario - iMobiliaria\n"
-				+ "1. Cadastrar, Verificar e Alterar dados de Clientes\n"
-				+ "2. Cadastrar, Verificar e Alterar dados de Imoveis\n"
-				+ "3. Efetua pedido de Cliente\n"
-				+ "4. Minhas informações\n"
-				+ "5. Sair");
-
-		int opcaoEscolhida = recebeInteiroEntre(1, 6);
-
-		switch (opcaoEscolhida) {
-
-		case 1:
-			//CRDUClientes();
-			break;
-		
-		case 2:
-			//CRDUImoveis();
-			break;
-			
-		case 3:
-			//efetuaPedido();
-			break;
-		
-		case 4:
-			//funcInfo();
-			break;
-
-		case 5:
-			menuFuncRodando = false;
-			break;
-		}
-
-		/*
-		 * Se ele nao digitou para sair (opcao 6) O menu eh chamado novamente
-		 * (Chamada Recursiva)
-		 */
-
-		if (menuFuncRodando) {
-			opcoesAdmin();
-		}
 	}
 
 }
