@@ -12,6 +12,7 @@ public class ImobiliariaMain {
 
 	public static void main(String[] args) {
 		sistema.getLoginClientes().put("cliente", "1234");
+		sistema.getLoginFuncionarios().put("func", "4321");
 
 		boolean repete = true;
 		int opcao = 0;
@@ -41,8 +42,25 @@ public class ImobiliariaMain {
 				break;
 
 			case 2:
+				
+				System.out.print("Login: ");
+				String loginFunc = VerificaInvalido.recebeString();
+				System.out.print("Senha: ");
+				String senhaFunc = VerificaInvalido.recebeString();
 
-				System.out.println("Func AEW!");
+				HashMap<String, String> loginFuncs = sistema
+						.getLoginFuncionarios();
+				if (loginFuncs.containsKey(loginFunc)) {
+					if (loginFuncs.get(loginFunc).equals(senhaFunc)) {
+						System.out.println("Funcionario Logado com Sucesso!");
+						opcoesFunc();
+					} else {
+						System.out.println("Login e/ou Senha invalida!");
+					}
+				} else {
+					System.out.println("Login falhou");
+				}
+
 				break;
 
 			case 3:
@@ -252,4 +270,51 @@ public class ImobiliariaMain {
 			opcoesCliente();
 		}
 	}
+	
+	private static void opcoesFunc() {
+
+		boolean menuFuncRodando = true;
+
+		System.out.println("\n" + "Menu de Funcionario - iMobiliaria\n"
+				+ "1. Cadastrar, Verificar e Alterar dados de Clientes\n"
+				+ "2. Cadastrar, Verificar e Alterar dados de Imoveis\n"
+				+ "3. Efetua pedido de Cliente\n"
+				+ "4. Minhas informações\n"
+				+ "5. Sair");
+
+		int opcaoEscolhida = recebeInteiroEntre(1, 6);
+
+		switch (opcaoEscolhida) {
+
+		case 1:
+			//CRDUClientes();
+			break;
+		
+		case 2:
+			//CRDUImoveis();
+			break;
+			
+		case 3:
+			//efetuaPedido();
+			break;
+		
+		case 4:
+			//funcInfo();
+			break;
+
+		case 5:
+			menuFuncRodando = false;
+			break;
+		}
+
+		/*
+		 * Se ele nao digitou para sair (opcao 6) O menu eh chamado novamente
+		 * (Chamada Recursiva)
+		 */
+
+		if (menuFuncRodando) {
+			opcoesAdmin();
+		}
+	}
+
 }
