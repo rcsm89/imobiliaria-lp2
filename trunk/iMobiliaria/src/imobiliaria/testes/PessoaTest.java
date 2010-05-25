@@ -242,4 +242,50 @@ public class PessoaTest {
 		"Jean|123.456.789-10|Av Emtallugar Aquiperto, 142|08/05/1991",
 		p1.toString());
     }
+
+    /**
+     * Teste que verifica os metodos de login e a senha do usuario do sistema
+     */
+    @Test
+    public void testLoginSenha() {
+	// Verifica login e senha default
+	Assert.assertEquals("12345678910", p1.getLogin());
+	Assert.assertEquals("08051991", p1.getSenha());
+
+	// Tentar mudar login (invalido)
+	String[] loginsInvalidos = { null, "", "   " };
+	for (String loginSugerido : loginsInvalidos) {
+	    try {
+		p1.setLogin(loginSugerido);
+		fail("Deveria ter lancado excessao");
+	    } catch (Exception e) {
+		Assert.assertEquals("Login invalido\n", e.getMessage());
+	    }
+	}
+	// Tentar mudar login (valido)
+	try {
+	    p1.setLogin("MeuNovoLogin");
+	} catch (Exception e) {
+	    fail("Nao deveria ter lancado excessao");
+	}
+	Assert.assertEquals("MeuNovoLogin", p1.getLogin());
+	
+	// Tentar mudar senha (invalido)
+	String[] senhasInvalidas = { null, "", "   " };
+	for (String senhaSugerida : senhasInvalidas) {
+	    try {
+		p1.setSenha(senhaSugerida);
+		fail("Deveria ter lancado excessao");
+	    } catch (Exception e) {
+		Assert.assertEquals("Senha invalida\n", e.getMessage());
+	    }
+	}
+	// Tentar mudar senha (valida)
+	try {
+	    p1.setSenha("MinhaNovaSenha1234@");
+	} catch (Exception e) {
+	    fail("Nao deveria ter lancado excessao");
+	}
+	Assert.assertEquals("MinhaNovaSenha1234@", p1.getSenha());
+    }
 }
