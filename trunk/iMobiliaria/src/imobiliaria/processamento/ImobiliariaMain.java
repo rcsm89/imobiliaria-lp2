@@ -217,11 +217,11 @@ public class ImobiliariaMain {
 			opcoesAdmin();
 		}
 	}
+	
 
 	/* Metodos de Administrador */
 
-	// SuppressWarnings pelo Cast do Object para HashMap
-	@SuppressWarnings("unchecked")
+
 	private static void opcoesAdmin() {
 
 		boolean menuAdminRodando = true;
@@ -239,49 +239,24 @@ public class ImobiliariaMain {
 
 		case 1:
 			// CRDU de Clientes
-			// crduClientes();
+			CRDUClientes();
 			break;
 		case 2:
 			// CRDU de Funcioanrios
-			// crduFuncionarios();
+			CRDUFuncionarios();
 			break;
 		case 3:
 			// CRDU de Imoveis
-			// crduImoveis();
+			CRDUImoveis();
 			break;
 		case 4:
 			// Efetua pedido do Cliente
+			efetuaPedido();
 			break;
 		case 5:
 
 			// Se ele ja pagou esse Mes
-			Object[] folhaDePagamento;
-
-			try {
-
-				folhaDePagamento = sistema.efetuaPagamentoNoMes();
-
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-				break;
-			}
-
-			HashMap<String, Double> pagamentoFuncionarios = (HashMap<String, Double>) folhaDePagamento[0];
-
-			if (!(pagamentoFuncionarios.isEmpty())) {
-				System.out.println("Funcionario ---------- Salario");
-				for (String funcionario : pagamentoFuncionarios.keySet()) {
-					System.out.println(funcionario + " ------- "
-							+ pagamentoFuncionarios.get(funcionario));
-				}
-			} else {
-				System.out.println("Nenhum funcionario cadastrado");
-			}
-
-			System.out.println("-------------------------------------------\n"
-					+ "Total Antigo : " + (Double) folhaDePagamento[1] + "\n"
-					+ "Despesas: " + (Double) folhaDePagamento[2] + "\n"
-					+ "Novo Total: " + sistema.getCaixaTotal());
+		    pagamentoDoMes();
 
 			break;
 		case 6:
@@ -297,6 +272,38 @@ public class ImobiliariaMain {
 		if (menuAdminRodando) {
 			opcoesAdmin();
 		}
+	}
+	
+	// SuppressWarnings pelo Cast do Object para HashMap
+	@SuppressWarnings("unchecked")
+	private static void pagamentoDoMes() {
+		Object[] folhaDePagamento;
+
+		try {
+
+			folhaDePagamento = sistema.efetuaPagamentoNoMes();
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return;
+		}
+
+		HashMap<String, Double> pagamentoFuncionarios = (HashMap<String, Double>) folhaDePagamento[0];
+
+		if (!(pagamentoFuncionarios.isEmpty())) {
+			System.out.println("Funcionario ---------- Salario");
+			for (String funcionario : pagamentoFuncionarios.keySet()) {
+				System.out.println(funcionario + " ------- "
+						+ pagamentoFuncionarios.get(funcionario));
+			}
+		} else {
+			System.out.println("Nenhum funcionario cadastrado");
+		}
+
+		System.out.println("-------------------------------------------\n"
+				+ "Total Antigo : " + (Double) folhaDePagamento[1] + "\n"
+				+ "Despesas: " + (Double) folhaDePagamento[2] + "\n"
+				+ "Novo Total: " + sistema.getCaixaTotal());
 	}
 
 	/* Metodos Auxiliares ou de Entrada */
