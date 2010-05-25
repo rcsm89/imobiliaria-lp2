@@ -242,4 +242,55 @@ public class VerificaInvalido {
 	}
 	return numero;
     }
+    
+    public static String recebeNome() {
+    	String string = null;
+    	Scanner entrada = new Scanner(System.in);
+
+    	while (nome(string)) {
+    	    try {
+    		string = entrada.nextLine();
+    	    } catch (Exception e) {
+    		entrada.next();
+    		System.out.println("Entrada Invalida");
+    	    }
+    	}
+    	return string;
+        }
+    
+    public static Calendar recebeData(){
+		Scanner sc = new Scanner(System.in);
+		Calendar hoje = new GregorianCalendar();
+		Calendar data = null;
+		
+		if (!sc.hasNextLine()){
+			sc.next();
+			System.out.println("Entrada invalida");
+			return recebeData();
+		}
+		
+		String dataString = sc.nextLine();
+		if (dataString.isEmpty() || dataString.length() < 10 || dataString.length() > 10) {
+			System.out.println("Entrada invalida");
+			return recebeData();
+		}
+		
+		String[] d = dataString.split("/");
+		int dia = Integer.parseInt(d[0]);
+		int mes = Integer.parseInt(d[1]);
+		int ano = Integer.parseInt(d[2]);
+		
+		if (dia < 1 || dia > 31 || mes < 1 || mes > 12 ){
+			System.out.println("Entrada invalida");
+			return recebeData();
+		}
+		
+		data = new GregorianCalendar(ano, mes-1, dia);
+		if (data.getTime().before(hoje.getTime())){
+			System.out.println("Esta data já passou. Tente Novamente.");
+			return recebeData();
+		}
+		return data;
+		
+	}
 }
