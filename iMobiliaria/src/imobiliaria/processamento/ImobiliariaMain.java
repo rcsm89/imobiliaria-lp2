@@ -1,5 +1,7 @@
 package imobiliaria.processamento;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 import imobiliaria.util.*;
@@ -10,7 +12,7 @@ public class ImobiliariaMain {
 
 	private static Sistema sistema = new Sistema();
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		sistema.getLoginClientes().put("cliente", "1234");
 		sistema.getLoginFuncionarios().put("func", "4321");
 
@@ -176,23 +178,25 @@ public class ImobiliariaMain {
 	
 	/* Metodos de Funcionario */ 
 	
-	private static void opcoesFunc() {
+	private static void opcoesFunc() throws Exception {
 
 		boolean menuFuncRodando = true;
 
-		System.out.println("\n" + "Menu de Funcionario - iMobiliaria\n"
+		System.out.println("\n" + "-----Menu de Funcionario - iMobiliaria-----\n"
 				+ "1. Cadastrar, Verificar e Alterar dados de Clientes\n"
 				+ "2. Cadastrar, Verificar e Alterar dados de Imoveis\n"
 				+ "3. Efetua pedido de Cliente\n"
 				+ "4. Minhas informações\n"
-				+ "5. Sair");
+				+ "5. Sair\n"
+				+ "-------------Digite o numero da opcao desejada-------------"
+				+ "\n" + "Número da opção: ");
 
-		int opcaoEscolhida = recebeInteiroEntre(1, 6);
+		int opcaoEscolhidaF = recebeInteiroEntre(1, 6);
 
-		switch (opcaoEscolhida) {
+		switch (opcaoEscolhidaF) {
 
 		case 1:
-			//CRDUClientes();
+			crduClientes();
 			break;
 		
 		case 2:
@@ -214,7 +218,7 @@ public class ImobiliariaMain {
 
 		
 		if (menuFuncRodando) {
-			opcoesAdmin();
+			opcoesFunc();
 		}
 	}
 	
@@ -239,19 +243,19 @@ public class ImobiliariaMain {
 
 		case 1:
 			// CRDU de Clientes
-			CRDUClientes();
+			//crduClientes();
 			break;
 		case 2:
 			// CRDU de Funcioanrios
-			CRDUFuncionarios();
+			//crduFuncionarios();
 			break;
 		case 3:
 			// CRDU de Imoveis
-			CRDUImoveis();
+//			crduImoveis();
 			break;
 		case 4:
 			// Efetua pedido do Cliente
-			efetuaPedido();
+//			efetuaPedido();
 			break;
 		case 5:
 
@@ -324,5 +328,178 @@ public class ImobiliariaMain {
 		}
 		return numero;
 	}
+	
+	public static String recebeNome() {
+    	Scanner entrada = new Scanner(System.in);
 
+    	if (!entrada.hasNextLine()) {
+			entrada.next();
+			System.out.println("Nome invalido! Digite novamente: ");
+			return recebeNome();
+		}
+
+		String string = entrada.nextLine();
+
+		if (VerificaInvalido.nome(string)) {
+			System.out.println("Nome invalido! Digite novamente: ");
+			return recebeNome();
+		}
+		return string;
+   }
+
+	
+	public static String recebeCpf() {
+		Scanner entrada = new Scanner(System.in);
+
+    	if (!entrada.hasNextLine()) {
+			entrada.next();
+			System.out.println("Cpf invalido! Digite novamente: ");
+			return recebeCpf();
+		}
+
+		String string = entrada.nextLine();
+
+		if (VerificaInvalido.numeroFormatado(string, 11)) {
+			System.out.println("Cpf invalido! Digite novamente: ");
+			return recebeCpf();
+		}
+		return string;
+	}
+	
+	public static String recebeEndereco() {
+		Scanner entrada = new Scanner(System.in);
+
+	    	if (!entrada.hasNextLine()) {
+				entrada.next();
+				System.out.println("Endereco invalido! Digite novamente: ");
+				return recebeEndereco();
+			}
+
+			String string = entrada.nextLine();
+
+			if (VerificaInvalido.endereco(string)) {
+				System.out.println("Endereco invalido! Digite novamente: ");
+				return recebeEndereco();
+			}
+			return string;
+	}
+	
+	public static TipoImovel recebePreferencia(){
+		TipoImovel pref = null;
+		int escolhaPref = recebeInteiroEntre(1, 3);
+
+		if (escolhaPref == 1){
+			pref = TipoImovel.CASA;
+			
+		}else if (escolhaPref == 2){
+			pref = TipoImovel.APARTAMENTO;
+		
+		}else if (escolhaPref == 3){
+			pref = TipoImovel.TERRENO;
+		}
+		
+		return pref;
+	}
+  
+    public static Calendar recebeData(){
+		Scanner sc = new Scanner(System.in);
+		Calendar data = null;
+		
+		if (!sc.hasNextLine()){
+			sc.next();
+			System.out.println("Data invalida! Digite novamente: ");
+			return recebeData();
+		}
+		
+		String dataString = sc.nextLine();
+		if (dataString.isEmpty() || dataString.length() < 10 || dataString.length() > 10) {
+			System.out.println("Data invalida! Digite novamente: ");
+			return recebeData();
+		}
+		
+		String[] d = dataString.split("/");
+		int dia = Integer.parseInt(d[0]);
+		int mes = Integer.parseInt(d[1]);
+		int ano = Integer.parseInt(d[2]);
+		
+		if (dia < 1 || dia > 31 || mes < 1 || mes > 12 ){
+			System.out.println("Data invalida! Digite novamente: ");
+			return recebeData();
+		}
+		
+		data = new GregorianCalendar(ano, mes-1, dia);
+		if (VerificaInvalido.data(data)){
+			System.out.println("Data invalida! Tente Novamente.");
+			return recebeData();
+		}
+		return data;
+		
+	}
+
+	private static void crduClientes() throws Exception{
+		boolean menuCrduCliente = true;
+		int opcaoCliente1 = 0;
+		
+		System.out.println("----------------\n" +
+				"1. Cadastrar um cliente\n" +
+				"2. Verificar dados do cliente\n" +
+				"3. Alterar dados do cliente\n" +
+				"4. Sair\n" +
+				"-------------Digite o numero da opcao desejada-------------" +
+				"\n" + "Número da opção: ");
+		
+		
+		opcaoCliente1 = recebeInteiroEntre(1,4);
+		
+		switch (opcaoCliente1) {
+		
+		case 1:
+			
+			//cadastrar um cliente
+			
+			System.out.println("--- Cadastrando um cliente ---\n");
+			System.out.print("Nome:");
+			String nome = recebeNome();
+			System.out.print("CPF:");
+			String cpf = recebeCpf();
+			System.out.print("Data de Nascimento (dd/MM/AAAA): ");
+			Calendar data = recebeData();
+			System.out.print("Endereco: ");
+			String endereco = recebeEndereco();
+			System.out.println("Qual sua preferência de imóvel?\n" +
+					"1. Casa\n" +
+					"2. Apartamento\n" +
+					"3. Terreno\n" +
+					"---------\n" +
+					"Escolha: ");
+			TipoImovel pref = recebePreferencia();
+			Cliente novoCliente = new Cliente(cpf, data, endereco, nome, pref);
+			sistema.getTodosClientes().adicionaCliente(novoCliente);
+			System.out.println("Cliente Cadastrado!");
+			break;
+
+		case 2:
+			System.out.println("Verifica dados de cliente");
+
+			break;
+
+		case 3:
+			break;
+			
+		case 4:
+			System.out.println("Voce foi deslogado\n");
+			menuCrduCliente = false;
+			break;
+
+		default:
+
+			System.out.println("\nDigite umas das opções sugeridas.");
+			break;
+
+		}
+		if (menuCrduCliente) {
+			crduClientes();
+		}
+	}
+	
 }
