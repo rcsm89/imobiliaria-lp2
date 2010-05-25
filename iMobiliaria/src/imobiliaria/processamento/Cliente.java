@@ -95,4 +95,14 @@ public class Cliente extends Pessoa {
 		return getCpf().equals(outroCliente.getCpf());
 		
 	}
+	
+	public boolean removePedido(Imovel pedido) throws Exception{
+		
+		if (pedido == null){
+			throw new Exception("Pedido Invalido");
+		}
+		
+		return pedidos.removeImovel(pedido.getRegistroImovel());
+
+	}
 }
