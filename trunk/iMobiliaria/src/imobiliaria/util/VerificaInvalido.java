@@ -270,7 +270,8 @@ public class VerificaInvalido {
 		}
 		
 		String dataString = sc.nextLine();
-		if (dataString.isEmpty() || dataString.length() < 10 || dataString.length() > 10) {
+		if ((dataString.isEmpty()) || (dataString.length() < 10) ||
+				(dataString.length() > 10)) {
 			System.out.println("Entrada invalida");
 			return recebeData();
 		}
@@ -286,11 +287,24 @@ public class VerificaInvalido {
 		}
 		
 		data = new GregorianCalendar(ano, mes-1, dia);
+		if (data.getTime().after(hoje.getTime())){
+			System.out.print("Esta data ainda nao ocorreu. Tente Novamente.\n\n"+
+					"Data de Nascimento (dd/MM/AAAA): ");
+			return recebeData();
+		}
+		return data;
+/*		
+		data = new GregorianCalendar(ano, mes-1, dia);
 		if (data.getTime().before(hoje.getTime())){
 			System.out.println("Esta data já passou. Tente Novamente.");
 			return recebeData();
 		}
 		return data;
 		
+	EXPLICACAO - esta data ja passou, nao era pra ser erro, pois a data ja deveria
+	mesmo ter passado, pois, esse metodo esta sendo chamado pra pegar a 
+	data de nascimento de um cliente) sempre vai cair aqui, pois ninguem nasce no futuro.
+	
+*/		
 	}
 }

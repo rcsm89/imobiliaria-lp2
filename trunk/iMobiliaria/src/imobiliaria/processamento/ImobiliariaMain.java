@@ -39,7 +39,7 @@ public class ImobiliariaMain {
 				String senhaAdmin = VerificaInvalido.recebeString();
 
 				if (!(loginAdmin.equals("admin") && senhaAdmin.equals("admin"))) {
-					System.out.println("Login e/ou Senha invalida!");
+					System.out.println("Login falhou!");
 				} else {
 					System.out.println("Administrador logado com Sucesso!");
 					opcoesAdmin();
@@ -60,11 +60,11 @@ public class ImobiliariaMain {
 					if (loginFuncs.get(loginFunc).equals(senhaFunc)) {
 						System.out.println("Funcionario Logado com Sucesso!");
 						opcoesFunc();
-					} else {
+					}/* else {
 						System.out.println("Login e/ou Senha invalida!");
-					}
+					}*/
 				} else {
-					System.out.println("Login falhou");
+					System.out.println("Login falhou!");
 				}
 
 				break;
@@ -82,18 +82,21 @@ public class ImobiliariaMain {
 					if (loginClientes.get(loginCliente).equals(senhaCliente)) {
 						System.out.println("Cliente Logado com Sucesso!");
 						opcoesCliente();
-					} else {
+					}/* else {
 						System.out.println("Login e/ou Senha invalida!");
-					}
+					}*/
 				} else {
-					System.out.println("Login falhou");
+					System.out.println("Login falhou!");
 				}
 
 				break;
 
 			case 4:
 
-				System.out.println("Cadastra Cliente");
+				System.out.println("\n - - - - - - - - - - - Cadastramento de Cliente" + 
+						"- - - - - - - - - - - -\n");
+				criaCliente();
+				System.out.println("Cliente cadastrado com Sucesso!");
 				break;
 
 			case 0:
@@ -111,7 +114,7 @@ public class ImobiliariaMain {
 	}
 
 	private static String promptPrincipal() {
-		return " * ----------------------- * Imobiliaria * ----------------------- * \n"
+		return " * ----------------------- * Imobiliaria * ------------------------ * \n"
 				+ "1 - Administrador.\n"
 				+ "2 - Funcionario.\n"
 				+ "3 - Cliente.\n"
@@ -128,9 +131,12 @@ public class ImobiliariaMain {
 
 		boolean menuImovelRodando = true;
 
-		System.out.println("\n" + "Menu de Funcionario - iMobiliaria\n"
-				+ "1. Criar novo Imovel\n" + "2. Listar Imoveis\n"
-				+ "3. Modificar Imovel\n" + "4. Deletar Imovel\n" + "5. Sair");
+		System.out.println("\nMenu de Funcionario - iMobiliaria\n" +
+				"1. Criar novo Imovel\n" +
+				"2. Listar Imoveis\n" +
+				"3. Modificar Imovel\n" +
+				"4. Deletar Imovel\n" +
+				"5. Sair");
 
 		int opcaoEscolhida = recebeInteiroEntre(1, 5);
 
@@ -258,14 +264,14 @@ public class ImobiliariaMain {
 
 	private static void opcoesCliente() {
 		boolean menuClienteRodando = true;
+		System.out.print("_____________Menu de Cliente__________ \n" +
+				"1 - Listar Imoveis da Imobiliaria.\n" +
+				"2 - Ver informacoes do cliente.\n" +
+				"0 - Deslogar.\n" +
+				"-------------Digite o numero da opcao desejada-------------" +
+				"\n" + "Número da opção: ");
 
-		System.out.print("_____________Menu de Cliente__________ \n"
-				+ "1 - Listar Imoveis da Imobiliaria.\n"
-				+ "2 - Ver informacoes do cliente.\n" + "3 - Deslogar.\n"
-				+ "-------------Digite o numero da opcao desejada-------------"
-				+ "\n" + "Número da opção: ");
-
-		int opcaoEscolhida = recebeInteiroEntre(1, 3);
+		int opcaoEscolhida = recebeInteiroEntre(0, 2);
 
 		switch (opcaoEscolhida) {
 
@@ -279,7 +285,8 @@ public class ImobiliariaMain {
 			System.out.println("Vendo Informacoes do Cliente\n");
 			break;
 
-		case 3:
+		case 0:
+			System.out.println("Saindo...");
 			menuClienteRodando = false;
 			break;
 
@@ -298,13 +305,15 @@ public class ImobiliariaMain {
 		boolean menuCrduCliente = true;
 		int opcaoCliente1 = 0;
 
-		System.out.println("----------------\n" + "1. Cadastrar um cliente\n"
-				+ "2. Verificar dados do cliente\n"
-				+ "3. Alterar dados do cliente\n" + "4. Sair\n"
-				+ "-------------Digite o numero da opcao desejada-------------"
-				+ "\n" + "Número da opção: ");
+		System.out.println("----------------\n" +
+				"1. Cadastrar um cliente\n" +
+				"2. Verificar dados do cliente\n" +
+				"3. Alterar dados do cliente\n" +
+				"0. Sair\n" +
+				"-------------Digite o numero da opcao desejada-------------" +
+				"\n" + "Número da opção: ");
 
-		opcaoCliente1 = recebeInteiroEntre(1, 4);
+		opcaoCliente1 = recebeInteiroEntre(0, 3);
 
 		switch (opcaoCliente1) {
 
@@ -321,7 +330,7 @@ public class ImobiliariaMain {
 			 */ 
 			
 			try {
-				sistema.getTodosClientes().adicionaCliente(cadastraCliente());
+				sistema.getTodosClientes().adicionaCliente(criaCliente());//cadastraCliente
 				System.out.println("Cliente adicionado com sucesso!");
 			} catch (Exception e) {
 				System.out.println("Erro: " + e.getMessage());
@@ -337,35 +346,32 @@ public class ImobiliariaMain {
 		case 3:
 			break;
 
-		case 4:
-			System.out.println("Voce foi deslogado\n");
+		case 0:
+			System.out.println("Saindo...\n");
 			menuCrduCliente = false;
 			break;
-
-		default:
-
-			System.out.println("\nDigite umas das opções sugeridas.");
-			break;
-
 		}
+		
 		if (menuCrduCliente) {
 			crduClientes();
 		}
 	}
 
-	private static Cliente cadastraCliente() throws Exception {
-		System.out.print("Cadastramento de Cliente\n" +
-				"Digite o Nome do Cliente: ");
+	private static Cliente criaCliente() throws Exception {
+		System.out.print("Digite o Nome do Cliente: ");
 		String nome = recebeNome();
-		System.out.print("CPF:");
+		System.out.print("CPF: ");
 		String cpf = recebeCpf();
 		System.out.print("Data de Nascimento (dd/MM/AAAA): ");
 		Calendar data = VerificaInvalido.recebeData();
 		System.out.print("Endereco: ");
 		String endereco = recebeEndereco();
-		System.out.print("Qual sua preferência de imóvel?\n"
-				+ "1. Casa\n" + "2. Apartamento\n" + "3. Terreno\n"
-				+ "---------\n" + "Escolha: ");
+		System.out.print("Qual sua preferência de imóvel?\n" +
+				"1. Casa\n" +
+				"2. Apartamento\n" + 
+				"3. Terreno\n" +
+				"---------\n" +
+				"Escolha: ");
 		TipoImovel pref = recebePreferencia();
 		return new Cliente(cpf, data, endereco, nome, pref);
 		
@@ -376,18 +382,18 @@ public class ImobiliariaMain {
 
 		boolean menuFuncRodando = true;
 
-		System.out.println("\n"
-				+ "-----Menu de Funcionario - iMobiliaria-----\n"
-				+ "1. Cadastrar, Verificar e Alterar dados de Clientes\n"
-				+ "2. Cadastrar, Verificar e Alterar dados de Imoveis\n" 
-				+ "3. Efetua pedido de Cliente\n"
-				+ "4. Listar clientes\n"
-				+ "5. Minhas informações\n"
-				+ "6. Sair\n"
-				+ "-------------Digite o numero da opcao desejada-------------"
-				+ "\n" + "Número da opção: ");
+		System.out.println(
+				"-----Menu de Funcionario - iMobiliaria-----\n" +
+				"1. Cadastrar, Verificar e Alterar dados de Clientes\n" +
+				"2. Cadastrar, Verificar e Alterar dados de Imoveis\n" + 
+				"3. Efetua pedido de Cliente\n" +
+				"4. Listar clientes\n" +
+				"5. Minhas informações\n" +
+				"0. Sair\n" +
+				"-------------Digite o numero da opcao desejada-------------" +
+				"\n" + "Número da opção: ");
 
-		int opcaoEscolhidaF = recebeInteiroEntre(1, 6);
+		int opcaoEscolhidaF = recebeInteiroEntre(0, 5);
 
 		switch (opcaoEscolhidaF) {
 
@@ -411,7 +417,8 @@ public class ImobiliariaMain {
 			// lista clientes
 			break;
 		
-		case 6:
+		case 0:
+			System.out.println("Saindo...");
 			menuFuncRodando = false;
 			break;
 		}
@@ -522,14 +529,15 @@ public class ImobiliariaMain {
 
 		boolean menuAdminRodando = true;
 
-		System.out.println("\n" + "Menu de Administracao - iMobiliaria\n"
-				+ "1. Verificar e Alterar dados de Clientes\n"
-				+ "2. Verificar e Alterar dados de Funcionarios\n"
-				+ "3. Verificar e Alterar dados de Imoveis\n"
-				+ "4. Efetua pedido de Cliente\n" + "5. Pagamento de Contas\n"
-				+ "6. Sair");
+		System.out.println("\nMenu de Administracao - iMobiliaria\n" +
+				"1. Verificar e Alterar dados de Clientes\n" +
+				"2. Verificar e Alterar dados de Funcionarios\n" +
+				"3. Verificar e Alterar dados de Imoveis\n" +
+				"4. Efetua pedido de Cliente\n" +
+				"5. Pagamento de Contas\n" + 
+				"0. Sair");
 
-		int opcaoEscolhida = recebeInteiroEntre(1, 6);
+		int opcaoEscolhida = recebeInteiroEntre(0, 5);
 
 		switch (opcaoEscolhida) {
 
@@ -573,7 +581,8 @@ public class ImobiliariaMain {
 			pagamentoDoMes();
 
 			break;
-		case 6:
+		case 0:
+			System.out.println("Saindo...");
 			menuAdminRodando = false;
 			break;
 		}
@@ -622,23 +631,27 @@ public class ImobiliariaMain {
 
 	private static void crduFuncionarios() {
 		boolean continua = true;
-		System.out.println("Opcoes de Funcionarios ---\n"
-				+ "1. Cadastrar Funcionario\n"
-				+ "2. Modificar/Remover Funcionario por CPF"
-				+ "3. Listar funcionarios\n" + "4. Sair");
-		int opcao = recebeInteiroEntre(1, 4);
+		System.out.print("----------------\n" +
+				"1. Cadastrar Funcionario\n" +
+				"2. Modificar/Remover Funcionario por CPF" +
+				"3. Listar funcionarios\n" +
+				"0. Sair" +
+				"-------------Digite o numero da opcao desejada-------------" +
+				"Número da opção: ");
+		int opcao = recebeInteiroEntre(0, 3);
 
 		switch (opcao) {
 		case 1:
 
 			try {
 				sistema.getTodosFuncionarios().addFuncionario(
-						cadastraFuncionario());
+						criaFuncionario());
 				System.out.println("Funcionario adicionado com sucesso!");
 			} catch (Exception e) {
 				System.out.println("Erro: " + e.getMessage());
 			}
 			break;
+			
 		case 2:
 
 			try {
@@ -646,8 +659,8 @@ public class ImobiliariaMain {
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
-
 			break;
+			
 		case 3:
 
 			List<Funcionario> funcionarios = sistema.getTodosFuncionarios()
@@ -656,19 +669,20 @@ public class ImobiliariaMain {
 			listagemDeFuncionario(funcionarios);
 
 			break;
+			
 		case 4:
 			continua = false;
 			break;
 		}
-		if (continua) {
+		if (continua)
 			crduFuncionarios();
-		}
+
 	}
 	
-	private static Funcionario cadastraFuncionario() throws Exception {
+	private static Funcionario criaFuncionario() throws Exception {
 
-		System.out.print("Cadastramento de Funcionario\n"
-				+ "Digite o Nome do Funcionario: ");
+		System.out.print("Cadastramento de Funcionario\n" +
+				"Digite o Nome do Funcionario: ");
 		String nome = recebeNome();
 		System.out.print("CPF: ");
 		String cpf = recebeCpf();
@@ -681,7 +695,6 @@ public class ImobiliariaMain {
 
 		return new Funcionario(cpf, dataDeNascimento, endereco, nome, creci);
 
-		// Fazer!!
 	}
 
 	private static void modificaFunc() throws Exception {
