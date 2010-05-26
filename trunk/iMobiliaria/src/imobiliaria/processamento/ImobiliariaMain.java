@@ -136,9 +136,9 @@ public class ImobiliariaMain {
 				"2. Listar Imoveis\n" +
 				"3. Modificar Imovel\n" +
 				"4. Deletar Imovel\n" +
-				"5. Sair");
+				"0. Sair");
 
-		int opcaoEscolhida = recebeInteiroEntre(1, 5);
+		int opcaoEscolhida = recebeInteiroEntre(0, 4);
 
 		switch (opcaoEscolhida) {
 
@@ -165,7 +165,7 @@ public class ImobiliariaMain {
 			removeImovel();
 			break;
 
-		case 5:
+		case 0:
 			menuImovelRodando = false;
 			System.out
 					.println("---------------------------------------------------------");
@@ -317,9 +317,7 @@ public class ImobiliariaMain {
 
 		switch (opcaoCliente1) {
 
-		case 1:
-			
-			
+		case 1:		
 			// cadastrar um cliente
 
 			/*
@@ -955,7 +953,7 @@ public class ImobiliariaMain {
 		}
 	}
 
-	private static void listagemDeClientes(List<Funcionario> array) {
+	private static void listagemDeClientes(List<Funcionario> array) {//controlador faz
 
 		if (array.isEmpty()) {
 			System.out.println("Nada a ser listado");
