@@ -426,11 +426,14 @@ public class ImobiliariaMain {
 
 	private static void efetuaPedido() throws Exception {
 		
-		System.out.println("Menu de Pedidos\n" + "1. Listagem dos Pedidos\n"
-				+ "2. ");
+		System.out.println("Listagem de Pedidos: \n");
 		
 		TreeMap<Imovel, Cliente> listaDePedidos = sistema.getListaPedido();
 		Set<Imovel> listaImoveisPedidos = listaDePedidos.keySet();
+		
+		if (listaDePedidos.isEmpty()) {
+			throw new Exception("Lista de Pedidos Vazia");
+		}
 		
 		for (Imovel i : listaImoveisPedidos) {
 			Cliente cliente = listaDePedidos.get(i);
