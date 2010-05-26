@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeMap;
 
 import imobiliaria.util.*;
 
@@ -134,21 +136,16 @@ public class ImobiliariaMain {
 	 * 
 	 * }
 	 */
-	
+
 	/* Metodos de Imovel */
-	
-	/* Metodos de Imovel */
-	
-	private static void CRUDimovel() throws Exception {
-		
+
+	private static void crduImovel() throws Exception {
+
 		boolean menuImovelRodando = true;
 
 		System.out.println("\n" + "Menu de Funcionario - iMobiliaria\n"
-				+ "1. Criar novo Imovel\n"
-				+ "2. Listar Imoveis\n"
-				+ "3. Modificar Imovel\n"
-				+ "4. Deletar Imovel\n"
-				+ "5. Sair");
+				+ "1. Criar novo Imovel\n" + "2. Listar Imoveis\n"
+				+ "3. Modificar Imovel\n" + "4. Deletar Imovel\n" + "5. Sair");
 
 		int opcaoEscolhida = recebeInteiroEntre(1, 5);
 
@@ -156,63 +153,64 @@ public class ImobiliariaMain {
 
 		case 1:
 
-			//Criando Imovel
+			// Criando Imovel
 			criaImovel();
 			break;
 
 		case 2:
-			
-			//Listando Imoveis
+
+			// Listando Imoveis
 			listagemDeImovel(sistema.getTodosImoveis().getImoveis());
 			break;
-			
+
 		case 3:
-			
+
 			System.out.println("Modifica Imovel");
 			break;
-		
+
 		case 4:
-			
+
 			System.out.println("Deleta Imovel");
 			removeImovel();
 			break;
 
 		case 5:
 			menuImovelRodando = false;
-			System.out.println("---------------------------------------------------------");
+			System.out
+					.println("---------------------------------------------------------");
 			break;
 		}
 
-		
 		if (menuImovelRodando) {
 			opcoesAdmin();
-		}	
-		
+		}
+
 	}
-	
+
 	private static void removeImovel() {
-		final int NUMERO_IMOVEIS = sistema.getTodosImoveis().getImoveis().size();
+		final int NUMERO_IMOVEIS = sistema.getTodosImoveis().getImoveis()
+				.size();
 		int registroDoImovel;
 		int numeroDoImovel;
 		boolean removeImovel = false;
-		
-		while(!removeImovel)
-			
-			System.out.println(
-					"Digite o numero do imovel que deseja remover: \n");
-					listagemDeImovel(sistema.getTodosImoveis().getImoveis());
-			System.out.print("Numero do Imovel: ");
-			
-			numeroDoImovel = recebeInteiroEntre(1, NUMERO_IMOVEIS);
-			registroDoImovel = sistema.getTodosImoveis().getImoveis().
-				get(numeroDoImovel).getRegistroImovel();
-			
-			if (sistema.getTodosImoveis().removeImovel(registroDoImovel))
-				removeImovel = true;
-		
+
+		while (!removeImovel)
+
+			System.out
+					.println("Digite o numero do imovel que deseja remover: \n");
+		listagemDeImovel(sistema.getTodosImoveis().getImoveis());
+		System.out.print("Numero do Imovel: ");
+
+		numeroDoImovel = recebeInteiroEntre(1, NUMERO_IMOVEIS);
+		registroDoImovel = sistema.getTodosImoveis().getImoveis().get(
+				numeroDoImovel).getRegistroImovel();
+
+		if (sistema.getTodosImoveis().removeImovel(registroDoImovel))
+			removeImovel = true;
+
 	}
 
-	private static Imovel criaImovel() throws Exception{
+	private static Imovel criaImovel() throws Exception {
 		String nome = null;
 		String endereco = null;
 		double preco = 0.0;
@@ -221,7 +219,7 @@ public class ImobiliariaMain {
 		TipoImovel tipoDoImovel = null;
 		TipoContratual tipoContratualDoImovel = null;
 		int numero;
-		
+
 		System.out.print("Nome do imovel: ");
 		nome = recebeNome();
 		System.out.print("Endereco: ");
@@ -232,13 +230,14 @@ public class ImobiliariaMain {
 		comprimento = VerificaInvalido.recebeDouble();
 		System.out.print("Largura: ");
 		comprimento = VerificaInvalido.recebeDouble();
-		
-		while(tipoDoImovel == null){
-			System.out.print("Digite o numero correspondente ao tipo do imovel: \n" +
-					"1. CASA\n" +
-					"2. APARTAMENTO\n" +
-					"3. TERRENO\n" + 
-					"Numero: ");
+
+		while (tipoDoImovel == null) {
+			System.out
+					.print("Digite o numero correspondente ao tipo do imovel: \n"
+							+ "1. CASA\n"
+							+ "2. APARTAMENTO\n"
+							+ "3. TERRENO\n"
+							+ "Numero: ");
 			numero = VerificaInvalido.recebeInteiro();
 			if (numero == 1)
 				tipoDoImovel = TipoImovel.CASA;
@@ -247,28 +246,27 @@ public class ImobiliariaMain {
 			if (numero == 3)
 				tipoDoImovel = TipoImovel.TERRENO;
 			else
-				System.out.println("Numero de terreno Invalido");		
+				System.out.println("Numero de terreno Invalido");
 		}
-		
-		while (tipoContratualDoImovel == null){
-			System.out.print(
-					"Digite o numero correspondente ao tipo do imovel: \n" +
-					"1. ALUGUEL\n" +
-					"2. VENDA\n" + 
-					"Numero: ");
+
+		while (tipoContratualDoImovel == null) {
+			System.out
+					.print("Digite o numero correspondente ao tipo do imovel: \n"
+							+ "1. ALUGUEL\n" + "2. VENDA\n" + "Numero: ");
 			numero = VerificaInvalido.recebeInteiro();
 			if (numero == 1)
 				tipoContratualDoImovel = TipoContratual.ALUGUEL;
 			if (numero == 2)
 				tipoContratualDoImovel = TipoContratual.VENDA;
 			else
-				System.out.println(
-						"Numero do tipo contratual de imovel Invalido");	
+				System.out
+						.println("Numero do tipo contratual de imovel Invalido");
 		}
-		
-		return new Imovel(nome, endereco, preco, new Area(comprimento, largura),
-				tipoDoImovel, tipoContratualDoImovel);
-		
+
+		return new Imovel(nome, endereco, preco,
+				new Area(comprimento, largura), tipoDoImovel,
+				tipoContratualDoImovel);
+
 	}
 
 	/* Metodos de Cliente */
@@ -330,6 +328,13 @@ public class ImobiliariaMain {
 		case 1:
 
 			// cadastrar um cliente
+
+			/*
+			 * (Yuri) Thiago, nessa parte do codigo eu axo q o ideal seria fazer
+			 * como bruno fez o metodo criaImovel() eh basicamente um metodo que
+			 * retorna um Imovel ja pronto, daí vc só precisa fazer a associacao
+			 * Cliente novoCliente = criaCliente();
+			 */
 
 			System.out.println("--- Cadastrando um cliente ---\n");
 			System.out.print("Nome:");
@@ -397,11 +402,11 @@ public class ImobiliariaMain {
 			break;
 
 		case 2:
-			// CRDUImoveis();
+			// crduImoveis();
 			break;
 
 		case 3:
-			// efetuaPedido();
+			efetuaPedido();
 			break;
 
 		case 4:
@@ -416,6 +421,98 @@ public class ImobiliariaMain {
 		if (menuFuncRodando) {
 			opcoesFunc();
 		}
+	}
+
+	// (Yuri) Fiz esse jah que eh um metodo que Administrador tava precisando
+	// tambem
+
+	private static void efetuaPedido() throws Exception {
+		
+		System.out.println("Menu de Pedidos\n" + "1. Listagem dos Pedidos\n"
+				+ "2. ");
+		
+		TreeMap<Imovel, Cliente> listaDePedidos = sistema.getListaPedido();
+		Set<Imovel> listaImoveisPedidos = listaDePedidos.keySet();
+		
+		for (Imovel i : listaImoveisPedidos) {
+			Cliente cliente = listaDePedidos.get(i);
+			
+			System.out.println(i.getRegistroImovel() + "Imovel: " + i.getNome()
+					+ " Valor: " + i.getValor() + "\n"
+					+ i.getEndereco() + " Area: " + i.getArea().getComprimento() + "x"
+					+ i.getArea().getLargura() + " Contrato: "
+					+ i.getTipoContratual() + " Tipo: " + i.getTipoDoImovel() + "\n"
+					+ "Pedido por: " + cliente.getNome() + " CPF: " + cliente.getCpf() + "\n");
+		}
+		
+		
+		Imovel imovelASerAnalisado = null;
+		do {
+			System.out.print("Digite o Registro do Imovel pedido que deseja analisar: ");
+			int registro = recebeInteiroEntre(0, 99999999);
+			for (Imovel i : listaImoveisPedidos) {
+				if (i.getRegistroImovel() == registro) {
+					imovelASerAnalisado = i;
+					break;
+				}
+			}
+			if (imovelASerAnalisado == null)
+				System.out.println("Imovel nao encontrado!");
+		} while(imovelASerAnalisado == null);
+		
+		
+		boolean menuOpcoesRodando = true;
+		
+		do {
+			System.out.println("Menu de Opcoes de Pedido: \n" +
+					"1. Deletar Pedido\n" +
+					"2. Efetuar Pedido\n" +
+					"3. Sair");
+			
+			int opcaoPedido = recebeInteiroEntre(1, 3);
+			
+			switch (opcaoPedido) {
+			case 1:
+				
+				imovelASerAnalisado.setEstadoDoImovel(EstadoImovel.A_VENDA);
+				listaDePedidos.get(imovelASerAnalisado).removePedido(imovelASerAnalisado);
+				listaDePedidos.remove(imovelASerAnalisado);
+				System.out.println("Pedido removido com sucesso!");
+				
+				break;
+			case 2:
+				// efetua pedido
+				
+				
+				Funcionario funcionario = null;
+				
+				do {
+					System.out.print("CRECI do Funcionario que realisou a compra: ");
+					String creci = recebeNumero();
+					
+					for (Funcionario f : sistema.getTodosFuncionarios().getColecaoFuncionarios()) {
+						if (f.getCreci().equals(creci)) {
+							funcionario = f;
+							break;
+						}
+					}
+					if (funcionario == null)
+						System.out.println("Funcionario nao encontrado!");
+				} while(funcionario == null);
+				
+				sistema.efetuaPedido(imovelASerAnalisado, funcionario);
+				
+				System.out.println("Pedido efetuado com Sucesso!");
+				
+				break;
+			case 3:
+				menuOpcoesRodando = false;
+			}
+			
+		} while (menuOpcoesRodando);
+		
+		
+
 	}
 
 	/* Metodos de Administrador */
@@ -437,7 +534,13 @@ public class ImobiliariaMain {
 
 		case 1:
 			// CRDU de Clientes
-			// crduClientes();
+
+			try {
+				crduClientes();
+			} catch (Exception e) {
+				System.out.println("Erro: " + e.getMessage());
+			}
+
 			break;
 		case 2:
 			// CRDU de Funcioanrios
@@ -445,11 +548,23 @@ public class ImobiliariaMain {
 			break;
 		case 3:
 			// CRDU de Imoveis
-			// crduImoveis();
+			try {
+
+				crduImovel();
+
+			} catch (Exception e) {
+				System.out.println("Erro: " + e.getMessage());
+			}
 			break;
 		case 4:
 			// Efetua pedido do Cliente
-			// efetuaPedido();
+			try {
+
+				efetuaPedido();
+
+			} catch (Exception e) {
+				System.out.println("Erro: " + e.getMessage());
+			}
 			break;
 		case 5:
 
@@ -515,17 +630,21 @@ public class ImobiliariaMain {
 		switch (opcao) {
 		case 1:
 
-			cadastrarFuncionario();
-
+			try {
+				sistema.getTodosFuncionarios().addFuncionario(
+						cadastraFuncionario());
+				System.out.println("Funcionario adicionado com sucesso!");
+			} catch (Exception e) {
+				System.out.println("Erro: " + e.getMessage());
+			}
 			break;
 		case 2:
-			
+
 			try {
-			modificaFunc();
+				modificaFunc();
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
-			
 
 			break;
 		case 3:
@@ -545,8 +664,22 @@ public class ImobiliariaMain {
 		}
 	}
 
-	private static void cadastrarFuncionario() {
-		
+	private static Funcionario cadastraFuncionario() throws Exception {
+
+		System.out.print("Cadastramento de Funcionario\n"
+				+ "Digite o Nome do Funcionario: ");
+		String nome = recebeNome();
+		System.out.print("CPF: ");
+		String cpf = recebeCpf();
+		System.out.print("Data de Nascimento (DD/MM/AAAA): ");
+		Calendar dataDeNascimento = recebeData();
+		System.out.print("CRECI: ");
+		String creci = recebeNumero();
+		System.out.print("Endereco: ");
+		String endereco = recebeEndereco();
+
+		return new Funcionario(cpf, dataDeNascimento, endereco, nome, creci);
+
 		// Fazer!!
 	}
 
@@ -724,6 +857,24 @@ public class ImobiliariaMain {
 		return string;
 	}
 
+	public static String recebeNumero() {
+		Scanner entrada = new Scanner(System.in);
+
+		if (!entrada.hasNextLine()) {
+			entrada.next();
+			System.out.println("Numero invalido! Digite novamente: ");
+			return recebeNumero();
+		}
+
+		String creci = entrada.nextLine();
+
+		if (VerificaInvalido.numero(creci)) {
+			System.out.println("Numero invalido! Digite novamente: ");
+			return recebeNumero();
+		}
+		return creci;
+	}
+
 	public static String recebeEndereco() {
 		Scanner entrada = new Scanner(System.in);
 
@@ -758,6 +909,8 @@ public class ImobiliariaMain {
 
 		return pref;
 	}
+
+	// (Yuri) ESSE METODO JA EXISTE EM VERIFICAINVALIDO!
 
 	public static Calendar recebeData() {
 		Scanner sc = new Scanner(System.in);
