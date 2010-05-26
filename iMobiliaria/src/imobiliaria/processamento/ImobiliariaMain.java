@@ -280,8 +280,6 @@ public class ImobiliariaMain {
 			break;
 
 		case 3:
-
-			System.out.println("Voce foi deslogado\n");
 			menuClienteRodando = false;
 			break;
 
