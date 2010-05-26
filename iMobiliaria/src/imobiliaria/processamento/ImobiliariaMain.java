@@ -120,23 +120,8 @@ public class ImobiliariaMain {
 				+ "-------------Digite o numero da opcao desejada-------------"
 				+ "\n" + "Número da opção: ";
 	}
-
-	/*
-	 * private static Cliente criaCliente() { //cpf = recebe(cpf); //nascimento
-	 * = recebe(calendar - data); //endereco = recebe(endereco); //nome =
-	 * recebe(nome); //preferencia = rece(TipoImovel.CASA); Calendar nascimento
-	 * = new GregorianCalendar(1991, Calendar.APRIL, 4); String endereco =
-	 * "Rua alBerto de brito, 844"; TipoImovel preferencia = TipoImovel.CASA;
-	 * 
-	 * try { return new Cliente("12345678910", nascimento, endereco, "Bruno",
-	 * preferencia); } catch (Exception e) { return null; }
-	 * 
-	 * try{ criaCliente(); }catch(Exception e){
-	 * System.out.println(e.getMessage()); repete = false; break; }
-	 * 
-	 * }
-	 */
-
+	
+	
 	/* Metodos de Imovel */
 
 	private static void crduImovel() throws Exception {
@@ -154,7 +139,7 @@ public class ImobiliariaMain {
 		case 1:
 
 			// Criando Imovel
-			criaImovel();
+			sistema.getTodosImoveis().adicionaImovel(criaImovel());
 			break;
 
 		case 2:
@@ -182,7 +167,7 @@ public class ImobiliariaMain {
 		}
 
 		if (menuImovelRodando) {
-			opcoesAdmin();
+			crduImovel();
 		}
 
 	}
@@ -229,7 +214,7 @@ public class ImobiliariaMain {
 		System.out.print("Comprimento: ");
 		comprimento = VerificaInvalido.recebeDouble();
 		System.out.print("Largura: ");
-		comprimento = VerificaInvalido.recebeDouble();
+		largura = VerificaInvalido.recebeDouble();
 
 		while (tipoDoImovel == null) {
 			System.out
@@ -241,9 +226,9 @@ public class ImobiliariaMain {
 			numero = VerificaInvalido.recebeInteiro();
 			if (numero == 1)
 				tipoDoImovel = TipoImovel.CASA;
-			if (numero == 2)
+			else if (numero == 2)
 				tipoDoImovel = TipoImovel.APARTAMENTO;
-			if (numero == 3)
+			else if (numero == 3)
 				tipoDoImovel = TipoImovel.TERRENO;
 			else
 				System.out.println("Numero de terreno Invalido");
@@ -326,7 +311,8 @@ public class ImobiliariaMain {
 		switch (opcaoCliente1) {
 
 		case 1:
-
+			
+			
 			// cadastrar um cliente
 
 			/*
@@ -334,24 +320,15 @@ public class ImobiliariaMain {
 			 * como bruno fez o metodo criaImovel() eh basicamente um metodo que
 			 * retorna um Imovel ja pronto, daí vc só precisa fazer a associacao
 			 * Cliente novoCliente = criaCliente();
-			 */
-
-			System.out.println("--- Cadastrando um cliente ---\n");
-			System.out.print("Nome:");
-			String nome = recebeNome();
-			System.out.print("CPF:");
-			String cpf = recebeCpf();
-			System.out.print("Data de Nascimento (dd/MM/AAAA): ");
-			Calendar data = recebeData();
-			System.out.print("Endereco: ");
-			String endereco = recebeEndereco();
-			System.out.println("Qual sua preferência de imóvel?\n"
-					+ "1. Casa\n" + "2. Apartamento\n" + "3. Terreno\n"
-					+ "---------\n" + "Escolha: ");
-			TipoImovel pref = recebePreferencia();
-			Cliente novoCliente = new Cliente(cpf, data, endereco, nome, pref);
-			sistema.getTodosClientes().adicionaCliente(novoCliente);
-			System.out.println("Cliente Cadastrado!");
+			 */ 
+			
+			try {
+				sistema.getTodosClientes().adicionaCliente(cadastraCliente());
+				System.out.println("Cliente adicionado com sucesso!");
+			} catch (Exception e) {
+				System.out.println("Erro: " + e.getMessage());
+			}
+			
 			break;
 
 		case 2:
@@ -378,6 +355,23 @@ public class ImobiliariaMain {
 		}
 	}
 
+	private static Cliente cadastraCliente() throws Exception {
+		System.out.print("Cadastramento de Cliente\n" +
+				"Digite o Nome do Cliente: ");
+		String nome = recebeNome();
+		System.out.print("CPF:");
+		String cpf = recebeCpf();
+		System.out.print("Data de Nascimento (dd/MM/AAAA): ");
+		Calendar data = VerificaInvalido.recebeData();
+		System.out.print("Endereco: ");
+		String endereco = recebeEndereco();
+		System.out.print("Qual sua preferência de imóvel?\n"
+				+ "1. Casa\n" + "2. Apartamento\n" + "3. Terreno\n"
+				+ "---------\n" + "Escolha: ");
+		TipoImovel pref = recebePreferencia();
+		return new Cliente(cpf, data, endereco, nome, pref);
+		
+	}
 	/* Metodos de Funcionario */
 
 	private static void opcoesFunc() throws Exception {
@@ -387,9 +381,11 @@ public class ImobiliariaMain {
 		System.out.println("\n"
 				+ "-----Menu de Funcionario - iMobiliaria-----\n"
 				+ "1. Cadastrar, Verificar e Alterar dados de Clientes\n"
-				+ "2. Cadastrar, Verificar e Alterar dados de Imoveis\n"
-				+ "3. Efetua pedido de Cliente\n" + "4. Minhas informações\n"
-				+ "5. Sair\n"
+				+ "2. Cadastrar, Verificar e Alterar dados de Imoveis\n" 
+				+ "3. Efetua pedido de Cliente\n"
+				+ "4. Listar clientes\n"
+				+ "5. Minhas informações\n"
+				+ "6. Sair\n"
 				+ "-------------Digite o numero da opcao desejada-------------"
 				+ "\n" + "Número da opção: ");
 
@@ -402,7 +398,7 @@ public class ImobiliariaMain {
 			break;
 
 		case 2:
-			// crduImoveis();
+			crduImovel();
 			break;
 
 		case 3:
@@ -414,6 +410,10 @@ public class ImobiliariaMain {
 			break;
 
 		case 5:
+			// lista clientes
+			break;
+		
+		case 6:
 			menuFuncRodando = false;
 			break;
 		}
@@ -663,7 +663,7 @@ public class ImobiliariaMain {
 			crduFuncionarios();
 		}
 	}
-
+	
 	private static Funcionario cadastraFuncionario() throws Exception {
 
 		System.out.print("Cadastramento de Funcionario\n"
@@ -672,7 +672,7 @@ public class ImobiliariaMain {
 		System.out.print("CPF: ");
 		String cpf = recebeCpf();
 		System.out.print("Data de Nascimento (DD/MM/AAAA): ");
-		Calendar dataDeNascimento = recebeData();
+		Calendar dataDeNascimento = VerificaInvalido.recebeData();
 		System.out.print("CRECI: ");
 		String creci = recebeNumero();
 		System.out.print("Endereco: ");
@@ -751,7 +751,7 @@ public class ImobiliariaMain {
 		case 3:
 
 			System.out.print("Digite a nova Data de Nascimento: ");
-			Calendar data = recebeData();
+			Calendar data = VerificaInvalido.recebeData();
 			funcionario.setDataNascimento(data);
 
 			break;
@@ -810,7 +810,7 @@ public class ImobiliariaMain {
 			entrada.next();
 			System.out.println("Numero invalido! Digite novamente: ");
 			return recebeInteiroEntre(min, max);
-		}
+ 		}
 
 		int numero = entrada.nextInt();
 
@@ -908,44 +908,6 @@ public class ImobiliariaMain {
 		}
 
 		return pref;
-	}
-
-	// (Yuri) ESSE METODO JA EXISTE EM VERIFICAINVALIDO!
-
-	public static Calendar recebeData() {
-		Scanner sc = new Scanner(System.in);
-		Calendar data = null;
-
-		if (!sc.hasNextLine()) {
-			sc.next();
-			System.out.println("Data invalida! Digite novamente: ");
-			return recebeData();
-		}
-
-		String dataString = sc.nextLine();
-		if (dataString.isEmpty() || dataString.length() < 10
-				|| dataString.length() > 10) {
-			System.out.println("Data invalida! Digite novamente: ");
-			return recebeData();
-		}
-
-		String[] d = dataString.split("/");
-		int dia = Integer.parseInt(d[0]);
-		int mes = Integer.parseInt(d[1]);
-		int ano = Integer.parseInt(d[2]);
-
-		if (dia < 1 || dia > 31 || mes < 1 || mes > 12) {
-			System.out.println("Data invalida! Digite novamente: ");
-			return recebeData();
-		}
-
-		data = new GregorianCalendar(ano, mes - 1, dia);
-		if (VerificaInvalido.data(data)) {
-			System.out.println("Data invalida! Tente Novamente.");
-			return recebeData();
-		}
-		return data;
-
 	}
 
 	private static void listagemDeImovel(ArrayList<Imovel> array) {
