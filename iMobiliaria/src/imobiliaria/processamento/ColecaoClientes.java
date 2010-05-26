@@ -79,7 +79,7 @@ public class ColecaoClientes {
 	 * 
 	 * @return ArrayList contendo todos os clientes da Colecao
 	 */
-	public List<Cliente> getClientes() {
+	public List<Cliente> getClientes() {//listaClientes//retorna uma String
 		return colecaoClientes;
 	}
 
