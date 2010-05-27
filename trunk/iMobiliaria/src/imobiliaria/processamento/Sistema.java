@@ -14,7 +14,7 @@ import imobiliaria.controladores.*;
  */
 
 /*
- * Essa Classe irá guardar todas as informacoes do Sistema, tais como banco de
+ * Essa Classe ira guardar todas as informacoes do Sistema, tais como banco de
  * dados contendo os Imoveis, Clientes, Funcionarios e o Caixa da Empresa
  */
 public class Sistema {
@@ -22,7 +22,7 @@ public class Sistema {
 	private final double SALARIO_DEFAULT = 1500;
 	private final double COMISSAO = 0.03;
 
-	private ControladorImovel controladorImoveis = new ColecaoImovel();
+	private ControladorImovel controladorImoveis = new ControladorImovel();
 	private ControladorCliente controladorClientes = new ControladorCliente();
 	private ControladorFuncionario controladorFuncionarios = new ControladorFuncionario();
 
@@ -273,7 +273,7 @@ public class Sistema {
 	 * Metodo acessador do Contrador de Imoveis do Sistema
 	 * @return the controladorImoveis
 	 */
-	public ControladorImoveis controladorImoveis() {
+	public ControladorImovel controladorImoveis() {
 		return controladorImoveis;
 	}
 
@@ -281,7 +281,7 @@ public class Sistema {
 	 * Metodo acessador do Contrador de Clientes do Sistema
 	 * @return the controladorClientes
 	 */
-	public ControladorClientes controladorClientes() {
+	public ControladorCliente controladorClientes() {
 		return controladorClientes;
 	}
 
@@ -289,7 +289,7 @@ public class Sistema {
 	 * Metodo acessador do Contrador de Funcionarios do Sistema
 	 * @return the controladorFuncionarios
 	 */
-	public ControladorFuncionarios controladorFuncionarios() {
+	public ControladorFuncionario controladorFuncionarios() {
 		return controladorFuncionarios;
 	}
 
