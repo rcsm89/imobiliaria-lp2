@@ -18,13 +18,14 @@ public class ColecaoImoveis {
 	 * @return True - Caso o imovel tenha sido adicionado <br>
 	 *         False - Caso o imovel ja exista na colecao
 	 */
-	public boolean adicionaImovel(Imovel imovelASerAdicionado) {
+	public void addImovel(Imovel imovelAadicionar, String nome, String endereco,
+			double preco, Area area, TipoImovel tipoDoImovel,
+			TipoContratual tipoContratual) throws Exception {
 
-		if (colecaoImoveis.contains(imovelASerAdicionado)) {
-			return false;
-		}
+		if (colecaoImoveis.contains(imovelAadicionar))
+			throw new Exception("Imovel Existente");
 
-		return colecaoImoveis.add(imovelASerAdicionado);
+		colecaoImoveis.add(imovelAadicionar);
 	}
 
 	/**
@@ -35,14 +36,18 @@ public class ColecaoImoveis {
 	 * @return True - Caso o imovel seja removido <br>
 	 *         False - Caso ele nao seja encontrado
 	 */
-	public boolean removeImovel(int registroDoImovelASerRemovido) {
+	public void removeImovel(String registroImovel) 
+		throws Exception{
+		int registro = 0;
+		
+		registro = Integer.parseInt(registroImovel);
 
 		for (Imovel imovel : colecaoImoveis) {
-			if (imovel.getRegistroImovel() == registroDoImovelASerRemovido) {
-				return colecaoImoveis.remove(imovel);
-			}
+			if (imovel.getRegistroImovel() == registro)
+				colecaoImoveis.remove(imovel);
 		}
-		return false;
+		throw new Exception("Registro Invalido");
+		
 	}
 
 	/**
@@ -141,30 +146,22 @@ public class ColecaoImoveis {
 	}
 
 	/**
-	 * Metodo Acessador de Imoveis que contenham um determinado nome ou endereco
+	 * Metodo Acessador de Imoveis que contem um determinado nome
 	 * 
-	 * @param nomeOuEnderecoRequerido
+	 * @param nomeRequerido
 	 *            Nome ou Endereco a ser usado como Filtro
-	 * @param ehNome
-	 *            True - Se o primeiro parametro for um nome<br>
-	 *            False - Caso o primeiro parametro seja um endereco
+	 *            
 	 * @return ArrayList contendo os imoveis filtrados
 	 */
-	public ArrayList<Imovel> getImoveis(String nomeOuEnderecoRequerido,
-			boolean ehNome) {
+	public ArrayList<Imovel> getImoveis(String nomeRequerido) {
 
 		ArrayList<Imovel> colecaoRetornada = new ArrayList<Imovel>();
 
 		String stringDoImovel;
 		for (Imovel imovel : colecaoImoveis) {
 
-			if (ehNome) {
-				stringDoImovel = imovel.getNome();
-			} else {
-				stringDoImovel = imovel.getEndereco();
-			}
-
-			if (stringDoImovel.contains(nomeOuEnderecoRequerido)) {
+			stringDoImovel = imovel.getNome();
+			if (stringDoImovel.contains(nomeRequerido)) {
 				colecaoRetornada.add(imovel);
 			}
 
