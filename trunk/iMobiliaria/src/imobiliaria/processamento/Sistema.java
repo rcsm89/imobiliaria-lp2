@@ -9,7 +9,7 @@ import java.util.TreeMap;
  * Classe Sistema para guardar informacoes de um Sistema Imobiliario
  * 
  * @author Yuri
- * @version IT 1
+ * @version IT 2
  */
 
 /*
@@ -18,15 +18,17 @@ import java.util.TreeMap;
  */
 public class Sistema {
 
-	private final double SALARIO_DEFAULT = 500;
+	private final double SALARIO_DEFAULT = 1500;
 	private final double COMISSAO = 0.03;
 
-	private ColecaoImoveis todosImoveis = new ColecaoImoveis();
-	private ColecaoClientes todosClientes = new ColecaoClientes();
-	private ColecaoFuncionario todosFuncionarios = new ColecaoFuncionario();
+	private ControladorImoveis controladorImoveis = new ControladorImoveis();
+	private ControladorClientes controladorClientes = new ControladorClientes();
+	private ControladorFuncionarios controladorFuncionarios = new ControladorFuncionarios();
+
 	private HashMap<String, String> loginClientes = new HashMap<String, String>();
 	private HashMap<String, String> loginFuncionarios = new HashMap<String, String>();
 	private TreeMap<Imovel, Cliente> listaPedidos = new TreeMap<Imovel, Cliente>();
+
 	private Calendar ultimoPagamento = new GregorianCalendar(2010, 06, 1);
 	private boolean pagouNesseMes = true;
 	private double caixaTotal;
@@ -39,63 +41,51 @@ public class Sistema {
 	/**
 	 * Metodo para efetuar pagamento no Mes
 	 * 
-	 * @return Array de Object Contendo:<br>
-	 *         Hashmap contendo <Funcionario, SeuSalario><br>
-	 *         Double contendo o Caixa Antigo Total<br>
-	 *         Double contendo as Despesas do Pagamento
+	 * @return String contendo a Folha de Pagamento do mes
 	 * @throws Exception
 	 *             Lanca excecao se ja tiver feito pagamento esse mes
 	 */
 
-	public Object[] efetuaPagamentoNoMes() throws Exception {
+	public String efetuaPagamentoNoMes() throws Exception {
 
 		atualizaPagamento();
 
-		if (pagouNesseMes) {
+		if (pagouNesseMes)
 			throw new Exception("Pagamento ja efetuado esse mes");
-		}
-
-		HashMap<String, Double> salarioFuncionarios = new HashMap<String, Double>();
 
 		double despesas = 0;
 		double salarioFuncionario;
 
-		for (Funcionario funcionario : todosFuncionarios
-				.getColecaoFuncionarios()) {
+		String folhaDePagamento = "";
+
+		HashMap<String, Double> listagemPagamentos = controladorFuncionarios
+				.listaTotaisDeVendas();
+
+		for (String informacaoFuncionario : listagemPagamentos.keySet()) {
 
 			salarioFuncionario = SALARIO_DEFAULT + COMISSAO
-					* funcionario.getTotalDeVendas();
-
-			salarioFuncionarios.put(funcionario.getNome(), salarioFuncionario);
+					* listagemPagamentos.get(informacaoFuncionario);
 
 			despesas += salarioFuncionario;
-			
-			funcionario.resetaImoveisVendidosMes();
+
+			folhaDePagamento += informacaoFuncionario + " - Salario: "
+					+ salarioFuncionario + "\n";
 		}
 
-		/*
-		 * Folha de Pagamento = HashMap com Salario dos Funcionarios, double
-		 * Quanto Tinha, double Despesas
-		 */
-
-		Object[] folhaDePagamento = { salarioFuncionarios, caixaTotal, despesas };
+		folhaDePagamento += "Saldo Anterior: " + caixaTotal + " - Despesas: "
+				+ despesas;
 
 		caixaTotal -= despesas;
+
+		folhaDePagamento += " - Novo Saldo: " + caixaTotal;
 
 		ultimoPagamento = new GregorianCalendar();
 		pagouNesseMes = true;
 
 		return folhaDePagamento;
-
-		// Fiz isso pra podermos usar tanto na GUI qto no Console :D
-
 	}
 
-	/**
-	 * Metodo para atualizar as informacoes de Pagamento
-	 */
-
-	public void atualizaPagamento() {
+	private void atualizaPagamento() {
 		GregorianCalendar hoje = new GregorianCalendar();
 
 		// Se nao estiverem no Mes do Ano igual
@@ -108,135 +98,198 @@ public class Sistema {
 		}
 	}
 
+	/* PEDIDOS */
+
 	/**
-	 * Metodo que adiciona um Pedido na lista de Pedidos
+	 * Metodo que adiciona um pedido ao Sistema
 	 * 
-	 * @param imovel
-	 *            Imovel a ser pedido
-	 * @param cliente
-	 *            Cliente que pediu o imovel
+	 * @param registroImovel
+	 *            Registro do Imovel pedido
+	 * @param cpf
+	 *            CPF do Cliente que fez a solicitacao
 	 * @throws Exception
-	 *             Lanca excecao caso o imovel ja tenha sido pedido
+	 *             Lanca excecao caso o imovel nao exista, o cliente nao exista
+	 *             ou o imovel ja tenha sido pedido
 	 */
+	public void adicionaPedido(String registroImovel, String cpf)
+			throws Exception {
 
-	public void adicionaPedido(Imovel imovel, Cliente cliente) throws Exception {
-		if (listaPedidos.containsKey(imovel)) {
+		Imovel imovelPedido = controladorImoveis.getImovel(registroImovel);
+		Cliente clienteQueSolicitou = controladorClientes.getCliente(cpf);
+
+		if (imovelPedido == null || clienteQueSolicitou == null)
+			throw new IllegalArgumentException("Parametros invalidos");
+
+		if (listaPedidos.containsKey(imovelPedido))
 			throw new Exception("Imovel ja pedido");
-		}
-		cliente.fazPedido(imovel);
-		listaPedidos.put(imovel, cliente);
-		imovel.setEstadoDoImovel(EstadoImovel.PEDIDO);
-	}
-	
-	public void efetuaPedido(Imovel imovel, Funcionario funcionario) throws Exception {
-		if (imovel.getEstadoDoImovel() != EstadoImovel.PEDIDO) {
-			throw new Exception("Imovel nao pedido");
-		}
-		
-		funcionario.addImovelVendido(imovel);
-		imovel.setEstadoDoImovel(EstadoImovel.VENDIDO);
-		caixaTotal += imovel.getValor();
-	}
-	
-	public void removePedido(Imovel imovel) throws Exception {
-		if (!(listaPedidos.containsKey(imovel))) {
-			throw new Exception("Imovel nao pedido");
-		}
-		imovel.setEstadoDoImovel(EstadoImovel.A_VENDA);
-		listaPedidos.get(imovel).removePedido(imovel);
-		listaPedidos.remove(imovel);
-		
+
+		clienteQueSolicitou.fazPedido(imovelPedido);
+		imovelPedido.setEstadoDoImovel(EstadoImovel.PEDIDO);
+		listaPedidos.put(imovelPedido, clienteQueSolicitou);
 	}
 
-	/* Getters e Setters */
-	
 	/**
-	 * Metodo acessador da Lista de Pedidos
-	 * @return TreeMap contendo Lista dos Pedidos
-	 */
-	
-	public TreeMap<Imovel, Cliente> getListaPedido() {
-		return listaPedidos;
-	}
-	
-	
-
-	/**
-	 * Metodo acessador das informacoes do Pagamento
+	 * Metodo que realiza a compra de um pedido ao Sistema
 	 * 
-	 * @return Array contendo:<br>
-	 *         Calendar com a Data do Ultimo Pagamento<br>
-	 *         Boolean True se Ja Pagou esse mes e False se nao
+	 * @param registroImovel
+	 *            Registro do Imovel que vai ser realizada a compra
+	 * @param creciFuncionario
+	 *            Creci do funcionario que efetuou a compra
+	 * @throws Exception
+	 *             Lanca excecao caso o Imovel ou funcionario nao exista, ou
+	 *             caso o Imovel nao tenha sido pedido
 	 */
-	public boolean getPagouNesseMes() {
+	public void efetuaPedido(String registroImovel, String creciFuncionario)
+			throws Exception {
+
+		Imovel imovelASerEfetuado = controladorImoveis
+				.getImovel(registroImovel);
+		Funcionario funcionarioQueEfetuouACompra = controladorFuncionarios
+				.getFuncionario(creciFuncionario);
+
+		if (imovelASerEfetuado == null || funcionarioQueEfetuouACompra == null)
+			throw new IllegalArgumentException("Parametros invalidos");
+
+		if (imovelASerEfetuado.getEstadoDoImovel() != EstadoImovel.PEDIDO)
+			throw new Exception("Imovel nao pedido");
+
+		funcionarioQueEfetuouACompra.addImovelVendido(imovelASerEfetuado);
+		imovelASerEfetuado.setEstadoDoImovel(EstadoImovel.VENDIDO);
+		caixaTotal += imovelASerEfetuado.getValor();
+	}
+
+	/**
+	 * Metodo que realiza a compra de um pedido ao Sistema
+	 * 
+	 * @param registroImovel
+	 *            Registro do Imovel que foi pedido
+	 * @throws Exception
+	 *             Lanca Excecao caso o imovel nao exista ou nao tenha sido
+	 *             pedido
+	 */
+	public void removePedido(String registroImovel) throws Exception {
+		Imovel imovelDoPedido = controladorImoveis.getImovel(registroImovel);
+
+		if (imovelDoPedido == null)
+			throw new IllegalArgumentException("Parametros invalidos");
+
+		if (!(listaPedidos.containsKey(imovelDoPedido)))
+			throw new Exception("Imovel nao pedido");
+
+		imovelDoPedido.setEstadoDoImovel(EstadoImovel.A_VENDA);
+		listaPedidos.get(imovelDoPedido).removePedido(imovelDoPedido);
+		listaPedidos.remove(imovelDoPedido);
+	}
+
+	/* Listagem de Pedidos */
+
+	/**
+	 * Metodo que lista os pedidos
+	 * 
+	 * @return String com os pedidos
+	 */
+	public String listagemDePedido() {
+
+		String saida = "";
+
+		for (Imovel imovelPedido : listaPedidos.keySet()) {
+
+			Cliente clientePedinte = listaPedidos.get(imovelPedido);
+
+			saida += imovelPedido.getRegistroImovel() + " - "
+					+ imovelPedido.getNome() + " Valor: "
+					+ imovelPedido.getValor() + "\n" + "Cliente que pediu: "
+					+ clientePedinte.getNome() + " - CPF: "
+					+ clientePedinte.getCpf() + "\n\n";
+
+		}
+
+		return saida;
+
+	}
+
+	/* Login */
+
+	/**
+	 * Metodo Login - Efetua login baseado no login, senha e Tipo do Usuario
+	 * 
+	 * @param login
+	 *            Login do Usuario
+	 * @param senha
+	 *            Senha do Usuario
+	 * @param tipoDeUsuario
+	 *            Tipo de Usuario que vai ser logado
+	 * @return True - Se o usuario efetuou login com sucesso <br>
+	 *         False - Se o usuario nao conseguiu logar
+	 */
+	public boolean login(String login, String senha, TipoLogin tipoDeUsuario) {
+
+		if (tipoDeUsuario == TipoLogin.ADMINISTRADOR) {
+			if (login.equals("admin") && senha.equals("admin"))
+				return true;
+			return false;
+
+		} else if (tipoDeUsuario == TipoLogin.FUNCIONARIO) {
+
+			if (loginFuncionarios.containsKey(login)) {
+				if (loginFuncionarios.get(login).equals(senha))
+					return true;
+			}
+			return false;
+
+		} else {
+
+			if (loginClientes.containsKey(login)) {
+				if (loginClientes.get(login).equals(senha))
+					return true;
+			}
+			return false;
+		}
+	}
+
+	/**
+	 * Metodo informador se o pagamento do mes ja foi efetuado
+	 * 
+	 * @return Boolean<br>
+	 *         True - Se o pagamento desse mes foi efetuado<br>
+	 *         False - Se ainda nao foi efetuado
+	 */
+	public boolean pagouNesseMes() {
 		atualizaPagamento();
 		return pagouNesseMes;
 	}
 
 	/**
-	 * Metodo acessador dos Logins de Clientes
-	 * 
-	 * @return Hashmap contendo:<br>
-	 *         Hashmap<Login, Senha>
-	 */
-	public HashMap<String, String> getLoginClientes() {
-		return loginClientes;
-	}
-
-	/**
-	 * Metodo acessador dos Logins de Funcionarios
-	 * 
-	 * @return Hashmap contendo:<br>
-	 *         Hashmap<Login, Senha>
-	 */
-	public HashMap<String, String> getLoginFuncionarios() {
-		return loginFuncionarios;
-	}
-
-	/**
-	 * Metodo Acessador de Todos os Imoveis do Sistema
-	 * 
-	 * @return Colecao de Imoveis
-	 */
-	public ColecaoImoveis getTodosImoveis() {
-		return todosImoveis;
-	}
-
-	/**
-	 * Metodo Acessador de Todos os Clientes do Sistema
-	 * 
-	 * @return Colecao de Clientes
-	 */
-	public ColecaoClientes getTodosClientes() {
-		return todosClientes;
-	}
-
-	/**
-	 * Metodo Acessador de Todos os Funcionarios do Sistema
-	 * 
-	 * @return Colecao de Funcionarios
-	 */
-	public ColecaoFuncionario getTodosFuncionarios() {
-		return todosFuncionarios;
-	}
-
-	/**
 	 * Metodo Acessador do Caixa Total do Sistema
 	 * 
-	 * @return Caixa Total
+	 * @return Caixa da Empresa
 	 */
-	public double getCaixaTotal() {
+	public double caixa() {
 		return caixaTotal;
 	}
 
 	/**
-	 * Metodo Modificador do Caixa Total
-	 * 
-	 * @param caixaTotal
-	 *            Novo Caixa Total
+	 * Metodo acessador do Contrador de Imoveis do Sistema
+	 * @return the controladorImoveis
 	 */
-	public void setCaixaTotal(double caixaTotal) {
-		this.caixaTotal = caixaTotal;
+	public ControladorImoveis controladorImoveis() {
+		return controladorImoveis;
+	}
+
+	/**
+	 * Metodo acessador do Contrador de Clientes do Sistema
+	 * @return the controladorClientes
+	 */
+	public ControladorClientes controladorClientes() {
+		return controladorClientes;
+	}
+
+	/**
+	 * Metodo acessador do Contrador de Funcionarios do Sistema
+	 * @return the controladorFuncionarios
+	 */
+	public ControladorFuncionarios controladorFuncionarios() {
+		return controladorFuncionarios;
 	}
 
 }

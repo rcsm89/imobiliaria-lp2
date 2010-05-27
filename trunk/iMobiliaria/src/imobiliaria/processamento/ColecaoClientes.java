@@ -3,6 +3,7 @@ package imobiliaria.processamento;
 import imobiliaria.util.VerificaInvalido;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -26,10 +27,12 @@ public class ColecaoClientes {
 	 * @return True - Caso o cliente tenha sido adicionado <br>
 	 *         False - Caso o cliente ja exista na colecao
 	 */
-	public boolean adicionaCliente(Cliente clienteASerAdicionado) {
-		if (clienteASerAdicionado == null)
-			return false;
-
+	public boolean adicionaCliente(String cpf, Calendar dataNascimento, String endereco,
+			String nome, TipoImovel preferencia) throws Exception {
+		
+		
+		Cliente clienteASerAdicionado = new Cliente(cpf, dataNascimento, endereco, nome, preferencia);
+		
 		if (colecaoClientes.contains(clienteASerAdicionado)) {
 			return false;
 		}
@@ -73,13 +76,13 @@ public class ColecaoClientes {
 	public int numeroTotalDeClientes() {
 		return colecaoClientes.size();
 	}
-	
+
 	/**
 	 * Metodo acessador de toda a colecao de clientes
 	 * 
 	 * @return ArrayList contendo todos os clientes da Colecao
 	 */
-	public List<Cliente> getClientes() {//listaClientes//retorna uma String
+	public List<Cliente> getClientes() {// listaClientes//retorna uma String
 		return colecaoClientes;
 	}
 
@@ -91,7 +94,7 @@ public class ColecaoClientes {
 	 * 
 	 * @return Clientes com a dada preferencia de imovel passada
 	 */
-	
+
 	public List<Cliente> getClientes(TipoImovel preferencia) {
 
 		List<Cliente> colecaoRetornada = new ArrayList<Cliente>();
@@ -105,29 +108,6 @@ public class ColecaoClientes {
 		return colecaoRetornada;
 	}
 
-	/**
-	 * Metodo filtrador que retorna clientes com mesmo pedido de imovel
-	 * 
-	 * @param tipoDeImovelRequerido
-	 *            Tipo de Imovel para ser usado como Filtro
-	 * @return List contendo clientes com imovel em comum nos pedidos
-	 */
-	public List<Cliente> getClientes(Imovel pedidoRequerido) {
-
-		List<Cliente> colecaoRetornada = new ArrayList<Cliente>();
-
-		for (Cliente cliente : colecaoClientes) {
-
-			for (Imovel pedido : cliente.getPedidos().getImoveis()) {
-
-				if (pedido.equals(pedidoRequerido))
-					colecaoRetornada.add(cliente);
-			}
-		}
-		return colecaoRetornada;
-
-	}
-	
 	/**
 	 * Metodo filtrador que retorna clientes com um determinado nome.
 	 * 
