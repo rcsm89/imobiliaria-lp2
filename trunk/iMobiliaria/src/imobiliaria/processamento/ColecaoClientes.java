@@ -82,7 +82,7 @@ public class ColecaoClientes {
 	 * 
 	 * @return ArrayList contendo todos os clientes da Colecao
 	 */
-	public List<Cliente> getClientes() {// listaClientes//retorna uma String
+	protected List<Cliente> getClientes() {// listaClientes//retorna uma String
 		return colecaoClientes;
 	}
 
@@ -95,7 +95,7 @@ public class ColecaoClientes {
 	 * @return Clientes com a dada preferencia de imovel passada
 	 */
 
-	public List<Cliente> getClientes(TipoImovel preferencia) {
+	protected List<Cliente> getClientes(TipoImovel preferencia) {
 
 		List<Cliente> colecaoRetornada = new ArrayList<Cliente>();
 
@@ -116,7 +116,7 @@ public class ColecaoClientes {
 	 *            clientes
 	 * @return List contendo os clientes que possuem o nome passado
 	 */
-	public List<Cliente> getClientes(String nome) {
+	protected List<Cliente> getClientes(String nome) {
 
 		List<Cliente> colecaoRetornada = new ArrayList<Cliente>();
 
@@ -138,7 +138,7 @@ public class ColecaoClientes {
 	 * @return List contendo os clientes que possuem a letra inicial do nome
 	 *         igual a passada
 	 */
-	public List<Cliente> getClientesPorLetraInicial(String letra) {
+	protected List<Cliente> getClientesPorLetraInicial(String letra) {
 
 		List<Cliente> colecaoRetornada = new ArrayList<Cliente>();
 
@@ -156,7 +156,7 @@ public class ColecaoClientes {
 	 * 
 	 * @return List contendo clientes ordenados pelo alfabeto
 	 */
-	public List<Cliente> getClientesPorOrdemAlfabetica() {
+	protected List<Cliente> getClientesPorOrdemAlfabetica() {
 
 		String[] alfabeto = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
 				"k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v",
