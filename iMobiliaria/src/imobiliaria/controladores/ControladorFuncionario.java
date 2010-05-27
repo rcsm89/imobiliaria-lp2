@@ -14,6 +14,19 @@ import imobiliaria.util.VerificaInvalido;
  */
 public class ControladorFuncionario extends ColecaoFuncionario {
 
+	/*
+	 * Yuri: getFuncionario!!! (eu fiz, mas falta o javadoc e talvez seja bom
+	 * por em colecao
+	 */
+
+	public Funcionario getFuncionario(String creci) {
+		for (Funcionario c : getColecaoFuncionarios()) {
+			if (c.getCreci().equals(creci))
+				return c;
+		}
+		return null;
+	}
+
 	/**
 	 * Classe que modifica um funcionario
 	 * 
@@ -76,8 +89,8 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 	/**
 	 * Retorna um mapa com o nome do funcionario e o total de vendas como chave
 	 * e valor
-	 * @return
-	 * 		Mapa retornado
+	 * 
+	 * @return Mapa retornado
 	 */
 	public HashMap<String, Double> listaTotaisDeVendas() {
 		HashMap<String, Double> funcSalario = new HashMap<String, Double>();
@@ -93,10 +106,10 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 
 	/**
 	 * Retorna um string contendo dados de um funcionario obtido pelo seu creci
+	 * 
 	 * @param creci
-	 * 		Creci no funcionario
-	 * @return
-	 * 		Dados do funcionario desejado
+	 *            Creci no funcionario
+	 * @return Dados do funcionario desejado
 	 */
 	public String exibeFuncPorCreci(String creci) {
 		if (VerificaInvalido.numero(creci)) {
@@ -120,10 +133,10 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 
 	/**
 	 * Retorna um string contendo dados de um funcionario obtido pelo seu cpf
+	 * 
 	 * @param cpf
-	 * 		Cpf no funcionario
-	 * @return
-	 * 		Dados do funcionario desejado
+	 *            Cpf no funcionario
+	 * @return Dados do funcionario desejado
 	 */
 	public String exibeFuncPorCpf(String cpf) {
 		int NUMDIGITOSCPF = 11;
