@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.TreeMap;
+import imobiliaria.controladores.*;
 
 /**
  * Classe Sistema para guardar informacoes de um Sistema Imobiliario
@@ -21,9 +22,9 @@ public class Sistema {
 	private final double SALARIO_DEFAULT = 1500;
 	private final double COMISSAO = 0.03;
 
-	private ControladorImoveis controladorImoveis = new ControladorImoveis();
-	private ControladorClientes controladorClientes = new ControladorClientes();
-	private ControladorFuncionarios controladorFuncionarios = new ControladorFuncionarios();
+	private ControladorImovel controladorImoveis = new ColecaoImovel();
+	private ControladorCliente controladorClientes = new ControladorCliente();
+	private ControladorFuncionario controladorFuncionarios = new ControladorFuncionario();
 
 	private HashMap<String, String> loginClientes = new HashMap<String, String>();
 	private HashMap<String, String> loginFuncionarios = new HashMap<String, String>();
