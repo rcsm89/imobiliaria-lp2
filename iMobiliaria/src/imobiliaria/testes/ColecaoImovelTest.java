@@ -1,8 +1,15 @@
 package imobiliaria.testes;
 
+import imobiliaria.processamento.Area;
+import imobiliaria.processamento.ColecaoImoveis;
+import imobiliaria.processamento.Imovel;
+import imobiliaria.processamento.TipoContratual;
+import imobiliaria.processamento.TipoImovel;
+
 import java.util.ArrayList;
-import imobiliaria.processamento.*;
+
 import junit.framework.Assert;
+
 import org.junit.Test;
 
 public class ColecaoImovelTest {
@@ -33,17 +40,36 @@ public class ColecaoImovelTest {
 		
 		// Adiciona Imoveis e testa adicionar imoveis repetidos
 
-		Assert.assertEquals(true, colecaoImovel.adicionaImovel(imovel1));
-		Assert.assertEquals(false, colecaoImovel.adicionaImovel(imovel1));
-		Assert.assertEquals(true, colecaoImovel.adicionaImovel(imovel2));
-		Assert.assertEquals(true, colecaoImovel.adicionaImovel(imovel3));
-		Assert.assertEquals(false, colecaoImovel.adicionaImovel(imovel2));
+		colecaoImovel.addImovel(imovel1);
+		Assert.assertEquals(1, colecaoImovel.getImoveis().size());
 
+		// tentando adicionar imovel ja existente na colecao.
+		try{
+			colecaoImovel.addImovel(imovel1);
+		}catch(Exception e){
+			Assert.assertEquals("Imovel Existente", e.getMessage());
+		}
+		
+		Assert.assertEquals(1, colecaoImovel.getImoveis().size());
+		
+		colecaoImovel.addImovel(imovel2);
+		colecaoImovel.addImovel(imovel3);
+		
+		Assert.assertEquals(3, colecaoImovel.getImoveis().size());
+		
+		try{
+			colecaoImovel.addImovel(imovel2);
+		}catch(Exception e){
+			Assert.assertEquals("Imovel Existente", e.getMessage());
+		}
+		
+		Assert.assertEquals(3, colecaoImovel.getImoveis().size());
 		
 		// Teste de Filtros
 		
 		colecaoComparavel.add(imovel2);
 		colecaoComparavel.add(imovel3);
+		
 		Assert.assertEquals(colecaoComparavel, colecaoImovel
 				.getImoveis(TipoContratual.VENDA));
 		
@@ -65,17 +91,10 @@ public class ColecaoImovelTest {
 
 		colecaoComparavel.add(imovel3);
 		Assert.assertEquals(colecaoComparavel, colecaoImovel.getImoveis(
-				"Terreno", true));
+				"Terreno"));
 
 		colecaoComparavel.clear();
 
-		colecaoComparavel.add(imovel2);
-		colecaoComparavel.add(imovel3);
-		Assert.assertEquals(colecaoComparavel, colecaoImovel.getImoveis(
-				"Altiplano", false));
-
-		colecaoComparavel.clear();
-		
 		colecaoComparavel.add(imovel1);
 		colecaoComparavel.add(imovel2);
 		colecaoComparavel.add(imovel3);
@@ -84,17 +103,20 @@ public class ColecaoImovelTest {
 		// Testa o getImovelDeRegistro
 
 		Assert.assertEquals(imovel1, colecaoImovel.getImovelDeRegistro(0));
-		
-		
 
 		// Equals
 
-		Assert.assertEquals(true, colecaoImovelParaCompararEquals
-				.adicionaImovel(imovel1));
-		Assert.assertEquals(true, colecaoImovelParaCompararEquals
-				.adicionaImovel(imovel2));
-		Assert.assertEquals(true, colecaoImovelParaCompararEquals
-				.adicionaImovel(imovel3));
+		colecaoImovelParaCompararEquals.addImovel(imovel1);
+		Assert.assertEquals(1, colecaoImovelParaCompararEquals.getImoveis().
+				size());
+		
+		colecaoImovelParaCompararEquals.addImovel(imovel2);
+		Assert.assertEquals(2, colecaoImovelParaCompararEquals.getImoveis().
+				size());
+
+		colecaoImovelParaCompararEquals.addImovel(imovel3);
+		Assert.assertEquals(3, colecaoImovelParaCompararEquals.getImoveis().
+				size());
 
 		Assert.assertEquals(true, colecaoImovel
 				.equals(colecaoImovelParaCompararEquals));
@@ -102,8 +124,22 @@ public class ColecaoImovelTest {
 		Assert.assertEquals(true, colecaoImovelParaCompararEquals
 				.equals(colecaoImovel));
 		
-		Assert.assertEquals(true, colecaoImovel.removeImovel(2));
-		Assert.assertEquals(false, colecaoImovel.removeImovel(2));
+		// Tamanho atual da colecao e 3.
+		
+		colecaoImovel.removeImovel("2");
+		
+		Assert.assertEquals(2, colecaoImovel.getImoveis().size());
+		
+		//Tentando remover imovel com registro impossivel
+		try{
+			colecaoImovel.removeImovel("a");
+		}catch(Exception e){
+			Assert.assertEquals("Registro Invalido", e.getMessage());
+		}
+		
+		//Imovel com registro nao pertencente a colecao
+		Assert.assertEquals(false, colecaoImovel.removeImovel("3"));
+		
 		
 		Assert.assertEquals(false, colecaoImovel
 				.equals(colecaoImovelParaCompararEquals));
