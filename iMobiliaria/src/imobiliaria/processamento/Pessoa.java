@@ -164,7 +164,7 @@ public abstract class Pessoa {
 	// Verif Nome
 	if (VerificaInvalido.nome(nome))
 	    throw new Exception("Nome invalido\n");
-	this.nome = nome;
+	this.nome = FormataEntrada.capitalize(nome);
     }
 
     /**
@@ -192,7 +192,7 @@ public abstract class Pessoa {
 	if (VerificaInvalido.numeroFormatado(cpf, TAM_CPF_FORMATADO)) {
 	    throw new Exception("CPF invalido\n");
 	}
-	this.cpf = cpf;
+	this.cpf = FormataEntrada.cpf(cpf);
     }
 
     /**
