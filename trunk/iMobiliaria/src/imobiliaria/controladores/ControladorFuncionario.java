@@ -15,21 +15,9 @@ import imobiliaria.processamento.Funcionario;
  */
 public class ControladorFuncionario extends ColecaoFuncionario {
 
-	/*
-	 * Yuri: getFuncionario!!! (eu fiz, mas falta o javadoc e talvez seja bom
-	 * por em colecao
-	 */
-
-	public Funcionario getFuncionario(String creci) {
-		for (Funcionario c : getColecaoFuncionarios()) {
-			if (c.getCreci().equals(creci))
-				return c;
-		}
-		return null;
-	}
-
+	
 	/**
-	 * Classe que modifica um funcionario
+	 * Metodo que modifica um funcionario
 	 * 
 	 * @param funcionario
 	 *            Funcionario a ser modificado
