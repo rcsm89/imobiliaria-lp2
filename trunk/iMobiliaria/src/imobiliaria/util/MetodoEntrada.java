@@ -1,10 +1,7 @@
-/*
- * OS METODOS DESSA CLASSE TRATAM A EXCESSAO COM A ABORTAGEM DO PROGRAMA
- * POREM DEVE HAVER UMA ACAO DE TRATAMENTO COMO UM POPUP
- */
-
 package imobiliaria.util;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 /**
@@ -33,6 +30,82 @@ public class MetodoEntrada {
 	    return recebeInt();
 	}
 	return entrada.nextInt();
+    }
+
+    /**
+     * Metodo de entrada de strings
+     * 
+     * @return A string inserida pelo usuario
+     */
+    public static String recebeString(String prompt) {
+	System.out.print(prompt);
+	entrada = new Scanner(System.in);
+
+	if (!entrada.hasNextLine()) {
+	    entrada.next();
+	    System.out.println("Entrada invalida! Digite novamente");
+	    return recebeString(prompt);
+	}
+	return entrada.nextLine();
+    }
+
+    public static String recebeString() {
+	String string = null;
+	Scanner entrada = new Scanner(System.in);
+
+	while (VerificaInvalido.basico(string)) {
+	    string = entrada.nextLine();
+	}
+	return string;
+    }
+
+    public static double recebeDouble() {
+	double numero = 0;
+	boolean condicao = true;
+	Scanner entrada = new Scanner(System.in);
+
+	while (condicao) {
+	    try {
+		numero = entrada.nextDouble();
+		condicao = false;
+	    } catch (Exception e) {
+		entrada.next();
+		System.out.println("Entrada Invalida");
+	    }
+	}
+	return numero;
+    }
+
+    public static Calendar recebeData() {
+	Scanner sc = new Scanner(System.in);
+	Calendar data = null;
+
+	if (!sc.hasNextLine()) {
+	    sc.next();
+	    System.out.println("Entrada invalida");
+	    return recebeData();
+	}
+
+	String dataString = sc.nextLine();
+	if ((dataString.isEmpty()) || (dataString.length() < 10)
+		|| (dataString.length() > 10)) {
+	    return data;
+	}
+
+	String[] d = dataString.split("/");
+	int dia = Integer.parseInt(d[0]);
+	int mes = Integer.parseInt(d[1]);
+	int ano = Integer.parseInt(d[2]);
+
+	if (dia < 1 || dia > 31 || mes < 1 || mes > 12) {
+	    System.out.println("Entrada invalida");
+	    return recebeData();
+	}
+
+	data = new GregorianCalendar(ano, mes - 1, dia);
+
+	return data;
 
     }
+
 }
