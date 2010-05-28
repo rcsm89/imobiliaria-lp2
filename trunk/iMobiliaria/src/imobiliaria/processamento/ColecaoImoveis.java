@@ -34,18 +34,20 @@ public class ColecaoImoveis {
 	 * @return True - Caso o imovel seja removido <br>
 	 *         False - Caso ele nao seja encontrado
 	 */
-	public void removeImovel(String registroImovel) 
-		throws Exception{
-		int registro = 0;
-		
-		registro = Integer.parseInt(registroImovel);
+	public boolean removeImovel(String registroImovel) throws Exception {
 
+		int registro;
+		
+		try {
+			registro = Integer.parseInt(registroImovel);
+		} catch (Exception e) {
+			throw new Exception("Registro Invalido");
+		}
 		for (Imovel imovel : colecaoImoveis) {
 			if (imovel.getRegistroImovel() == registro)
-				colecaoImoveis.remove(imovel);
+				return colecaoImoveis.remove(imovel);
 		}
-		throw new Exception("Registro Invalido");
-		
+		return false;
 	}
 
 	/**
@@ -148,7 +150,7 @@ public class ColecaoImoveis {
 	 * 
 	 * @param nomeRequerido
 	 *            Nome ou Endereco a ser usado como Filtro
-	 *            
+	 * 
 	 * @return ArrayList contendo os imoveis filtrados
 	 */
 	public ArrayList<Imovel> getImoveis(String nomeRequerido) {
