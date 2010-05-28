@@ -202,12 +202,8 @@ public class Sistema {
 					+ clientePedinte.getCpf() + "\n\n";
 
 		}
-
 		return saida;
-
 	}
-
-	/* Login */
 
 	/**
 	 * Metodo Login - Efetua login baseado no login, senha e Tipo do Usuario

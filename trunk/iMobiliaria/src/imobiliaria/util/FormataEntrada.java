@@ -14,9 +14,9 @@ public class FormataEntrada {
 
 	/**
 	 * Retorna uma string onde a letra inicial de cada palavra é passada para
-	 * maiúscula. Exemplo: "joão de oliveira" -> "João De Oliveira"
+	 * maiúscula. Exemplo: "joão de oliveira" -> "João De Oliveira"<br>
 	 * 
-	 * {@link http://www.guj.com.br/posts/list/128780.java}
+	 * Link: http://www.guj.com.br/posts/list/128780.java
 	 * 
 	 * @param str
 	 *            A string a ser convertida.

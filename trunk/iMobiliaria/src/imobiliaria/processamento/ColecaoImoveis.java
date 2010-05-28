@@ -15,10 +15,10 @@ public class ColecaoImoveis {
 	/**
 	 * Metodo que adiciona imoveis na Colecao
 	 * 
-	 * @param imovelASerAdicionado
-	 *            Imovel que vai ser Adicionado
-	 * @return True - Caso o imovel tenha sido adicionado <br>
-	 *         False - Caso o imovel ja exista na colecao
+	 * @param imovelAadicionar
+	 *            Imovel que deseja adicionar na Colecao
+	 * @throws Exception
+	 *             Lanca excecao caso o imovel ja exista ja colecao
 	 */
 	public void addImovel(Imovel imovelAadicionar) throws Exception {
 		
@@ -35,7 +35,7 @@ public class ColecaoImoveis {
 	/**
 	 * Metodo que remove um imovel da Colecao
 	 * 
-	 * @param registroDoImovelASerRemovido
+	 * @param registroImovel
 	 *            Registro do Imovel a Ser Removido
 	 * @return True - Caso o imovel seja removido <br>
 	 *         False - Caso ele nao seja encontrado
@@ -47,7 +47,7 @@ public class ColecaoImoveis {
 		}
 
 		int registro;
-		
+
 		try {
 			registro = Integer.parseInt(registroImovel);
 		} catch (Exception e) {
