@@ -1,5 +1,7 @@
 package imobiliaria.processamento;
 
+import imobiliaria.util.VerificaInvalido;
+
 import java.util.ArrayList;
 
 /**
@@ -19,6 +21,10 @@ public class ColecaoImoveis {
 	 *         False - Caso o imovel ja exista na colecao
 	 */
 	public void addImovel(Imovel imovelAadicionar) throws Exception {
+		
+		if (imovelAadicionar == null){
+			throw new Exception("Imovel Invalido");
+		}
 
 		if (colecaoImoveis.contains(imovelAadicionar))
 			throw new Exception("Imovel Existente");
@@ -35,6 +41,10 @@ public class ColecaoImoveis {
 	 *         False - Caso ele nao seja encontrado
 	 */
 	public boolean removeImovel(String registroImovel) throws Exception {
+		
+		if (registroImovel == null){
+			throw new Exception("Imovel Invalido");
+		}
 
 		int registro;
 		
@@ -154,6 +164,10 @@ public class ColecaoImoveis {
 	 * @return ArrayList contendo os imoveis filtrados
 	 */
 	public ArrayList<Imovel> getImoveis(String nomeRequerido) {
+		
+		if(VerificaInvalido.basico(nomeRequerido)){
+			throw new IllegalArgumentException("Nome Invalido");
+		}
 
 		ArrayList<Imovel> colecaoRetornada = new ArrayList<Imovel>();
 
