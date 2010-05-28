@@ -31,7 +31,7 @@ public class ControladorFuncionarioTest {
 		controlFunc1.addFuncionario(cpf, dataNascimento, endereco, nome,
 				numCreci);
 		// Obtendo o funcionario pelo creci
-		Funcionario funcMod = controlFunc1.getFuncionarioPorCreci(numCreci);
+		Funcionario funcMod = controlFunc1.getFuncionario(numCreci);
 
 		Assert.assertEquals("Thiago Ferreira", funcMod.getNome());
 		Assert.assertEquals("Rua 12 De Outubro", funcMod.getEndereco());
