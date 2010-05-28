@@ -5,12 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import imobiliaria.processamento.ColecaoFuncionario;
 import imobiliaria.processamento.Funcionario;
-import imobiliaria.util.VerificaInvalido;
 
 /**
+ * Classe ControladorFuncionario que controla e lista opcoes sobre Funcionario
  * 
  * @author thiagofp
  * 
+ * @version IT01
  */
 public class ControladorFuncionario extends ColecaoFuncionario {
 
@@ -43,21 +44,13 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 	 * @param creci
 	 *            Creci do funcionario
 	 * @throws Exception
-	 *             Se um dos parametros for invalido
+	 *             Se o funcionario for nulo
 	 */
 	public void modificaFuncionario(Funcionario funcionario, String cpf,
 			Calendar dataNascimento, String endereco, String nome, String creci)
 			throws Exception {
 		if (funcionario == null) {
-			throw new IllegalArgumentException("Funcionario invalido");
-		}
-		int NUMDIGITOSCPF = 11;
-		if (VerificaInvalido.numeroFormatado(cpf, NUMDIGITOSCPF)
-				|| VerificaInvalido.data(dataNascimento)
-				|| VerificaInvalido.endereco(endereco)
-				|| VerificaInvalido.nome(nome)
-				|| VerificaInvalido.numero(creci)) {
-			throw new IllegalArgumentException("Entrada Invalida");
+			throw new Exception("Funcionario invalido");
 		}
 		funcionario.setCpf(cpf);
 		funcionario.setDataNascimento(dataNascimento);
@@ -112,9 +105,6 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 	 * @return Dados do funcionario desejado
 	 */
 	public String exibeFuncPorCreci(String creci) {
-		if (VerificaInvalido.numero(creci)) {
-			throw new IllegalArgumentException("Creci Invalido");
-		}
 		if (getColecaoFuncionarios().isEmpty()) {
 			throw new IllegalArgumentException("Colecao Funcionarios Vazia");
 		}
@@ -122,9 +112,9 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 		String funcRetornado = "";
 		for (Funcionario func : getColecaoFuncionarios()) {
 			if (func.getCreci().equals(creci)) {
-				funcRetornado = "Nome : " + func.getNome() + "\nCRECI: "
+				funcRetornado = "Nome: " + func.getNome() + "\nCRECI: "
 						+ func.getCreci() + "\nCpf: " + func.getCpf()
-						+ "\nData de Nascimento" + func.getDataNascimento()
+						+ "\nData de Nascimento: " + func.getDataNascimento()
 						+ "\nEndereco: " + func.getEndereco();
 			}
 		}
@@ -139,10 +129,6 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 	 * @return Dados do funcionario desejado
 	 */
 	public String exibeFuncPorCpf(String cpf) {
-		int NUMDIGITOSCPF = 11;
-		if (VerificaInvalido.numeroFormatado(cpf, NUMDIGITOSCPF)) {
-			throw new IllegalArgumentException("Cpf Invalido");
-		}
 		if (getColecaoFuncionarios().isEmpty()) {
 			throw new IllegalArgumentException("Colecao Funcionarios Vazia");
 		}
@@ -150,9 +136,9 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 		String funcRetornado = "";
 		for (Funcionario func : getColecaoFuncionarios()) {
 			if (func.getCpf().equals(cpf)) {
-				funcRetornado = "Nome : " + func.getNome() + "\nCRECI: "
+				funcRetornado = "Nome: " + func.getNome() + "\nCRECI: "
 						+ func.getCreci() + "\nCpf: " + func.getCpf()
-						+ "\nData de Nascimento" + func.getDataNascimento()
+						+ "\nData de Nascimento: " + func.getDataNascimento()
 						+ "\nEndereco: " + func.getEndereco();
 			}
 		}
