@@ -50,14 +50,14 @@ public class ColecaoClientes {
 	 */
 	public boolean removeCliente(String cpfASerRemovido) {
 		final int TAM_CPF_FORMATADO = 14;
-
+		
 		if (VerificaInvalido.basico(cpfASerRemovido))
 			return false;
-
+		
 		if (!(cpfASerRemovido.length() == TAM_CPF_FORMATADO)) {
 			return false;
 		}
-
+		
 		for (Cliente cliente : colecaoClientes) {
 			if (cpfASerRemovido.equals(cliente.getCpf())) {
 				return colecaoClientes.remove(cliente);
@@ -82,7 +82,7 @@ public class ColecaoClientes {
 	 * 
 	 * @return ArrayList contendo todos os clientes da Colecao
 	 */
-	protected List<Cliente> getClientes() {// listaClientes//retorna uma String
+	public List<Cliente> getClientes() {
 		return colecaoClientes;
 	}
 
@@ -95,7 +95,7 @@ public class ColecaoClientes {
 	 * @return Clientes com a dada preferencia de imovel passada
 	 */
 
-	protected List<Cliente> getClientes(TipoImovel preferencia) {
+	public List<Cliente> getClientes(TipoImovel preferencia) {
 
 		List<Cliente> colecaoRetornada = new ArrayList<Cliente>();
 
@@ -116,7 +116,7 @@ public class ColecaoClientes {
 	 *            clientes
 	 * @return List contendo os clientes que possuem o nome passado
 	 */
-	protected List<Cliente> getClientes(String nome) {
+	public List<Cliente> getClientes(String nome) {
 
 		List<Cliente> colecaoRetornada = new ArrayList<Cliente>();
 
@@ -138,7 +138,7 @@ public class ColecaoClientes {
 	 * @return List contendo os clientes que possuem a letra inicial do nome
 	 *         igual a passada
 	 */
-	protected List<Cliente> getClientesPorLetraInicial(String letra) {
+	public List<Cliente> getClientesPorLetraInicial(String letra) {
 
 		List<Cliente> colecaoRetornada = new ArrayList<Cliente>();
 
@@ -156,7 +156,7 @@ public class ColecaoClientes {
 	 * 
 	 * @return List contendo clientes ordenados pelo alfabeto
 	 */
-	protected List<Cliente> getClientesPorOrdemAlfabetica() {
+	public List<Cliente> getClientesPorOrdemAlfabetica() {
 
 		String[] alfabeto = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
 				"k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v",
@@ -175,5 +175,4 @@ public class ColecaoClientes {
 		}
 		return colecaoRetornada;
 	}
-
 }
