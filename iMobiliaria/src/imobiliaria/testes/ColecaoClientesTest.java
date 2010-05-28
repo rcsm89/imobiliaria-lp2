@@ -107,6 +107,27 @@ public class ColecaoClientesTest {
 
 	@Test
 	public void testaGetClientesPorLetraInicial() throws Exception {
+		
+		try {
+			clientes1.getClientesPorLetraInicial(null);
+			Assert.fail();
+		} catch (IllegalArgumentException e) {
+			Assert.assertEquals("Letra Invalida", e.getMessage());
+		}
+		
+		try {
+			clientes1.getClientesPorLetraInicial("2");
+			Assert.fail();
+		} catch (IllegalArgumentException e) {
+			Assert.assertEquals("Letra Invalida", e.getMessage());
+		}
+		
+		try {
+			clientes1.getClientesPorLetraInicial("UASHDUASD");
+			Assert.fail();
+		} catch (IllegalArgumentException e) {
+			Assert.assertEquals("Letra Invalida", e.getMessage());
+		}
 
 		clientes1.adicionaCliente("12345678915", new GregorianCalendar(1991,
 				Calendar.APRIL, 4), "Rua Alberto de Brito, 614", "Bruno Fabio",

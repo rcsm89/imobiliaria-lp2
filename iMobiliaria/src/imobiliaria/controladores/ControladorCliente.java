@@ -1,10 +1,11 @@
 package imobiliaria.controladores;
 
+import java.util.HashMap;
 import java.util.List;
-
 import imobiliaria.processamento.Cliente;
 import imobiliaria.processamento.ColecaoClientes;
 import imobiliaria.processamento.TipoImovel;
+import imobiliaria.util.VerificaInvalido;
 
 /**
  * Classe ControladorCliente que ira controlar e listar algumas opcoes sobre
@@ -14,6 +15,29 @@ import imobiliaria.processamento.TipoImovel;
  * @IT 1
  */
 public class ControladorCliente extends ColecaoClientes {
+
+	private HashMap<String, String> loginClientes = new HashMap<String, String>();
+
+	/**
+	 * Metodo verificador de login e senha para Clientes
+	 * 
+	 * @param login
+	 *            Login
+	 * @param senha
+	 *            Senha
+	 * @return True - caso o login seja efetuado <br>
+	 *         False - caso o login e senha sejam invalidos
+	 */
+
+	public boolean login(String login, String senha) {
+		if (VerificaInvalido.basico(login) || VerificaInvalido.basico(senha))
+			throw new IllegalArgumentException();
+		if (loginClientes.containsKey(login)) {
+			if (loginClientes.get(login).equals(senha))
+				return true;
+		}
+		return false;
+	}
 
 	/**
 	 * Metodo Acessador de um Cliente
@@ -40,9 +64,10 @@ public class ControladorCliente extends ColecaoClientes {
 	public String exibeCliente(String cpf) {
 		Cliente c = getCliente(cpf);
 
-		return "Nome: " + c.getNome() + "\n" + "CPF: " + c.getCpf() + "\n"
-				+ "Endereco: " + c.getEndereco() + "Data de Nascimento: "
-				+ c.getDataNascimento() + "Preferencia: " + c.getPreferencia();
+		return "Nome: " + c.getNome() + " - CPF: " + c.getCpf() + "\n"
+				+ "Endereco: " + c.getEndereco() + " - Data de Nascimento: "
+				+ c.getDataNascimento() + " - Preferencia: "
+				+ c.getPreferencia();
 	}
 
 	/**

@@ -26,8 +26,6 @@ public class Sistema {
 	private ControladorCliente controladorClientes = new ControladorCliente();
 	private ControladorFuncionario controladorFuncionarios = new ControladorFuncionario();
 
-	private HashMap<String, String> loginClientes = new HashMap<String, String>();
-	private HashMap<String, String> loginFuncionarios = new HashMap<String, String>();
 	private TreeMap<Imovel, Cliente> listaPedidos = new TreeMap<Imovel, Cliente>();
 
 	private Calendar ultimoPagamento = new GregorianCalendar(2010, 06, 1);
@@ -232,17 +230,15 @@ public class Sistema {
 
 		} else if (tipoDeUsuario == TipoLogin.FUNCIONARIO) {
 
-			if (loginFuncionarios.containsKey(login)) {
-				if (loginFuncionarios.get(login).equals(senha))
-					return true;
+			if (controladorFuncionarios.login(login, senha)) {
+				return true;
 			}
 			return false;
 
 		} else {
 
-			if (loginClientes.containsKey(login)) {
-				if (loginClientes.get(login).equals(senha))
-					return true;
+			if (controladorClientes.login(login, senha)) {
+				return true;
 			}
 			return false;
 		}

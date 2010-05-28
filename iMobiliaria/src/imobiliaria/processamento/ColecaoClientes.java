@@ -117,6 +117,9 @@ public class ColecaoClientes {
 	 * @return List contendo os clientes que possuem o nome passado
 	 */
 	public List<Cliente> getClientes(String nome) {
+		if (VerificaInvalido.nome(nome)) {
+			throw new IllegalArgumentException("Nome invalido");
+		}
 
 		List<Cliente> colecaoRetornada = new ArrayList<Cliente>();
 
@@ -139,6 +142,10 @@ public class ColecaoClientes {
 	 *         igual a passada
 	 */
 	public List<Cliente> getClientesPorLetraInicial(String letra) {
+		if (VerificaInvalido.basico(letra) || letra.length() != 1 ||
+				Character.isDigit(letra.charAt(0))) {
+			throw new IllegalArgumentException("Letra Invalida");
+		}
 
 		List<Cliente> colecaoRetornada = new ArrayList<Cliente>();
 

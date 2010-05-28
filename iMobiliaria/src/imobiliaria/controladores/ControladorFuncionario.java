@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import imobiliaria.processamento.ColecaoFuncionario;
 import imobiliaria.processamento.Funcionario;
+import imobiliaria.util.VerificaInvalido;
 
 /**
  * Classe ControladorFuncionario que controla e lista opcoes sobre Funcionario
@@ -15,7 +16,29 @@ import imobiliaria.processamento.Funcionario;
  */
 public class ControladorFuncionario extends ColecaoFuncionario {
 
-	
+	private HashMap<String, String> loginFuncionarios = new HashMap<String, String>();
+
+	/**
+	 * Metodo verificador de login e senha para Funcionarios
+	 * 
+	 * @param login
+	 *            Login
+	 * @param senha
+	 *            Senha
+	 * @return True - caso o login seja efetuado <br>
+	 *         False - caso o login e senha sejam invalidos
+	 */
+
+	public boolean login(String login, String senha) {
+		if (VerificaInvalido.basico(login) || VerificaInvalido.basico(senha))
+			throw new IllegalArgumentException();
+		if (loginFuncionarios.containsKey(login)) {
+			if (loginFuncionarios.get(login).equals(senha))
+				return true;
+		}
+		return false;
+	}
+
 	/**
 	 * Metodo que modifica um funcionario
 	 * 
