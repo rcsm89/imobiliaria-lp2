@@ -1,4 +1,3 @@
-//FALTANDO TESTAR O HISTORICO DE COMPRAS USANDO UM FUNCIONARIO
 package imobiliaria.testes;
 
 import imobiliaria.processamento.*;
@@ -19,7 +18,6 @@ public class ClienteTest {
 	private Imovel imovel1;
 	private Imovel imovel2;
 
-	// private Funcionario func;
 
 	@Before
 	public void criaClientes() throws Exception {
@@ -49,10 +47,6 @@ public class ClienteTest {
 						+ " Ed. Java, apto 1300", 25000, new Area(4, 6),
 				TipoImovel.APARTAMENTO, TipoContratual.VENDA);
 
-		/*
-		 * func = new Funcionario("40030020010", new GregorianCalendar(1991, 11,
-		 * 03), "Rua 1º de Maio", "Bigode", "20921");
-		 */
 	}
 
 	@Test
@@ -73,13 +67,13 @@ public class ClienteTest {
 		Assert.assertEquals(0, cliente1.getPedidos().getImoveis().size());
 
 		cliente1.fazPedido(imovel1);
-		pedidos.adicionaImovel(imovel1);
+		pedidos.addImovel(imovel1);
 		Assert.assertEquals(pedidos, cliente1.getPedidos());
 
 		Assert.assertEquals(1, cliente1.getPedidos().getImoveis().size());
 
 		cliente1.fazPedido(imovel2);
-		pedidos.adicionaImovel(imovel2);
+		pedidos.addImovel(imovel2);
 		Assert.assertEquals(pedidos, cliente1.getPedidos());
 
 		Assert.assertEquals(2, cliente1.getPedidos().getImoveis().size());

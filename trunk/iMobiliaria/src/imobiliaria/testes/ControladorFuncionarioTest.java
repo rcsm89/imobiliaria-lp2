@@ -28,7 +28,7 @@ public class ControladorFuncionarioTest {
 		String nome = "Thiago Ferreira";
 		String numCreci = "00111";
 
-		controlFunc1.addFuncionario(cpf, dataNascimento, endereco, nome,
+		controlFunc1.adicionaFuncionario(cpf, dataNascimento, endereco, nome,
 				numCreci);
 		// Obtendo o funcionario pelo creci
 		Funcionario funcMod = controlFunc1.getFuncionario(numCreci);
@@ -64,7 +64,7 @@ public class ControladorFuncionarioTest {
 		String nome = "Thiago Ferreira";
 		String numCreci = "00111";
 
-		controlFunc1.addFuncionario(cpf, dataNascimento, endereco, nome,
+		controlFunc1.adicionaFuncionario(cpf, dataNascimento, endereco, nome,
 				numCreci);
 
 		Assert.assertEquals("Nome: Thiago Ferreira\n" +
@@ -86,7 +86,7 @@ public class ControladorFuncionarioTest {
 		String nome = "Thiago Ferreira";
 		String numCreci = "00111";
 
-		controlFunc1.addFuncionario(cpf, dataNascimento, endereco, nome,
+		controlFunc1.adicionaFuncionario(cpf, dataNascimento, endereco, nome,
 				numCreci);
 		// creci invalido
 		controlFunc1.exibeFuncPorCreci(null);
@@ -102,7 +102,7 @@ public class ControladorFuncionarioTest {
 		String nome = "Thiago Ferreira";
 		String numCreci = "00111";
 
-		controlFunc1.addFuncionario(cpf, dataNascimento, endereco, nome,
+		controlFunc1.adicionaFuncionario(cpf, dataNascimento, endereco, nome,
 				numCreci);
 
 		Assert.assertEquals("Nome: Thiago Ferreira\n" +
@@ -124,7 +124,7 @@ public class ControladorFuncionarioTest {
 		String nome = "Thiago Ferreira";
 		String numCreci = "00111";
 
-		controlFunc1.addFuncionario(cpf, dataNascimento, endereco, nome,
+		controlFunc1.adicionaFuncionario(cpf, dataNascimento, endereco, nome,
 				numCreci);
 		// creci invalido
 		controlFunc1.exibeFuncPorCpf(null);
