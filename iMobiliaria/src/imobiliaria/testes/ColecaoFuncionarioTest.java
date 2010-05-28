@@ -82,12 +82,12 @@ public class ColecaoFuncionarioTest {
 		colFunc1.addFuncionario("12345678910", new GregorianCalendar(1991, 2,
 				17), "Rua Rodrigues Alves", "Yuri Farias", "12345");
 
-		Assert.assertEquals("12345", colFunc1.getFuncionarioPorCreci("12345")
+		Assert.assertEquals("12345", colFunc1.getFuncionario("12345")
 				.getCreci());
 
 		String creciInexistente = "12321345";
 		Assert.assertEquals(null, colFunc1
-				.getFuncionarioPorCreci(creciInexistente));
+				.getFuncionario(creciInexistente));
 
 		Assert.assertEquals(2, colFunc1.getFuncionarioPorNome("Thiago").size());
 		Assert.assertEquals(1, colFunc1.getFuncionarioPorNome("Yuri").size());
