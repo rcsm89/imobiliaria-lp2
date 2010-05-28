@@ -117,6 +117,12 @@ public class ColecaoImovelTest {
 		colecaoImovelParaCompararEquals.addImovel(imovel3);
 		Assert.assertEquals(3, colecaoImovelParaCompararEquals.getImoveis().
 				size());
+		
+		try{
+			colecaoImovelParaCompararEquals.addImovel(null);
+		}catch(Exception e){
+			Assert.assertEquals("Imovel Invalido", e.getMessage());
+		}
 
 		Assert.assertEquals(true, colecaoImovel
 				.equals(colecaoImovelParaCompararEquals));
@@ -131,6 +137,7 @@ public class ColecaoImovelTest {
 		Assert.assertEquals(2, colecaoImovel.getImoveis().size());
 		
 		//Tentando remover imovel com registro impossivel
+		
 		try{
 			colecaoImovel.removeImovel("a");
 		}catch(Exception e){
@@ -140,6 +147,11 @@ public class ColecaoImovelTest {
 		//Imovel com registro nao pertencente a colecao
 		Assert.assertEquals(false, colecaoImovel.removeImovel("3"));
 		
+		try{
+			colecaoImovel.removeImovel(null);
+		}catch(Exception e){
+			Assert.assertEquals("Imovel Invalido", e.getMessage());
+		}
 		
 		Assert.assertEquals(false, colecaoImovel
 				.equals(colecaoImovelParaCompararEquals));
