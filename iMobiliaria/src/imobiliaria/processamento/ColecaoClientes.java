@@ -38,7 +38,7 @@ public class ColecaoClientes {
 	/**
 	 * Metodo que remove um cliente da Colecao
 	 * 
-	 * @param cpfDoClienteASerRemovido
+	 * @param cpfASerRemovido
 	 *            Representa o CPF do cliente a Ser Removido
 	 * @return True - Caso o cliente seja removido <br>
 	 *         False - Caso ele nao seja encontrado
