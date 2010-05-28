@@ -29,7 +29,7 @@ public class Sistema {
 	private TreeMap<Imovel, Cliente> listaPedidos = new TreeMap<Imovel, Cliente>();
 
 	private Calendar ultimoPagamento = new GregorianCalendar(2010, 06, 1);
-	private boolean pagouNesseMes = true;
+	private boolean pagouNesseMes = false;
 	private double caixaTotal;
 
 	/*
