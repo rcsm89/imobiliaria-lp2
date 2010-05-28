@@ -96,9 +96,7 @@ public class Funcionario extends Pessoa {
 	 *             Lanca excecao caso imovel ja na lista de vendidos num mes
 	 */
 	public void addImovelVendidoMes(Imovel imovelVendido) throws Exception {
-		if (!(historicoVendidoMes.adicionaImovel(imovelVendido))) {
-			throw new Exception("Imovel invalido");
-		}
+		historicoVendidoMes.addImovel(imovelVendido);
 	}
 
 	/**

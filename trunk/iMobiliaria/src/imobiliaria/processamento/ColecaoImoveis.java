@@ -18,9 +18,7 @@ public class ColecaoImoveis {
 	 * @return True - Caso o imovel tenha sido adicionado <br>
 	 *         False - Caso o imovel ja exista na colecao
 	 */
-	public void addImovel(Imovel imovelAadicionar, String nome, String endereco,
-			double preco, Area area, TipoImovel tipoDoImovel,
-			TipoContratual tipoContratual) throws Exception {
+	public void addImovel(Imovel imovelAadicionar) throws Exception {
 
 		if (colecaoImoveis.contains(imovelAadicionar))
 			throw new Exception("Imovel Existente");

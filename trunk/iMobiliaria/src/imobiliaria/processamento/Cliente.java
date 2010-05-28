@@ -58,7 +58,7 @@ public class Cliente extends Pessoa {
 		if (pedido == null){
 			throw new Exception("Pedido Invalido");
 		}
-		pedidos.adicionaImovel(pedido);
+		pedidos.addImovel(pedido);
 	}
  
 	/**
@@ -102,6 +102,8 @@ public class Cliente extends Pessoa {
 			throw new Exception("Pedido Invalido");
 		}
 		
+		/* Cast de getRegistroImovel (int) para (String)
+		removeImovel recebe uma String! */
 		return pedidos.removeImovel(pedido.getRegistroImovel());
 
 	}

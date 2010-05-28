@@ -86,7 +86,6 @@ public class ControladorCliente extends ColecaoClientes {
 					+ "Endereco: " + c.getEndereco() + " - Preferencia: "
 					+ c.getPreferencia() + "\n\n";
 		}
-
 		return saida;
 	}
 }

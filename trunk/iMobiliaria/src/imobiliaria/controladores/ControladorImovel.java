@@ -188,4 +188,35 @@ public class ControladorImovel extends ColecaoImoveis {
 		return ListaImoveis(getImoveis(nome));
 	}
 
+	/* Modificacao que eu falei (Yuri) */
+
+	/**
+	 * Metodo que adiciona um imovel no Controlador a partir de suas informacoes
+	 * 
+	 * @param nome
+	 *            Nome
+	 * @param endereco
+	 *            Endereco
+	 * @param preco
+	 *            Preco
+	 * @param area
+	 *            Area
+	 * @param tipoDoImovel
+	 *            Tipo do Imovel
+	 * @param tipoContratual
+	 *            Tipo Contratual
+	 * @throws Exception
+	 *             Lanca Excecao se algum parametro estiver errado ou o Imovel
+	 *             ja existir
+	 */
+	public void addImovel(String nome, String endereco, double preco,
+			Area area, TipoImovel tipoDoImovel, TipoContratual tipoContratual)
+			throws Exception {
+
+		Imovel ImovelASerAdicionado = new Imovel(nome, endereco, preco, area,
+				tipoDoImovel, tipoContratual);
+
+		// SuperClasse (ColecaoImovel)
+		addImovel(ImovelASerAdicionado);
+	}
 }
