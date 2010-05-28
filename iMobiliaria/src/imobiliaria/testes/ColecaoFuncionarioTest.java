@@ -22,24 +22,29 @@ public class ColecaoFuncionarioTest {
 
 	@Test
 	public void testaAdicionaFuncionario() throws Exception {
-		colFunc1.addFuncionario("10120230344", new GregorianCalendar(1991, 1,
-				18), "Rua 12 de Outubro", "Thiago Ferreira", "00111");
-		colFunc1.addFuncionario("12345678910", new GregorianCalendar(1991, 2,
-				17), "Rua 12 de Outubro", "Yuri Farias", "12345");
+		colFunc1.adicionaFuncionario(new Funcionario("10120230344",
+				new GregorianCalendar(1991, 1, 18), "Rua 12 de Outubro",
+				"Thiago Ferreira", "00111"));
+		colFunc1.adicionaFuncionario(new Funcionario("12345678910",
+				new GregorianCalendar(1991, 2, 17), "Rua 12 de Outubro",
+				"Yuri Farias", "12345"));
 		Assert.assertEquals(2, colFunc1.getNumFuncionarios());
 		// Nao adiciona um mesmo funcionario
-		Assert.assertFalse(colFunc1.addFuncionario(func1));
+		Assert.assertFalse(colFunc1.adicionaFuncionario(func1));
 		Assert.assertEquals(2, colFunc1.getNumFuncionarios());
 	}
 
 	@Test
 	public void testaRemoveFuncionario() throws Exception {
-		colFunc1.addFuncionario("10120230344", new GregorianCalendar(1991, 1,
-				18), "Rua Rodrigues Alves", "Thiago Ferreira", "00111");
-		colFunc1.addFuncionario("12345678910", new GregorianCalendar(1991, 2,
-				17), "Rua Antonio Pequeno", "Yuri Farias", "12345");
-		colFunc1.addFuncionario("11223344556", new GregorianCalendar(1991, 3,
-				18), "Rua 12 de Outubro", "Bruno Fabio", "11111");
+		colFunc1.adicionaFuncionario(new Funcionario("10120230344",
+				new GregorianCalendar(1991, 1, 18), "Rua Rodrigues Alves",
+				"Thiago Ferreira", "00111"));
+		colFunc1.adicionaFuncionario(new Funcionario("12345678910",
+				new GregorianCalendar(1991, 2, 17), "Rua Antonio Pequeno",
+				"Yuri Farias", "12345"));
+		colFunc1.adicionaFuncionario(new Funcionario("11223344556",
+				new GregorianCalendar(1991, 3, 18), "Rua 12 de Outubro",
+				"Bruno Fabio", "11111"));
 
 		Assert.assertEquals(3, colFunc1.getNumFuncionarios());
 
@@ -73,21 +78,23 @@ public class ColecaoFuncionarioTest {
 
 	@Test
 	public void testaGetFuncionario() throws Exception {
-		colFunc1.addFuncionario("10120230344", new GregorianCalendar(1991, 1,
-				18), "Rua 12 de Outubro", "Thiago Ferreira", "00111");
+		colFunc1.adicionaFuncionario(new Funcionario("10120230344",
+				new GregorianCalendar(1991, 1, 18), "Rua 12 de Outubro",
+				"Thiago Ferreira", "00111"));
 
-		colFunc1.addFuncionario("08928883474", new GregorianCalendar(1991, 3,
-				18), "Rua Francisco Brandao", "Thiago Neves", "111");
+		colFunc1.adicionaFuncionario(new Funcionario("08928883474",
+				new GregorianCalendar(1991, 3, 18), "Rua Francisco Brandao",
+				"Thiago Neves", "111"));
 
-		colFunc1.addFuncionario("12345678910", new GregorianCalendar(1991, 2,
-				17), "Rua Rodrigues Alves", "Yuri Farias", "12345");
+		colFunc1.adicionaFuncionario(new Funcionario("12345678910",
+				new GregorianCalendar(1991, 2, 17), "Rua Rodrigues Alves",
+				"Yuri Farias", "12345"));
 
 		Assert.assertEquals("12345", colFunc1.getFuncionario("12345")
 				.getCreci());
 
 		String creciInexistente = "12321345";
-		Assert.assertEquals(null, colFunc1
-				.getFuncionario(creciInexistente));
+		Assert.assertEquals(null, colFunc1.getFuncionario(creciInexistente));
 
 		Assert.assertEquals(2, colFunc1.getFuncionarioPorNome("Thiago").size());
 		Assert.assertEquals(1, colFunc1.getFuncionarioPorNome("Yuri").size());
@@ -96,17 +103,21 @@ public class ColecaoFuncionarioTest {
 
 	@Test
 	public void testaEquals() throws Exception {
-		colFunc1.addFuncionario("10120230344", new GregorianCalendar(1991, 1,
-				18), "Rua Rodrigues Alves", "Thiago Ferreira", "00111");
-		colFunc1.addFuncionario("12345678910", new GregorianCalendar(1991, 2,
-				17), "Rua Antonio Pequeno", "Yuri Farias", "12345");
-		colFunc2.addFuncionario("10120230344", new GregorianCalendar(1991, 1,
-				18), "Rua Rodrigues Alves", "Thiago Ferreira", "00111");
+		colFunc1.adicionaFuncionario(new Funcionario("10120230344",
+				new GregorianCalendar(1991, 1, 18), "Rua Rodrigues Alves",
+				"Thiago Ferreira", "00111"));
+		colFunc1.adicionaFuncionario(new Funcionario("12345678910",
+				new GregorianCalendar(1991, 2, 17), "Rua Antonio Pequeno",
+				"Yuri Farias", "12345"));
+		colFunc2.adicionaFuncionario(new Funcionario("10120230344",
+				new GregorianCalendar(1991, 1, 18), "Rua Rodrigues Alves",
+				"Thiago Ferreira", "00111"));
 
 		Assert.assertFalse(colFunc1.equals(colFunc2));
 
-		colFunc2.addFuncionario("12345678910", new GregorianCalendar(1991, 2,
-				17), "Rua Antonio Pequeno", "Yuri Farias", "12345");
+		colFunc2.adicionaFuncionario(new Funcionario("12345678910",
+				new GregorianCalendar(1991, 2, 17), "Rua Antonio Pequeno",
+				"Yuri Farias", "12345"));
 
 		Assert.assertTrue(colFunc1.equals(colFunc2));
 	}

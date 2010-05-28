@@ -104,23 +104,6 @@ public class ColecaoFuncionario {
 	}
 
 	/**
-	 * Adiciona um funcionario na colecao
-	 * 
-	 * @param funcASerAdicionado
-	 *            Funcionario que vai ser Adicionado
-	 * @return True - Caso o funcionario tenha sido adicionado <br>
-	 *         False - Caso o funcionario ja exista na colecao
-	 */
-	public boolean addFuncionario(Funcionario funcASerAdicionado) {
-
-		if (colecaoFuncionarios.contains(funcASerAdicionado)) {
-			return false;
-		}
-
-		return colecaoFuncionarios.add(funcASerAdicionado);
-	}
-
-	/**
 	 * Remove um funcionario da colecao apartir do seu creci
 	 * 
 	 * @param creci

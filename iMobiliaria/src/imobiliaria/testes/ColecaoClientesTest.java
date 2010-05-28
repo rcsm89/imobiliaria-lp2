@@ -19,52 +19,52 @@ public class ColecaoClientesTest {
 
 		// Adicionando Clientes
 
-		Assert.assertTrue(clientes1.adicionaCliente("12345678910",
+		Assert.assertTrue(clientes1.adicionaCliente(new Cliente("12345678910",
 				new GregorianCalendar(1991, Calendar.APRIL, 4),
-				"Rua Alberto de Brito, 84", "Bruno Paiva", TipoImovel.CASA));
+				"Rua Alberto de Brito, 84", "Bruno Paiva", TipoImovel.CASA)));
 
-		Assert.assertTrue(clientes1.adicionaCliente("10120230344",
+		Assert.assertTrue(clientes1.adicionaCliente(new Cliente("10120230344",
 				new GregorianCalendar(1991, 14, 13), "Rua 12 de Outubro",
-				"Thiago Ferreira", TipoImovel.APARTAMENTO));
+				"Thiago Ferreira", TipoImovel.APARTAMENTO)));
 
-		Assert.assertTrue(clientes1.adicionaCliente("11022033040",
+		Assert.assertTrue(clientes1.adicionaCliente(new Cliente("11022033040",
 				new GregorianCalendar(1991, 06, 23),
-				"Rua Antonio Joaquim Pequeno", "Jean", TipoImovel.TERRENO));
+				"Rua Antonio Joaquim Pequeno", "Jean", TipoImovel.TERRENO)));
 
-		Assert.assertTrue(clientes1.adicionaCliente("12345678912",
+		Assert.assertTrue(clientes1.adicionaCliente(new Cliente("12345678912",
 				new GregorianCalendar(1991, Calendar.APRIL, 4),
 				"Rua Argemiro de Figueiredo, 207", "Yuri Farias",
-				TipoImovel.TERRENO));
+				TipoImovel.TERRENO)));
 
-		Assert.assertTrue(clientes1.adicionaCliente("12345678901",
+		Assert.assertTrue(clientes1.adicionaCliente(new Cliente("12345678901",
 				new GregorianCalendar(1991, Calendar.AUGUST, 7),
-				"Rua Tocatins, 929", "Daniel Farias", TipoImovel.TERRENO));
+				"Rua Tocatins, 929", "Daniel Farias", TipoImovel.TERRENO)));
 
 	}
 
 	@Test
 	public void testaAdicionaCliente() throws Exception {
 
-		Assert.assertFalse(clientes1.adicionaCliente("12345678910",
+		Assert.assertFalse(clientes1.adicionaCliente(new Cliente("12345678910",
 				new GregorianCalendar(1991, Calendar.APRIL, 4),
-				"Rua Alberto de Brito, 84", "Bruno Paiva", TipoImovel.CASA));
+				"Rua Alberto de Brito, 84", "Bruno Paiva", TipoImovel.CASA)));
 
-		Assert.assertFalse(clientes1.adicionaCliente("10120230344",
+		Assert.assertFalse(clientes1.adicionaCliente(new Cliente("10120230344",
 				new GregorianCalendar(1991, 14, 13), "Rua 12 de Outubro",
-				"Thiago Ferreira", TipoImovel.APARTAMENTO));
+				"Thiago Ferreira", TipoImovel.APARTAMENTO)));
 
-		Assert.assertFalse(clientes1.adicionaCliente("11022033040",
+		Assert.assertFalse(clientes1.adicionaCliente(new Cliente("11022033040",
 				new GregorianCalendar(1991, 06, 23),
-				"Rua Antonio Joaquim Pequeno", "Jean", TipoImovel.TERRENO));
+				"Rua Antonio Joaquim Pequeno", "Jean", TipoImovel.TERRENO)));
 
-		Assert.assertFalse(clientes1.adicionaCliente("12345678912",
+		Assert.assertFalse(clientes1.adicionaCliente(new Cliente("12345678912",
 				new GregorianCalendar(1991, Calendar.APRIL, 4),
 				"Rua Argemiro de Figueiredo, 207", "Yuri Farias",
-				TipoImovel.TERRENO));
+				TipoImovel.TERRENO)));
 
-		Assert.assertFalse(clientes1.adicionaCliente("12345678901",
+		Assert.assertFalse(clientes1.adicionaCliente(new Cliente("12345678901",
 				new GregorianCalendar(1991, Calendar.AUGUST, 7),
-				"Rua Tocatins, 929", "Daniel Farias", TipoImovel.TERRENO));
+				"Rua Tocatins, 929", "Daniel Farias", TipoImovel.TERRENO)));
 
 	}
 
@@ -87,9 +87,9 @@ public class ColecaoClientesTest {
 		Assert.assertEquals(4, clientes1.numeroTotalDeClientes());
 		Assert.assertEquals(4, clientes1.getClientes().size());
 
-		clientes1.adicionaCliente("12345678910", new GregorianCalendar(1991,
+		clientes1.adicionaCliente(new Cliente("12345678910", new GregorianCalendar(1991,
 				Calendar.APRIL, 4), "Rua Alberto de Brito, 84", "Bruno Paiva",
-				TipoImovel.CASA);
+				TipoImovel.CASA));
 
 		Assert.assertEquals(5, clientes1.getClientes().size());
 		Assert.assertEquals(5, clientes1.numeroTotalDeClientes());
@@ -129,17 +129,17 @@ public class ColecaoClientesTest {
 			Assert.assertEquals("Letra Invalida", e.getMessage());
 		}
 
-		clientes1.adicionaCliente("12345678915", new GregorianCalendar(1991,
+		clientes1.adicionaCliente(new Cliente("12345678915", new GregorianCalendar(1991,
 				Calendar.APRIL, 4), "Rua Alberto de Brito, 614", "Bruno Fabio",
-				TipoImovel.CASA);
+				TipoImovel.CASA));
 
-		clientes1.adicionaCliente("12345678914", new GregorianCalendar(1991,
+		clientes1.adicionaCliente(new Cliente("12345678914", new GregorianCalendar(1991,
 				Calendar.APRIL, 4), "Rua Vasco Da Gama, 801", "Bruno Farias",
-				TipoImovel.CASA);
+				TipoImovel.CASA));
 
-		clientes1.adicionaCliente("12335678911", new GregorianCalendar(1991,
+		clientes1.adicionaCliente(new Cliente("12335678911", new GregorianCalendar(1991,
 				Calendar.APRIL, 4), "Rua Alberto de Brito, 234", "Bruna",
-				TipoImovel.CASA);
+				TipoImovel.CASA));
 
 		Assert
 				.assertEquals(4, clientes1.getClientesPorLetraInicial("b")
@@ -158,21 +158,21 @@ public class ColecaoClientesTest {
 	@Test
 	public void testaGetClientesPorNome() throws Exception {
 
-		clientes1.adicionaCliente("12345678915", new GregorianCalendar(1991,
+		clientes1.adicionaCliente(new Cliente("12345678915", new GregorianCalendar(1991,
 				Calendar.APRIL, 4), "Rua Floriano Peixoto, 867",
-				"Bruno Farias", TipoImovel.CASA);
+				"Bruno Farias", TipoImovel.CASA));
 
-		clientes1.adicionaCliente("12345678914", new GregorianCalendar(1991,
+		clientes1.adicionaCliente(new Cliente("12345678914", new GregorianCalendar(1991,
 				Calendar.APRIL, 4), "Rua Joseph Aquino, 124",
-				"Henrique Farias", TipoImovel.CASA);
+				"Henrique Farias", TipoImovel.CASA));
 
-		clientes1.adicionaCliente("12335678911", new GregorianCalendar(1991,
+		clientes1.adicionaCliente(new Cliente("12335678911", new GregorianCalendar(1991,
 				Calendar.APRIL, 4), "Rua PedroPauloDiniz, 344", "Jean Cobra",
-				TipoImovel.CASA);
+				TipoImovel.CASA));
 
-		clientes1.adicionaCliente("23356789345", new GregorianCalendar(1991,
+		clientes1.adicionaCliente(new Cliente("23356789345", new GregorianCalendar(1991,
 				Calendar.APRIL, 4), "Rua QualquerLugar, 856",
-				"Bruna Vasconcelos", TipoImovel.CASA);
+				"Bruna Vasconcelos", TipoImovel.CASA));
 
 		Assert.assertEquals(0, clientes1.getClientes("w").size());
 		Assert.assertEquals(4, clientes1.getClientes("Farias").size());

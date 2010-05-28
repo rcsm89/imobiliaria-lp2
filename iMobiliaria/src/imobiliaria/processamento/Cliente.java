@@ -102,9 +102,7 @@ public class Cliente extends Pessoa {
 			throw new Exception("Pedido Invalido");
 		}
 		
-		/* Cast de getRegistroImovel (int) para (String)
-		removeImovel recebe uma String! */
-		return pedidos.removeImovel(pedido.getRegistroImovel());
+		return pedidos.removeImovel(String.valueOf(pedido.getRegistroImovel()));
 
 	}
 }
