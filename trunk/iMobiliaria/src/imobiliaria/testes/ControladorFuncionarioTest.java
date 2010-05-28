@@ -44,7 +44,7 @@ public class ControladorFuncionarioTest {
 
 		Assert.assertEquals("Thiago Ferreira Patricio", funcMod.getNome());
 		Assert.assertEquals("Rua Outro Endereco 12", funcMod.getEndereco());
-		Assert.assertEquals("12345678910", funcMod.getCpf());
+		Assert.assertEquals("123.456.789-10", funcMod.getCpf());
 
 		try {
 			controlFunc1.modificaFuncionario(null, "12345678910",
