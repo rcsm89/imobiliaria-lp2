@@ -33,9 +33,9 @@ public class ColecaoFuncionario {
 	public int getNumFuncionarios() {
 		return colecaoFuncionarios.size();
 	}
-	
+
 	/**
-	 * Retorna uma colecao de funcionarios que tenha o mesmo nome dado
+	 * Retorna uma colecao de funcionarios que tenha um mesmo nome dado
 	 * 
 	 * @param nome
 	 *            Nome do funcionario
@@ -63,7 +63,34 @@ public class ColecaoFuncionario {
 	}
 
 	/**
+	 * Retorna um funcionario que tenha um mesmo creci dado
+	 * 
+	 * @param creci
+	 *      Creci do funcionario
+	 * 
+	 * @return 
+	 * 		Funcionario procurado
+	 * 
+	 * @throws Exception
+	 *      Se o creci for invalido
+	 */
+	public Funcionario getFuncionarioPorCreci(String creci) throws Exception {
+		if (VerificaInvalido.numero(creci)) {
+			throw new Exception("Creci Invalido");
+		}
+
+		Funcionario funcRetornado = null;
+		for (Funcionario func : colecaoFuncionarios) {
+			if (func.getCreci().equals(creci)) {
+				funcRetornado = func;
+			}
+		}
+		return funcRetornado;
+	}
+
+	/**
 	 * Adiciona um funcionario na colecao
+	 * 
 	 * @param cpf
 	 *            Cpf do funcionario a ser adicionado
 	 * @param dataNascimento
@@ -74,11 +101,12 @@ public class ColecaoFuncionario {
 	 *            Nome do funcionario a ser adicionado
 	 * @param creci
 	 *            Creci do funcionario a ser adicionado
+	 * @return True, se um funcionario foi adicionado<br>
+	 *         False, caso contrario
 	 * @throws Exception
 	 *             Caso algum parametro seja invalido
-	 * 
 	 */
-	public void addFuncionario(String cpf, Calendar dataNascimento,
+	public boolean addFuncionario(String cpf, Calendar dataNascimento,
 			String endereco, String nome, String creci) throws Exception {
 		int NUMDIGITOSCPF = 11;
 		if (VerificaInvalido.numeroFormatado(cpf, NUMDIGITOSCPF)
@@ -88,13 +116,33 @@ public class ColecaoFuncionario {
 				|| VerificaInvalido.numero(creci)) {
 			throw new IllegalArgumentException("Entrada Invalida");
 		}
+		
 		Funcionario func = new Funcionario(cpf, dataNascimento, endereco, nome,
 				creci);
+				
 		if (colecaoFuncionarios.contains(func)) {
-			throw new IllegalArgumentException("Funcionario Existente");
+			return false;
+			// throw new IllegalArgumentException("Funcionario Existente");
 		}
 
-		colecaoFuncionarios.add(func);
+		return colecaoFuncionarios.add(func);
+	}
+	
+	/**
+	 * Adiciona um funcionario na colecao
+	 * 
+	 * @param funcASerAdicionado
+	 *            Funcionario que vai ser Adicionado
+	 * @return True - Caso o funcionario tenha sido adicionado <br>
+	 *         False - Caso o funcionario ja exista na colecao
+	 */
+	public boolean addFuncionario(Funcionario funcASerAdicionado) {
+
+		if (colecaoFuncionarios.contains(funcASerAdicionado)) {
+			return false;
+		}
+		
+		return colecaoFuncionarios.add(funcASerAdicionado);
 	}
 
 	/**
@@ -102,7 +150,8 @@ public class ColecaoFuncionario {
 	 * 
 	 * @param creci
 	 *            Creci do funcionario a ser removido
-	 * @return True, se o funcionario foi removido False, caso contrario
+	 * @return True, se o funcionario foi removido<br>
+	 *         False, caso contrario
 	 * @throws Exception
 	 *             Caso o creci seja invalido
 	 */
@@ -111,7 +160,7 @@ public class ColecaoFuncionario {
 			throw new Exception("Creci Invalido");
 		}
 		for (Funcionario func : colecaoFuncionarios) {
-			if (func.getCreci() == creci) {
+			if (func.getCreci().equals(creci)) {
 				return colecaoFuncionarios.remove(func);
 			}
 		}
@@ -123,7 +172,8 @@ public class ColecaoFuncionario {
 	 * 
 	 * @param nome
 	 *            Nome do funcionario a ser removido
-	 * @return True, se o funcionario foi removido False, caso contrario
+	 * @return True, se o funcionario foi removido<br>
+	 *         False, caso contrario
 	 * @throws Exception
 	 *             Caso o nome seja invalido
 	 */
