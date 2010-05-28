@@ -1,5 +1,6 @@
 package imobiliaria.controladores;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import imobiliaria.processamento.Cliente;
@@ -17,6 +18,39 @@ import imobiliaria.util.VerificaInvalido;
 public class ControladorCliente extends ColecaoClientes {
 
 	private HashMap<String, String> loginClientes = new HashMap<String, String>();
+
+	/**
+	 * Metodo que adiciona um Cliente no Controlador
+	 * 
+	 * @param cpf
+	 *            CPF
+	 * @param dataNascimento
+	 *            Data de Nascimento
+	 * @param endereco
+	 *            Endereco
+	 * @param nome
+	 *            Nome
+	 * @param preferencia
+	 *            Preferencia de Imovel
+	 * @return True - Caso o Cliente seja adicionado<br>
+	 *         False - Caso ele ja exista no Sistema
+	 * @throws Exception
+	 *             Caso algum parametro seja invalido
+	 */
+	public boolean adicionaCliente(String cpf, Calendar dataNascimento,
+			String endereco, String nome, TipoImovel preferencia)
+			throws Exception {
+
+		Cliente clienteASerAdicionado = new Cliente(cpf, dataNascimento,
+				endereco, nome, preferencia);
+
+		if (adicionaCliente(clienteASerAdicionado)) {
+			loginClientes.put(clienteASerAdicionado.getLogin(),
+					clienteASerAdicionado.getSenha());
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * Metodo verificador de login e senha para Clientes
