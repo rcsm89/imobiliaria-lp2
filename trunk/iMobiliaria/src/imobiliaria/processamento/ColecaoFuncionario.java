@@ -3,7 +3,6 @@ package imobiliaria.processamento;
 import imobiliaria.util.VerificaInvalido;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -66,13 +65,12 @@ public class ColecaoFuncionario {
 	 * Retorna um funcionario que tenha um mesmo creci dado
 	 * 
 	 * @param creci
-	 *      Creci do funcionario
+	 *            Creci do funcionario
 	 * 
-	 * @return 
-	 * 		Funcionario procurado
+	 * @return Funcionario procurado
 	 * 
 	 * @throws Exception
-	 *      Se o creci for invalido
+	 *             Se o creci for invalido
 	 */
 	public Funcionario getFuncionario(String creci) throws Exception {
 		if (VerificaInvalido.numero(creci)) {
@@ -89,45 +87,22 @@ public class ColecaoFuncionario {
 	}
 
 	/**
-	 * Adiciona um funcionario na colecao
+	 * Metodo que adiciona um Funcionario na Colecao
 	 * 
-	 * @param cpf
-	 *            Cpf do funcionario a ser adicionado
-	 * @param dataNascimento
-	 *            Data do nascimento do funcionario a ser adicionado
-	 * @param endereco
-	 *            Endereco do funcionario a ser adicionado
-	 * @param nome
-	 *            Nome do funcionario a ser adicionado
-	 * @param creci
-	 *            Creci do funcionario a ser adicionado
-	 * @return True, se um funcionario foi adicionado<br>
-	 *         False, caso contrario
-	 * @throws Exception
-	 *             Caso algum parametro seja invalido
+	 * @param funcionarioASerAdicionado
+	 *            Funcionario a ser Adicionado
+	 * @return True - Se ele for adicionado<br>
+	 *         False - Se ele ja existir na colecao
 	 */
-	public boolean addFuncionario(String cpf, Calendar dataNascimento,
-			String endereco, String nome, String creci) throws Exception {
-		int NUMDIGITOSCPF = 11;
-		if (VerificaInvalido.numeroFormatado(cpf, NUMDIGITOSCPF)
-				|| VerificaInvalido.data(dataNascimento)
-				|| VerificaInvalido.endereco(endereco)
-				|| VerificaInvalido.nome(nome)
-				|| VerificaInvalido.numero(creci)) {
-			throw new IllegalArgumentException("Entrada Invalida");
-		}
-		
-		Funcionario func = new Funcionario(cpf, dataNascimento, endereco, nome,
-				creci);
-				
-		if (colecaoFuncionarios.contains(func)) {
+	public boolean adicionaFuncionario(Funcionario funcionarioASerAdicionado) {
+
+		if (colecaoFuncionarios.contains(funcionarioASerAdicionado)) {
 			return false;
-			// throw new IllegalArgumentException("Funcionario Existente");
 		}
 
-		return colecaoFuncionarios.add(func);
+		return colecaoFuncionarios.add(funcionarioASerAdicionado);
 	}
-	
+
 	/**
 	 * Adiciona um funcionario na colecao
 	 * 
@@ -141,7 +116,7 @@ public class ColecaoFuncionario {
 		if (colecaoFuncionarios.contains(funcASerAdicionado)) {
 			return false;
 		}
-		
+
 		return colecaoFuncionarios.add(funcASerAdicionado);
 	}
 

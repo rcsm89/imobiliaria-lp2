@@ -3,6 +3,7 @@ package imobiliaria.controladores;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+
 import imobiliaria.processamento.ColecaoFuncionario;
 import imobiliaria.processamento.Funcionario;
 import imobiliaria.util.VerificaInvalido;
@@ -17,6 +18,40 @@ import imobiliaria.util.VerificaInvalido;
 public class ControladorFuncionario extends ColecaoFuncionario {
 
 	private HashMap<String, String> loginFuncionarios = new HashMap<String, String>();
+
+	/**
+	 * Adiciona um funcionario no Controlador
+	 * 
+	 * @param cpf
+	 *            Cpf do funcionario a ser adicionado
+	 * @param dataNascimento
+	 *            Data do nascimento do funcionario a ser adicionado
+	 * @param endereco
+	 *            Endereco do funcionario a ser adicionado
+	 * @param nome
+	 *            Nome do funcionario a ser adicionado
+	 * @param creci
+	 *            Creci do funcionario a ser adicionado
+	 * @return True, se um funcionario foi adicionado<br>
+	 *         False, caso contrario
+	 * @throws Exception
+	 *             Caso algum parametro seja invalido
+	 */
+
+	public boolean adicionaFuncionario(String cpf, Calendar dataNascimento,
+			String endereco, String nome, String creci) throws Exception {
+
+		Funcionario funcionarioASerAdicionado = new Funcionario(cpf,
+				dataNascimento, endereco, nome, creci);
+
+		if (adicionaFuncionario(funcionarioASerAdicionado)) {
+			loginFuncionarios.put(funcionarioASerAdicionado.getLogin(),
+					funcionarioASerAdicionado.getSenha());
+			return true;
+		}
+
+		return false;
+	}
 
 	/**
 	 * Metodo verificador de login e senha para Funcionarios

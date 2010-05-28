@@ -3,7 +3,6 @@ package imobiliaria.processamento;
 import imobiliaria.util.VerificaInvalido;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -27,11 +26,7 @@ public class ColecaoClientes {
 	 * @return True - Caso o cliente tenha sido adicionado <br>
 	 *         False - Caso o cliente ja exista na colecao
 	 */
-	public boolean adicionaCliente(String cpf, Calendar dataNascimento, String endereco,
-			String nome, TipoImovel preferencia) throws Exception {
-		
-		
-		Cliente clienteASerAdicionado = new Cliente(cpf, dataNascimento, endereco, nome, preferencia);
+	public boolean adicionaCliente(Cliente clienteASerAdicionado) throws Exception {
 		
 		if (colecaoClientes.contains(clienteASerAdicionado)) {
 			return false;
