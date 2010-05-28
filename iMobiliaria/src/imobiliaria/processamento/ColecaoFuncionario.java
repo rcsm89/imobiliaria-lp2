@@ -74,7 +74,7 @@ public class ColecaoFuncionario {
 	 * @throws Exception
 	 *      Se o creci for invalido
 	 */
-	public Funcionario getFuncionarioPorCreci(String creci) throws Exception {
+	public Funcionario getFuncionario(String creci) throws Exception {
 		if (VerificaInvalido.numero(creci)) {
 			throw new Exception("Creci Invalido");
 		}
