@@ -83,7 +83,8 @@ public abstract class Pessoa {
 	    senha += digitos;
 	}
 	this.senha = senha;
-	this.login = cpf.substring(0, 5);
+	// O Login sao os 6 primeiros digitos
+	this.login = cpf.substring(0, 6);
     }
 
     // Metodos
