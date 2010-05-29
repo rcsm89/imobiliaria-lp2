@@ -258,7 +258,6 @@ public abstract class Pessoa {
      */
     @Override
     public String toString() {
-	// TODO Auto-generated method stub
 	return getNome() + "|" + getCpf() + "|" + getEndereco() + "|"
 		+ getDataNascimento();
     }
