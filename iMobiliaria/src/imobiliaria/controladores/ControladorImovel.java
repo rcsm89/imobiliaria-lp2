@@ -86,18 +86,26 @@ public class ControladorImovel extends ColecaoImoveis {
 	 * @return Uma String do imovel cujo registro e igual ao passado
 	 */
 	public String exibeImovel(String registro) {
+		if (registro == null){
+			throw new IllegalArgumentException("Registro Invalido");
+		}
+		
 		int registroDoImovel = 0;
-		Imovel imovel = getImovelDeRegistro(registroDoImovel);
 
 		try {
 			registroDoImovel = Integer.parseInt(registro);
 		} catch (Exception e) {
 			return null;
 		}
+		
+		Imovel imovel = getImovelDeRegistro(registroDoImovel);
 
 		return "Nome: " + imovel.getNome() + "\n" + "Endereco: "
 				+ imovel.getEndereco() + "\n" + "Valor: " + imovel.getValor()
-				+ "\n" + "Area: " + imovel.getArea() + "\n"
+				+ "\n" + "Area: " + "\n\t" +
+				"Comprimento: " + imovel.getArea().getComprimento() + "m\n\t" +
+				"Largura: " + imovel.getArea().getLargura() + "m\n\t" +
+				"Classificacao: " + imovel.getArea().getClassificacao() + "\n"
 				+ "Tipo do Imovel: " + imovel.getTipoDoImovel() + "\n"
 				+ "Tipo Contratual: " + imovel.getTipoContratual();
 
