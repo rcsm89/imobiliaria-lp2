@@ -3,6 +3,7 @@ package imobiliaria.testes;
 import imobiliaria.controladores.ControladorImovel;
 import imobiliaria.processamento.Area;
 //import imobiliaria.processamento.EstadoImovel;
+import imobiliaria.processamento.EstadoImovel;
 import imobiliaria.processamento.Imovel;
 import imobiliaria.processamento.TipoContratual;
 import imobiliaria.processamento.TipoImovel;
@@ -26,8 +27,7 @@ public class ControladorImovelTest {
 				"Rua Joaquim Caroca, Bodocongo, Num 2471, CG/PB", 3500.0,
 				new Area(30, 20), TipoImovel.CASA, TipoContratual.ALUGUEL);
 
-		imovel2 = new Imovel(
-				"Apartamento a Venda!!!",
+		imovel2 = new Imovel("Apartamento a Venda!!!",
 				"Rua Fernando Luiz Henrique dos Santos Altiplano, num 2831," +
 				" JP/PB, Ed. Java, apto 1300",
 				25000, new Area(4, 6), TipoImovel.APARTAMENTO,
@@ -112,7 +112,6 @@ public class ControladorImovelTest {
 		}catch(IllegalArgumentException e){
 			Assert.assertEquals("Registro Invalido", e.getMessage());
 		}
-		
 	}
 	
 	@Test
@@ -150,28 +149,264 @@ public class ControladorImovelTest {
 	}
 	
 	@Test
-	public void testaListaImoveis(){
+	public void testaListaImoveis() throws Exception{
 		
+		controladorImovel.addImovel(imovel1);
+		
+		Assert.assertEquals("Nome: " + imovel1.getNome() + "\n" + "Endereco: "
+					+ imovel1.getEndereco() + "\n" + "Valor: "
+					+ imovel1.getValor() + "\n" + "Area: " + imovel1.getArea()
+					+ "\n" + "Tipo do Imovel: " + imovel1 + "\n"
+					+ "Tipo Contratual: " + imovel1 + "\n\n", 
+					controladorImovel.listaImoveis());
+		
+		controladorImovel.addImovel(imovel2);
+		
+		Assert.assertEquals("Nome: " + imovel1.getNome() + "\n" + "Endereco: "
+				+ imovel1.getEndereco() + "\n" + "Valor: "
+				+ imovel1.getValor() + "\n" + "Area: " + imovel1.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel1 + "\n"
+				+ "Tipo Contratual: " + imovel1 + "\n\n" +
+				"Nome: " + imovel2.getNome() + "\n" + "Endereco: "
+				+ imovel2.getEndereco() + "\n" + "Valor: "
+				+ imovel2.getValor() + "\n" + "Area: " + imovel2.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel2 + "\n"
+				+ "Tipo Contratual: " + imovel2 + "\n\n", 
+				controladorImovel.listaImoveis());
+		
+		controladorImovel.addImovel(imovel3);
+		
+		Assert.assertEquals("Nome: " + imovel1.getNome() + "\n" + "Endereco: "
+				+ imovel1.getEndereco() + "\n" + "Valor: "
+				+ imovel1.getValor() + "\n" + "Area: " + imovel1.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel1 + "\n"
+				+ "Tipo Contratual: " + imovel1 + "\n\n" +
+				"Nome: " + imovel2.getNome() + "\n" + "Endereco: "
+				+ imovel2.getEndereco() + "\n" + "Valor: "
+				+ imovel2.getValor() + "\n" + "Area: " + imovel2.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel2 + "\n"
+				+ "Tipo Contratual: " + imovel2 + "\n\n" +
+				"Nome: " + imovel3.getNome() + "\n" + "Endereco: "
+				+ imovel3.getEndereco() + "\n" + "Valor: "
+				+ imovel3.getValor() + "\n" + "Area: " + imovel3.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel3 + "\n"
+				+ "Tipo Contratual: " + imovel3 + "\n\n",
+				controladorImovel.listaImoveis());
 	}
-/*	
-	@Test
-	public void testaListaImoveis(double min, double max){	
-	}
-	
-	@Test
-	public void testaListaImoveis(TipoContratual tipoContratual){	
-	}
-	
-	@Test
-	public void testaListaImoveis(TipoImovel tipoImovel){	
-	}
-	
-	@Test
-	public void testaListaImoveis(EstadoImovel estadoImovel){	
-	}
-	
-	@Test
-	public void testaListaImoveis(String registro){	
-	}*/
 
+	@Test
+	public void testaListaImoveis1() throws Exception{
+		
+		controladorImovel.addImovel(imovel1);
+		controladorImovel.addImovel(imovel2);
+		controladorImovel.addImovel(imovel3);
+		
+		try{
+			controladorImovel.listaImoveis(10, 5);
+		}catch(Exception e){
+			Assert.assertEquals("Intervalo Invalido", e.getMessage());
+		}
+		
+		Assert.assertEquals("Nome: " + imovel1.getNome() + "\n" + "Endereco: "
+					+ imovel1.getEndereco() + "\n" + "Valor: "
+					+ imovel1.getValor() + "\n" + "Area: " + imovel1.getArea()
+					+ "\n" + "Tipo do Imovel: " + imovel1 + "\n"
+					+ "Tipo Contratual: " + imovel1 + "\n\n", 
+					controladorImovel.listaImoveis(3500, 5000));
+		
+		Assert.assertEquals("Nome: " + imovel1.getNome() + "\n" + "Endereco: "
+				+ imovel1.getEndereco() + "\n" + "Valor: "
+				+ imovel1.getValor() + "\n" + "Area: " + imovel1.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel1 + "\n"
+				+ "Tipo Contratual: " + imovel1 + "\n\n" +
+				"Nome: " + imovel2.getNome() + "\n" + "Endereco: "
+				+ imovel2.getEndereco() + "\n" + "Valor: "
+				+ imovel2.getValor() + "\n" + "Area: " + imovel2.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel2 + "\n"
+				+ "Tipo Contratual: " + imovel2 + "\n\n", 
+				controladorImovel.listaImoveis(3000, 25000));
+		
+		Assert.assertEquals("Nome: " + imovel1.getNome() + "\n" + "Endereco: "
+				+ imovel1.getEndereco() + "\n" + "Valor: "
+				+ imovel1.getValor() + "\n" + "Area: " + imovel1.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel1 + "\n"
+				+ "Tipo Contratual: " + imovel1 + "\n\n" +
+				"Nome: " + imovel2.getNome() + "\n" + "Endereco: "
+				+ imovel2.getEndereco() + "\n" + "Valor: "
+				+ imovel2.getValor() + "\n" + "Area: " + imovel2.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel2 + "\n"
+				+ "Tipo Contratual: " + imovel2 + "\n\n" +
+				"Nome: " + imovel3.getNome() + "\n" + "Endereco: "
+				+ imovel3.getEndereco() + "\n" + "Valor: "
+				+ imovel3.getValor() + "\n" + "Area: " + imovel3.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel3 + "\n"
+				+ "Tipo Contratual: " + imovel3 + "\n\n",
+				controladorImovel.listaImoveis(1000, 50000));
+		
+		Assert.assertEquals("Nome: " + imovel2.getNome() + "\n" + "Endereco: "
+				+ imovel2.getEndereco() + "\n" + "Valor: "
+				+ imovel2.getValor() + "\n" + "Area: " + imovel2.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel2 + "\n"
+				+ "Tipo Contratual: " + imovel2 + "\n\n", 
+				controladorImovel.listaImoveis(24999.0, 25001.0));
+		
+		Assert.assertEquals("Nome: " + imovel3.getNome() + "\n" + "Endereco: "
+				+ imovel3.getEndereco() + "\n" + "Valor: "
+				+ imovel3.getValor() + "\n" + "Area: " + imovel3.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel3 + "\n"
+				+ "Tipo Contratual: " + imovel3 + "\n\n", 
+				controladorImovel.listaImoveis(49999, 50001));
+	}
+	
+	@Test
+	public void testaListaImoveis2() throws Exception{
+		
+		controladorImovel.addImovel(imovel1);
+		controladorImovel.addImovel(imovel2);
+		controladorImovel.addImovel(imovel3);
+		
+		Assert.assertEquals("Nome: " + imovel1.getNome() + "\n" + "Endereco: "
+					+ imovel1.getEndereco() + "\n" + "Valor: "
+					+ imovel1.getValor() + "\n" + "Area: " + imovel1.getArea()
+					+ "\n" + "Tipo do Imovel: " + imovel1 + "\n"
+					+ "Tipo Contratual: " + imovel1 + "\n\n", 
+					controladorImovel.listaImoveis(TipoContratual.ALUGUEL));
+		
+		Assert.assertEquals("Nome: " + imovel2.getNome() + "\n" + "Endereco: "
+				+ imovel2.getEndereco() + "\n" + "Valor: "
+				+ imovel2.getValor() + "\n" + "Area: " + imovel2.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel2 + "\n"
+				+ "Tipo Contratual: " + imovel2 + "\n\n" +
+				"Nome: " + imovel3.getNome() + "\n" + "Endereco: "
+				+ imovel3.getEndereco() + "\n" + "Valor: "
+				+ imovel3.getValor() + "\n" + "Area: " + imovel3.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel3 + "\n"
+				+ "Tipo Contratual: " + imovel3 + "\n\n",
+				controladorImovel.listaImoveis(TipoContratual.VENDA));
+	}
+	
+	@Test
+	public void testaListaImoveis3() throws Exception{
+		
+		controladorImovel.addImovel(imovel1);
+		controladorImovel.addImovel(imovel2);
+		controladorImovel.addImovel(imovel3);
+		
+		Assert.assertEquals("Nome: " + imovel1.getNome() + "\n" + "Endereco: "
+				+ imovel1.getEndereco() + "\n" + "Valor: "
+				+ imovel1.getValor() + "\n" + "Area: " + imovel1.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel1 + "\n"
+				+ "Tipo Contratual: " + imovel1 + "\n\n", 
+				controladorImovel.listaImoveis(TipoImovel.CASA));
+		
+		Assert.assertEquals("Nome: " + imovel2.getNome() + "\n" + "Endereco: "
+				+ imovel2.getEndereco() + "\n" + "Valor: "
+				+ imovel2.getValor() + "\n" + "Area: " + imovel2.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel2 + "\n"
+				+ "Tipo Contratual: " + imovel2 + "\n\n", 
+				controladorImovel.listaImoveis(TipoImovel.APARTAMENTO));
+		
+		Assert.assertEquals("Nome: " + imovel3.getNome() + "\n" + "Endereco: "
+				+ imovel3.getEndereco() + "\n" + "Valor: "
+				+ imovel3.getValor() + "\n" + "Area: " + imovel3.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel3 + "\n"
+				+ "Tipo Contratual: " + imovel3 + "\n\n", 
+				controladorImovel.listaImoveis(TipoImovel.TERRENO));
+	}
+	
+	@Test
+	public void testaListaImoveis4() throws Exception{
+		
+		controladorImovel.addImovel(imovel1);
+		controladorImovel.addImovel(imovel2);
+		controladorImovel.addImovel(imovel3);
+		
+		Assert.assertEquals("Nome: " + imovel1.getNome() + "\n" + "Endereco: "
+				+ imovel1.getEndereco() + "\n" + "Valor: "
+				+ imovel1.getValor() + "\n" + "Area: " + imovel1.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel1 + "\n"
+				+ "Tipo Contratual: " + imovel1 + "\n\n" +
+				"Nome: " + imovel2.getNome() + "\n" + "Endereco: "
+				+ imovel2.getEndereco() + "\n" + "Valor: "
+				+ imovel2.getValor() + "\n" + "Area: " + imovel2.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel2 + "\n"
+				+ "Tipo Contratual: " + imovel2 + "\n\n" +
+				"Nome: " + imovel3.getNome() + "\n" + "Endereco: "
+				+ imovel3.getEndereco() + "\n" + "Valor: "
+				+ imovel3.getValor() + "\n" + "Area: " + imovel3.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel3 + "\n"
+				+ "Tipo Contratual: " + imovel3 + "\n\n",
+				controladorImovel.listaImoveis(EstadoImovel.A_VENDA));
+		
+		imovel1.setEstadoDoImovel(EstadoImovel.PEDIDO);
+		
+		Assert.assertEquals("Nome: " + imovel1.getNome() + "\n" + "Endereco: "
+				+ imovel1.getEndereco() + "\n" + "Valor: "
+				+ imovel1.getValor() + "\n" + "Area: " + imovel1.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel1 + "\n"
+				+ "Tipo Contratual: " + imovel1 + "\n\n",
+				controladorImovel.listaImoveis(EstadoImovel.PEDIDO));
+		
+		imovel2.setEstadoDoImovel(EstadoImovel.VENDIDO);
+		
+		Assert.assertEquals("Nome: " + imovel2.getNome() + "\n" + "Endereco: "
+				+ imovel2.getEndereco() + "\n" + "Valor: "
+				+ imovel2.getValor() + "\n" + "Area: " + imovel2.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel2 + "\n"
+				+ "Tipo Contratual: " + imovel2 + "\n\n",
+				controladorImovel.listaImoveis(EstadoImovel.VENDIDO));
+	}
+	
+	@Test
+	public void testaListaImoveis5() throws Exception{
+		
+		controladorImovel.addImovel(imovel1);
+		controladorImovel.addImovel(imovel2);
+		controladorImovel.addImovel(imovel3);
+		
+		Assert.assertEquals("Nome: " + imovel1.getNome() + "\n" + "Endereco: "
+				+ imovel1.getEndereco() + "\n" + "Valor: "
+				+ imovel1.getValor() + "\n" + "Area: " + imovel1.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel1 + "\n"
+				+ "Tipo Contratual: " + imovel1 + "\n\n",
+				controladorImovel.listaImoveis("Casa imobiliada"));
+		
+		Assert.assertEquals("Nome: " + imovel1.getNome() + "\n" + "Endereco: "
+				+ imovel1.getEndereco() + "\n" + "Valor: "
+				+ imovel1.getValor() + "\n" + "Area: " + imovel1.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel1 + "\n"
+				+ "Tipo Contratual: " + imovel1 + "\n\n" +
+				"Nome: " + imovel2.getNome() + "\n" + "Endereco: "
+				+ imovel2.getEndereco() + "\n" + "Valor: "
+				+ imovel2.getValor() + "\n" + "Area: " + imovel2.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel2 + "\n"
+				+ "Tipo Contratual: " + imovel2 + "\n\n" +
+				"Nome: " + imovel3.getNome() + "\n" + "Endereco: "
+				+ imovel3.getEndereco() + "\n" + "Valor: "
+				+ imovel3.getValor() + "\n" + "Area: " + imovel3.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel3 + "\n"
+				+ "Tipo Contratual: " + imovel3 + "\n\n",
+				controladorImovel.listaImoveis("a"));
+		
+		Assert.assertEquals("Nome: " + imovel2.getNome() + "\n" + "Endereco: "
+				+ imovel2.getEndereco() + "\n" + "Valor: "
+				+ imovel2.getValor() + "\n" + "Area: " + imovel2.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel2 + "\n"
+				+ "Tipo Contratual: " + imovel2 + "\n\n",
+				controladorImovel.listaImoveis("Apartamento"));
+		
+		Assert.assertEquals("Nome: " + imovel3.getNome() + "\n" + "Endereco: "
+				+ imovel3.getEndereco() + "\n" + "Valor: "
+				+ imovel3.getValor() + "\n" + "Area: " + imovel3.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel3 + "\n"
+				+ "Tipo Contratual: " + imovel3 + "\n\n",
+				controladorImovel.listaImoveis("Terreno"));
+		
+		Assert.assertNotSame("Nome: " + imovel3.getNome() + "\n" + "Endereco: "
+				+ imovel3.getEndereco() + "\n" + "Valor: "
+				+ imovel3.getValor() + "\n" + "Area: " + imovel3.getArea()
+				+ "\n" + "Tipo do Imovel: " + imovel3 + "\n"
+				+ "Tipo Contratual: " + imovel3 + "\n\n",
+				controladorImovel.listaImoveis("terreno"));//case sensitive
+	}
 }

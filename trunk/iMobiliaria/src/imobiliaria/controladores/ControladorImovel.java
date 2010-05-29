@@ -6,6 +6,7 @@ import imobiliaria.processamento.EstadoImovel;
 import imobiliaria.processamento.Imovel;
 import imobiliaria.processamento.TipoContratual;
 import imobiliaria.processamento.TipoImovel;
+import imobiliaria.util.VerificaInvalido;
 
 import java.util.List;
 
@@ -118,7 +119,7 @@ public class ControladorImovel extends ColecaoImoveis {
 	 *            Representa o array que contem os imoveis que seram listados
 	 * @return Uma String contendo a lista dos imoveis
 	 */
-	private String ListaImoveis(List<Imovel> listaDeImoveis) {
+	private String listaImoveis(List<Imovel> listaDeImoveis) {
 		String saida = "";
 
 		for (Imovel imovel : listaDeImoveis) {
@@ -139,8 +140,8 @@ public class ControladorImovel extends ColecaoImoveis {
 	 * 
 	 * @return Uma String contendo a lista dos imoveis
 	 */
-	public String ListaImoveis() {
-		return ListaImoveis(getImoveis());
+	public String listaImoveis() {
+		return listaImoveis(getImoveis());
 	}
 
 	/**
@@ -153,8 +154,8 @@ public class ControladorImovel extends ColecaoImoveis {
 	 *            Representa um valor maximo de preco para o imovel
 	 * @return Uma String contendo a lista dos imoveis
 	 */
-	public String ListaImoveis(double min, double max) {
-		return ListaImoveis(getImoveisDeValor(min, max));
+	public String listaImoveis(double min, double max) {
+		return listaImoveis(getImoveisDeValor(min, max));
 	}
 
 	/**
@@ -165,8 +166,8 @@ public class ControladorImovel extends ColecaoImoveis {
 	 *            Representa o tipo contratual do imovel
 	 * @return Uma String contendo a lista dos imoveis
 	 */
-	public String ListaImoveis(TipoContratual tipo) {
-		return ListaImoveis(getImoveis(tipo));
+	public String listaImoveis(TipoContratual tipo) {
+		return listaImoveis(getImoveis(tipo));
 	}
 
 	/**
@@ -177,8 +178,8 @@ public class ControladorImovel extends ColecaoImoveis {
 	 *            Representa o tipo do imovel
 	 * @return Uma String contendo a lista dos imoveis
 	 */
-	public String ListaImoveis(TipoImovel tipo) {
-		return ListaImoveis(getImoveis(tipo));
+	public String listaImoveis(TipoImovel tipo) {
+		return listaImoveis(getImoveis(tipo));
 	}
 
 	/**
@@ -189,8 +190,8 @@ public class ControladorImovel extends ColecaoImoveis {
 	 *            Representa o estado de um imovel
 	 * @return Uma String contendo a lista dos imoveis
 	 */
-	public String ListaImoveis(EstadoImovel estado) {
-		return ListaImoveis(getImoveis(estado));
+	public String listaImoveis(EstadoImovel estado) {
+		return listaImoveis(getImoveis(estado));
 	}
 
 	/**
@@ -200,8 +201,11 @@ public class ControladorImovel extends ColecaoImoveis {
 	 *            Representa algum nome contido no nome de um imovel
 	 * @return Uma String contendo a lista dos imoveis
 	 */
-	public String ListaImoveis(String nome) {
-		return ListaImoveis(getImoveis(nome));
+	public String listaImoveis(String nome) {
+		if (VerificaInvalido.basico(nome)){
+			throw new IllegalArgumentException("Nome Invalido");
+		}
+		return listaImoveis(getImoveis(nome));
 	}
 
 	/* Modificacao que eu falei (Yuri) */

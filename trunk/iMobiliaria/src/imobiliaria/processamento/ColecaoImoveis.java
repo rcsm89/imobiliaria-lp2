@@ -80,6 +80,10 @@ public class ColecaoImoveis {
 	 * @return ArrayList contendo os imoveis filtrados
 	 */
 	public ArrayList<Imovel> getImoveisDeValor(double min, double max) {
+		
+		if (min > max){
+			throw new  IllegalArgumentException("Intervalo Invalido");
+		}
 
 		ArrayList<Imovel> colecaoRetornada = new ArrayList<Imovel>();
 
