@@ -33,6 +33,11 @@ public class ColecaoFuncionarioTest {
 		Assert.assertFalse(colFunc1.adicionaFuncionario(func1));
 		Assert.assertEquals(2, colFunc1.getNumFuncionarios());
 	}
+	
+	@Test(expected = Exception.class)
+	public void testaAdicionaNull() {
+		colFunc1.adicionaFuncionario(null);
+	}
 
 	@Test
 	public void testaRemoveFuncionario() throws Exception {
