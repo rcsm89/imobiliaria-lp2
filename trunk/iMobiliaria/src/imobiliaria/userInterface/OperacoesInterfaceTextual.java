@@ -18,6 +18,21 @@ public class OperacoesInterfaceTextual {
 	this.sis = sis;
     }
 
+    // METODOS DA INTERFACE DE CLIENTE
+
+    protected void verificarDadosPessoais(String cpf) {
+	sis.controladorClientes().exibeCliente(cpf);
+    }
+
+    protected void historicoCompras() {
+    }
+
+    protected void listarImoveis() {
+    }
+
+    protected void fazerPedido() {
+    }
+
     // Metodos da Interface
 
     protected void cadastroDeClientes() {
@@ -78,4 +93,5 @@ public class OperacoesInterfaceTextual {
 		+ "        Voce podera redefinir suas preferencias\n"
 		+ "        posteriormente quando acessar sua conta\n");
     }
+
 }
