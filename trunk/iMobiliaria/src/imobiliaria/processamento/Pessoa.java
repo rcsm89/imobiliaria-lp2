@@ -62,7 +62,8 @@ public abstract class Pessoa {
 		|| VerificaInvalido.maiorIdade(dataNascimento)) {
 	    promptErro += "Data de nascimento invalida\n";
 	}
-	if (promptErro.length() != 0) {
+	final int TAM_PALAVRA_VAZIA = 0;
+	if (promptErro.length() != TAM_PALAVRA_VAZIA) {
 	    throw new Exception(promptErro);
 	}
 
@@ -82,7 +83,7 @@ public abstract class Pessoa {
 	    senha += digitos;
 	}
 	this.senha = senha;
-	this.login = cpf;
+	this.login = cpf.substring(0, 5);
     }
 
     // Metodos
