@@ -3,6 +3,7 @@ package imobiliaria.userInterface;
 import imobiliaria.processamento.Cliente;
 import imobiliaria.processamento.Sistema;
 import imobiliaria.processamento.TipoImovel;
+import imobiliaria.util.FormataEntrada;
 import imobiliaria.util.MetodoEntrada;
 
 import java.util.Calendar;
@@ -66,7 +67,8 @@ public class OperacoesInterfaceTextual {
 
 	} while (repeteCadastro);
 
-	Cliente novoCliente = sis.controladorClientes().getCliente(cpf);
+	Cliente novoCliente = sis.controladorClientes().getCliente(
+		FormataEntrada.cpf(cpf));
 
 	System.out.println(lineSep
 		+ "=========== Cadastro Efetuado com Sucesso ============="
