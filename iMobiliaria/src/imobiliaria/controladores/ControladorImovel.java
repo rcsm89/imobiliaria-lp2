@@ -41,6 +41,10 @@ public class ControladorImovel extends ColecaoImoveis {
 	public void modificaImovel(Imovel imovel, String nome, String endereco,
 			double valor, Area area, TipoImovel tipoDoImovel,
 			TipoContratual tipoContratual) throws Exception {
+		
+		if (imovel == null){
+			throw new IllegalArgumentException("Imovel Invalido");
+		}
 
 		imovel.setNome(nome);
 		imovel.setEndereco(endereco);
@@ -59,6 +63,9 @@ public class ControladorImovel extends ColecaoImoveis {
 	 * @return Um imovel cujo registro e igual ao passado
 	 */
 	public Imovel getImovel(String registro) {
+		if (registro == null)
+			throw new IllegalArgumentException("Registro Invalido");
+		
 		int registroDoImovel = 0;
 
 		try {
