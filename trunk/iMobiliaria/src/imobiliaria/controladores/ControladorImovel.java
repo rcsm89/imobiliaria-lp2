@@ -10,9 +10,10 @@ import imobiliaria.processamento.TipoImovel;
 import java.util.List;
 
 /**
- * Classe com objetivo de controlar as funcionalidades de um imovel.
+ * Classe com objetivo de controlar as utilidades de um imovel.
  * 
  * @author Bruno Fabio de Farias Paiva
+ * @version IT01
  */
 public class ControladorImovel extends ColecaoImoveis {
 
@@ -37,7 +38,7 @@ public class ControladorImovel extends ColecaoImoveis {
 	 *             Caso algum dos parametros que forem passados seja invalido
 	 * 
 	 */
-	public void modifica(Imovel imovel, String nome, String endereco,
+	public void modificaImovel(Imovel imovel, String nome, String endereco,
 			double valor, Area area, TipoImovel tipoDoImovel,
 			TipoContratual tipoContratual) throws Exception {
 
