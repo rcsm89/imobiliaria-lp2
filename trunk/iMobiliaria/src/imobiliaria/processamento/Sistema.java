@@ -3,7 +3,6 @@ package imobiliaria.processamento;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.TreeMap;
 import imobiliaria.controladores.*;
 
 /**
@@ -26,7 +25,7 @@ public class Sistema {
 	private ControladorCliente controladorClientes = new ControladorCliente();
 	private ControladorFuncionario controladorFuncionarios = new ControladorFuncionario();
 
-	private TreeMap<Imovel, Cliente> listaPedidos = new TreeMap<Imovel, Cliente>();
+	private HashMap<Imovel, Cliente> listaPedidos = new HashMap<Imovel, Cliente>();
 
 	private Calendar ultimoPagamento = new GregorianCalendar(2010, 06, 1);
 	private boolean pagouNesseMes = false;
@@ -118,9 +117,11 @@ public class Sistema {
 
 		if (imovelPedido == null || clienteQueSolicitou == null)
 			throw new IllegalArgumentException("Parametros invalidos");
-
-		if (listaPedidos.containsKey(imovelPedido))
+		
+		
+		if ( listaPedidos.containsKey(imovelPedido)) {
 			throw new Exception("Imovel ja pedido");
+		}
 
 		clienteQueSolicitou.fazPedido(imovelPedido);
 		imovelPedido.setEstadoDoImovel(EstadoImovel.PEDIDO);

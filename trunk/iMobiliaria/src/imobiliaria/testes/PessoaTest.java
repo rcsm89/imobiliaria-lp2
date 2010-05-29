@@ -249,7 +249,7 @@ public class PessoaTest {
     @Test
     public void testLoginSenha() {
 	// Verifica login e senha default
-	Assert.assertEquals("12345678910", p1.getLogin());
+	Assert.assertEquals("123456", p1.getLogin());
 	Assert.assertEquals("08051991", p1.getSenha());
 
 	// Tentar mudar login (invalido)

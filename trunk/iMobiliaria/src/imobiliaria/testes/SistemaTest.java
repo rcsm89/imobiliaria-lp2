@@ -75,6 +75,7 @@ public class SistemaTest {
 		
 		Assert.assertEquals(EstadoImovel.A_VENDA, imovel1.getEstadoDoImovel());
 		String registroImovel = String.valueOf(imovel1.getRegistroImovel());
+		
 		sistema.adicionaPedido(registroImovel, "123.456.789-10");
 		Assert.assertEquals(EstadoImovel.PEDIDO, imovel1.getEstadoDoImovel());
 
