@@ -72,13 +72,13 @@ public class OperacoesInterfaceTextual {
 
 		sis.controladorClientes().adicionaCliente(cpf, dataNascimento,
 			endereco, nome, preferencia);
+		repeteCadastro = false;
 
 	    } catch (Exception erro) {
 		System.out.println("\n=========== AVISO =============\n"
 			+ erro.getMessage());
 		repeteCadastro = true;
 	    }
-	    repeteCadastro = false;
 
 	} while (repeteCadastro);
 
