@@ -4,11 +4,9 @@
 package imobiliaria.userInterface;
 
 import imobiliaria.processamento.Sistema;
-import imobiliaria.processamento.TipoImovel;
 import imobiliaria.processamento.TipoLogin;
 import imobiliaria.util.MetodoEntrada;
 
-import java.util.Calendar;
 import java.util.LinkedList;
 
 /**
@@ -20,12 +18,13 @@ import java.util.LinkedList;
  */
 public class InterfaceTextual {
 
-    private Sistema sis;
-    private String lineSep;
-
-    private final int CLIENTE = 1;
-    private final int FUNCIONARIO = 2;
     private final int ADMINISTRADOR = 3;
+    private final int FUNCIONARIO = 2;
+    private final int CLIENTE = 1;
+
+    private OperacoesInterfaceTextual op;
+    private String lineSep;
+    private Sistema sis;
 
     // Mensagens do Sistema
 
@@ -47,6 +46,7 @@ public class InterfaceTextual {
     public InterfaceTextual() {
 	this.lineSep = System.getProperty("line.separator");
 	this.sis = new Sistema();
+	this.op = new OperacoesInterfaceTextual(sis);
     }
 
     /**
@@ -91,7 +91,7 @@ public class InterfaceTextual {
 		break;
 
 	    case CADASTRO_CLIENTE:
-		cadastroDeClientes();
+		op.cadastroDeClientes();
 		break;
 
 	    case SAIR:
@@ -103,59 +103,6 @@ public class InterfaceTextual {
 	    }
 	}
 	System.out.println(programaFinalizado);
-    }
-
-    // Metodos da Interface
-
-    private void cadastroDeClientes() {
-
-	boolean repeteCadastro;
-	int opcaoImovel = 0;
-	do {
-	    System.out.println(lineSep
-		    + "----------------- Cadastro de Cliente -----------------"
-		    + lineSep);
-
-	    String nome = MetodoEntrada
-		    .recebeString("Digite o Nome do Cliente: ");
-
-	    String cpf = MetodoEntrada
-		    .recebeString("CPF (Apenas os 11 digitos): ");
-
-	    System.out.print("Data de Nascimento (dd/MM/AAAA): ");
-	    Calendar dataNascimento = MetodoEntrada.recebeData();
-
-	    String endereco = MetodoEntrada.recebeString("Endereco: ");
-
-	    System.out.print("\nQual sua preferência de imóvel?\n"
-		    + "1. Casa\n" + "2. Apartamento\n" + "3. Terreno\n"
-		    + "---------------\n");
-
-	    opcaoImovel = MetodoEntrada.recebeInt();
-
-	    TipoImovel preferencia;
-	    try {
-		preferencia = TipoImovel.values()[opcaoImovel];
-	    } catch (IndexOutOfBoundsException erro) {
-		preferencia = null;
-	    }
-	    try {
-		sis.controladorClientes().adicionaCliente(cpf, dataNascimento,
-			endereco, nome, preferencia);
-		repeteCadastro = false;
-	    } catch (Exception erro) {
-		System.out.println("\n=========== AVISO =============\n"
-			+ erro.getMessage());
-		repeteCadastro = true;
-	    }
-
-	} while (repeteCadastro);
-	System.out
-		.println("\n=========== Cadastro Efetuado com Sucesso =============\n"
-			+ "\nLogin default: 6 primeiros numeros do seu CPF\nSenha default: "
-			+ "Data de Nascimento (DDmmAAAA)\n\n"
-			+ "        Voce podera redefinir suas preferencias\n"
-			+ "        posteriormente quando acessar sua conta\n");
     }
 
     private boolean acesso(int tipo) {
