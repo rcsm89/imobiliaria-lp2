@@ -123,6 +123,8 @@
 	  		<test name="imobiliaria.testes.ControladorClienteTest"/>
 	  		<test name="imobiliaria.testes.ControladorImovelTest"/>
 	  		<test name="imobiliaria.testes.ControladorFuncionarioTest"/>
+	  		
+	  		<test name="imobiliaria.testes.SistemaTest"/>
 	  	</junit>
 	  </target>	
 	
