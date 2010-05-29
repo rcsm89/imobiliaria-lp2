@@ -18,252 +18,298 @@ import java.util.LinkedList;
  */
 public class InterfaceTextual {
 
-    private final int ADMINISTRADOR = 3;
-    private final int FUNCIONARIO = 2;
-    private final int CLIENTE = 1;
+	private final int ADMINISTRADOR = 3;
+	private final int FUNCIONARIO = 2;
+	private final int CLIENTE = 1;
 
-    private OperacoesInterfaceTextual op;
-    private String lineSep;
-    private Sistema sis;
+	private OperacoesInterfaceTextual op;
+	private String lineSep;
+	private Sistema sis;
 
-    // Mensagens do Sistema
+	// Mensagens do Sistema
 
-    private final String programaFinalizado = "================= Programa "
-	    + "Finalizado =================";
+	private final String programaFinalizado = "================= Programa "
+			+ "Finalizado =================";
 
-    private final String opcaoInvalida = "========= Digite Uma Opcao Valida"
-	    + ", Por Favor ==========";
+	private final String opcaoInvalida = "========= Digite Uma Opcao Valida"
+			+ ", Por Favor ==========";
 
-    private final String loginFail = "===================  LOGIN FAILED =="
-	    + "===================";
+	private final String loginFail = "===================  LOGIN FAILED =="
+			+ "===================";
 
-    private final String loginOk = "=================== SEJA BEM VINDO ==="
-	    + "=================";
+	private final String loginOk = "=================== SEJA BEM VINDO ==="
+			+ "=================";
 
-    /**
-     * Metodo que cria uma interface textual para o usuario
-     */
-    public InterfaceTextual() {
-	this.lineSep = System.getProperty("line.separator");
-	this.sis = new Sistema();
-	this.op = new OperacoesInterfaceTextual(sis);
-    }
+	/**
+	 * Metodo que cria uma interface textual para o usuario
+	 */
+	public InterfaceTextual() {
+		this.lineSep = System.getProperty("line.separator");
+		this.sis = new Sistema();
+		this.op = new OperacoesInterfaceTextual(sis);
+	}
 
-    /**
-     * Interface textual do usuario com o programa.
-     */
-    public void interfaceComUsuario() {
-	boolean loopPrincipal = true;
+	/**
+	 * Interface textual do usuario com o programa.
+	 */
+	public void interfaceComUsuario() {
+		boolean loopPrincipal = true;
 
-	final int CADASTRO_CLIENTE = 4;
-	final int SAIR = 5;
+		final int CADASTRO_CLIENTE = 4;
+		final int SAIR = 5;
 
-	while (loopPrincipal) {
-	    promptLogin();
-	    int opcao = MetodoEntrada.recebeInt();
+		while (loopPrincipal) {
+			promptLogin();
+			int opcao = MetodoEntrada.recebeInt();
 
-	    switch (opcao) {
-	    case CLIENTE:
-		if (acesso(CLIENTE)) {
-		    System.out.println(loginOk);
-		    interfaceCliente();
-		} else {
-		    System.out.println(loginFail);
+			switch (opcao) {
+			case CLIENTE:
+				if (acesso(CLIENTE)) {
+					System.out.println(loginOk);
+					interfaceCliente();
+				} else {
+					System.out.println(loginFail);
+				}
+				break;
+
+			case FUNCIONARIO:
+				if (acesso(FUNCIONARIO)) {
+					System.out.println(loginOk);
+					interfaceFuncionario();
+				} else {
+					System.out.println(loginFail);
+				}
+				break;
+
+			case ADMINISTRADOR:
+				if (acesso(ADMINISTRADOR)) {
+					System.out.println(loginOk);
+					interfaceAdmin();
+				} else {
+					System.out.println(loginFail);
+				}
+				break;
+
+			case CADASTRO_CLIENTE:
+				op.cadastroDeClientes();
+				break;
+
+			case SAIR:
+				loopPrincipal = setLoop(loopPrincipal);
+				break;
+
+			default:
+				System.out.println(opcaoInvalida);
+			}
 		}
-		break;
+		System.out.println(programaFinalizado);
+	}
 
-	    case FUNCIONARIO:
-		if (acesso(FUNCIONARIO)) {
-		    System.out.println(loginOk);
-		    interfaceFuncionario();
+	private boolean acesso(int tipo) {
+
+		String userName = MetodoEntrada.recebeString("Login: ");
+		String password = MetodoEntrada.recebeString("Senha: ");
+
+		if (tipo == ADMINISTRADOR) {
+			return sis.login(userName, password, TipoLogin.ADMINISTRADOR);
+
+		} else if (tipo == FUNCIONARIO) {
+			return sis.login(userName, password, TipoLogin.FUNCIONARIO);
+
+		} else if (tipo == CLIENTE) {
+			return sis.login(userName, password, TipoLogin.CLIENTE);
+
 		} else {
-		    System.out.println(loginFail);
+			return false;
 		}
-		break;
+	}
 
-	    case ADMINISTRADOR:
-		if (acesso(ADMINISTRADOR)) {
-		    System.out.println(loginOk);
-		    interfaceAdmin();
-		} else {
-		    System.out.println(loginFail);
+	private void interfaceCliente() {
+
+		boolean repeteMenu = true;
+		int opcao;
+
+		while (repeteMenu) {
+			promptMenuCliente();
+			opcao = MetodoEntrada.recebeInt();
+
+			switch (opcao) {
+			case 1:
+				break;
+
+			}
 		}
-		break;
-
-	    case CADASTRO_CLIENTE:
-		op.cadastroDeClientes();
-		break;
-
-	    case SAIR:
-		loopPrincipal = setLoop(loopPrincipal);
-		break;
-
-	    default:
-		System.out.println(opcaoInvalida);
-	    }
-	}
-	System.out.println(programaFinalizado);
-    }
-
-    private boolean acesso(int tipo) {
-
-	String userName = MetodoEntrada.recebeString("Login: ");
-	String password = MetodoEntrada.recebeString("Senha: ");
-
-	if (tipo == ADMINISTRADOR) {
-	    return sis.login(userName, password, TipoLogin.ADMINISTRADOR);
-
-	} else if (tipo == FUNCIONARIO) {
-	    return sis.login(userName, password, TipoLogin.FUNCIONARIO);
-
-	} else if (tipo == CLIENTE) {
-	    return sis.login(userName, password, TipoLogin.CLIENTE);
-
-	} else {
-	    return false;
-	}
-    }
-
-    private void interfaceCliente() {
-
-	boolean repeteMenu = true;
-	int opcao;
-
-	while (repeteMenu) {
-	    promptMenuCliente();
-	    opcao = MetodoEntrada.recebeInt();
-
-	    switch (opcao) {
-	    case 1:
-		break;
-
-	    }
-	}
-    }
-
-    private void interfaceFuncionario() {
-	boolean repeteMenu = true;
-	int opcao;
-
-	while (repeteMenu) {
-	    promptMenuFuncionario();
-	    opcao = MetodoEntrada.recebeInt();
-
-	    switch (opcao) {
-	    case 1:
-		break;
-
-	    }
 	}
 
-    }
+	private void interfaceFuncionario() {
+		boolean repeteMenu = true;
+		int opcao;
 
-    private void interfaceAdmin() {
-	boolean repeteMenu = true;
-	int opcao;
+		while (repeteMenu) {
+			promptMenuFuncionario();
+			opcao = MetodoEntrada.recebeInt();
 
-	while (repeteMenu) {
-	    promptMenuAdmin();
-	    opcao = MetodoEntrada.recebeInt();
+			switch (opcao) {
+			case 1:
+				break;
 
-	    switch (opcao) {
-	    case 1:
-		break;
+			}
+		}
 
-	    }
 	}
 
-    }
+	private void interfaceAdmin() {
+		boolean repeteMenu = true;
+		int opcao;
 
-    // Metodos modificadores da Interface
-    private boolean setLoop(boolean loop) {
-	return !(loop);
-    }
+		while (repeteMenu) {
+			promptMenuAdmin();
+			opcao = MetodoEntrada.recebeInt();
 
-    // Metodos que mostram o prompt da operacao atual
-    private void promptLogin() {
-	System.out
-		.println("--------------------- iMobiliaria ---------------------"
-			+ lineSep
-			+ "  Bem Vindo, realize o login ou cadastre-se, por favor "
-			+ lineSep
-			+ lineSep
-			+ "      1. Cliente                    4. Cadastro"
-			+ lineSep
-			+ "      2. Funcionario                5. Sair"
-			+ lineSep + "      3. Administrador" + lineSep);
-    }
+			switch (opcao) {
+			case 1:
+				break;
 
-    private void promptMenuAdmin() {
-	System.out
-		.println("-------------------- Administrador --------------------"
-			+ lineSep + constroeMenu(opcoesMenu(ADMINISTRADOR)));
-    }
+			}
+		}
 
-    private void promptMenuCliente() {
-	System.out
-		.println("----------------------- Cliente -----------------------"
-			+ lineSep + constroeMenu(opcoesMenu(CLIENTE)));
-
-    }
-
-    private void promptMenuFuncionario() {
-	System.out
-		.println("--------------------- Funcionario ---------------------"
-			+ lineSep);
-	constroeMenu(opcoesMenu(FUNCIONARIO));
-
-    }
-
-    private LinkedList<String> opcoesMenu(int tipo) {
-
-	String[] opcoesMenuCliente = { "Cadastrar Cliente", "Listar Clientes",
-		"Excluir Cadastro de Cliente", "Atualizar Cadastro de Cliente" };
-	String[] opcoesMenuFuncionario = { "Cadastrar Funcionario",
-		"Listar Funcionario", "Excluir Cadastro de Funcionario",
-		"Atualizar Cadastro de Funcionario" };
-	String[] opcoesImoveis = { "Cadastrar Imovel", "Listar Imoveis",
-		"Excluir Cadastro de Imovel", "Atualizar Cadastro de Imovel" };
-	String[] opcoesMenuAdmin = { "Efetuar Pagamento" };
-
-	LinkedList<String> menu = new LinkedList<String>();
-
-	if (tipo == CLIENTE) {
-	    for (String opcao : opcoesMenuCliente)
-		menu.add(opcao);
-
-	} else if (tipo == FUNCIONARIO) {
-	    menu = opcoesMenu(CLIENTE);
-
-	    String[][] conjuntoOpcoes = { opcoesMenuFuncionario, opcoesImoveis };
-
-	    for (String[] tipoDaVez : conjuntoOpcoes) {
-		menu.add(lineSep);
-		for (String opcao : tipoDaVez)
-		    menu.add(opcao);
-	    }
-	} else if (tipo == ADMINISTRADOR) {
-	    menu = opcoesMenu(FUNCIONARIO);
-
-	    menu.add(lineSep);
-	    for (String opcao : opcoesMenuAdmin)
-		menu.add(opcao);
 	}
-	return menu;
-    }
 
-    private String constroeMenu(LinkedList<String> opcoes) {
-	String saida = lineSep;
-
-	int num = 1;
-	for (String opcao : opcoes) {
-	    if (!(opcao.equals(lineSep))) {
-		saida += String.format("  %2d. %s%s", num, opcao, lineSep);
-		num++;
-	    } else {
-		saida += lineSep;
-	    }
+	// Metodos modificadores da Interface
+	private boolean setLoop(boolean loop) {
+		return !(loop);
 	}
-	return saida += String.format("  %2d. %s%s", num, "Sair", lineSep);
-    }
+
+	// Metodos que mostram o prompt da operacao atual
+	private void promptLogin() {
+		System.out
+				.println("--------------------- iMobiliaria ---------------------"
+						+ lineSep
+						+ "  Bem Vindo, realize o login ou cadastre-se, por favor "
+						+ lineSep
+						+ lineSep
+						+ "      1. Cliente                    4. Cadastro"
+						+ lineSep
+						+ "      2. Funcionario                5. Sair"
+						+ lineSep + "      3. Administrador" + lineSep);
+	}
+
+	private void promptMenuAdmin() {
+		System.out
+				.println("-------------------- Administrador --------------------"
+						+ lineSep + constroeMenu(opcoesMenu(ADMINISTRADOR)));
+	}
+
+	private void promptMenuCliente() {
+		System.out
+				.println("----------------------- Cliente -----------------------"
+						+ lineSep + constroeMenu(opcoesMenu(CLIENTE)));
+
+	}
+
+	private void promptMenuFuncionario() {
+		System.out
+				.println("--------------------- Funcionario ---------------------"
+						+ lineSep);
+		constroeMenu(opcoesMenu(FUNCIONARIO));
+
+	}
+
+	private LinkedList<String> opcoesMenu(int tipo) {
+
+		String[] opcoesMenuCliente = { "Listar Imoveis", "Fazer Pedido",
+				"Verificar seus dados", "Ver Historico de Compras", "Deslogar" };
+
+		String[] opcoesMenuFuncionario = {
+				// Opcoes relacionadas a cliente (CRDU)
+
+				"Cadastrar Cliente",
+				"Listar Clientes",
+				"Excluir Cadastro de Cliente",
+				"Atualizar Cadastro de Cliente",
+				"Verificar informacoes de um Cliente",
+
+				// Opcoes relacionadas a Imoveis (CRDU)
+
+				"Cadastrar Imovel", "Listar Imoveis",
+				"Excluir Cadastro de Imovel", "Atualizar Cadastro de Imovel",
+				"Verificar informacoes de um Imovel",
+
+				// Opcoes do Funcionario
+
+				"Efetuar um Pedido", "Verificar seus dados",
+				"Ver Historico de Vendas", "Deslogar" };
+
+		String[] opcoesMenuAdmin = {
+				// Opcoes relacionadas a cliente (CRDU)
+
+				"Cadastrar Cliente",
+				"Listar Clientes",
+				"Excluir Cadastro de Cliente",
+				"Atualizar Cadastro de Cliente",
+				"Verificar informacoes de um Cliente",
+
+				// Opcoes relacionadas a Imoveis (CRDU)
+
+				"Cadastrar Imovel",
+				"Listar Imoveis",
+				"Excluir Cadastro de Imovel",
+				"Atualizar Cadastro de Imovel",
+				"Verificar informacoes de um Imovel",
+
+				// Opcoes relacionadas a Funcionarios (CRDU) + Efetuar Pedido
+
+				"Cadastrar Funcionario", "Listar Funcionario",
+				"Excluir Cadastro de Funcionario",
+				"Atualizar Cadastro de Funcionario",
+				"Verificar informacoes de um Funcionario", "Efetuar um Pedido",
+
+				// Opcoes do Admin
+
+				"Realiza Pagamento", "Ver Saldo Atual" };
+
+		// Esse array aqui nao seria usado
+		String[] opcoesImoveis = { "Cadastrar Imovel", "Listar Imoveis",
+				"Excluir Cadastro de Imovel", "Atualizar Cadastro de Imovel" };
+
+		LinkedList<String> menu = new LinkedList<String>();
+
+		if (tipo == CLIENTE) {
+			for (String opcao : opcoesMenuCliente)
+				menu.add(opcao);
+
+		} else if (tipo == FUNCIONARIO) {
+			menu = opcoesMenu(CLIENTE);
+
+			String[][] conjuntoOpcoes = { opcoesMenuFuncionario, opcoesImoveis };
+
+			for (String[] tipoDaVez : conjuntoOpcoes) {
+				menu.add(lineSep);
+				for (String opcao : tipoDaVez)
+					menu.add(opcao);
+			}
+		} else if (tipo == ADMINISTRADOR) {
+			menu = opcoesMenu(FUNCIONARIO);
+
+			menu.add(lineSep);
+			for (String opcao : opcoesMenuAdmin)
+				menu.add(opcao);
+		}
+		return menu;
+	}
+
+	private String constroeMenu(LinkedList<String> opcoes) {
+		String saida = lineSep;
+
+		int num = 1;
+		for (String opcao : opcoes) {
+			if (!(opcao.equals(lineSep))) {
+				saida += String.format("  %2d. %s%s", num, opcao, lineSep);
+				num++;
+			} else {
+				saida += lineSep;
+			}
+		}
+		return saida += String.format("  %2d. %s%s", num, "Sair", lineSep);
+	}
 }
