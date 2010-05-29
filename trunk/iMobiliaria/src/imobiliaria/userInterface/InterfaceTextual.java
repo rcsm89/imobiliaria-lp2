@@ -21,7 +21,6 @@ import java.util.LinkedList;
 public class InterfaceTextual {
 
     private Sistema sis;
-    private boolean loopPrincipal;
     private String lineSep;
 
     private final int CLIENTE = 1;
@@ -29,8 +28,6 @@ public class InterfaceTextual {
     private final int ADMINISTRADOR = 3;
 
     // Mensagens do Sistema
-    private final String loginFail = "==================="
-	    + "  LOGIN FAILED =====================";
 
     private final String programaFinalizado = "================= Programa "
 	    + "Finalizado =================";
@@ -38,11 +35,16 @@ public class InterfaceTextual {
     private final String opcaoInvalida = "========= Digite Uma Opcao Valida"
 	    + ", Por Favor ==========";
 
+    private final String loginFail = "===================  LOGIN FAILED =="
+	    + "===================";
+
+    private final String loginOk = "=================== SEJA BEM VINDO ==="
+	    + "=================";
+
     /**
      * Metodo que cria uma interface textual para o usuario
      */
     public InterfaceTextual() {
-	this.loopPrincipal = true;
 	this.lineSep = System.getProperty("line.separator");
 	this.sis = new Sistema();
     }
@@ -51,6 +53,7 @@ public class InterfaceTextual {
      * Interface textual do usuario com o programa.
      */
     public void interfaceComUsuario() {
+	boolean loopPrincipal = true;
 
 	final int CADASTRO_CLIENTE = 4;
 	final int SAIR = 5;
@@ -62,6 +65,7 @@ public class InterfaceTextual {
 	    switch (opcao) {
 	    case CLIENTE:
 		if (acesso(CLIENTE)) {
+		    System.out.println(loginOk);
 		    interfaceCliente();
 		} else {
 		    System.out.println(loginFail);
@@ -70,6 +74,7 @@ public class InterfaceTextual {
 
 	    case FUNCIONARIO:
 		if (acesso(FUNCIONARIO)) {
+		    System.out.println(loginOk);
 		    interfaceFuncionario();
 		} else {
 		    System.out.println(loginFail);
@@ -78,6 +83,7 @@ public class InterfaceTextual {
 
 	    case ADMINISTRADOR:
 		if (acesso(ADMINISTRADOR)) {
+		    System.out.println(loginOk);
 		    interfaceAdmin();
 		} else {
 		    System.out.println(loginFail);
@@ -89,7 +95,7 @@ public class InterfaceTextual {
 		break;
 
 	    case SAIR:
-		setLoopPrincipal();
+		loopPrincipal = setLoop(loopPrincipal);
 		break;
 
 	    default:
@@ -97,7 +103,6 @@ public class InterfaceTextual {
 	    }
 	}
 	System.out.println(programaFinalizado);
-	;
     }
 
     // Metodos da Interface
@@ -147,7 +152,7 @@ public class InterfaceTextual {
 	} while (repeteCadastro);
 	System.out
 		.println("\n=========== Cadastro Efetuado com Sucesso =============\n"
-			+ "\nLogin default: 11 Digitos do seu CPF\nSenha default: "
+			+ "\nLogin default: 6 primeiros numeros do seu CPF\nSenha default: "
 			+ "Data de Nascimento (DDmmAAAA)\n\n"
 			+ "        Voce podera redefinir suas preferencias\n"
 			+ "        posteriormente quando acessar sua conta\n");
@@ -224,8 +229,8 @@ public class InterfaceTextual {
     }
 
     // Metodos modificadores da Interface
-    private void setLoopPrincipal() {
-	loopPrincipal = !(loopPrincipal);
+    private boolean setLoop(boolean loop) {
+	return !(loop);
     }
 
     // Metodos que mostram o prompt da operacao atual
@@ -276,54 +281,42 @@ public class InterfaceTextual {
 
 	LinkedList<String> menu = new LinkedList<String>();
 
-	int numMenu = 1;
-	switch (tipo) {
-
-	case CLIENTE:
-	    for (String opcao : opcoesMenuCliente) {
-		opcao = numMenu + ". " + opcao + lineSep;
+	if (tipo == CLIENTE) {
+	    for (String opcao : opcoesMenuCliente)
 		menu.add(opcao);
-		numMenu++;
-	    }
-	    break;
 
-	case FUNCIONARIO:
+	} else if (tipo == FUNCIONARIO) {
 	    menu = opcoesMenu(CLIENTE);
-	    numMenu = menu.size() + 1;
 
 	    String[][] conjuntoOpcoes = { opcoesMenuFuncionario, opcoesImoveis };
 
 	    for (String[] tipoDaVez : conjuntoOpcoes) {
 		menu.add(lineSep);
-		for (String opcao : tipoDaVez) {
-		    opcao = numMenu + ". " + opcao + lineSep;
+		for (String opcao : tipoDaVez)
 		    menu.add(opcao);
-		    numMenu++;
-		}
 	    }
-	    break;
-
-	case ADMINISTRADOR:
+	} else if (tipo == ADMINISTRADOR) {
 	    menu = opcoesMenu(FUNCIONARIO);
-	    numMenu = menu.size() + 1;
 
 	    menu.add(lineSep);
-	    for (String opcao : opcoesMenuAdmin) {
-		opcao = numMenu + ". " + opcao + lineSep;
+	    for (String opcao : opcoesMenuAdmin)
 		menu.add(opcao);
-		numMenu++;
-	    }
-	    break;
 	}
 	return menu;
     }
 
     private String constroeMenu(LinkedList<String> opcoes) {
-	String saida = "";
-	for (String opcao : opcoes) {
-	    saida += opcao;
-	}
-	return saida;
-    }
+	String saida = lineSep;
 
+	int num = 1;
+	for (String opcao : opcoes) {
+	    if (!(opcao.equals(lineSep))) {
+		saida += String.format("  %2d. %s%s", num, opcao, lineSep);
+		num++;
+	    } else {
+		saida += lineSep;
+	    }
+	}
+	return saida += String.format("  %2d. %s%s", num, "Sair", lineSep);
+    }
 }
