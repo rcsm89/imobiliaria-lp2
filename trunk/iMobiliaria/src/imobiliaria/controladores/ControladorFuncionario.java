@@ -66,7 +66,7 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 
 	public boolean login(String login, String senha) {
 		if (VerificaInvalido.basico(login) || VerificaInvalido.basico(senha))
-			throw new IllegalArgumentException();
+			return false;
 		if (loginFuncionarios.containsKey(login)) {
 			if (loginFuncionarios.get(login).equals(senha))
 				return true;
