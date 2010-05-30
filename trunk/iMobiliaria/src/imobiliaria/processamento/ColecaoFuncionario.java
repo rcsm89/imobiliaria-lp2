@@ -95,7 +95,10 @@ public class ColecaoFuncionario {
 	 *         False - Se ele ja existir na colecao
 	 */
 	public boolean adicionaFuncionario(Funcionario funcionarioASerAdicionado) {
-
+		if (funcionarioASerAdicionado == null){
+			throw new IllegalArgumentException("Funcionario Invalido");
+		}
+		
 		if (colecaoFuncionarios.contains(funcionarioASerAdicionado)) {
 			return false;
 		}
