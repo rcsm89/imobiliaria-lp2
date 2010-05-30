@@ -99,7 +99,7 @@ public class Area {
 	
 	@Override
 	public String toString() {
-		return comprimento + "|" + largura + "|" + classificacao;
+		return comprimento + "x" + largura + " (" + classificacao + ")";
 	}
 	
 	/**

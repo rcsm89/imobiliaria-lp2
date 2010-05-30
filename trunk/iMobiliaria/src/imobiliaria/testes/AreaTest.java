@@ -45,9 +45,9 @@ public class AreaTest {
 		
 		// toStrings
 		
-		Assert.assertEquals("2.0|4.0|PEQUENA", area1.toString());
-		Assert.assertEquals("8.0|7.0|MEDIA", area2.toString());
-		Assert.assertEquals("25.0|30.0|GRANDE", area3.toString());
+		Assert.assertEquals("2.0x4.0 (PEQUENA)", area1.toString());
+		Assert.assertEquals("8.0x7.0 (MEDIA)", area2.toString());
+		Assert.assertEquals("25.0x30.0 (GRANDE)", area3.toString());
 		
 		
 		// Acessadores

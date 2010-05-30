@@ -30,6 +30,11 @@ public class Cliente extends Pessoa {
 	public Cliente(String cpf, Calendar dataNascimento, String endereco,
 			String nome, TipoImovel preferencia) throws Exception {
 		super(cpf, dataNascimento, endereco, nome);
+		
+		if (preferencia == null) {
+			throw new Exception("Preferencia invalida!");
+		}
+		
 		this.preferencia = preferencia;
 	}
 

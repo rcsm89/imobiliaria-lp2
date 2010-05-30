@@ -56,6 +56,14 @@ public class Imovel {
 		if (!(VerificaInvalido.pertenceAIntervalo(valor, 0.0, 999999999.0))) {
 			mensagemErro += "Valor invalido\n";
 		}
+		
+		if (tipoDoImovel == null) {
+			mensagemErro += "Tipo de Imovel invalido\n";
+		}
+		
+		if (tipoContratual == null) {
+			mensagemErro += "Tipo Contratual invalido\n";
+		}
 
 		if (mensagemErro.length() != 0) {
 			throw new Exception(mensagemErro);
