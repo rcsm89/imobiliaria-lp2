@@ -146,6 +146,7 @@ public class InterfaceTextual {
 
 	    switch (opcao) {
 	    case LISTAR_IMOVEIS:
+	    	op.listarImoveis();
 		break;
 
 	    case FAZER_PEDIDO:
