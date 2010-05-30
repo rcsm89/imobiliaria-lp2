@@ -230,6 +230,7 @@ public class InterfaceTextual {
 
 	    case SAIR:
 		repeteMenu = !(repeteMenu);
+		break;
 
 	    default:
 		System.out.println(opcaoInvalida);
