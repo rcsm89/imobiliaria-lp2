@@ -87,10 +87,12 @@ public class OperacoesInterfaceTextual {
 			try {
 
 				if (sis.controladorClientes().adicionaCliente(cpf, dataNascimento,
-						endereco, nome, preferencia))
+						endereco, nome, preferencia)) {
 					repeteCadastro = false;
-				repeteCadastro = true;
-
+				} else {
+					throw new Exception("Cliente ja existente");
+				}
+				
 			} catch (Exception erro) {
 				System.out.println("\n=========== AVISO =============\n"
 						+ erro.getMessage());
@@ -136,12 +138,15 @@ public class OperacoesInterfaceTextual {
 			creci = MetodoEntrada.recebeString("Numero do CRECI: ");
 
 			try {
-				sis.controladorFuncionarios().adicionaFuncionario(cpf,
-						dataNascimento, endereco, nome, creci);
-				
-				novoFunc = sis.controladorFuncionarios().getFuncionario(creci);
+				if (sis.controladorFuncionarios().adicionaFuncionario(cpf,
+						dataNascimento, endereco, nome, creci)) {
+					
+					novoFunc = sis.controladorFuncionarios().getFuncionario(creci);
 
-				repeteCadastro = false;
+					repeteCadastro = false;
+				} else {
+					throw new Exception("Funcionario ja existente");
+				}
 
 			} catch (Exception erro) {
 				System.out.println("\n=========== AVISO =============\n"
