@@ -75,17 +75,17 @@ public class ImovelTest {
 		
 		Assert.assertEquals(
 						"4|Casa imobiliada para Alugar|Rua Joaquim Caroca, Bodocongo," +
-						" Num 2471, CG/PB|3500.0|4.0|6.0|PEQUENA|CASA|ALUGUEL|A_VENDA",
+						" Num 2471, CG/PB|3500.0|4.0x6.0 (PEQUENA)|CASA|ALUGUEL|A_VENDA",
 						imovel1.toString());
 		
 		Assert.assertEquals(
 				"5|Apartamento a Venda!!!|Rua Fernando Luiz Henrique dos Santos, num 2831," +
-				" JP/PB, Ed. Java, apto 1300|25000.0|4.0|6.0|PEQUENA|APARTAMENTO|VENDA|A_VENDA",
+				" JP/PB, Ed. Java, apto 1300|25000.0|4.0x6.0 (PEQUENA)|APARTAMENTO|VENDA|A_VENDA",
 				imovel2.toString());
 		
 		Assert.assertEquals(
 				"6|Terreno a venda no Altiplano!|Rua Algumacoisa de algo, no Altiplano," +
-				" Num 9999, JP/PB|50000.0|15.0|7.0|GRANDE|TERRENO|VENDA|A_VENDA",
+				" Num 9999, JP/PB|50000.0|15.0x7.0 (GRANDE)|TERRENO|VENDA|A_VENDA",
 				imovel3.toString());
 		
 		
