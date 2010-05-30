@@ -14,221 +14,225 @@ import java.util.Calendar;
 
 public class OperacoesInterfaceTextual {
 
-    private String lineSep;
-    private Sistema sis;
+	private String lineSep;
+	private Sistema sis;
 
-    public OperacoesInterfaceTextual(Sistema sis) {
-	this.lineSep = System.getProperty("line.separator");
-	this.sis = sis;
-    }
-
-    // METODOS DA INTERFACE DE CLIENTE
-
-    protected void verificarDadosPessoais(Cliente cliente) {
-	System.out.println(sis.controladorClientes().exibeCliente(
-		cliente.getCpf()));
-    }
-
-    protected void historicoCompras(Cliente cl) {
-	int num = 1;
-	System.out.println(lineSep);
-	for (Imovel imovel : cl.getHistoricoCompras().getImoveis()) {
-	    System.out.println(String.format("%2d. %s", num, imovel));
-	    num++;
+	public OperacoesInterfaceTextual(Sistema sis) {
+		this.lineSep = System.getProperty("line.separator");
+		this.sis = sis;
 	}
-	System.out.println(lineSep);
-    }
 
-    protected void listarImoveis() {
-    }
+	// METODOS DA INTERFACE DE CLIENTE
 
-    protected void fazerPedido() {
-    }
+	protected void verificarDadosPessoais(Cliente cliente) {
+		System.out.println(sis.controladorClientes().exibeCliente(
+				cliente.getCpf()));
+	}
 
-    // Metodos da Interface
+	protected void historicoCompras(Cliente cl) {
+		int num = 1;
+		System.out.println(lineSep);
+		for (Imovel imovel : cl.getHistoricoCompras().getImoveis()) {
+			System.out.println(String.format("%2d. %s", num, imovel));
+			num++;
+		}
+		System.out.println(lineSep);
+	}
 
-    protected void cadastroDeClientes() {
+	protected void listarImoveis() {
+	}
 
-	String nome, cpf, endereco;
-	Calendar dataNascimento;
-	TipoImovel preferencia;
+	protected void fazerPedido() {
+	}
 
-	boolean repeteCadastro;
-	int opcaoImovel = 0;
-	do {
-	    System.out.println(lineSep
-		    + "----------------- Cadastro de Cliente -----------------"
-		    + lineSep);
+	// Metodos da Interface
 
-	    nome = MetodoEntrada.recebeString("Digite o Nome do Cliente: ");
+	protected void cadastroDeClientes() {
 
-	    cpf = MetodoEntrada.recebeString("CPF (Apenas os 11 digitos): ");
+		String nome, cpf, endereco;
+		Calendar dataNascimento;
+		TipoImovel preferencia;
 
-	    System.out.print("Data de Nascimento (dd/MM/AAAA): ");
-	    dataNascimento = MetodoEntrada.recebeData();
+		boolean repeteCadastro;
+		int opcaoImovel = 0;
+		do {
+			System.out.println(lineSep
+					+ "----------------- Cadastro de Cliente -----------------"
+					+ lineSep);
 
-	    endereco = MetodoEntrada.recebeString("Endereco: ");
+			nome = MetodoEntrada.recebeString("Digite o Nome do Cliente: ");
 
-	    System.out.print("\nQual sua preferência de imovel?\n"
-		    + "1. Casa\n" + "2. Apartamento\n" + "3. Terreno\n"
-		    + "---------------\n");
+			cpf = MetodoEntrada.recebeString("CPF (Apenas os 11 digitos): ");
 
-	    opcaoImovel = MetodoEntrada.recebeInt();
+			System.out.print("Data de Nascimento (dd/MM/AAAA): ");
+			dataNascimento = MetodoEntrada.recebeData();
 
-	    try {
-		preferencia = TipoImovel.values()[opcaoImovel];
-	    } catch (IndexOutOfBoundsException erro) {
-		preferencia = null;
-	    }
-	    try {
+			endereco = MetodoEntrada.recebeString("Endereco: ");
 
-		sis.controladorClientes().adicionaCliente(cpf, dataNascimento,
-			endereco, nome, preferencia);
-		repeteCadastro = false;
+			System.out.print("\nQual sua preferência de imovel?\n"
+					+ "1. Casa\n" + "2. Apartamento\n" + "3. Terreno\n"
+					+ "---------------\n");
 
-	    } catch (Exception erro) {
-		System.out.println("\n=========== AVISO =============\n"
-			+ erro.getMessage());
-		repeteCadastro = true;
-	    }
+			opcaoImovel = MetodoEntrada.recebeInt();
 
-	} while (repeteCadastro);
+			try {
+				preferencia = TipoImovel.values()[opcaoImovel];
+			} catch (IndexOutOfBoundsException erro) {
+				preferencia = null;
+			}
+			try {
 
-	Cliente novoCliente = sis.controladorClientes().getCliente(
-		FormataEntrada.cpf(cpf));
+				sis.controladorClientes().adicionaCliente(cpf, dataNascimento,
+						endereco, nome, preferencia);
+				repeteCadastro = false;
 
-	System.out.println(lineSep
-		+ "=========== Cadastro Efetuado com Sucesso ============="
-		+ lineSep + lineSep + "Login default: "
-		+ novoCliente.getLogin() + lineSep + "Senha default: "
-		+ novoCliente.getSenha() + lineSep + lineSep
-		+ "        Voce podera redefinir suas preferencias\n"
-		+ "        posteriormente quando acessar sua conta\n");
-    }
+			} catch (Exception erro) {
+				System.out.println("\n=========== AVISO =============\n"
+						+ erro.getMessage());
+				repeteCadastro = true;
+			}
 
-    protected void cadastroDeFuncionario() {
-	Funcionario novoFunc = null;
+		} while (repeteCadastro);
 
-	String nome, cpf, endereco, creci;
-	Calendar dataNascimento;
+		Cliente novoCliente = sis.controladorClientes().getCliente(
+				FormataEntrada.cpf(cpf));
 
-	boolean repeteCadastro;
-	do {
-	    System.out.println(lineSep
-		    + "--------------- Cadastro de Funcionario ---------------"
+		System.out.println(lineSep
+				+ "=========== Cadastro Efetuado com Sucesso ============="
+				+ lineSep + lineSep + "Login default: "
+				+ novoCliente.getLogin() + lineSep + "Senha default: "
+				+ novoCliente.getSenha() + lineSep + lineSep
+				+ "        Voce podera redefinir suas preferencias\n"
+				+ "        posteriormente quando acessar sua conta\n");
+	}
 
-		    + lineSep);
+	protected void cadastroDeFuncionario() {
+		
+		Funcionario novoFunc = null;
 
-	    nome = MetodoEntrada.recebeString("Nome do Funcionario: ");
+		String nome, cpf, endereco, creci;
+		Calendar dataNascimento;
 
-	    cpf = MetodoEntrada.recebeString("CPF (Apenas os 11 digitos): ");
+		boolean repeteCadastro;
+		do {
+			System.out.println(lineSep
+					+ "--------------- Cadastro de Funcionario ---------------"
 
-	    System.out.print("Data de Nascimento (dd/MM/AAAA): ");
-	    dataNascimento = MetodoEntrada.recebeData();
+					+ lineSep);
 
-	    endereco = MetodoEntrada.recebeString("Endereco: ");
-	    creci = MetodoEntrada.recebeString("Numero do CRECI: ");
+			nome = MetodoEntrada.recebeString("Nome do Funcionario: ");
 
-	    try {
-		novoFunc = new Funcionario(cpf, dataNascimento, endereco, nome,
-			creci);
-		sis.controladorFuncionarios().adicionaFuncionario(novoFunc);
-		repeteCadastro = false;
+			cpf = MetodoEntrada.recebeString("CPF (Apenas os 11 digitos): ");
 
-	    } catch (Exception erro) {
-		System.out.println("\n=========== AVISO =============\n"
-			+ erro.getMessage());
-		repeteCadastro = true;
-	    }
+			System.out.print("Data de Nascimento (dd/MM/AAAA): ");
+			dataNascimento = MetodoEntrada.recebeData();
 
-	} while (repeteCadastro);
+			endereco = MetodoEntrada.recebeString("Endereco: ");
+			creci = MetodoEntrada.recebeString("Numero do CRECI: ");
 
-	System.out.println(lineSep
-		+ "=========== Cadastro Efetuado com Sucesso ============="
-		+ lineSep + lineSep + "Login default: " + novoFunc.getLogin()
-		+ lineSep + "Senha default: " + novoFunc.getSenha() + lineSep
-		+ lineSep + "        Voce podera redefinir suas preferencias\n"
-		+ "        posteriormente quando acessar sua conta\n");
-    }
+			try {
+				sis.controladorFuncionarios().adicionaFuncionario(cpf,
+						dataNascimento, endereco, nome, creci);
+				
+				novoFunc = sis.controladorFuncionarios().getFuncionario(creci);
 
-    protected void cadastroDeImovel() {
+				repeteCadastro = false;
 
-	Imovel novoImovel = null;
-	String nome, endereco;
+			} catch (Exception erro) {
+				System.out.println("\n=========== AVISO =============\n"
+						+ erro.getMessage());
+				repeteCadastro = true;
+			}
 
-	TipoImovel tipoDoImovel;
-	TipoContratual tipoContratual;
-	Area area = null;
-	double valor, comprimento, largura;
+		} while (repeteCadastro);
+		
 
-	boolean repeteCadastro;
+		System.out.println(lineSep
+				+ "=========== Cadastro Efetuado com Sucesso ============="
+				+ lineSep + lineSep + "Login default: " + novoFunc.getLogin()
+				+ lineSep + "Senha default: " + novoFunc.getSenha() + lineSep
+				+ lineSep + "        Voce podera redefinir suas preferencias\n"
+				+ "        posteriormente quando acessar sua conta\n");
+	}
 
-	int opcaoImovel;
-	int opcaoContrato;
+	protected void cadastroDeImovel() {
 
-	do {
-	    System.out.println(lineSep
-		    + "------------------ Cadastro de Imovel -----------------"
-		    + lineSep);
+		Imovel novoImovel = null;
+		String nome, endereco;
 
-	    nome = MetodoEntrada.recebeString("Descricao: ");
-	    endereco = MetodoEntrada.recebeString("Endereco: ");
+		TipoImovel tipoDoImovel;
+		TipoContratual tipoContratual;
+		Area area = null;
+		double valor, comprimento, largura;
 
-	    // TIPO DO IMOVEL
-	    System.out
-		    .print("\nQual eh o tipo do imovel?\n" + "1. Casa\n"
-			    + "2. Apartamento\n" + "3. Terreno\n"
-			    + "---------------\n");
+		boolean repeteCadastro;
 
-	    opcaoImovel = MetodoEntrada.recebeInt();
+		int opcaoImovel;
+		int opcaoContrato;
 
-	    try {
-		tipoDoImovel = TipoImovel.values()[opcaoImovel];
-	    } catch (IndexOutOfBoundsException erro) {
-		tipoDoImovel = null;
-	    }
+		do {
+			System.out.println(lineSep
+					+ "------------------ Cadastro de Imovel -----------------"
+					+ lineSep);
 
-	    // TIPO DO CONTRATO
-	    System.out.print("\nQual eh o tipo do contrato?\n" + "1. Aluguel\n"
-		    + "2. Venda\n" + "---------------\n");
+			nome = MetodoEntrada.recebeString("Descricao: ");
+			endereco = MetodoEntrada.recebeString("Endereco: ");
 
-	    opcaoContrato = MetodoEntrada.recebeInt();
+			// TIPO DO IMOVEL
+			System.out
+					.print("\nQual eh o tipo do imovel?\n" + "1. Casa\n"
+							+ "2. Apartamento\n" + "3. Terreno\n"
+							+ "---------------\n");
 
-	    try {
-		tipoContratual = TipoContratual.values()[opcaoContrato];
-	    } catch (IndexOutOfBoundsException erro) {
-		tipoContratual = null;
-	    }
+			opcaoImovel = MetodoEntrada.recebeInt();
 
-	    // DIMENSOES DO IMOVEL
-	    System.out.print("\nQuais as dimensoes da area?\n"
-		    + "Comprimento: ");
-	    comprimento = MetodoEntrada.recebeDouble();
-	    System.out.print("Largura: ");
-	    largura = MetodoEntrada.recebeDouble();
+			try {
+				tipoDoImovel = TipoImovel.values()[opcaoImovel];
+			} catch (IndexOutOfBoundsException erro) {
+				tipoDoImovel = null;
+			}
 
-	    // PRECO DO IMOVEL
-	    System.out.print("\nQual o preco do imovel? R$ ");
-	    valor = MetodoEntrada.recebeDouble();
+			// TIPO DO CONTRATO
+			System.out.print("\nQual eh o tipo do contrato?\n" + "1. Aluguel\n"
+					+ "2. Venda\n" + "---------------\n");
 
-	    // CRIACAO/CADASTRO DO IMOVEL
-	    try {
-		area = new Area(comprimento, largura);
-		novoImovel = new Imovel(nome, endereco, valor, area,
-			tipoDoImovel, tipoContratual);
-		sis.controladorImoveis().addImovel(novoImovel);
-		repeteCadastro = false;
+			opcaoContrato = MetodoEntrada.recebeInt();
 
-	    } catch (Exception erro) {
-		System.out.println("\n=========== AVISO =============\n"
-			+ erro.getMessage());
-		repeteCadastro = true;
-	    }
+			try {
+				tipoContratual = TipoContratual.values()[opcaoContrato];
+			} catch (IndexOutOfBoundsException erro) {
+				tipoContratual = null;
+			}
 
-	} while (repeteCadastro);
+			// DIMENSOES DO IMOVEL
+			System.out.print("\nQuais as dimensoes da area?\n"
+					+ "Comprimento: ");
+			comprimento = MetodoEntrada.recebeDouble();
+			System.out.print("Largura: ");
+			largura = MetodoEntrada.recebeDouble();
 
-	System.out.println(lineSep
-		+ "======= Cadastro De Imovel Efetuado com Sucesso ======="
-		+ lineSep);
-    }
+			// PRECO DO IMOVEL
+			System.out.print("\nQual o preco do imovel? R$ ");
+			valor = MetodoEntrada.recebeDouble();
+
+			// CRIACAO/CADASTRO DO IMOVEL
+			try {
+				area = new Area(comprimento, largura);
+				novoImovel = new Imovel(nome, endereco, valor, area,
+						tipoDoImovel, tipoContratual);
+				sis.controladorImoveis().addImovel(novoImovel);
+				repeteCadastro = false;
+
+			} catch (Exception erro) {
+				System.out.println("\n=========== AVISO =============\n"
+						+ erro.getMessage());
+				repeteCadastro = true;
+			}
+
+		} while (repeteCadastro);
+
+		System.out.println(lineSep
+				+ "======= Cadastro De Imovel Efetuado com Sucesso ======="
+				+ lineSep);
+	}
 }
