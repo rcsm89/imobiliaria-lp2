@@ -73,7 +73,38 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 		}
 		return false;
 	}
+	// ----------
+	/**
+	 * Metodo responsavel por listar todos os imoveis
+	 * 
+	 * @return Uma String contendo a lista dos imoveis
+	 */
+	public String listaFuncionarios() {
+		return listaFuncionarios(getColecaoFuncionarios());
+	}
+	
+	/**
+	 * Metodo responsavel por listar um array de imoveis
+	 * 
+	 * @param listaDeImoveis
+	 *            Representa o array que contem os imoveis que seram listados
+	 * @return Uma String contendo a lista dos imoveis
+	 */
+	private String listaFuncionarios(List<Funcionario> listaDeFuncionarios) {
+		String saida = "";
 
+		for (Funcionario func : listaDeFuncionarios) {
+
+			saida += "Nome: " + func.getNome() + " - CPF: " + func.getCpf() + "\n"
+			+ "Endereco: " + func.getEndereco() + " - Data de Nascimento: "
+			+ func.getDataNascimento() + " - Creci: "
+			+ func.getCreci() + "\n\n";
+
+		}
+
+		return saida;
+	}
+	// ------------------
 	/**
 	 * Metodo que modifica um funcionario
 	 * 

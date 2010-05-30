@@ -193,6 +193,7 @@ public class InterfaceTextual {
 		break;
 
 	    case LISTAR_CLIENTE:
+	    op.listarClientes();
 		break;
 
 	    case EXCLUIR_CLIENTE:
@@ -209,6 +210,7 @@ public class InterfaceTextual {
 		break;
 
 	    case LISTAR_IMOVEL:
+	    op.listarImoveis();
 		break;
 
 	    case EXCLUIR_CADASTRO_IMOVEL:
@@ -264,6 +266,7 @@ public class InterfaceTextual {
 		break;
 
 	    case LISTAR_CLIENTE:
+	    op.listarClientes();
 		break;
 
 	    case EXCLUIR_CLIENTE:
@@ -280,6 +283,7 @@ public class InterfaceTextual {
 		break;
 
 	    case LISTAR_IMOVEL:
+	    op.listarImoveis();
 		break;
 
 	    case EXCLUIR_CADASTRO_IMOVEL:
@@ -296,6 +300,7 @@ public class InterfaceTextual {
 		break;
 
 	    case LISTAR_FUNCIONARIO:
+	    op.listarFuncionarios();
 		break;
 
 	    case EXCLUIR_CADASTRO_FUNCIONARIO:
