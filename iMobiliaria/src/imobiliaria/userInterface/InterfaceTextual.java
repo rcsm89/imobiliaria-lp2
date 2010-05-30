@@ -156,6 +156,7 @@ public class InterfaceTextual {
 		break;
 
 	    case HIST_COMPRAS:
+		op.historicoCompras(cliente);
 		break;
 
 	    case SAIR:

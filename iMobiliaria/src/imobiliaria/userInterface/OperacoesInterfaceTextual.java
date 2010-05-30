@@ -29,7 +29,14 @@ public class OperacoesInterfaceTextual {
 		cliente.getCpf()));
     }
 
-    protected void historicoCompras() {
+    protected void historicoCompras(Cliente cl) {
+	int num = 1;
+	System.out.println(lineSep);
+	for (Imovel imovel : cl.getHistoricoCompras().getImoveis()) {
+	    System.out.println(String.format("%2d. %s", num, imovel));
+	    num++;
+	}
+	System.out.println(lineSep);
     }
 
     protected void listarImoveis() {
