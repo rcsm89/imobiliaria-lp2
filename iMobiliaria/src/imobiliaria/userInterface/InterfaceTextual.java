@@ -355,9 +355,7 @@ public class InterfaceTextual {
     private void promptMenuFuncionario() {
 	System.out
 		.println("--------------------- Funcionario ---------------------"
-			+ lineSep);
-	constroeMenu(opcoesMenu(FUNCIONARIO));
-
+			+ lineSep + constroeMenu(opcoesMenu(FUNCIONARIO)));
     }
 
     private LinkedList<String> opcoesMenu(int tipo) {
