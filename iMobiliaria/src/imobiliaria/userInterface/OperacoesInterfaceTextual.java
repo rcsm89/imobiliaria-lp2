@@ -24,8 +24,9 @@ public class OperacoesInterfaceTextual {
 
     // METODOS DA INTERFACE DE CLIENTE
 
-    protected void verificarDadosPessoais(String cpf) {
-	sis.controladorClientes().exibeCliente(cpf);
+    protected void verificarDadosPessoais(Cliente cliente) {
+	System.out.println(sis.controladorClientes().exibeCliente(
+		cliente.getCpf()));
     }
 
     protected void historicoCompras() {
@@ -198,7 +199,7 @@ public class OperacoesInterfaceTextual {
 	    comprimento = MetodoEntrada.recebeDouble();
 	    System.out.print("Largura: ");
 	    largura = MetodoEntrada.recebeDouble();
-	    
+
 	    // PRECO DO IMOVEL
 	    System.out.print("\nQual o preco do imovel? R$ ");
 	    valor = MetodoEntrada.recebeDouble();
