@@ -3,6 +3,8 @@
  */
 package imobiliaria.userInterface;
 
+import imobiliaria.processamento.Cliente;
+import imobiliaria.processamento.Funcionario;
 import imobiliaria.processamento.Sistema;
 import imobiliaria.processamento.TipoLogin;
 import imobiliaria.util.MetodoEntrada;
@@ -24,6 +26,9 @@ public class InterfaceTextual {
 
     private OperacoesInterfaceTextual op;
     private String lineSep;
+
+    private Funcionario func;
+    private Cliente cliente;
     private Sistema sis;
 
     // Opcoes em comum de Funcionario e Administrador
@@ -82,7 +87,7 @@ public class InterfaceTextual {
 	    case CLIENTE:
 		if (acesso(CLIENTE)) {
 		    System.out.println(loginOk);
-		    interfaceCliente();
+		    interfaceCliente(cliente);
 		    System.out.println(logOut);
 		} else {
 		    System.out.println(loginFail);
@@ -92,7 +97,7 @@ public class InterfaceTextual {
 	    case FUNCIONARIO:
 		if (acesso(FUNCIONARIO)) {
 		    System.out.println(loginOk);
-		    interfaceFuncionario();
+		    interfaceFuncionario(func);
 		    System.out.println(logOut);
 		} else {
 		    System.out.println(loginFail);
@@ -124,26 +129,7 @@ public class InterfaceTextual {
 	System.out.println(programaFinalizado);
     }
 
-    private boolean acesso(int tipo) {
-
-	String userName = MetodoEntrada.recebeString("Login: ");
-	String password = MetodoEntrada.recebeString("Senha: ");
-
-	if (tipo == ADMINISTRADOR) {
-	    return sis.login(userName, password, TipoLogin.ADMINISTRADOR);
-
-	} else if (tipo == FUNCIONARIO) {
-	    return sis.login(userName, password, TipoLogin.FUNCIONARIO);
-
-	} else if (tipo == CLIENTE) {
-	    return sis.login(userName, password, TipoLogin.CLIENTE);
-
-	} else {
-	    return false;
-	}
-    }
-
-    private void interfaceCliente() {
+    private void interfaceCliente(Cliente cliente) {
 
 	boolean repeteMenu = true;
 	int opcao;
@@ -166,6 +152,7 @@ public class InterfaceTextual {
 		break;
 
 	    case VERIF_DADOS:
+		op.verificarDadosPessoais(cliente);
 		break;
 
 	    case HIST_COMPRAS:
@@ -183,7 +170,7 @@ public class InterfaceTextual {
 	}
     }
 
-    private void interfaceFuncionario() {
+    private void interfaceFuncionario(Funcionario func) {
 
 	final int EFETUAR_PEDIDO = 11;
 	final int VERIFICAR_DADOS = 12;
@@ -453,4 +440,43 @@ public class InterfaceTextual {
 	}
 	return saida;
     }
+
+    private boolean acesso(int tipo) {
+
+	String userName = MetodoEntrada.recebeString("Login: ");
+	String password = MetodoEntrada.recebeString("Senha: ");
+
+	if (tipo == ADMINISTRADOR) {
+	    return sis.login(userName, password, TipoLogin.ADMINISTRADOR);
+
+	} else if (tipo == FUNCIONARIO) {
+	    for (Funcionario f : sis.controladorFuncionarios()
+		    .getColecaoFuncionarios()) {
+		if ((f.getLogin().equals(userName))
+			&& (f.getSenha().equals(password))) {
+		    try {
+			func = sis.controladorFuncionarios().getFuncionario(
+				f.getCreci());
+		    } catch (Exception e) {
+			return false;
+		    }
+		}
+	    }
+	    return sis.login(userName, password, TipoLogin.FUNCIONARIO);
+
+	} else if (tipo == CLIENTE) {
+	    for (Cliente cl : sis.controladorClientes().getClientes()) {
+		if ((cl.getLogin().equals(userName))
+			&& (cl.getSenha().equals(password))) {
+		    cliente = sis.controladorClientes().getCliente(cl.getCpf());
+		}
+	    }
+
+	    return sis.login(userName, password, TipoLogin.CLIENTE);
+
+	} else {
+	    return false;
+	}
+    }
+
 }
