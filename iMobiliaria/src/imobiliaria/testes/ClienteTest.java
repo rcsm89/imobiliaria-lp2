@@ -18,7 +18,6 @@ public class ClienteTest {
 	private Imovel imovel1;
 	private Imovel imovel2;
 
-
 	@Before
 	public void criaClientes() throws Exception {
 		Calendar nascimento = new GregorianCalendar(1991, Calendar.APRIL, 4);
@@ -28,8 +27,9 @@ public class ClienteTest {
 		cliente1 = new Cliente("12345678910", nascimento, endereco, "Bruno",
 				preferencia);
 
-		Assert.assertEquals("Rua Alberto De Brito, 844",
-				cliente1.getEndereco());
+		Assert
+				.assertEquals("Rua Alberto De Brito, 844", cliente1
+						.getEndereco());
 		Assert.assertEquals("123.456.789-10", cliente1.getCpf());
 		cliente2 = new Cliente("10120230344", new GregorianCalendar(1991, 14,
 				13), "Rua 12 de Outubro", "Thiago Ferreira",
@@ -129,7 +129,10 @@ public class ClienteTest {
 	}
 
 	@Test
-	public void testaEquals() {
+	public void testaEquals() throws Exception {
+
+		Cliente cliente = new Cliente("12345678910", new GregorianCalendar(
+				1991, 2, 1), "endere3co", "Brunaaaaaa", TipoImovel.TERRENO);
 
 		Assert.assertTrue(cliente1.equals(cliente1));
 		Assert.assertFalse(cliente1.equals(cliente2));
@@ -137,6 +140,9 @@ public class ClienteTest {
 		Assert.assertFalse(cliente2.equals(cliente3));
 		Assert.assertTrue(cliente3.equals(cliente3));
 		Assert.assertFalse(cliente3.equals(cliente1));
+		
+		Assert.assertTrue(cliente1.equals(cliente));
+		Assert.assertTrue(cliente.equals(cliente1));
 
 	}
 

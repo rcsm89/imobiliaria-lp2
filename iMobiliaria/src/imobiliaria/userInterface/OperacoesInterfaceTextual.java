@@ -2,6 +2,7 @@ package imobiliaria.userInterface;
 
 import imobiliaria.processamento.Area;
 import imobiliaria.processamento.Cliente;
+import imobiliaria.processamento.EstadoImovel;
 import imobiliaria.processamento.Funcionario;
 import imobiliaria.processamento.Imovel;
 import imobiliaria.processamento.Sistema;
@@ -40,6 +41,9 @@ public class OperacoesInterfaceTextual {
 	}
 
 	protected void listarImoveis() {
+		System.out.println(lineSep
+				+ "======================= Listagem de Imoveis ======================="
+				+ lineSep + sis.controladorImoveis().listaImoveis(EstadoImovel.A_VENDA));
 	}
 
 	protected void fazerPedido() {
@@ -82,9 +86,10 @@ public class OperacoesInterfaceTextual {
 			}
 			try {
 
-				sis.controladorClientes().adicionaCliente(cpf, dataNascimento,
-						endereco, nome, preferencia);
-				repeteCadastro = false;
+				if (sis.controladorClientes().adicionaCliente(cpf, dataNascimento,
+						endereco, nome, preferencia))
+					repeteCadastro = false;
+				repeteCadastro = true;
 
 			} catch (Exception erro) {
 				System.out.println("\n=========== AVISO =============\n"

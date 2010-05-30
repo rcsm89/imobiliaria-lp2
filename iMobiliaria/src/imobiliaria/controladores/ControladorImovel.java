@@ -127,8 +127,8 @@ public class ControladorImovel extends ColecaoImoveis {
 			saida += "Nome: " + imovel.getNome() + "\n" + "Endereco: "
 					+ imovel.getEndereco() + "\n" + "Valor: "
 					+ imovel.getValor() + "\n" + "Area: " + imovel.getArea()
-					+ "\n" + "Tipo do Imovel: " + imovel + "\n"
-					+ "Tipo Contratual: " + imovel + "\n\n";
+					+ "\n" + "Tipo do Imovel: " + imovel.getTipoDoImovel() + "\n"
+					+ "Tipo Contratual: " + imovel.getTipoContratual() + "\n\n";
 
 		}
 
