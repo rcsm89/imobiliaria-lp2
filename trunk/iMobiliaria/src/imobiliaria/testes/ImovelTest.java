@@ -95,6 +95,7 @@ public class ImovelTest {
 		Assert.assertEquals(new Area(4,6), imovel1.getArea());
 		Assert.assertEquals(TipoImovel.CASA, imovel1.getTipoDoImovel());
 		Assert.assertEquals(TipoContratual.ALUGUEL, imovel1.getTipoContratual());
+		System.out.println(imovel1.getTipoContratual());
 		Assert.assertEquals(3500.0, imovel1.getValor());
 		Assert.assertEquals(EstadoImovel.A_VENDA ,imovel1.getEstadoDoImovel());
 		
