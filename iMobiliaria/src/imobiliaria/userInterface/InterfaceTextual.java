@@ -216,6 +216,7 @@ public class InterfaceTextual {
 		break;
 
 	    case CADASTRO_IMOVEL:
+		op.cadastroDeImovel();
 		break;
 
 	    case LISTAR_IMOVEL:
@@ -285,6 +286,7 @@ public class InterfaceTextual {
 		break;
 
 	    case CADASTRO_IMOVEL:
+		op.cadastroDeImovel();
 		break;
 
 	    case LISTAR_IMOVEL:
@@ -300,6 +302,7 @@ public class InterfaceTextual {
 		break;
 
 	    case CADASTRO_FUNCIONARIO:
+		op.cadastroDeFuncionario();
 		break;
 
 	    case LISTAR_FUNCIONARIO:
