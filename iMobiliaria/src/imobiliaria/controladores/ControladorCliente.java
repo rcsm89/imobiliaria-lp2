@@ -65,7 +65,7 @@ public class ControladorCliente extends ColecaoClientes {
 
 	public boolean login(String login, String senha) {
 		if (VerificaInvalido.basico(login) || VerificaInvalido.basico(senha))
-			throw new IllegalArgumentException();
+			return false;
 		if (loginClientes.containsKey(login)) {
 			if (loginClientes.get(login).equals(senha))
 				return true;
