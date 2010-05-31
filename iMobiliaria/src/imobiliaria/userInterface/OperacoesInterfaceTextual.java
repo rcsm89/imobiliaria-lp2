@@ -352,8 +352,15 @@ public class OperacoesInterfaceTextual {
 		String cpf = MetodoEntrada
 				.recebeString("Digite o CPF do Cliente que deseja verificar:");
 
-		System.out.println(sis.controladorClientes().exibeCliente(cpf)
-				+ lineSep);
+		
+		String informacoes = sis.controladorClientes().exibeCliente(cpf);
+		
+		if (informacoes == null) {
+			System.out.println("Cliente nao cadastrado");
+			return;
+		}
+		
+		System.out.println(informacoes + lineSep);
 
 	}
 
@@ -502,10 +509,16 @@ public class OperacoesInterfaceTextual {
 
 		String creci = MetodoEntrada
 				.recebeString("Digite o CRECI do Funcionario que deseja verificar:");
+		
+		
+		String informacoes = sis.controladorFuncionarios().exibeFuncionarioPorCreci(creci);
+		
+		if (informacoes == null) {
+			System.out.println("Funcionario nao cadastrado");
+			return;
+		}
 
-		System.out.println(sis.controladorFuncionarios().exibeFuncionarioPorCreci(
-				creci)
-				+ lineSep);
+		System.out.println(informacoes + lineSep);
 
 	}
 
