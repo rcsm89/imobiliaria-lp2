@@ -342,17 +342,6 @@ public class OperacoesInterfaceTextual {
 		} while (continuaRodandoMenu);
 	}
 
-	protected void atualizarCliente() {
-
-		System.out
-				.println(lineSep
-						+ "====================== Modificar Dados de Cliente ======================"
-						+ lineSep);
-
-		System.out.println("Opcao em Construcao");
-
-	}
-
 	protected void verificaInformacoesCliente() {
 
 		System.out
@@ -388,18 +377,25 @@ public class OperacoesInterfaceTextual {
 		do {
 			String registroImovel = MetodoEntrada
 					.recebeString("Digite o registro do imovel que deseja Excluir: ");
-
-			String informacoes = sis.controladorImoveis().exibeImovel(
+			
+			
+			String informacoes;
+			
+			try {
+				informacoes = sis.controladorImoveis().exibeImovel(
 					registroImovel);
+			} catch (NullPointerException e) {
+				System.out.println("Registro de Imovel Invalido ou Imovel nao cadastrado");
+				return;
+			}
 
-			if (informacoes != null) {
 
-				System.out.println(lineSep + informacoes);
+			System.out.println(lineSep + informacoes);
 
-				System.out.println(lineSep + "1. Confirmar" + lineSep
-						+ "2. Sair");
+			System.out.println(lineSep + "1. Confirmar" + lineSep
+					+ "2. Sair");
 
-				int opcao = MetodoEntrada.recebeInt();
+			int opcao = MetodoEntrada.recebeInt();
 
 				try {
 					switch (opcao) {
@@ -427,11 +423,7 @@ public class OperacoesInterfaceTextual {
 				} catch (Exception e) {
 					System.out.println("Erro: " + e.getMessage());
 				}
-			} else {
-
-				System.out.println("Registro Invalido");
-
-			}
+				
 		} while (continuaRodandoMenu);
 	}
 
