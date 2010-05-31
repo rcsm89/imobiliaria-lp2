@@ -280,7 +280,7 @@ public class OperacoesInterfaceTextual {
 				+ lineSep);
 	}
 
-	// METODOS QUE CRIEI AGORA
+	// Metodos que eu criei (Yuri)
 
 	protected void verificaDadosPessoais(Funcionario func) {
 
@@ -307,6 +307,9 @@ public class OperacoesInterfaceTextual {
 			try {
 				
 				informacoes = sis.controladorClientes().exibeCliente(cpf);
+				
+				if (informacoes == null)
+					return;
 				
 			} catch (NullPointerException e) {
 				System.out.println("Cliente nao cadastrado");
@@ -384,6 +387,9 @@ public class OperacoesInterfaceTextual {
 			try {
 				informacoes = sis.controladorImoveis().exibeImovel(
 					registroImovel);
+				
+				if (informacoes == null)
+					return;
 			} catch (NullPointerException e) {
 				System.out.println("Registro de Imovel Invalido ou Imovel nao cadastrado");
 				return;
