@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="imobiliaria.controladoresClassDiagram" id="{UMLID=_M3iuAGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores}" metadata="uml2-1.0" initialized="true" scrolledX="4195" scrolledY="3214" tag="10" key="323030373036323920694D6F62696C6961726961">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.14/@sourceConnections.2 //@children.13/@sourceConnections.0 //@children.7/@sourceConnections.3 //@children.11/@sourceConnections.3 //@children.12/@sourceConnections.1 //@children.10/@sourceConnections.1 //@children.6/@sourceConnections.1 //@children.9/@sourceConnections.1" name="VerificaInvalido" location="1951,2089" size="428,299" timstampe="5" stereotype="" id="{UMLID=_XobTIGxNEd-JaP0ON8TMfg,JavaID=imobiliaria.util/VerificaInvalido}" runTimeClassModel="numeroFormatado(Ljava.lang.String;I),maiorIdade(Ljava.util.Calendar;),data(Ljava.util.Calendar;),recebeData(),nome(Ljava.lang.String;),pertenceAIntervalo(DDD),basico(Ljava.lang.String;),recebeDouble(),recebeNome(),numero(Ljava.lang.String;),recebeString(),recebeInteiro(),dataAtual,endereco(Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="74,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="dataAtual" size="74,16" id="{UMLID=_CECIIGxOEd-JaP0ON8TMfg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="130,234">
+      <children xsi:type="editmodel:MethodEditModel" name="maiorIdade" size="94,16" id="{UMLID=_CED9UWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.util/VerificaInvalido#maiorIdade(Ljava.util.Calendar;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="data" size="61,16" id="{UMLID=_CEJc4WxOEd-JaP0ON8TMfg,JavaID=imobiliaria.util/VerificaInvalido#data(Ljava.util.Calendar;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="basico" size="70,16" id="{UMLID=_CEPjgGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.util/VerificaInvalido#basico(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="endereco" size="85,16" id="{UMLID=_CERYsGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.util/VerificaInvalido#endereco(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="nome" size="67,16" id="{UMLID=_CEMgMWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.util/VerificaInvalido#nome(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="numero" size="77,16" id="{UMLID=_CEXfUGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.util/VerificaInvalido#numero(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="numeroFormatado" size="130,16" id="{UMLID=_CEHAoWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.util/VerificaInvalido#numeroFormatado(Ljava.lang.String;I)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="pertenceAIntervalo" size="130,16" id="{UMLID=_CEUcAGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.util/VerificaInvalido#pertenceAIntervalo(DDD)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="recebeString" size="101,16" id="{UMLID=_CEFygWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.util/VerificaInvalido#recebeString()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="recebeDouble" size="107,16" id="{UMLID=_CETN4GxOEd-JaP0ON8TMfg,JavaID=imobiliaria.util/VerificaInvalido#recebeDouble()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="recebeInteiro" size="103,16" id="{UMLID=_CEOVYGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.util/VerificaInvalido#recebeInteiro()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="recebeNome" size="102,16" id="{UMLID=_CECvMWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.util/VerificaInvalido#recebeNome()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="recebeData" size="96,16" id="{UMLID=_CELSEWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.util/VerificaInvalido#recebeData()}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true" showAttributeParameterType="true" showAttributeDefaultValue="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.14/@sourceConnections.5 //@children.7/@sourceConnections.1 //@children.7/@sourceConnections.6" name="Area" location="6865,3420" size="284,273" timstampe="5" stereotype="" id="{UMLID=_CB1IsGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Area}" runTimeClassModel="atualizaClassificacao(),Area(DD),setLargura(D),largura,classificacao,getLargura(),equals(Ljava.lang.Object;),getComprimento(),comprimento,getClassificacao(),setComprimento(D),toString()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="91,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="comprimento" size="91,16" id="{UMLID=_F8WBAGxPEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="largura" size="63,16" id="{UMLID=_F8Uy4WxPEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="classificacao" size="93,21" id="{UMLID=_F8S9sGxPEd-JaP0ON8TMfg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="137,167">
+      <children xsi:type="editmodel:MethodEditModel" name="Area" size="63,16" id="{UMLID=_F8cHoGxPEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Area#Area(DD)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getComprimento" size="120,16" id="{UMLID=_F8hAIGxPEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Area#getComprimento()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setComprimento" size="119,16" id="{UMLID=_F8fK8WxPEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Area#setComprimento(D)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getLargura" size="93,16" id="{UMLID=_F8iOQWxPEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Area#getLargura()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setLargura" size="92,16" id="{UMLID=_F8aScGxPEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Area#setLargura(D)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getClassificacao" size="122,21" id="{UMLID=_F8WoEGxPEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Area#getClassificacao()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toString" size="77,16" id="{UMLID=_F8d80WxPEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Area#toString()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="equals" size="71,16" id="{UMLID=_F8X2MGxPEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Area#equals(Ljava.lang.Object;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="atualizaClassificacao" size="137,16" id="{UMLID=_F8iOQGxPEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Area#atualizaClassificacao()}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true" showAttributeParameterType="true" showAttributeDefaultValue="true"/>
+  </children>
+  <children xsi:type="editmodel:EnumerationEditModel" targetConnections="//@children.14/@sourceConnections.6 //@children.13/@sourceConnections.3 //@children.7/@sourceConnections.0 //@children.7/@sourceConnections.5 //@children.11/@sourceConnections.4 //@children.5/@sourceConnections.0 //@children.12/@sourceConnections.2" name="TipoImovel" location="5451,934" size="288,104" timstampe="5" id="{UMLID=_Xn-AIGxNEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/TipoImovel}" runTimeClassModel="APARTAMENTO%,TERRENO%,CASA%">
+    <children xsi:type="editmodel:CompartmentEditModel" size="111,54">
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CASA" size="58,16" id="{UMLID=_CD0FsGxOEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="APARTAMENTO" size="111,16" id="{UMLID=_CD1T0GxOEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="TERRENO" size="82,16" id="{UMLID=_CD0swGxOEd-JaP0ON8TMfg}"/>
+    </children>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" id="{UMLID=_CAJGomxOEd-JaP0ON8TMfg}" source="//@children.2" target="//@children.5" targetEnd="//@children.2/@sourceConnections.0/@children.2" label="//@children.2/@sourceConnections.0/@children.0" sourceEnd="//@children.2/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="preferencia" location="10,94" id="{UMLID=_B_F9wGxOEd-JaP0ON8TMfg}" attachSource="true" multiplicityLabel="//@children.2/@sourceConnections.0/@children.1/@children.0" roleLabel="//@children.2/@sourceConnections.0/@children.1/@children.1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="5438,1035" size="6,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- preferencia" location="5383,1008" size="61,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="599,20" id="{UMLID=_CAJGo2xOEd-JaP0ON8TMfg}" multiplicityLabel="//@children.2/@sourceConnections.0/@children.2/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="4652,1149" size="6,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" enumerationClassMode="false" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true"/>
+  </children>
+  <children xsi:type="editmodel:EnumerationEditModel" targetConnections="//@children.14/@sourceConnections.7 //@children.13/@sourceConnections.4 //@children.7/@sourceConnections.2 //@children.7/@sourceConnections.7" name="TipoContratual" location="5842,5347" size="311,86" timstampe="5" id="{UMLID=_CBM2kGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/TipoContratual}" runTimeClassModel="VENDA%,ALUGUEL%">
+    <children xsi:type="editmodel:CompartmentEditModel" size="79,36">
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="ALUGUEL" size="79,16" id="{UMLID=_CDn4cGxOEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="VENDA" size="66,16" id="{UMLID=_CDnRYGxOEd-JaP0ON8TMfg}"/>
+    </children>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" enumerationClassMode="false" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.14/@sourceConnections.8" name="Sistema" location="2506,2492" size="446,460" timstampe="7" stereotype="" id="{UMLID=_jnNGYGxaEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Sistema}" runTimeClassModel="atualizaPagamento(),listagemDePedido(),controladorImoveis(),ultimoPagamento,efetuaPagamentoNoMes(),controladorFuncionarios(),removePedido(Ljava.lang.String;),caixa(),pagouNesseMes,listaPedidos,controladorClientes,COMISSAO,efetuaPedido(Ljava.lang.String;Ljava.lang.String;),controladorFuncionarios,SALARIO_DEFAULT,caixaTotal,login(Ljava.lang.String;Ljava.lang.String;Limobiliaria.processamento.TipoLogin;),controladorClientes(),adicionaPedido(Ljava.lang.String;Ljava.lang.String;),controladorImoveis,pagouNesseMes()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="131,90">
+      <children xsi:type="editmodel:AttributeEditModel" name="SALARIO_DEFAULT" size="131,16" id="{UMLID=_awtKUGxbEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="COMISSAO" size="86,16" id="{UMLID=_awquEGxbEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="controladorImoveis" size="125,21" id="{UMLID=_awu_gGxbEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="controladorClientes" size="127,21" id="{UMLID=_awpf8GxbEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="controladorFuncionarios" size="150,21" id="{UMLID=_awsjQGxbEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="listaPedidos" size="91,21" id="{UMLID=_awnDsGxbEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="ultimoPagamento" size="112,16" id="{UMLID=_awrVIGxbEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="pagouNesseMes" size="109,16" id="{UMLID=_awwNoGxbEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="caixaTotal" size="76,16" id="{UMLID=_awuYcGxbEd-JaP0ON8TMfg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="161,231">
+      <children xsi:type="editmodel:MethodEditModel" name="efetuaPagamentoNoMes" size="159,16" id="{UMLID=_awyC0GxbEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Sistema#efetuaPagamentoNoMes()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="atualizaPagamento" size="131,16" id="{UMLID=_aw27UGxbEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Sistema#atualizaPagamento()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="adicionaPedido" size="112,16" id="{UMLID=_axChgGxbEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Sistema#adicionaPedido(Ljava.lang.String;Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="efetuaPedido" size="103,16" id="{UMLID=_aw-3IWxbEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Sistema#efetuaPedido(Ljava.lang.String;Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removePedido" size="109,16" id="{UMLID=_axBTYGxbEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Sistema#removePedido(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="listagemDePedido" size="126,16" id="{UMLID=_aw5-oGxbEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Sistema#listagemDePedido()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="login" size="62,16" id="{UMLID=_aw7MwGxbEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Sistema#login(Ljava.lang.String;Ljava.lang.String;Limobiliaria.processamento.TipoLogin;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="pagouNesseMes" size="120,16" id="{UMLID=_aw1tMGxbEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Sistema#pagouNesseMes()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="caixa" size="64,16" id="{UMLID=_aw4wgGxbEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Sistema#caixa()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="controladorImoveis" size="136,21" id="{UMLID=_aw3iYGxbEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Sistema#controladorImoveis()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="controladorClientes" size="138,21" id="{UMLID=_aww0sGxbEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Sistema#controladorClientes()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="controladorFuncionarios" size="161,21" id="{UMLID=_awz4AGxbEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Sistema#controladorFuncionarios()}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_axf0gWxbEd-JaP0ON8TMfg}" source="//@children.4" target="//@children.5" targetEnd="//@children.4/@sourceConnections.0/@children.2" label="//@children.4/@sourceConnections.0/@children.0" sourceEnd="//@children.4/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="76,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="446,10" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,280"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_ax3n8WxbEd-JaP0ON8TMfg}" source="//@children.4" target="//@children.14" targetEnd="//@children.4/@sourceConnections.1/@children.2" label="//@children.4/@sourceConnections.1/@children.0" sourceEnd="//@children.4/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="131,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="446,450" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" id="{UMLID=_aybBkWxbEd-JaP0ON8TMfg}" source="//@children.4" target="//@children.10" targetEnd="//@children.4/@sourceConnections.2/@children.2" label="//@children.4/@sourceConnections.2/@children.0" sourceEnd="//@children.4/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="131,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,440" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="699,10"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_azdjYWxbEd-JaP0ON8TMfg}" source="//@children.4" target="//@children.11" targetEnd="//@children.4/@sourceConnections.3/@children.2" label="//@children.4/@sourceConnections.3/@children.0" sourceEnd="//@children.4/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="131,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="436,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,199"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_a0kWoWxbEd-JaP0ON8TMfg}" source="//@children.4" target="//@children.8" targetEnd="//@children.4/@sourceConnections.4/@children.2" label="//@children.4/@sourceConnections.4/@children.0" sourceEnd="//@children.4/@sourceConnections.4/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="39,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="446,450" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_a1rJ4WxbEd-JaP0ON8TMfg}" source="//@children.4" target="//@children.7" targetEnd="//@children.4/@sourceConnections.5/@children.2" label="//@children.4/@sourceConnections.5/@children.0" sourceEnd="//@children.4/@sourceConnections.5/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="76,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="436,460" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,10"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_a2C9UWxbEd-JaP0ON8TMfg}" source="//@children.4" target="//@children.6" targetEnd="//@children.4/@sourceConnections.6/@children.2" label="//@children.4/@sourceConnections.6/@children.0" sourceEnd="//@children.4/@sourceConnections.6/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="76,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="12,460" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="554,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" id="{UMLID=_a37zsGxbEd-JaP0ON8TMfg}" source="//@children.4" target="//@children.5" targetEnd="//@children.4/@sourceConnections.7/@children.2" label="//@children.4/@sourceConnections.7/@children.0" sourceEnd="//@children.4/@sourceConnections.7/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="444,0" id="{UMLID=_a37zsWxbEd-JaP0ON8TMfg}" attachSource="true" multiplicityLabel="//@children.4/@sourceConnections.7/@children.1/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="2937,2455" size="6,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:QualifierAttributeEditModel" name="key" location="2923,2475" size="29,20" id="{UMLID=_awo44GxbEd-JaP0ON8TMfg}"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="listaPedidos" location="0,279" id="{UMLID=_awnDsGxbEd-JaP0ON8TMfg}" multiplicityLabel="//@children.4/@sourceConnections.7/@children.2/@children.0" roleLabel="//@children.4/@sourceConnections.7/@children.2/@children.1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="4032,1408" size="6,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- listaPedidos" location="3975,1381" size="63,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" id="{UMLID=_a37MoGxbEd-JaP0ON8TMfg}" source="//@children.4" target="//@children.11" targetEnd="//@children.4/@sourceConnections.8/@children.2" label="//@children.4/@sourceConnections.8/@children.0" sourceEnd="//@children.4/@sourceConnections.8/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="427,10" id="{UMLID=_a37MoWxbEd-JaP0ON8TMfg}" attachSource="true" multiplicityLabel="//@children.4/@sourceConnections.8/@children.1/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="2920,2472" size="6,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="controladorClientes" location="42,199" id="{UMLID=_awpf8GxbEd-JaP0ON8TMfg}" multiplicityLabel="//@children.4/@sourceConnections.8/@children.2/@children.0" roleLabel="//@children.4/@sourceConnections.8/@children.2/@children.1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="3109,524" size="6,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- controladorClientes" location="3129,524" size="99,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="{UMLID=_a37MomxbEd-JaP0ON8TMfg}" source="//@children.4" target="//@children.10" targetEnd="//@children.4/@sourceConnections.9/@children.2" label="//@children.4/@sourceConnections.9/@children.0" sourceEnd="//@children.4/@sourceConnections.9/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="0,450" id="{UMLID=_a37Mo2xbEd-JaP0ON8TMfg}" attachSource="true" multiplicityLabel="//@children.4/@sourceConnections.9/@children.1/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="2493,2922" size="6,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="controladorFuncionarios" location="727,0" id="{UMLID=_awsjQGxbEd-JaP0ON8TMfg}" multiplicityLabel="//@children.4/@sourceConnections.9/@children.2/@children.0" roleLabel="//@children.4/@sourceConnections.9/@children.2/@children.1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="857,3356" size="6,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- controladorFuncionarios" location="721,3356" size="122,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true" showAttributeParameterType="true" showAttributeDefaultValue="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.13/@sourceConnections.6 //@children.13/@sourceConnections.7 //@children.2/@sourceConnections.0 //@children.4/@sourceConnections.0 //@children.4/@sourceConnections.7 //@children.11/@sourceConnections.1 //@children.12/@sourceConnections.0" name="Cliente" location="4045,1122" size="600,280" timstampe="5" stereotype="" id="{UMLID=_XoDfsGxNEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Cliente}" runTimeClassModel="fazPedido(Limobiliaria.processamento.Imovel;),pedidos,getPedidos(),Cliente(Ljava.lang.String;Ljava.util.Calendar;Ljava.lang.String;Ljava.lang.String;Limobiliaria.processamento.TipoImovel;),getPreferencia(),equals(Ljava.lang.Object;),getHistoricoCompras(),historicoCompras,setPreferencia(Limobiliaria.processamento.TipoImovel;),removePedido(Limobiliaria.processamento.Imovel;),preferencia">
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:AttributeEditModel" name="historicoCompras" size="118,21" id="{UMLID=_B_EvoWxOEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="pedidos" size="72,21" id="{UMLID=_B_C6cGxOEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="preferencia" size="89,21" id="{UMLID=_B_F9wGxOEd-JaP0ON8TMfg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="146,164">
+      <children xsi:type="editmodel:MethodEditModel" name="Cliente" size="73,16" id="{UMLID=_B_7EMGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Cliente#Cliente(Ljava.lang.String;Ljava.util.Calendar;Ljava.lang.String;Ljava.lang.String;Limobiliaria.processamento.TipoImovel;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getHistoricoCompras" size="146,21" id="{UMLID=_B_52EGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Cliente#getHistoricoCompras()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPedidos" size="99,21" id="{UMLID=_B_3Z0GxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Cliente#getPedidos()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="fazPedido" size="87,16" id="{UMLID=_B_4n8GxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Cliente#fazPedido(Limobiliaria.processamento.Imovel;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPreferencia" size="116,21" id="{UMLID=_CAAjwGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Cliente#getPreferencia()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setPreferencia" size="115,21" id="{UMLID=_B_2LsGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Cliente#setPreferencia(Limobiliaria.processamento.TipoImovel;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="equals" size="71,16" id="{UMLID=_B_Gk0WxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Cliente#equals(Ljava.lang.Object;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removePedido" size="109,16" id="{UMLID=_B_x6QGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Cliente#removePedido(Limobiliaria.processamento.Imovel;)}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_GFn40WxPEd-JaP0ON8TMfg}" source="//@children.5" target="//@children.2" targetEnd="//@children.5/@sourceConnections.0/@children.2" label="//@children.5/@sourceConnections.0/@children.0" sourceEnd="//@children.5/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="52,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="590,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,94"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_GGQyAWxPEd-JaP0ON8TMfg}" source="//@children.5" target="//@children.7" targetEnd="//@children.5/@sourceConnections.1/@children.2" label="//@children.5/@sourceConnections.1/@children.0" sourceEnd="//@children.5/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="76,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="402,280" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="196,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" id="{UMLID=_GG_x0WxPEd-JaP0ON8TMfg}" source="//@children.5" target="//@children.13" targetEnd="//@children.5/@sourceConnections.2/@children.2" label="//@children.5/@sourceConnections.2/@children.0" sourceEnd="//@children.5/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="131,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="599,260" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="12,10"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="{UMLID=_CAwxsGxOEd-JaP0ON8TMfg}" source="//@children.5" target="//@children.12" targetEnd="//@children.5/@sourceConnections.3/@children.2" label="//@children.5/@sourceConnections.3/@children.0" sourceEnd="//@children.5/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="colecaoClientes" location="10,0" id="{UMLID=_CAP0UGxOEd-JaP0ON8TMfg}" attachSource="true" multiplicityLabel="//@children.5/@sourceConnections.3/@children.1/@children.0" roleLabel="//@children.5/@sourceConnections.3/@children.1/@children.1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="1..*" location="4032,1102" size="16,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- colecaoClientes" location="4062,1102" size="81,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="352,204" id="{UMLID=_CAwxsWxOEd-JaP0ON8TMfg}" multiplicityLabel="//@children.5/@sourceConnections.3/@children.2/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="3076,234" size="6,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true" showAttributeParameterType="true" showAttributeDefaultValue="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.13/@sourceConnections.8 //@children.13/@sourceConnections.9 //@children.4/@sourceConnections.6 //@children.10/@sourceConnections.2 //@children.9/@sourceConnections.0" name="Funcionario" location="1964,4225" size="567,309" timstampe="5" stereotype="" id="{UMLID=_PPXhAGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Funcionario}" runTimeClassModel="getImoveisVendidosMes(),getTotalDeVendas(),totalDeVendas,addImovelVendido(Limobiliaria.processamento.Imovel;),toString(),creci,historicoVendidoMes,getCreci(),Funcionario(Ljava.lang.String;Ljava.util.Calendar;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),equals(Ljava.lang.Object;),resetaImoveisVendidosMes(),getImoveisVendidos(),historicoVendido,addImovelVendidoMes(Limobiliaria.processamento.Imovel;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="99,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="historicoVendido" size="113,21" id="{UMLID=_GMfV0GxPEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="historicoVendidoMes" size="133,21" id="{UMLID=_GMdgoGxPEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="creci" size="51,16" id="{UMLID=_GMcSgGxPEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="totalDeVendas" size="99,16" id="{UMLID=_GMeuwGxPEd-JaP0ON8TMfg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="170,180">
+      <children xsi:type="editmodel:MethodEditModel" name="Funcionario" size="96,16" id="{UMLID=_GMhLAWxPEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Funcionario#Funcionario(Ljava.lang.String;Ljava.util.Calendar;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getCreci" size="80,16" id="{UMLID=_GMumYWxPEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Funcionario#getCreci()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTotalDeVendas" size="128,16" id="{UMLID=_GMyQwWxPEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Funcionario#getTotalDeVendas()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getImoveisVendidos" size="135,16" id="{UMLID=_GMf84WxPEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Funcionario#getImoveisVendidos()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getImoveisVendidosMes" size="155,16" id="{UMLID=_GMtYQGxPEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Funcionario#getImoveisVendidosMes()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addImovelVendido" size="128,16" id="{UMLID=_GMwbkGxPEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Funcionario#addImovelVendido(Limobiliaria.processamento.Imovel;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addImovelVendidoMes" size="148,16" id="{UMLID=_GMq8AWxPEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Funcionario#addImovelVendidoMes(Limobiliaria.processamento.Imovel;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="resetaImoveisVendidosMes" size="170,16" id="{UMLID=_GMv0gWxPEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Funcionario#resetaImoveisVendidosMes()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="equals" size="71,16" id="{UMLID=_GMofwGxPEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Funcionario#equals(Ljava.lang.Object;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toString" size="77,16" id="{UMLID=_GMnRoGxPEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Funcionario#toString()}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" id="{UMLID=_GNGZ0WxPEd-JaP0ON8TMfg}" source="//@children.6" target="//@children.13" targetEnd="//@children.6/@sourceConnections.0/@children.2" label="//@children.6/@sourceConnections.0/@children.0" sourceEnd="//@children.6/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="131,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="528,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,230"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_GNtd0WxPEd-JaP0ON8TMfg}" source="//@children.6" target="//@children.0" targetEnd="//@children.6/@sourceConnections.1/@children.2" label="//@children.6/@sourceConnections.1/@children.0" sourceEnd="//@children.6/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="39,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="207,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="220,299"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_GOe54WxPEd-JaP0ON8TMfg}" source="//@children.6" target="//@children.7" targetEnd="//@children.6/@sourceConnections.2/@children.2" label="//@children.6/@sourceConnections.2/@children.0" sourceEnd="//@children.6/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="76,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="567,9" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,583"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" id="{UMLID=_PWKFgGxOEd-JaP0ON8TMfg}" source="//@children.6" target="//@children.9" targetEnd="//@children.6/@sourceConnections.3/@children.2" label="//@children.6/@sourceConnections.3/@children.0" sourceEnd="//@children.6/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="colecaoFuncionarios" location="0,1" id="{UMLID=_PTnH0GxOEd-JaP0ON8TMfg}" attachSource="true" multiplicityLabel="//@children.6/@sourceConnections.3/@children.1/@children.0" roleLabel="//@children.6/@sourceConnections.3/@children.1/@children.1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="1..*" location="1941,4206" size="16,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- colecaoFuncionarios" location="1853,4233" size="104,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="408,209" id="{UMLID=_PWKFgWxOEd-JaP0ON8TMfg}" multiplicityLabel="//@children.6/@sourceConnections.3/@children.2/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="478,3296" size="6,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true" showAttributeParameterType="true" showAttributeDefaultValue="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.14/@sourceConnections.4 //@children.13/@sourceConnections.2 //@children.13/@sourceConnections.5 //@children.8/@sourceConnections.0 //@children.4/@sourceConnections.5 //@children.5/@sourceConnections.1 //@children.6/@sourceConnections.2" name="Imovel" location="4251,3651" size="704,593" timstampe="6" stereotype="" id="{UMLID=_B_zIYGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Imovel}" runTimeClassModel="getArea(),setTipoContratual(Limobiliaria.processamento.TipoContratual;),setNome(Ljava.lang.String;),getTipoDoImovel(),setTipoDoImovel(Limobiliaria.processamento.TipoImovel;),toString(),setEndereco(Ljava.lang.String;),criadorDeRegistro,getEstadoDoImovel(),setEstadoDoImovel(Limobiliaria.processamento.EstadoImovel;),area,getRegistroImovel(),equals(Ljava.lang.Object;),registroImovel,tipoDoImovel,Imovel(Ljava.lang.String;Ljava.lang.String;DLimobiliaria.processamento.Area;Limobiliaria.processamento.TipoImovel;Limobiliaria.processamento.TipoContratual;),tipoContratual,getNome(),estadoDoImovel,getTipoContratual(),valor,setValor(D),getEndereco(),nome,setArea(Limobiliaria.processamento.Area;),endereco,getValor()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="116,90">
+      <children xsi:type="editmodel:AttributeEditModel" name="criadorDeRegistro" size="116,16" id="{UMLID=_CBxeUGxOEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="nome" size="56,16" id="{UMLID=_CB3k8GxOEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="endereco" size="74,16" id="{UMLID=_CB4zEWxOEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="valor" size="52,16" id="{UMLID=_CB1vwWxOEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="area" size="57,21" id="{UMLID=_CB0hoGxOEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="registroImovel" size="96,16" id="{UMLID=_CByscGxOEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="estadoDoImovel" size="112,21" id="{UMLID=_CB4MAWxOEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="tipoDoImovel" size="97,21" id="{UMLID=_CBzTgWxOEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="tipoContratual" size="102,21" id="{UMLID=_CB2W0GxOEd-JaP0ON8TMfg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="139,364">
+      <children xsi:type="editmodel:MethodEditModel" name="Imovel" size="71,16" id="{UMLID=_CCP_cWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Imovel#Imovel(Ljava.lang.String;Ljava.lang.String;DLimobiliaria.processamento.Area;Limobiliaria.processamento.TipoImovel;Limobiliaria.processamento.TipoContratual;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getNome" size="84,16" id="{UMLID=_CCJRwGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Imovel#getNome()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setNome" size="83,16" id="{UMLID=_CCB9AWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Imovel#setNome(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getEndereco" size="101,16" id="{UMLID=_CCKf4GxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Imovel#getEndereco()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setEndereco" size="100,16" id="{UMLID=_CCMVEWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Imovel#setEndereco(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getValor" size="80,16" id="{UMLID=_CCBV8GxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Imovel#getValor()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setValor" size="79,16" id="{UMLID=_CCFnYGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Imovel#setValor(D)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getArea" size="84,21" id="{UMLID=_CCDyMGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Imovel#getArea()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setArea" size="83,21" id="{UMLID=_CCIDoGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Imovel#setArea(Limobiliaria.processamento.Area;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getRegistroImovel" size="126,16" id="{UMLID=_CB8dcGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Imovel#getRegistroImovel()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTipoDoImovel" size="127,21" id="{UMLID=_CB6BMGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Imovel#getTipoDoImovel()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setTipoDoImovel" size="126,21" id="{UMLID=_CCOxUWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Imovel#setTipoDoImovel(Limobiliaria.processamento.TipoImovel;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTipoContratual" size="132,21" id="{UMLID=_CCG1gGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Imovel#getTipoContratual()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setTipoContratual" size="131,21" id="{UMLID=_CB_gwWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Imovel#setTipoContratual(Limobiliaria.processamento.TipoContratual;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getEstadoDoImovel" size="139,21" id="{UMLID=_CB7PUGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Imovel#getEstadoDoImovel()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setEstadoDoImovel" size="138,21" id="{UMLID=_CCNjMWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Imovel#setEstadoDoImovel(Limobiliaria.processamento.EstadoImovel;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="equals" size="71,16" id="{UMLID=_CB9EgWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Imovel#equals(Ljava.lang.Object;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toString" size="77,16" id="{UMLID=_CCLG8WxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/Imovel#toString()}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" id="{UMLID=_F3adsWxPEd-JaP0ON8TMfg}" source="//@children.7" target="//@children.2" targetEnd="//@children.7/@sourceConnections.0/@children.2" label="//@children.7/@sourceConnections.0/@children.0" sourceEnd="//@children.7/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="52,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="704,1" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,94"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_F3yRIWxPEd-JaP0ON8TMfg}" source="//@children.7" target="//@children.1" targetEnd="//@children.7/@sourceConnections.1/@children.2" label="//@children.7/@sourceConnections.1/@children.0" sourceEnd="//@children.7/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="52,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="704,20" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,251"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" id="{UMLID=_F3-eYGxPEd-JaP0ON8TMfg}" source="//@children.7" target="//@children.3" targetEnd="//@children.7/@sourceConnections.2/@children.2" label="//@children.7/@sourceConnections.2/@children.0" sourceEnd="//@children.7/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="52,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="704,573" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="20,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_F4O9EWxPEd-JaP0ON8TMfg}" source="//@children.7" target="//@children.0" targetEnd="//@children.7/@sourceConnections.3/@children.2" label="//@children.7/@sourceConnections.3/@children.0" sourceEnd="//@children.7/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="39,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,10" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="418,299"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" id="{UMLID=_F4y9wWxPEd-JaP0ON8TMfg}" source="//@children.7" target="//@children.8" targetEnd="//@children.7/@sourceConnections.4/@children.2" label="//@children.7/@sourceConnections.4/@children.0" sourceEnd="//@children.7/@sourceConnections.4/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="76,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,593" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="283,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="{UMLID=_CCtScGxOEd-JaP0ON8TMfg}" source="//@children.7" target="//@children.2" targetEnd="//@children.7/@sourceConnections.5/@children.2" label="//@children.7/@sourceConnections.5/@children.0" sourceEnd="//@children.7/@sourceConnections.5/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="704,10" id="{UMLID=_CCtScWxOEd-JaP0ON8TMfg}" attachSource="true" multiplicityLabel="//@children.7/@sourceConnections.5/@children.1/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="4962,3668" size="6,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="tipoDoImovel" location="10,104" id="{UMLID=_CBzTgWxOEd-JaP0ON8TMfg}" multiplicityLabel="//@children.7/@sourceConnections.5/@children.2/@children.0" roleLabel="//@children.7/@sourceConnections.5/@children.2/@children.1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="5448,1045" size="6,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- tipoDoImovel" location="5468,1045" size="69,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" id="{UMLID=_CCsEUGxOEd-JaP0ON8TMfg}" source="//@children.7" target="//@children.1" targetEnd="//@children.7/@sourceConnections.6/@children.2" label="//@children.7/@sourceConnections.6/@children.0" sourceEnd="//@children.7/@sourceConnections.6/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="704,31" id="{UMLID=_CCsEUWxOEd-JaP0ON8TMfg}" attachSource="true" multiplicityLabel="//@children.7/@sourceConnections.6/@children.1/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="4962,3689" size="6,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="area" location="0,242" id="{UMLID=_CB0hoGxOEd-JaP0ON8TMfg}" multiplicityLabel="//@children.7/@sourceConnections.6/@children.2/@children.0" roleLabel="//@children.7/@sourceConnections.6/@children.2/@children.1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="6852,3669" size="6,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- area" location="6829,3642" size="29,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="{UMLID=_CCtScmxOEd-JaP0ON8TMfg}" source="//@children.7" target="//@children.3" targetEnd="//@children.7/@sourceConnections.7/@children.2" label="//@children.7/@sourceConnections.7/@children.0" sourceEnd="//@children.7/@sourceConnections.7/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="704,583" id="{UMLID=_CCtSc2xOEd-JaP0ON8TMfg}" attachSource="true" multiplicityLabel="//@children.7/@sourceConnections.7/@children.1/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="4962,4214" size="6,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="tipoContratual" location="10,0" id="{UMLID=_CB2W0GxOEd-JaP0ON8TMfg}" multiplicityLabel="//@children.7/@sourceConnections.7/@children.2/@children.0" roleLabel="//@children.7/@sourceConnections.7/@children.2/@children.1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="5839,5327" size="6,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- tipoContratual" location="5859,5327" size="74,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true" showAttributeParameterType="true" showAttributeDefaultValue="true"/>
+  </children>
+  <children xsi:type="editmodel:EnumerationEditModel" targetConnections="//@children.14/@sourceConnections.3 //@children.13/@sourceConnections.1 //@children.7/@sourceConnections.4 //@children.4/@sourceConnections.4" name="EstadoImovel" location="3379,5289" size="303,104" timstampe="5" id="{UMLID=_CBH-EGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/EstadoImovel}" runTimeClassModel="A_VENDA%,PEDIDO%,VENDIDO%">
+    <children xsi:type="editmodel:CompartmentEditModel" size="79,54">
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="A_VENDA" size="79,16" id="{UMLID=_CBi00WxOEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="VENDIDO" size="78,16" id="{UMLID=_CBjb4GxOEd-JaP0ON8TMfg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PEDIDO" size="70,16" id="{UMLID=_CBi00GxOEd-JaP0ON8TMfg}"/>
+    </children>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="{UMLID=_CCsrYGxOEd-JaP0ON8TMfg}" source="//@children.8" target="//@children.7" targetEnd="//@children.8/@sourceConnections.0/@children.2" label="//@children.8/@sourceConnections.0/@children.0" sourceEnd="//@children.8/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="estadoDoImovel" location="303,10" id="{UMLID=_CB4MAWxOEd-JaP0ON8TMfg}" attachSource="true" multiplicityLabel="//@children.8/@sourceConnections.0/@children.1/@children.0" roleLabel="//@children.8/@sourceConnections.0/@children.1/@children.1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="3689,5279" size="6,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- estadoDoImovel" location="3689,5306" size="84,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="10,593" id="{UMLID=_CCsrYWxOEd-JaP0ON8TMfg}" multiplicityLabel="//@children.8/@sourceConnections.0/@children.2/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="4268,4251" size="6,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" enumerationClassMode="false" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.10/@sourceConnections.0 //@children.10/@sourceConnections.3 //@children.6/@sourceConnections.3" name="ColecaoFuncionario" location="50,3107" size="421,219" timstampe="8" stereotype="" id="{UMLID=_PO3KsGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoFuncionario}" runTimeClassModel="removeFuncionarioPorNome(Ljava.lang.String;),adicionaFuncionario(Limobiliaria.processamento.Funcionario;),removeFuncionario(Ljava.lang.String;),getNumFuncionarios(),equals(Ljava.lang.Object;),getFuncionario(Ljava.lang.String;),getColecaoFuncionarios(),colecaoFuncionarios,getFuncionarioPorNome(Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:AttributeEditModel" name="colecaoFuncionarios" size="132,21" id="{UMLID=_PTnH0GxOEd-JaP0ON8TMfg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="178,149">
+      <children xsi:type="editmodel:MethodEditModel" name="getColecaoFuncionarios" size="161,21" id="{UMLID=_PT4NkGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoFuncionario#getColecaoFuncionarios()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getNumFuncionarios" size="139,16" id="{UMLID=_PTwRwGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoFuncionario#getNumFuncionarios()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getFuncionarioPorNome" size="157,16" id="{UMLID=_PTrZQGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoFuncionario#getFuncionarioPorNome(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getFuncionario" size="111,16" id="{UMLID=_PT1xUGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoFuncionario#getFuncionario(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="adicionaFuncionario" size="135,16" id="{UMLID=_PTxf4GxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoFuncionario#adicionaFuncionario(Limobiliaria.processamento.Funcionario;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removeFuncionario" size="132,16" id="{UMLID=_PToV8GxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoFuncionario#removeFuncionario(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removeFuncionarioPorNome" size="178,16" id="{UMLID=_PTt1gGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoFuncionario#removeFuncionarioPorNome(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="equals" size="71,16" id="{UMLID=_PTzVEGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoFuncionario#equals(Ljava.lang.Object;)}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_PVJ_8WxOEd-JaP0ON8TMfg}" source="//@children.9" target="//@children.6" targetEnd="//@children.9/@sourceConnections.0/@children.2" label="//@children.9/@sourceConnections.0/@children.0" sourceEnd="//@children.9/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="76,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="421,209" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_PVkPoWxOEd-JaP0ON8TMfg}" source="//@children.9" target="//@children.0" targetEnd="//@children.9/@sourceConnections.1/@children.2" label="//@children.9/@sourceConnections.1/@children.0" sourceEnd="//@children.9/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="39,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="411,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,289"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true" showAttributeParameterType="true" showAttributeDefaultValue="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.2 //@children.4/@sourceConnections.9" name="ControladorFuncionario" location="123,3376" size="737,263" timstampe="5" stereotype="" id="{UMLID=_POxrIGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorFuncionario}" runTimeClassModel="imprimeListagemFuncionario(LCollection;),listaTotaisDeVendas(),exibeFuncionarioPorCpf(Ljava.lang.String;),listaFuncionarios(),login(Ljava.lang.String;Ljava.lang.String;),getFuncionarioPorCreci(Ljava.lang.String;),exibeFuncionarioPorCreci(Ljava.lang.String;),adicionaFuncionario(Ljava.lang.String;Ljava.util.Calendar;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),loginFuncionarios,listaFuncionarios(LCollection;),modificaFuncionario(Limobiliaria.processamento.Funcionario;Ljava.lang.String;Ljava.util.Calendar;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),getFuncionarioPorCpf(Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="112,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="loginFuncionarios" size="112,16" id="{UMLID=_PPCw4GxOEd-JaP0ON8TMfg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="177,198">
+      <children xsi:type="editmodel:MethodEditModel" name="adicionaFuncionario" size="135,16" id="{UMLID=_PPKssGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorFuncionario#adicionaFuncionario(Ljava.lang.String;Ljava.util.Calendar;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="login" size="62,16" id="{UMLID=_PPSBcGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorFuncionario#login(Ljava.lang.String;Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="listaFuncionarios" size="119,16" id="{UMLID=_PPJekGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorFuncionario#listaFuncionarios()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="listaFuncionarios" size="119,16" id="{UMLID=_U8dfUGxREd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorFuncionario#listaFuncionarios(LCollection;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="modificaFuncionario" size="135,16" id="{UMLID=_PPdAkGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorFuncionario#modificaFuncionario(Limobiliaria.processamento.Funcionario;Ljava.lang.String;Ljava.util.Calendar;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="imprimeListagemFuncionario" size="177,16" id="{UMLID=_PPZ9QGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorFuncionario#imprimeListagemFuncionario(LCollection;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="listaTotaisDeVendas" size="136,16" id="{UMLID=_PPF0MWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorFuncionario#listaTotaisDeVendas()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getFuncionarioPorCreci" size="153,16" id="{UMLID=_pfwHwWxSEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorFuncionario#getFuncionarioPorCreci(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="exibeFuncionarioPorCreci" size="163,16" id="{UMLID=_kzmXIGxREd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorFuncionario#exibeFuncionarioPorCreci(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getFuncionarioPorCpf" size="145,16" id="{UMLID=_PPVEwGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorFuncionario#getFuncionarioPorCpf(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="exibeFuncionarioPorCpf" size="155,16" id="{UMLID=_PPD_AGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorFuncionario#exibeFuncionarioPorCpf(Ljava.lang.String;)}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" size="2,1" id="{UMLID=_PO7cIGxOEd-JaP0ON8TMfg}" source="//@children.10" target="//@children.9" targetEnd="//@children.10/@sourceConnections.0/@children.1" sourceEnd="//@children.10/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="405,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="222,219"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_PP8v0WxOEd-JaP0ON8TMfg}" source="//@children.10" target="//@children.0" targetEnd="//@children.10/@sourceConnections.1/@children.2" label="//@children.10/@sourceConnections.1/@children.0" sourceEnd="//@children.10/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="39,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="737,10" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,299"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_PR9iAWxOEd-JaP0ON8TMfg}" source="//@children.10" target="//@children.6" targetEnd="//@children.10/@sourceConnections.2/@children.2" label="//@children.10/@sourceConnections.2/@children.0" sourceEnd="//@children.10/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="76,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="727,263" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,10"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_PSUuYWxOEd-JaP0ON8TMfg}" source="//@children.10" target="//@children.9" targetEnd="//@children.10/@sourceConnections.3/@children.2" label="//@children.10/@sourceConnections.3/@children.0" sourceEnd="//@children.10/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="50,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="173,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="246,219"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true" showAttributeParameterType="true" showAttributeDefaultValue="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.3 //@children.4/@sourceConnections.8" name="ControladorCliente" location="3080,308" size="683,209" timstampe="5" stereotype="" id="{UMLID=_PE7yoGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorCliente}" runTimeClassModel="loginClientes,listaClientes(Ljava.lang.String;),listaClientes(LCollection;),adicionaCliente(Ljava.lang.String;Ljava.util.Calendar;Ljava.lang.String;Ljava.lang.String;Limobiliaria.processamento.TipoImovel;),login(Ljava.lang.String;Ljava.lang.String;),listaClientes(),exibeCliente(Ljava.lang.String;),listaClientes(Limobiliaria.processamento.TipoImovel;),getCliente(Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="89,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="loginClientes" size="89,16" id="{UMLID=_PFRJ0GxOEd-JaP0ON8TMfg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="112,144">
+      <children xsi:type="editmodel:MethodEditModel" name="listaClientes" size="96,16" id="{UMLID=_PFgaYGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorCliente#listaClientes(LCollection;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="adicionaCliente" size="112,16" id="{UMLID=_PFWCUGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorCliente#adicionaCliente(Ljava.lang.String;Ljava.util.Calendar;Ljava.lang.String;Ljava.lang.String;Limobiliaria.processamento.TipoImovel;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="login" size="62,16" id="{UMLID=_PFl58GxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorCliente#login(Ljava.lang.String;Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getCliente" size="88,16" id="{UMLID=_PFqycGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorCliente#getCliente(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="exibeCliente" size="98,16" id="{UMLID=_PFS_AGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorCliente#exibeCliente(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="listaClientes" size="96,16" id="{UMLID=_PFsnoWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorCliente#listaClientes()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="listaClientes" size="96,16" id="{UMLID=_PFjdsWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorCliente#listaClientes(Limobiliaria.processamento.TipoImovel;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="listaClientes" size="96,16" id="{UMLID=_PFoWMWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorCliente#listaClientes(Ljava.lang.String;)}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" size="2,1" id="{UMLID=_PFDHYGxOEd-JaP0ON8TMfg}" source="//@children.11" target="//@children.12" targetEnd="//@children.11/@sourceConnections.0/@children.1" sourceEnd="//@children.11/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="296,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="163,214"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_PGAJoWxOEd-JaP0ON8TMfg}" source="//@children.11" target="//@children.5" targetEnd="//@children.11/@sourceConnections.1/@children.2" label="//@children.11/@sourceConnections.1/@children.0" sourceEnd="//@children.11/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="76,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="683,199" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_PGX9EWxOEd-JaP0ON8TMfg}" source="//@children.11" target="//@children.12" targetEnd="//@children.11/@sourceConnections.2/@children.2" label="//@children.11/@sourceConnections.2/@children.0" sourceEnd="//@children.11/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="50,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="352,204"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_PGjjQWxOEd-JaP0ON8TMfg}" source="//@children.11" target="//@children.0" targetEnd="//@children.11/@sourceConnections.3/@children.2" label="//@children.11/@sourceConnections.3/@children.0" sourceEnd="//@children.11/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="39,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,199" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="418,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_PII3oWxOEd-JaP0ON8TMfg}" source="//@children.11" target="//@children.2" targetEnd="//@children.11/@sourceConnections.4/@children.2" label="//@children.11/@sourceConnections.4/@children.0" sourceEnd="//@children.11/@sourceConnections.4/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="52,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="673,209" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,10"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true" showAttributeParameterType="true" showAttributeDefaultValue="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.11/@sourceConnections.0 //@children.11/@sourceConnections.2 //@children.5/@sourceConnections.3" name="ColecaoClientes" location="2717,50" size="352,214" timstampe="8" stereotype="" id="{UMLID=_XnVG8GxNEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoClientes}" runTimeClassModel="getClientesPorLetraInicial(Ljava.lang.String;),getClientesPorOrdemAlfabetica(),adicionaCliente(Limobiliaria.processamento.Cliente;),getClientes(Ljava.lang.String;),removeCliente(Ljava.lang.String;),colecaoClientes,numeroTotalDeClientes(),getClientes(Limobiliaria.processamento.TipoImovel;),getClientes()">
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:AttributeEditModel" name="colecaoClientes" size="109,21" id="{UMLID=_CAP0UGxOEd-JaP0ON8TMfg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="189,144">
+      <children xsi:type="editmodel:MethodEditModel" name="adicionaCliente" size="112,16" id="{UMLID=_CAXwIGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoClientes#adicionaCliente(Limobiliaria.processamento.Cliente;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removeCliente" size="109,16" id="{UMLID=_CAV68GxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoClientes#removeCliente(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="numeroTotalDeClientes" size="152,16" id="{UMLID=_CAfE4GxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoClientes#numeroTotalDeClientes()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getClientes" size="93,16" id="{UMLID=_CAUs0GxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoClientes#getClientes()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getClientes" size="93,16" id="{UMLID=_CAaMYGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoClientes#getClientes(Limobiliaria.processamento.TipoImovel;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getClientes" size="93,16" id="{UMLID=_CARCcGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoClientes#getClientes(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getClientesPorLetraInicial" size="161,16" id="{UMLID=_CAcooWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoClientes#getClientesPorLetraInicial(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getClientesPorOrdemAlfabetica" size="189,16" id="{UMLID=_CATesGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoClientes#getClientesPorOrdemAlfabetica()}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" id="{UMLID=_PL-OwGxOEd-JaP0ON8TMfg}" source="//@children.12" target="//@children.5" targetEnd="//@children.12/@sourceConnections.0/@children.2" label="//@children.12/@sourceConnections.0/@children.0" sourceEnd="//@children.12/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="76,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="330,214" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_PMVbIWxOEd-JaP0ON8TMfg}" source="//@children.12" target="//@children.0" targetEnd="//@children.12/@sourceConnections.1/@children.2" label="//@children.12/@sourceConnections.1/@children.0" sourceEnd="//@children.12/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="39,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,204" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="418,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_PNiVAGxOEd-JaP0ON8TMfg}" source="//@children.12" target="//@children.2" targetEnd="//@children.12/@sourceConnections.2/@children.2" label="//@children.12/@sourceConnections.2/@children.0" sourceEnd="//@children.12/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="52,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="342,214" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,10"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true" showAttributeParameterType="true" showAttributeDefaultValue="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.14/@sourceConnections.0 //@children.14/@sourceConnections.1 //@children.5/@sourceConnections.2 //@children.6/@sourceConnections.0" name="ColecaoImoveis" location="4788,2814" size="408,250" timstampe="9" stereotype="" id="{UMLID=_B_EIkWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoImoveis}" runTimeClassModel="getImoveis(Limobiliaria.processamento.TipoImovel;),colecaoImoveis,getImoveis(Ljava.lang.String;),getImoveis(),removeImovel(Ljava.lang.String;),addImovel(Limobiliaria.processamento.Imovel;),equals(Ljava.lang.Object;),getImoveisDeValor(DD),getImovelDeRegistro(I),getImoveis(Limobiliaria.processamento.TipoContratual;),getImoveis(Limobiliaria.processamento.EstadoImovel;)">
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:AttributeEditModel" name="colecaoImoveis" size="107,21" id="{UMLID=_CA4GcGxOEd-JaP0ON8TMfg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="140,180">
+      <children xsi:type="editmodel:MethodEditModel" name="addImovel" size="89,16" id="{UMLID=_CBACQGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoImoveis#addImovel(Limobiliaria.processamento.Imovel;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removeImovel" size="107,16" id="{UMLID=_CBOrwGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoImoveis#removeImovel(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getImoveis" size="91,16" id="{UMLID=_CBJzQWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoImoveis#getImoveis()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getImoveisDeValor" size="130,16" id="{UMLID=_CBQg8GxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoImoveis#getImoveisDeValor(DD)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getImoveis" size="91,16" id="{UMLID=_CBLBYWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoImoveis#getImoveis(Limobiliaria.processamento.TipoContratual;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getImoveis" size="91,16" id="{UMLID=_CBETsGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoImoveis#getImoveis(Limobiliaria.processamento.TipoImovel;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getImoveis" size="91,16" id="{UMLID=_CBGv8GxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoImoveis#getImoveis(Limobiliaria.processamento.EstadoImovel;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getImoveis" size="91,16" id="{UMLID=_CA8-8GxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoImoveis#getImoveis(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getImovelDeRegistro" size="140,16" id="{UMLID=_CA7JwGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoImoveis#getImovelDeRegistro(I)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="equals" size="71,16" id="{UMLID=_CBB3cGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.processamento/ColecaoImoveis#equals(Ljava.lang.Object;)}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_PBcZwGxOEd-JaP0ON8TMfg}" source="//@children.13" target="//@children.0" targetEnd="//@children.13/@sourceConnections.0/@children.2" label="//@children.13/@sourceConnections.0/@children.0" sourceEnd="//@children.13/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="39,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="428,289"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_PCMAoWxOEd-JaP0ON8TMfg}" source="//@children.13" target="//@children.8" targetEnd="//@children.13/@sourceConnections.1/@children.2" label="//@children.13/@sourceConnections.1/@children.0" sourceEnd="//@children.13/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="52,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,240" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="293,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_PCj0EWxOEd-JaP0ON8TMfg}" source="//@children.13" target="//@children.7" targetEnd="//@children.13/@sourceConnections.2/@children.2" label="//@children.13/@sourceConnections.2/@children.0" sourceEnd="//@children.13/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="76,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="83,250" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="620,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_PC_R4WxOEd-JaP0ON8TMfg}" source="//@children.13" target="//@children.2" targetEnd="//@children.13/@sourceConnections.3/@children.2" label="//@children.13/@sourceConnections.3/@children.0" sourceEnd="//@children.13/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="52,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="408,10" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,104"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_PEGsMWxOEd-JaP0ON8TMfg}" source="//@children.13" target="//@children.3" targetEnd="//@children.13/@sourceConnections.4/@children.2" label="//@children.13/@sourceConnections.4/@children.0" sourceEnd="//@children.13/@sourceConnections.4/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="52,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="408,240" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" id="{UMLID=_CBZq4GxOEd-JaP0ON8TMfg}" source="//@children.13" target="//@children.7" targetEnd="//@children.13/@sourceConnections.5/@children.2" label="//@children.13/@sourceConnections.5/@children.0" sourceEnd="//@children.13/@sourceConnections.5/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="0,249" id="{UMLID=_CBZq4WxOEd-JaP0ON8TMfg}" attachSource="true" multiplicityLabel="//@children.13/@sourceConnections.5/@children.1/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="4775,3043" size="6,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="colecaoImoveis" location="704,0" id="{UMLID=_CA4GcGxOEd-JaP0ON8TMfg}" multiplicityLabel="//@children.13/@sourceConnections.5/@children.2/@children.0" roleLabel="//@children.13/@sourceConnections.5/@children.2/@children.1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="4942,3631" size="6,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- colecaoImoveis" location="4962,3658" size="79,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" id="{UMLID=_CAIfkGxOEd-JaP0ON8TMfg}" source="//@children.13" target="//@children.5" targetEnd="//@children.13/@sourceConnections.6/@children.2" label="//@children.13/@sourceConnections.6/@children.0" sourceEnd="//@children.13/@sourceConnections.6/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="historicoCompras" id="{UMLID=_B_EvoWxOEd-JaP0ON8TMfg}" attachSource="true" multiplicityLabel="//@children.13/@sourceConnections.6/@children.1/@children.0" roleLabel="//@children.13/@sourceConnections.6/@children.1/@children.1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="4775,2821" size="6,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- historicoCompras" location="4795,2794" size="90,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="599,280" id="{UMLID=_CAIfkWxOEd-JaP0ON8TMfg}" multiplicityLabel="//@children.13/@sourceConnections.6/@children.2/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="4631,1409" size="6,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="{UMLID=_CAJGoGxOEd-JaP0ON8TMfg}" source="//@children.13" target="//@children.5" targetEnd="//@children.13/@sourceConnections.7/@children.2" label="//@children.13/@sourceConnections.7/@children.0" sourceEnd="//@children.13/@sourceConnections.7/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="pedidos" location="10,0" id="{UMLID=_B_C6cGxOEd-JaP0ON8TMfg}" attachSource="true" multiplicityLabel="//@children.13/@sourceConnections.7/@children.1/@children.0" roleLabel="//@children.13/@sourceConnections.7/@children.1/@children.1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="4785,2794" size="6,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- pedidos" location="4802,2848" size="44,13" fontInfo="Arial-8-0" automaticRelocationAllowed="false" locationOnWireFromSource="-751.9999999999999" distanceFromWire="-26.0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="600,270" id="{UMLID=_CAJGoWxOEd-JaP0ON8TMfg}" multiplicityLabel="//@children.13/@sourceConnections.7/@children.2/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="4652,1372" size="6,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" id="{UMLID=_GP09sGxPEd-JaP0ON8TMfg}" source="//@children.13" target="//@children.6" targetEnd="//@children.13/@sourceConnections.8/@children.2" label="//@children.13/@sourceConnections.8/@children.0" sourceEnd="//@children.13/@sourceConnections.8/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="historicoVendido" location="12,240" id="{UMLID=_GMfV0GxPEd-JaP0ON8TMfg}" attachSource="true" multiplicityLabel="//@children.13/@sourceConnections.8/@children.1/@children.0" roleLabel="//@children.13/@sourceConnections.8/@children.1/@children.1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="4775,3061" size="6,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- historicoVendido" location="4665,3024" size="85,13" fontInfo="Arial-8-0" automaticRelocationAllowed="false" locationOnWireFromSource="-484.0" distanceFromWire="-24.0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="567,1" id="{UMLID=_GP09sWxPEd-JaP0ON8TMfg}" multiplicityLabel="//@children.13/@sourceConnections.8/@children.2/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="2538,4233" size="6,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="{UMLID=_GP1kwGxPEd-JaP0ON8TMfg}" source="//@children.13" target="//@children.6" targetEnd="//@children.13/@sourceConnections.9/@children.2" label="//@children.13/@sourceConnections.9/@children.0" sourceEnd="//@children.13/@sourceConnections.9/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="historicoVendidoMes" location="0,240" id="{UMLID=_GMdgoGxPEd-JaP0ON8TMfg}" attachSource="true" multiplicityLabel="//@children.13/@sourceConnections.9/@children.1/@children.0" roleLabel="//@children.13/@sourceConnections.9/@children.1/@children.1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="4775,3061" size="6,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- historicoVendidoMes" location="4610,3056" size="105,13" fontInfo="Arial-8-0" automaticRelocationAllowed="false" locationOnWireFromSource="-1008.0" distanceFromWire="8.000000000007276" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="557,0" id="{UMLID=_GP1kwWxPEd-JaP0ON8TMfg}" multiplicityLabel="//@children.13/@sourceConnections.9/@children.2/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="2508,4205" size="6,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true" showAttributeParameterType="true" showAttributeDefaultValue="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.1" name="ControladorImovel" location="4312,3376" size="827,245" timstampe="5" stereotype="" id="{UMLID=_O3ZF4GxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorImovel}" runTimeClassModel="listaImoveis(LCollection;),exibeImovel(Ljava.lang.String;),addImovel(Ljava.lang.String;Ljava.lang.String;DLimobiliaria.processamento.Area;Limobiliaria.processamento.TipoImovel;Limobiliaria.processamento.TipoContratual;),listaImoveis(Limobiliaria.processamento.EstadoImovel;),modificaImovel(Limobiliaria.processamento.Imovel;Ljava.lang.String;Ljava.lang.String;DLimobiliaria.processamento.Area;Limobiliaria.processamento.TipoImovel;Limobiliaria.processamento.TipoContratual;),listaImoveis(Limobiliaria.processamento.TipoImovel;),listaImoveis(Ljava.lang.String;),listaImoveis(Limobiliaria.processamento.TipoContratual;),listaImoveis(),listaImoveis(DD),getImovel(Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="110,198">
+      <children xsi:type="editmodel:MethodEditModel" name="exibeImovel" size="96,16" id="{UMLID=_O3pkkGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorImovel#exibeImovel(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="listaImoveis" size="94,16" id="{UMLID=_O3vEIGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorImovel#listaImoveis(DD)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="listaImoveis" size="94,16" id="{UMLID=_O3sA0GxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorImovel#listaImoveis(Limobiliaria.processamento.TipoContratual;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="listaImoveis" size="94,16" id="{UMLID=_O3zVkWxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorImovel#listaImoveis(Limobiliaria.processamento.TipoImovel;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="listaImoveis" size="94,16" id="{UMLID=_O3xgYGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorImovel#listaImoveis(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="listaImoveis" size="94,16" id="{UMLID=_O32_8GxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorImovel#listaImoveis(LCollection;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="modificaImovel" size="110,16" id="{UMLID=_O4GQgGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorImovel#modificaImovel(Limobiliaria.processamento.Imovel;Ljava.lang.String;Ljava.lang.String;DLimobiliaria.processamento.Area;Limobiliaria.processamento.TipoImovel;Limobiliaria.processamento.TipoContratual;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getImovel" size="86,16" id="{UMLID=_O4EbUGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorImovel#getImovel(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="listaImoveis" size="94,16" id="{UMLID=_O4LwEGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorImovel#listaImoveis()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="listaImoveis" size="94,16" id="{UMLID=_O36DQGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorImovel#listaImoveis(Limobiliaria.processamento.EstadoImovel;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addImovel" size="89,16" id="{UMLID=_O39GkGxOEd-JaP0ON8TMfg,JavaID=imobiliaria.controladores/ControladorImovel#addImovel(Ljava.lang.String;Ljava.lang.String;DLimobiliaria.processamento.Area;Limobiliaria.processamento.TipoImovel;Limobiliaria.processamento.TipoContratual;)}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" size="2,1" id="{UMLID=_O3gaoWxOEd-JaP0ON8TMfg}" source="//@children.14" target="//@children.13" targetEnd="//@children.14/@sourceConnections.0/@children.1" sourceEnd="//@children.14/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="358,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="189,250"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_O4kxoWxOEd-JaP0ON8TMfg}" source="//@children.14" target="//@children.13" targetEnd="//@children.14/@sourceConnections.1/@children.2" label="//@children.14/@sourceConnections.1/@children.0" sourceEnd="//@children.14/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="50,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="651,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="175,250"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_O42ecGxOEd-JaP0ON8TMfg}" source="//@children.14" target="//@children.0" targetEnd="//@children.14/@sourceConnections.2/@children.2" label="//@children.14/@sourceConnections.2/@children.0" sourceEnd="//@children.14/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="39,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="428,289"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_O5mFUWxOEd-JaP0ON8TMfg}" source="//@children.14" target="//@children.8" targetEnd="//@children.14/@sourceConnections.3/@children.2" label="//@children.14/@sourceConnections.3/@children.0" sourceEnd="//@children.14/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="52,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,245" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="303,10"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_O5ySkWxOEd-JaP0ON8TMfg}" source="//@children.14" target="//@children.7" targetEnd="//@children.14/@sourceConnections.4/@children.2" label="//@children.14/@sourceConnections.4/@children.0" sourceEnd="//@children.14/@sourceConnections.4/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="76,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="321,245" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="382,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_O6Je8WxOEd-JaP0ON8TMfg}" source="//@children.14" target="//@children.1" targetEnd="//@children.14/@sourceConnections.5/@children.2" label="//@children.14/@sourceConnections.5/@children.0" sourceEnd="//@children.14/@sourceConnections.5/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="76,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="827,144" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,100"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_O6grUWxOEd-JaP0ON8TMfg}" source="//@children.14" target="//@children.2" targetEnd="//@children.14/@sourceConnections.6/@children.2" label="//@children.14/@sourceConnections.6/@children.0" sourceEnd="//@children.14/@sourceConnections.6/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="52,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="817,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,94"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_O7nekWxOEd-JaP0ON8TMfg}" source="//@children.14" target="//@children.3" targetEnd="//@children.14/@sourceConnections.7/@children.2" label="//@children.14/@sourceConnections.7/@children.0" sourceEnd="//@children.14/@sourceConnections.7/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="52,26" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="817,245" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,10"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" id="{UMLID=_a36lkGxbEd-JaP0ON8TMfg}" source="//@children.14" target="//@children.4" targetEnd="//@children.14/@sourceConnections.8/@children.2" label="//@children.14/@sourceConnections.8/@children.0" sourceEnd="//@children.14/@sourceConnections.8/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="controladorImoveis" location="52,10" id="{UMLID=_awu_gGxbEd-JaP0ON8TMfg}" attachSource="true" multiplicityLabel="//@children.14/@sourceConnections.8/@children.1/@children.0" roleLabel="//@children.14/@sourceConnections.8/@children.1/@children.1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="4351,3356" size="6,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- controladorImoveis" location="4371,3356" size="97,13" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="445,440" id="{UMLID=_a36lkWxbEd-JaP0ON8TMfg}" multiplicityLabel="//@children.14/@sourceConnections.8/@children.2/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="2959,2912" size="6,13" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showMethodsParameterTypes="true" showMethodsReturnType="true" showMethodsParameterNames="true" showMethodsParameterKinds="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true" showAttributeParameterType="true" showAttributeDefaultValue="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=7" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="14,14" gridOrigin="4200,3220" rulerUnit="cm" gridShow="true">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" attributeSorter="Natural" methodSorter="Natural" shortPackageNameFormat="true" showClassStereotype="true" showPackageStereotype="true" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showInterfaceStereotype="true" showMethods="true" showAttributes="true" showLiterlas="true" showInnerEntity="true"/>
+</editmodel:ClassDiagramEditModel>
