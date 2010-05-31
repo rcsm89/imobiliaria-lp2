@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Classe ColecaoImoveis que guarda uma Colecao da classe Imovel
  * 
- * @version IT 1.0
+ * @version IT01
  */
 public class ColecaoImoveis {
 	private ArrayList<Imovel> colecaoImoveis = new ArrayList<Imovel>();
@@ -18,7 +18,7 @@ public class ColecaoImoveis {
 	 * @param imovelAadicionar
 	 *            Imovel que deseja adicionar na Colecao
 	 * @throws Exception
-	 *             Lanca excecao caso o imovel ja exista ja colecao
+	 *             Lanca excecao caso o imovel ja exista na colecao
 	 */
 	public void addImovel(Imovel imovelAadicionar) throws Exception {
 		
@@ -39,6 +39,11 @@ public class ColecaoImoveis {
 	 *            Registro do Imovel a Ser Removido
 	 * @return True - Caso o imovel seja removido <br>
 	 *         False - Caso ele nao seja encontrado
+	 *         
+	 * @throws - Exception
+	 * 				Lanca excecao caso o imovel o imovel passado seja null ou
+	 * 				Seja passado letras ao invers do numero de registro de um
+	 *  imovel
 	 */
 	public boolean removeImovel(String registroImovel) throws Exception {
 		
