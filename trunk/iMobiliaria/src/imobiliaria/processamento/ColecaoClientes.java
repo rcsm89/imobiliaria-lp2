@@ -2,6 +2,7 @@ package imobiliaria.processamento;
 
 import imobiliaria.util.VerificaInvalido;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +11,11 @@ import java.util.List;
  * 
  * @version IT01
  */
-public class ColecaoClientes {
+public class ColecaoClientes implements Serializable {
 
 	// Atributos
 
+	private static final long serialVersionUID = 1L;
 	private List<Cliente> colecaoClientes = new ArrayList<Cliente>();
 
 	// Metodos de adicao e remocao de clientes

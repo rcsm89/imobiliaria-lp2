@@ -129,8 +129,9 @@ public class OperacoesInterfaceTextual {
 			} catch (IndexOutOfBoundsException erro) {
 				preferencia = null;
 			}
+			
 			try {
-
+				
 				if (sis.controladorClientes().adicionaCliente(cpf,
 						dataNascimento, endereco, nome, preferencia)) {
 					repeteCadastro = false;

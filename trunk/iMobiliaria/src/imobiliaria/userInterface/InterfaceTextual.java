@@ -5,6 +5,7 @@ package imobiliaria.userInterface;
 
 import imobiliaria.processamento.Cliente;
 import imobiliaria.processamento.Funcionario;
+import imobiliaria.processamento.PersistenciaDados;
 import imobiliaria.processamento.Sistema;
 import imobiliaria.processamento.TipoLogin;
 import imobiliaria.util.MetodoEntrada;
@@ -66,7 +67,15 @@ public class InterfaceTextual {
 	 */
 	public InterfaceTextual() {
 		this.lineSep = System.getProperty("line.separator");
-		this.sis = new Sistema();
+		
+		
+		
+		try {
+			this.sis = PersistenciaDados.ler();
+		} catch (Exception e) {
+			System.out.println("Erro: " + e.getMessage());
+		}
+		
 		this.op = new OperacoesInterfaceTextual(sis);
 	}
 
@@ -80,6 +89,9 @@ public class InterfaceTextual {
 		final int SAIR = 5;
 
 		while (loopPrincipal) {
+			
+			PersistenciaDados.gravar(sis);
+			
 			promptLogin();
 			int opcao = MetodoEntrada.recebeInt();
 
@@ -141,6 +153,7 @@ public class InterfaceTextual {
 		final int SAIR = 5;
 
 		while (repeteMenu) {
+			
 			promptMenuCliente();
 			opcao = MetodoEntrada.recebeInt();
 

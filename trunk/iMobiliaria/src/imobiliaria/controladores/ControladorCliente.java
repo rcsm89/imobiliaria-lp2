@@ -17,6 +17,7 @@ import imobiliaria.util.VerificaInvalido;
  */
 public class ControladorCliente extends ColecaoClientes {
 
+	private static final long serialVersionUID = 1L;
 	private HashMap<String, String> loginClientes = new HashMap<String, String>();
 
 	/**
@@ -40,9 +41,13 @@ public class ControladorCliente extends ColecaoClientes {
 	public boolean adicionaCliente(String cpf, Calendar dataNascimento,
 			String endereco, String nome, TipoImovel preferencia)
 			throws Exception {
+		
+		System.out.println("Ta aqui!");
 
 		Cliente clienteASerAdicionado = new Cliente(cpf, dataNascimento,
 				endereco, nome, preferencia);
+		
+		System.out.println(clienteASerAdicionado);
 
 		if (adicionaCliente(clienteASerAdicionado)) {
 			loginClientes.put(clienteASerAdicionado.getLogin(),

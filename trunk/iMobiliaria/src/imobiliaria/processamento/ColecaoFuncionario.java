@@ -2,6 +2,7 @@ package imobiliaria.processamento;
 
 import imobiliaria.util.VerificaInvalido;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +12,9 @@ import java.util.List;
  * @author thiagofp
  * @version IT01
  */
-public class ColecaoFuncionario {
+public class ColecaoFuncionario implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private List<Funcionario> colecaoFuncionarios = new ArrayList<Funcionario>();;
 
 	/**
