@@ -68,17 +68,17 @@ public class ControladorFuncionarioTest {
 				numCreci);
 
 		Assert.assertEquals("Nome: Thiago Ferreira\n" +
-						"CRECI: 00111\n" +
+						"Creci: 00111\n" +
 						"Cpf: 101.202.303-44\n" +
 						"Data de Nascimento: 18/02/1991\n" +
 						"Endereco: Rua 12 De Outubro",
-						controlFunc1.exibeFuncPorCreci(numCreci));	
+						controlFunc1.exibeFuncionarioPorCreci(numCreci));	
 	}
 
 	@Test(expected = Exception.class)
 	public void testaExibeFuncionarioPorCreciInvalido() throws Exception {
 		// colecao vazia
-		controlFunc1.exibeFuncPorCreci("00111");
+		controlFunc1.exibeFuncionarioPorCreci("00111");
 
 		String cpf = "10120230344";
 		Calendar dataNascimento = new GregorianCalendar(1991, 1, 18);
@@ -89,8 +89,8 @@ public class ControladorFuncionarioTest {
 		controlFunc1.adicionaFuncionario(cpf, dataNascimento, endereco, nome,
 				numCreci);
 		// creci invalido
-		controlFunc1.exibeFuncPorCreci(null);
-		controlFunc1.exibeFuncPorCreci("123sa");
+		controlFunc1.exibeFuncionarioPorCreci(null);
+		controlFunc1.exibeFuncionarioPorCreci("123sa");
 
 	}
 	
@@ -106,17 +106,17 @@ public class ControladorFuncionarioTest {
 				numCreci);
 
 		Assert.assertEquals("Nome: Thiago Ferreira\n" +
-						"CRECI: 00111\n" +
+						"Creci: 00111\n" +
 						"Cpf: 101.202.303-44\n" +
 						"Data de Nascimento: 18/02/1991\n" +
 						"Endereco: Rua 12 De Outubro",
-						controlFunc1.exibeFuncPorCpf("101.202.303-44"));	
+						controlFunc1.exibeFuncionarioPorCpf("101.202.303-44"));	
 	}
 
 	@Test(expected = Exception.class)
 	public void testaExibeFuncionarioPorCpfInvalido() throws Exception {
 		// colecao vazia
-		controlFunc1.exibeFuncPorCpf("12345678910");
+		controlFunc1.exibeFuncionarioPorCpf("12345678910");
 
 		String cpf = "10120230344";
 		Calendar dataNascimento = new GregorianCalendar(1991, 1, 18);
@@ -127,8 +127,8 @@ public class ControladorFuncionarioTest {
 		controlFunc1.adicionaFuncionario(cpf, dataNascimento, endereco, nome,
 				numCreci);
 		// creci invalido
-		controlFunc1.exibeFuncPorCpf(null);
-		controlFunc1.exibeFuncPorCpf("123sa");
+		controlFunc1.exibeFuncionarioPorCreci(null);
+		controlFunc1.exibeFuncionarioPorCreci("123sa");
 
 	}
 
