@@ -31,11 +31,21 @@ public class OperacoesInterfaceTextual {
 	}
 
 	protected void historicoCompras(Cliente cl) {
-		int num = 1;
+		int contador = 1;
 		System.out.println(lineSep);
 		for (Imovel imovel : cl.getHistoricoCompras().getImoveis()) {
-			System.out.println(String.format("%2d. %s", num, imovel));
-			num++;
+			System.out.println(String.format("%2d. %s", contador, imovel));
+			contador++;
+		}
+		System.out.println(lineSep);
+	}
+	
+	protected void historicoVendas(Funcionario func) {
+		int contador = 1;
+		System.out.println(lineSep);
+		for (Imovel imovel : func.getImoveisVendidos().getImoveis()) {
+			System.out.println(String.format("%2d. %s", contador, imovel));
+			contador++;
 		}
 		System.out.println(lineSep);
 	}
@@ -64,7 +74,24 @@ public class OperacoesInterfaceTextual {
 						+ sis.controladorFuncionarios().listaFuncionarios());
 	}
 
-	protected void fazerPedido() {
+	protected void fazerPedido(String cpfCliente) {
+		System.out
+				.println(lineSep
+						+ "========================== Fazer Pedido =========================="
+						+ lineSep);
+
+		String registroImovel = MetodoEntrada
+				.recebeString("Digite o Registro do Imovel que for pedir: ");
+
+		try {
+
+			sis.adicionaPedido(registroImovel, cpfCliente);
+
+		} catch (Exception e) {
+
+			System.out.println("Erro: " + e.getMessage());
+
+		}
 	}
 
 	// Metodos da Interface
@@ -98,7 +125,7 @@ public class OperacoesInterfaceTextual {
 			opcaoImovel = MetodoEntrada.recebeInt();
 
 			try {
-				preferencia = TipoImovel.values()[opcaoImovel];
+				preferencia = TipoImovel.values()[opcaoImovel - 1];
 			} catch (IndexOutOfBoundsException erro) {
 				preferencia = null;
 			}
@@ -252,4 +279,268 @@ public class OperacoesInterfaceTextual {
 				+ "======= Cadastro De Imovel Efetuado com Sucesso ======="
 				+ lineSep);
 	}
+
+	// METODOS QUE CRIEI AGORA
+
+	protected void verificaDadosPessoais(Funcionario func) {
+
+		System.out.println(lineSep
+				+ sis.controladorFuncionarios().exibeFuncPorCreci(
+						func.getCreci()) + lineSep);
+
+	}
+
+	protected void excluirCliente() {
+		System.out
+				.println(lineSep
+						+ "====================== Exclusao de Cliente ======================"
+						+ lineSep);
+
+		boolean continuaRodandoMenu = true;
+
+		do {
+			String cpf = MetodoEntrada
+					.recebeString("Digite o CPF do Cliente que deseja Excluir: ");
+
+			System.out.println(sis.controladorClientes().exibeCliente(cpf));
+
+			System.out.println(lineSep + "1. Confirmar" + lineSep + "2. Sair");
+
+			int opcao = MetodoEntrada.recebeInt();
+
+			switch (opcao) {
+			case 1:
+				if (sis.controladorClientes().removeCliente(cpf)) {
+
+					System.out.println("Cliente removido com Sucesso!");
+
+				} else {
+
+					System.out.println("Falha ao remover cliente");
+				}
+				break;
+
+			case 2:
+				continuaRodandoMenu = false;
+				break;
+
+			default:
+				System.out.println("Opcao Invalida!");
+
+			}
+		} while (continuaRodandoMenu);
+	}
+
+	protected void atualizarCliente() {
+
+		System.out
+				.println(lineSep
+						+ "====================== Modificar Dados de Cliente ======================"
+						+ lineSep);
+
+		System.out.println("Opcao em Construcao");
+
+	}
+
+	protected void verificaInformacoesCliente() {
+
+		System.out
+				.println(lineSep
+						+ "=================== Verifica Dados de Cliente ==================="
+						+ lineSep);
+
+		String cpf = MetodoEntrada
+				.recebeString("Digite o CPF do Cliente que deseja verificar:");
+
+		System.out.println(sis.controladorClientes().exibeCliente(cpf)
+				+ lineSep);
+
+	}
+
+	protected void excluirImovel() {
+
+		System.out
+				.println(lineSep
+						+ "====================== Excluir Imovel ======================"
+						+ lineSep);
+
+		boolean continuaRodandoMenu = true;
+
+		do {
+			String registroImovel = MetodoEntrada
+					.recebeString("Digite o registro do imovel que deseja Excluir: ");
+
+			String informacoes = sis.controladorImoveis().exibeImovel(
+					registroImovel);
+
+			if (informacoes != null) {
+
+				System.out.println(lineSep + informacoes);
+
+				System.out.println(lineSep + "1. Confirmar" + lineSep
+						+ "2. Sair");
+
+				int opcao = MetodoEntrada.recebeInt();
+
+				try {
+					switch (opcao) {
+					case 1:
+						if (sis.controladorImoveis().removeImovel(
+								registroImovel)) {
+
+							System.out.println("Imovel removido com Sucesso!");
+
+						} else {
+
+							System.out.println("Falha ao remover imovel");
+						}
+						break;
+
+					case 2:
+						continuaRodandoMenu = false;
+						break;
+
+					default:
+						System.out.println("Opcao Invalida");
+
+					}
+
+				} catch (Exception e) {
+					System.out.println("Erro: " + e.getMessage());
+				}
+			} else {
+
+				System.out.println("Registro Invalido");
+
+			}
+		} while (continuaRodandoMenu);
+	}
+
+	protected void informacoesImovel() {
+
+		System.out
+				.println(lineSep
+						+ "====================== Informacoes de Imovel ======================"
+						+ lineSep);
+
+		String registroImovel = MetodoEntrada
+				.recebeString("Digite o Registro do Imovel que deseja verificar: ");
+
+		String informacoes = sis.controladorImoveis().exibeImovel(
+				registroImovel);
+
+		if (informacoes != null) {
+
+			System.out.println(lineSep + informacoes);
+
+		} else {
+
+			System.out.println("Registro Invalido");
+		}
+	}
+
+	protected void excluirFuncionario() {
+
+		System.out
+				.println(lineSep
+						+ "====================== Excluir Funcionario ======================"
+						+ lineSep);
+
+		boolean continuaRodandoMenu = true;
+
+		do {
+
+			String creci = MetodoEntrada
+					.recebeString("Digite o CRECI do Funcionario que deseja Excluir: ");
+
+			System.out.println(sis.controladorFuncionarios().exibeFuncPorCreci(
+					creci));
+
+			System.out.println(lineSep + "1. Confirmar" + lineSep + "2. Sair");
+
+			int opcao = MetodoEntrada.recebeInt();
+
+			switch (opcao) {
+			case 1:
+
+				try {
+					if (sis.controladorFuncionarios().removeFuncionario(creci)) {
+
+						System.out.println("Funcionario removido com Sucesso!");
+
+					} else {
+						System.out.println("Falha ao remover Funcionario");
+					}
+
+				} catch (Exception e) {
+					System.out.println("Erro: " + e.getMessage());
+				}
+				break;
+
+			case 2:
+				continuaRodandoMenu = false;
+				break;
+
+			default:
+				System.out.println("Opcao Invalida!");
+			}
+		} while (continuaRodandoMenu);
+	}
+
+	protected void verificaInformacoesFuncionario() {
+
+		System.out
+				.println(lineSep
+						+ "=================== Verifica Dados de Funcionario ==================="
+						+ lineSep);
+
+		String creci = MetodoEntrada
+				.recebeString("Digite o CRECI do Funcionario que deseja verificar:");
+
+		System.out.println(sis.controladorFuncionarios().exibeFuncPorCreci(
+				creci)
+				+ lineSep);
+
+	}
+
+	protected void efetuaPedido() {
+
+		System.out
+				.println(lineSep
+						+ "======================= Efetua Pedido ======================="
+						+ lineSep);
+
+		String registroImovel = MetodoEntrada
+				.recebeString("Registro do Imovel que foi efetuado pedido: ");
+		String creciFuncionario = MetodoEntrada
+				.recebeString("Digite o CRECI do Funcionario que realizou a Compra: ");
+
+		try {
+			sis.efetuaPedido(registroImovel, creciFuncionario);
+			System.out.println("Pedido Efetuado com Sucesso!");
+		} catch (Exception e) {
+			System.out
+					.println("Impossivel efetuar Pedido - Informacoes Invalidas");
+		}
+	}
+
+	protected void efetuarPagamento() {
+
+		try {
+			String folhaDePagamento = sis.efetuaPagamentoNoMes();
+			System.out.println("Folha de Pagamento do Mes:" + lineSep
+					+ folhaDePagamento);
+
+		} catch (Exception e) {
+			System.out.println("Erro: " + e.getMessage());
+		}
+
+	}
+
+	protected void verificaSaldoAtual() {
+
+		System.out.println(lineSep + "Saldo Atual do Caixa: " + sis.caixa()
+				+ lineSep);
+	}
+
 }

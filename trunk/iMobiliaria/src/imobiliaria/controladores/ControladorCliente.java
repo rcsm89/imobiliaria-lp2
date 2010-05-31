@@ -97,6 +97,10 @@ public class ControladorCliente extends ColecaoClientes {
 	 */
 	public String exibeCliente(String cpf) {
 		Cliente c = getCliente(cpf);
+		
+		if (c == null) {
+			return null;
+		}
 
 		return "Nome: " + c.getNome() + " - CPF: " + c.getCpf() + "\n"
 				+ "Endereco: " + c.getEndereco() + " - Data de Nascimento: "
