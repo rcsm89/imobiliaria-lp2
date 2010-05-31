@@ -207,7 +207,7 @@ public class InterfaceTextual {
 
 			case ATUALIZAR_CADASTRO_CLIENTE:
 
-				System.out.println("Construcao");
+				System.out.println("Opcao em Construcao");
 
 				break;
 
@@ -233,7 +233,7 @@ public class InterfaceTextual {
 
 			case ATUALIZAR_CADASTRO_IMOVEL:
 
-				System.out.println("Construcao");
+				System.out.println("Opcao em Construcao");
 
 				break;
 
@@ -307,7 +307,7 @@ public class InterfaceTextual {
 
 			case ATUALIZAR_CADASTRO_CLIENTE:
 
-				System.out.println("Construcao");
+				System.out.println("Opcao em Construcao");
 
 				break;
 
@@ -332,7 +332,7 @@ public class InterfaceTextual {
 				break;
 
 			case ATUALIZAR_CADASTRO_IMOVEL:
-				System.out.println("Construcao");
+				System.out.println("Opcao em Construcao");
 				break;
 
 			case INFORMACOES_IMOVEL:
@@ -357,7 +357,7 @@ public class InterfaceTextual {
 
 			case ATUALIZAR_CADASTRO_FUNCIONARIO:
 
-				System.out.println("Construcao");
+				System.out.println("Opcao em Construcao");
 
 				break;
 
