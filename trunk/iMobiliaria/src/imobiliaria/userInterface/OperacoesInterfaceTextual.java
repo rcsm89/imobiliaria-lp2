@@ -300,7 +300,7 @@ public class OperacoesInterfaceTextual {
 
 		do {
 			String cpf = MetodoEntrada
-					.recebeString("Digite o CPF do Cliente que deseja Excluir: ");
+					.recebeString("Digite o CPF (XXX.XXX.XXX-XX) do Cliente que deseja Excluir: ");
 			
 			String informacoes;
 			
@@ -350,7 +350,7 @@ public class OperacoesInterfaceTextual {
 						+ lineSep);
 
 		String cpf = MetodoEntrada
-				.recebeString("Digite o CPF do Cliente que deseja verificar:");
+				.recebeString("Digite o CPF (XXX.XXX.XXX-XX) do Cliente que deseja verificar:");
 
 		String informacoes;
 		
@@ -464,13 +464,11 @@ public class OperacoesInterfaceTextual {
 			String creci = MetodoEntrada
 					.recebeString("Digite o CRECI do Funcionario que deseja Excluir: ");
 			
-			String informacoes;
+			String informacoes = "";
 			
-			
-			
-			informacoes = sis.controladorFuncionarios().exibeFuncionarioPorCreci(creci);
-				
-			if (informacoes == null) {
+			try {
+				informacoes = sis.controladorFuncionarios().exibeFuncionarioPorCreci(creci);
+			} catch (NullPointerException e) {
 				System.out.println("Funcionario nao cadastrado");
 				return;
 			}
