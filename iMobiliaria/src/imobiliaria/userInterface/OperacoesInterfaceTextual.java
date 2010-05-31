@@ -517,14 +517,16 @@ public class OperacoesInterfaceTextual {
 		String creci = MetodoEntrada
 				.recebeString("Digite o CRECI do Funcionario que deseja verificar:");
 		
+		String informacoes;
 		
-		String informacoes = sis.controladorFuncionarios().exibeFuncionarioPorCreci(creci);
-			
-		if (informacoes == null) {
+		
+		try {
+			informacoes = sis.controladorFuncionarios().exibeFuncionarioPorCreci(creci);
+		} catch (NullPointerException e) {
 			System.out.println("Funcionario nao cadastrado");
 			return;
 		}
-
+		
 		System.out.println(informacoes + lineSep);
 
 	}
