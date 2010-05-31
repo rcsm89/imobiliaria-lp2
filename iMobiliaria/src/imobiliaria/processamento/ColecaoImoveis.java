@@ -2,6 +2,7 @@ package imobiliaria.processamento;
 
 import imobiliaria.util.VerificaInvalido;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +10,9 @@ import java.util.ArrayList;
  * 
  * @version IT01
  */
-public class ColecaoImoveis {
+public class ColecaoImoveis implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Imovel> colecaoImoveis = new ArrayList<Imovel>();
 
 	/**

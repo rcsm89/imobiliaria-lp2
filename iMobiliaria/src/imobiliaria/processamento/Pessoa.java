@@ -6,6 +6,7 @@ package imobiliaria.processamento;
 import imobiliaria.util.FormataEntrada;
 import imobiliaria.util.VerificaInvalido;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 /**
@@ -15,11 +16,15 @@ import java.util.Calendar;
  * @version IT01
  * 
  */
-public abstract class Pessoa {
+public abstract class Pessoa implements Serializable {
 
     // Atributos
 
-    private String dataNascimento; // data de nascimento da pessoa
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String dataNascimento; // data de nascimento da pessoa
     private String endereco; // residencia da pessoa
     private String nome; // nome da pessoa
     private String cpf; // cpf da pessoa

@@ -1,5 +1,7 @@
 package imobiliaria.processamento;
 
+import java.io.Serializable;
+
 import imobiliaria.util.VerificaInvalido;
 
 /**
@@ -7,7 +9,9 @@ import imobiliaria.util.VerificaInvalido;
  * 
  * @version IT 1.1
  */
-public class Imovel {
+public class Imovel implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	// Atributos
 	private static int criadorDeRegistro = 0;
@@ -65,7 +69,8 @@ public class Imovel {
 			mensagemErro += "Tipo Contratual invalido\n";
 		}
 
-		if (mensagemErro.length() != 0) {
+		final int PALAVRA_VAZIA = 0;
+		if (mensagemErro.length() != PALAVRA_VAZIA) {
 			throw new Exception(mensagemErro);
 		}
 

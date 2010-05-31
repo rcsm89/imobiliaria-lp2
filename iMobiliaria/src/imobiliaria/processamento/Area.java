@@ -23,13 +23,14 @@ public class Area {
 	 */
 	public Area(double comprimento, double largura) throws Exception {
 		String mensagemDeErro = "";
-		if (comprimento <= 0)
+		final int TAM_ZERO = 0;
+		if (comprimento <= TAM_ZERO)
 			mensagemDeErro += "Comprimento invalido\n";
 
-		if (largura <= 0)
+		if (largura <= TAM_ZERO)
 			mensagemDeErro += "Largura invalida\n";
 		
-		if (mensagemDeErro.length() != 0)
+		if (mensagemDeErro.length() != TAM_ZERO)
 			throw new Exception(mensagemDeErro);
 
 		this.comprimento = comprimento;
@@ -55,7 +56,8 @@ public class Area {
 	 *            Novo Comprimento
 	 */
 	public void setComprimento(double comprimento) throws Exception {
-		if (comprimento <= 0) {
+		final int TAM_VAZIO = 0;
+		if (comprimento <= TAM_VAZIO) {
 			throw new Exception("Comprimento invalido");
 		}
 		this.comprimento = comprimento;
@@ -77,7 +79,8 @@ public class Area {
 	 *            Nova Largura
 	 */
 	public void setLargura(double largura) throws Exception {
-		if (largura <= 0) {
+		final int TAM_VAZIO = 0;
+		if (largura <= TAM_VAZIO) {
 			throw new Exception("Largura invalida");
 		}
 		this.largura = largura;

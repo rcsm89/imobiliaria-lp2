@@ -10,6 +10,7 @@ import java.util.Calendar;
  */
 public class Cliente extends Pessoa {
 
+	private static final long serialVersionUID = 1L;
 	private ColecaoImoveis historicoCompras = new ColecaoImoveis();
 	private ColecaoImoveis pedidos = new ColecaoImoveis();
 	private TipoImovel preferencia;

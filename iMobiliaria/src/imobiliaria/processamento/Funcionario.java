@@ -13,6 +13,7 @@ import java.util.Calendar;
  */
 public class Funcionario extends Pessoa {
 
+	private static final long serialVersionUID = 1L;
 	private ColecaoImoveis historicoVendido = new ColecaoImoveis();
 	private ColecaoImoveis historicoVendidoMes = new ColecaoImoveis();
 	private String creci;

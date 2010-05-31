@@ -18,6 +18,8 @@ import java.util.List;
  */
 public class ControladorImovel extends ColecaoImoveis {
 
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Metodo responsavel por modificar um Imovel ja existente
 	 * 

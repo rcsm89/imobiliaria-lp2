@@ -87,8 +87,9 @@ public class MetodoEntrada {
 	}
 
 	String dataString = sc.nextLine();
-	if ((dataString.isEmpty()) || (dataString.length() < 10)
-		|| (dataString.length() > 10)) {
+	final int TAM_STRING_DATA = 10;
+	if ((dataString.isEmpty()) || (dataString.length() < TAM_STRING_DATA)
+		|| (dataString.length() > TAM_STRING_DATA)) {
 	    return data;
 	}
 	
@@ -107,7 +108,9 @@ public class MetodoEntrada {
 		return recebeData();
 	}
 
-	if (dia < 1 || dia > 31 || mes < 1 || mes > 12) {
+	final int JAN = 1, DEZ = 12;
+	final int PRIM_DIA = 1, ULTM_DIA = 31;
+	if (dia < PRIM_DIA || dia > ULTM_DIA || mes < JAN || mes > DEZ) {
 	    System.out.println("Entrada invalida");
 	    return recebeData();
 	}

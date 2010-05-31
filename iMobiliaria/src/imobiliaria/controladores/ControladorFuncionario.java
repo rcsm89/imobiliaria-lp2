@@ -17,6 +17,7 @@ import imobiliaria.util.VerificaInvalido;
  */
 public class ControladorFuncionario extends ColecaoFuncionario {
 
+	private static final long serialVersionUID = 1L;
 	private HashMap<String, String> loginFuncionarios = new HashMap<String, String>();
 
 	/**

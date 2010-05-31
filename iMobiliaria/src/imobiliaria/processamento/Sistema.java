@@ -1,5 +1,6 @@
 package imobiliaria.processamento;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -16,8 +17,9 @@ import imobiliaria.controladores.*;
  * Essa Classe ira guardar todas as informacoes do Sistema, tais como banco de
  * dados contendo os Imoveis, Clientes, Funcionarios e o Caixa da Empresa
  */
-public class Sistema {
+public class Sistema implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private final double SALARIO_DEFAULT = 1500;
 	private final double COMISSAO = 0.03;
 
