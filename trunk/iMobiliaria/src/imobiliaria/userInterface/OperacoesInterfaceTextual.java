@@ -304,14 +304,10 @@ public class OperacoesInterfaceTextual {
 			
 			String informacoes;
 			
-			try {
+			
+			informacoes = sis.controladorClientes().exibeCliente(cpf);
 				
-				informacoes = sis.controladorClientes().exibeCliente(cpf);
-				
-				if (informacoes == null)
-					return;
-				
-			} catch (NullPointerException e) {
+			if (informacoes == null) {
 				System.out.println("Cliente nao cadastrado");
 				return;
 			}
@@ -358,17 +354,14 @@ public class OperacoesInterfaceTextual {
 
 		String informacoes;
 		
-		try {
-			informacoes = sis.controladorClientes().exibeCliente(cpf);
-			
-			if (informacoes == null)
-				return;
-			
-		} catch (NullPointerException e) {
+		
+		informacoes = sis.controladorClientes().exibeCliente(cpf);
+		
+		if (informacoes == null) {
 			System.out.println("Cliente nao cadastrado");
 			return;
 		}
-		
+			
 		System.out.println(informacoes + lineSep);
 
 	}
@@ -387,19 +380,14 @@ public class OperacoesInterfaceTextual {
 					.recebeString("Digite o registro do imovel que deseja Excluir: ");
 			
 			
-			String informacoes;
 			
-			try {
-				informacoes = sis.controladorImoveis().exibeImovel(
-					registroImovel);
+			String informacoes = sis.controladorImoveis().exibeImovel(
+				registroImovel);
 				
-				if (informacoes == null)
-					return;
-			} catch (NullPointerException e) {
-				System.out.println("Registro de Imovel Invalido ou Imovel nao cadastrado");
+			if (informacoes == null) {
+				System.out.println("Imovel nao cadastrado");
 				return;
 			}
-
 
 			System.out.println(lineSep + informacoes);
 
@@ -450,17 +438,11 @@ public class OperacoesInterfaceTextual {
 				.recebeString("Digite o Registro do Imovel que deseja verificar: ");
 		
 		
-		String informacoes;
-		
-		try {
-			informacoes = sis.controladorImoveis().exibeImovel(
-				registroImovel);
+		String informacoes = sis.controladorImoveis().exibeImovel(
+			registroImovel);
 			
-			if (informacoes == null)
-				return;
-			
-		} catch (NullPointerException e) {
-			System.out.println("Registro ou Imovel invalido");
+		if (informacoes == null) {
+			System.out.println("Imovel nao cadastrado");
 			return;
 		}
 
@@ -484,14 +466,11 @@ public class OperacoesInterfaceTextual {
 			
 			String informacoes;
 			
-			try {
 			
-				informacoes = sis.controladorFuncionarios().exibeFuncionarioPorCreci(creci);
+			
+			informacoes = sis.controladorFuncionarios().exibeFuncionarioPorCreci(creci);
 				
-				if (informacoes == null)
-					return;
-				
-			} catch (NullPointerException e) {
+			if (informacoes == null) {
 				System.out.println("Funcionario nao cadastrado");
 				return;
 			}
@@ -540,14 +519,10 @@ public class OperacoesInterfaceTextual {
 		String creci = MetodoEntrada
 				.recebeString("Digite o CRECI do Funcionario que deseja verificar:");
 		
-		String informacoes;
 		
-		try {
-			informacoes = sis.controladorFuncionarios().exibeFuncionarioPorCreci(creci);
+		String informacoes = sis.controladorFuncionarios().exibeFuncionarioPorCreci(creci);
 			
-			if (informacoes == null)
-				return;
-		} catch (NullPointerException e) {
+		if (informacoes == null) {
 			System.out.println("Funcionario nao cadastrado");
 			return;
 		}
