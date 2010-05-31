@@ -91,11 +91,21 @@ public class MetodoEntrada {
 		|| (dataString.length() > 10)) {
 	    return data;
 	}
-
-	String[] d = dataString.split("/");
-	int dia = Integer.parseInt(d[0]);
-	int mes = Integer.parseInt(d[1]);
-	int ano = Integer.parseInt(d[2]);
+	
+	
+	int dia;
+	int mes;
+	int ano;
+	
+	try {
+		String[] d = dataString.split("/");
+		dia = Integer.parseInt(d[0]);
+		mes = Integer.parseInt(d[1]);
+		ano = Integer.parseInt(d[2]);
+	} catch (Exception e) {
+		System.out.println("Entrada invalida");
+		return recebeData();
+	}
 
 	if (dia < 1 || dia > 31 || mes < 1 || mes > 12) {
 	    System.out.println("Entrada invalida");
