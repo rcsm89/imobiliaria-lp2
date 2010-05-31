@@ -73,7 +73,7 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Metodo responsavel por listar todos os funcionarios
 	 * 
@@ -82,12 +82,13 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 	public String listaFuncionarios() {
 		return listaFuncionarios(getColecaoFuncionarios());
 	}
-	
+
 	/**
 	 * Metodo responsavel por listar um array de funcionario
 	 * 
 	 * @param listaDeFuncionarios
-	 *            Representa o array que contem os funcionarios que seram listados
+	 *            Representa o array que contem os funcionarios que seram
+	 *            listados
 	 * @return Uma String contendo a lista dos funcionarios
 	 */
 	private String listaFuncionarios(List<Funcionario> listaDeFuncionarios) {
@@ -95,16 +96,16 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 
 		for (Funcionario func : listaDeFuncionarios) {
 
-			saida += "Nome: " + func.getNome() + " - CPF: " + func.getCpf() + "\n"
-			+ "Endereco: " + func.getEndereco() + "\nData de Nascimento: "
-			+ func.getDataNascimento() + " - Creci: "
-			+ func.getCreci() + "\n\n";
+			saida += "Nome: " + func.getNome() + " - CPF: " + func.getCpf()
+					+ "\n" + "Endereco: " + func.getEndereco()
+					+ "\nData de Nascimento: " + func.getDataNascimento()
+					+ " - Creci: " + func.getCreci() + "\n\n";
 
 		}
 
 		return saida;
 	}
-	
+
 	/**
 	 * Metodo que modifica um funcionario
 	 * 
@@ -175,51 +176,65 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 	}
 
 	/**
-	 * Retorna um string contendo dados de um funcionario obtido pelo seu creci
+	 * Metodo Acessador de um Funcionario
 	 * 
 	 * @param creci
-	 *            Creci no funcionario
-	 * @return Dados do funcionario desejado
+	 *            Creci do Funcionario a ser retornado
+	 * @return Funcionario ou null, caso nao exista
 	 */
-	public String exibeFuncPorCreci(String creci) {
-		if (getColecaoFuncionarios().isEmpty()) {
-			throw new IllegalArgumentException("Colecao Funcionarios Vazia");
-		}
-
-		String funcRetornado = "";
+	public Funcionario getFuncionarioPorCreci(String creci) {
 		for (Funcionario func : getColecaoFuncionarios()) {
-			if (func.getCreci().equals(creci)) {
-				funcRetornado = "Nome: " + func.getNome() + "\nCRECI: "
-						+ func.getCreci() + "\nCpf: " + func.getCpf()
-						+ "\nData de Nascimento: " + func.getDataNascimento()
-						+ "\nEndereco: " + func.getEndereco();
-			}
+			if (func.getCreci().equals(creci))
+				return func;
 		}
-		return funcRetornado;
+		return null;
 	}
 
 	/**
-	 * Retorna um string contendo dados de um funcionario obtido pelo seu cpf
+	 * Metodo que exibe informacoes de um Funcionario
+	 * 
+	 * @param creci
+	 *            Creci do Funcionario a ser exibido
+	 * @return String contendo informacoes do Funcionario
+	 */
+	public String exibeFuncionarioPorCreci(String creci) {
+		Funcionario func = getFuncionarioPorCreci(creci);
+
+		return "Nome: " + func.getNome() + "\nCreci: " + func.getCreci()
+				+ "\nCpf: " + func.getCpf() + "\nData de Nascimento: "
+				+ func.getDataNascimento() + "\nEndereco: "
+				+ func.getEndereco();
+	}
+		
+	/**
+	 * Metodo Acessador de um Funcionario
 	 * 
 	 * @param cpf
-	 *            Cpf no funcionario
-	 * @return Dados do funcionario desejado
+	 *            CPF do Funcionario a ser retornado
+	 * @return Funcionario ou null, caso nao exista
 	 */
-	public String exibeFuncPorCpf(String cpf) {
-		if (getColecaoFuncionarios().isEmpty()) {
-			throw new IllegalArgumentException("Colecao Funcionarios Vazia");
-		}
-
-		String funcRetornado = "";
+	public Funcionario getFuncionarioPorCpf(String cpf) {
 		for (Funcionario func : getColecaoFuncionarios()) {
-			if (func.getCpf().equals(cpf)) {
-				funcRetornado = "Nome: " + func.getNome() + "\nCRECI: "
-						+ func.getCreci() + "\nCpf: " + func.getCpf()
-						+ "\nData de Nascimento: " + func.getDataNascimento()
-						+ "\nEndereco: " + func.getEndereco();
-			}
+			if (func.getCpf().equals(cpf))
+				return func;
 		}
-		return funcRetornado;
+		return null;
+	}
+
+	/**
+	 * Metodo que exibe informacoes de um Funcionario
+	 * 
+	 * @param cpf
+	 *            CPF do Funcionario a ser exibido
+	 * @return String contendo informacoes do Funcionario
+	 */
+	public String exibeFuncionarioPorCpf(String cpf) {
+		Funcionario func = getFuncionarioPorCpf(cpf);
+
+		return "Nome: " + func.getNome() + "\nCreci: " + func.getCreci()
+				+ "\nCpf: " + func.getCpf() + "\nData de Nascimento: "
+				+ func.getDataNascimento() + "\nEndereco: "
+				+ func.getEndereco();
 	}
 
 }
