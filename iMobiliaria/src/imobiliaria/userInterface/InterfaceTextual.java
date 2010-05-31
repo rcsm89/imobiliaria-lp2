@@ -207,7 +207,7 @@ public class InterfaceTextual {
 
 			case ATUALIZAR_CADASTRO_CLIENTE:
 
-				op.atualizarCliente();
+				System.out.println("Construcao");
 
 				break;
 
@@ -307,7 +307,7 @@ public class InterfaceTextual {
 
 			case ATUALIZAR_CADASTRO_CLIENTE:
 
-				op.atualizarCliente();
+				System.out.println("Construcao");
 
 				break;
 
