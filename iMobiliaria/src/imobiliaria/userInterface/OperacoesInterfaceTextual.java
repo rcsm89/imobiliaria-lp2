@@ -452,9 +452,15 @@ public class OperacoesInterfaceTextual {
 
 			String creci = MetodoEntrada
 					.recebeString("Digite o CRECI do Funcionario que deseja Excluir: ");
-
-			System.out.println(sis.controladorFuncionarios().exibeFuncionarioPorCreci(
-					creci));
+			
+			String informacoes = sis.controladorFuncionarios().exibeFuncionarioPorCreci(creci);
+			
+			if (informacoes == null) {
+				System.out.println("Funcionario nao cadastrado");
+				return;
+			}
+			
+			System.out.println(informacoes);
 
 			System.out.println(lineSep + "1. Confirmar" + lineSep + "2. Sair");
 
