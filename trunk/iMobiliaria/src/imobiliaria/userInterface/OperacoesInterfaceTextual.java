@@ -285,7 +285,7 @@ public class OperacoesInterfaceTextual {
 	protected void verificaDadosPessoais(Funcionario func) {
 
 		System.out.println(lineSep
-				+ sis.controladorFuncionarios().exibeFuncPorCreci(
+				+ sis.controladorFuncionarios().exibeFuncionarioPorCreci(
 						func.getCreci()) + lineSep);
 
 	}
@@ -453,7 +453,7 @@ public class OperacoesInterfaceTextual {
 			String creci = MetodoEntrada
 					.recebeString("Digite o CRECI do Funcionario que deseja Excluir: ");
 
-			System.out.println(sis.controladorFuncionarios().exibeFuncPorCreci(
+			System.out.println(sis.controladorFuncionarios().exibeFuncionarioPorCreci(
 					creci));
 
 			System.out.println(lineSep + "1. Confirmar" + lineSep + "2. Sair");
@@ -497,7 +497,7 @@ public class OperacoesInterfaceTextual {
 		String creci = MetodoEntrada
 				.recebeString("Digite o CRECI do Funcionario que deseja verificar:");
 
-		System.out.println(sis.controladorFuncionarios().exibeFuncPorCreci(
+		System.out.println(sis.controladorFuncionarios().exibeFuncionarioPorCreci(
 				creci)
 				+ lineSep);
 
