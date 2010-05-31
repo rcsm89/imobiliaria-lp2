@@ -327,6 +327,7 @@ public class OperacoesInterfaceTextual {
 				if (sis.controladorClientes().removeCliente(cpf)) {
 
 					System.out.println("Cliente removido com Sucesso!");
+					continuaRodandoMenu = false;
 
 				} else {
 
@@ -359,6 +360,10 @@ public class OperacoesInterfaceTextual {
 		
 		try {
 			informacoes = sis.controladorClientes().exibeCliente(cpf);
+			
+			if (informacoes == null)
+				return;
+			
 		} catch (NullPointerException e) {
 			System.out.println("Cliente nao cadastrado");
 			return;
@@ -410,6 +415,7 @@ public class OperacoesInterfaceTextual {
 								registroImovel)) {
 
 							System.out.println("Imovel removido com Sucesso!");
+							continuaRodandoMenu = false;
 
 						} else {
 
@@ -449,6 +455,10 @@ public class OperacoesInterfaceTextual {
 		try {
 			informacoes = sis.controladorImoveis().exibeImovel(
 				registroImovel);
+			
+			if (informacoes == null)
+				return;
+			
 		} catch (NullPointerException e) {
 			System.out.println("Registro ou Imovel invalido");
 			return;
@@ -478,6 +488,9 @@ public class OperacoesInterfaceTextual {
 			
 				informacoes = sis.controladorFuncionarios().exibeFuncionarioPorCreci(creci);
 				
+				if (informacoes == null)
+					return;
+				
 			} catch (NullPointerException e) {
 				System.out.println("Funcionario nao cadastrado");
 				return;
@@ -496,6 +509,7 @@ public class OperacoesInterfaceTextual {
 					if (sis.controladorFuncionarios().removeFuncionario(creci)) {
 
 						System.out.println("Funcionario removido com Sucesso!");
+						continuaRodandoMenu = false;
 
 					} else {
 						System.out.println("Falha ao remover Funcionario");
@@ -530,6 +544,9 @@ public class OperacoesInterfaceTextual {
 		
 		try {
 			informacoes = sis.controladorFuncionarios().exibeFuncionarioPorCreci(creci);
+			
+			if (informacoes == null)
+				return;
 		} catch (NullPointerException e) {
 			System.out.println("Funcionario nao cadastrado");
 			return;
