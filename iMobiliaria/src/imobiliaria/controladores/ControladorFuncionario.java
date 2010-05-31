@@ -73,22 +73,22 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 		}
 		return false;
 	}
-	// ----------
+	
 	/**
-	 * Metodo responsavel por listar todos os imoveis
+	 * Metodo responsavel por listar todos os funcionarios
 	 * 
-	 * @return Uma String contendo a lista dos imoveis
+	 * @return Uma String contendo a lista dos funcionarios
 	 */
 	public String listaFuncionarios() {
 		return listaFuncionarios(getColecaoFuncionarios());
 	}
 	
 	/**
-	 * Metodo responsavel por listar um array de imoveis
+	 * Metodo responsavel por listar um array de funcionario
 	 * 
-	 * @param listaDeImoveis
-	 *            Representa o array que contem os imoveis que seram listados
-	 * @return Uma String contendo a lista dos imoveis
+	 * @param listaDeFuncionarios
+	 *            Representa o array que contem os funcionarios que seram listados
+	 * @return Uma String contendo a lista dos funcionarios
 	 */
 	private String listaFuncionarios(List<Funcionario> listaDeFuncionarios) {
 		String saida = "";
@@ -96,7 +96,7 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 		for (Funcionario func : listaDeFuncionarios) {
 
 			saida += "Nome: " + func.getNome() + " - CPF: " + func.getCpf() + "\n"
-			+ "Endereco: " + func.getEndereco() + " - Data de Nascimento: "
+			+ "Endereco: " + func.getEndereco() + "\nData de Nascimento: "
 			+ func.getDataNascimento() + " - Creci: "
 			+ func.getCreci() + "\n\n";
 
@@ -104,7 +104,7 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 
 		return saida;
 	}
-	// ------------------
+	
 	/**
 	 * Metodo que modifica um funcionario
 	 * 
