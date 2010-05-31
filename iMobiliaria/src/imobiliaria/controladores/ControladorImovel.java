@@ -100,6 +100,10 @@ public class ControladorImovel extends ColecaoImoveis {
 		}
 		
 		Imovel imovel = getImovelDeRegistro(registroDoImovel);
+		
+		if (imovel == null) {
+			return null;
+		}
 
 		return "Nome: " + imovel.getNome() + "\n" + "Endereco: "
 				+ imovel.getEndereco() + "\n" + "Valor: " + imovel.getValor()
