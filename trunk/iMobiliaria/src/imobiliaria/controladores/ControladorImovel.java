@@ -44,8 +44,8 @@ public class ControladorImovel extends ColecaoImoveis {
 	public void modificaImovel(Imovel imovel, String nome, String endereco,
 			double valor, Area area, TipoImovel tipoDoImovel,
 			TipoContratual tipoContratual) throws Exception {
-		
-		if (imovel == null){
+
+		if (imovel == null) {
 			throw new IllegalArgumentException("Imovel Invalido");
 		}
 
@@ -68,7 +68,7 @@ public class ControladorImovel extends ColecaoImoveis {
 	public Imovel getImovel(String registro) {
 		if (registro == null)
 			throw new IllegalArgumentException("Registro Invalido");
-		
+
 		int registroDoImovel = 0;
 
 		try {
@@ -89,10 +89,10 @@ public class ControladorImovel extends ColecaoImoveis {
 	 * @return Uma String do imovel cujo registro e igual ao passado
 	 */
 	public String exibeImovel(String registro) {
-		if (registro == null){
+		if (registro == null) {
 			throw new IllegalArgumentException("Registro Invalido");
 		}
-		
+
 		int registroDoImovel = 0;
 
 		try {
@@ -100,19 +100,20 @@ public class ControladorImovel extends ColecaoImoveis {
 		} catch (Exception e) {
 			return null;
 		}
-		
+
 		Imovel imovel = getImovelDeRegistro(registroDoImovel);
-		
+
 		if (imovel == null) {
 			return null;
 		}
 
-		return "Nome: " + imovel.getNome() + "\n" + "Endereco: "
-				+ imovel.getEndereco() + "\n" + "Valor: " + imovel.getValor()
-				+ "\n" + "Area: " + "\n\t" +
-				"Comprimento: " + imovel.getArea().getComprimento() + "m\n\t" +
-				"Largura: " + imovel.getArea().getLargura() + "m\n\t" +
-				"Classificacao: " + imovel.getArea().getClassificacao() + "\n"
+		return "Registro: " + imovel.getRegistroImovel() + "\n" + "Nome: "
+				+ imovel.getNome() + "\n" + "Endereco: " + imovel.getEndereco()
+				+ "\n" + "Valor: " + imovel.getValor() + "\n" + "Area: "
+				+ "\n\t" + "Comprimento: " + imovel.getArea().getComprimento()
+				+ "m\n\t" + "Largura: " + imovel.getArea().getLargura()
+				+ "m\n\t" + "Classificacao: "
+				+ imovel.getArea().getClassificacao() + "\n"
 				+ "Tipo do Imovel: " + imovel.getTipoDoImovel() + "\n"
 				+ "Tipo Contratual: " + imovel.getTipoContratual();
 
@@ -130,11 +131,13 @@ public class ControladorImovel extends ColecaoImoveis {
 
 		for (Imovel imovel : listaDeImoveis) {
 
-			saida += "Nome: " + imovel.getNome() + "\n" + "Endereco: "
+			saida += "Registro: " + imovel.getRegistroImovel() + "\n"
+					+ "Nome: " + imovel.getNome() + "\n" + "Endereco: "
 					+ imovel.getEndereco() + "\n" + "Valor: "
 					+ imovel.getValor() + "\n" + "Area: " + imovel.getArea()
-					+ "\n" + "Tipo do Imovel: " + imovel.getTipoDoImovel() + "\n"
-					+ "Tipo Contratual: " + imovel.getTipoContratual() + "\n\n";
+					+ "\n" + "Tipo do Imovel: " + imovel.getTipoDoImovel()
+					+ "\n" + "Tipo Contratual: " + imovel.getTipoContratual()
+					+ "\n\n";
 
 		}
 
@@ -208,7 +211,7 @@ public class ControladorImovel extends ColecaoImoveis {
 	 * @return Uma String contendo a lista dos imoveis
 	 */
 	public String listaImoveis(String nome) {
-		if (VerificaInvalido.basico(nome)){
+		if (VerificaInvalido.basico(nome)) {
 			throw new IllegalArgumentException("Nome Invalido");
 		}
 		return listaImoveis(getImoveis(nome));
