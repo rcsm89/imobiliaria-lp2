@@ -24,6 +24,20 @@ public class Imovel implements Serializable {
 	private EstadoImovel estadoDoImovel; // bruno
 	private TipoImovel tipoDoImovel;
 	private TipoContratual tipoContratual;
+	
+	
+	
+	// Fazer testes desses 2 Metodos!
+	
+	public static int getCriadorDeRegistro() {
+		return criadorDeRegistro;
+	}
+	
+	public static void setCriadorDeRegistro(int registro) {
+		criadorDeRegistro = registro;
+	}
+	
+	
 
 	/**
 	 * Construtor da Classe

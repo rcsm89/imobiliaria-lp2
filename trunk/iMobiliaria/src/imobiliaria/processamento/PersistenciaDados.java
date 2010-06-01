@@ -9,13 +9,13 @@ import java.io.ObjectOutputStream;
 
 public class PersistenciaDados {
 	
-	public static void gravar(Sistema sis) {
+	public static void gravar(Object objeto, String arquivo) {
 	    	
 		try {
-		   	FileOutputStream fos = new FileOutputStream("DadosDoSistema.dat");
+		   	FileOutputStream fos = new FileOutputStream(arquivo);
 		    ObjectOutputStream oos = new ObjectOutputStream(fos);
 		    
-		    oos.writeObject(sis);
+		    oos.writeObject(objeto);
 		
 		    oos.close();
 		} catch (Exception e) {
@@ -24,28 +24,38 @@ public class PersistenciaDados {
 		}
 	}
 	
-	public static Sistema ler() throws Exception {
+	public static Object ler(String arquivo) throws Exception {
 		
 		
 		FileInputStream fis;
 		
 		try {
 			
-			fis = new FileInputStream("DadosDoSistema.dat");
+			fis = new FileInputStream(arquivo);
 			
 		} catch (FileNotFoundException e) {
 			
-			Sistema sis = new Sistema();
-			
-			gravar(sis);
+			if (arquivo.equals("DadosDeSistema.dat")) {
+				Sistema sis = new Sistema();
+				
+				gravar(sis, "DadosDeSistema.dat");
+			} else if (arquivo.equals("RegistroImoveis.dat")) {
+				
+				gravar(0, "RegistroImoveis.dat");
+				
+			} else {
+				
+				throw new FileNotFoundException("Arquivo nao encontrado!");
+				
+			}
 		    
-		    fis = new FileInputStream("DadosDoSistema.dat");
+		    fis = new FileInputStream(arquivo);
 			
 		}
 		
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		
 		
-		return (Sistema) ois.readObject();
+		return ois.readObject();
 	}
 }
