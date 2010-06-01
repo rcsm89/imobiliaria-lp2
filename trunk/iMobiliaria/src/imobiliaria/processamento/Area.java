@@ -1,12 +1,15 @@
 package imobiliaria.processamento;
 
+import java.io.Serializable;
+
 /**
  * Classe Area que guarda informacoes e classificacoes de uma determinada Area
  * 
  * @version IT 1.1
  */
-public class Area {
+public class Area implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private double comprimento;
 	private double largura;
 	private TipoArea classificacao;
