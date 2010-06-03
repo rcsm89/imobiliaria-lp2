@@ -1,7 +1,7 @@
 package imobiliaria.testes;
 
-import imobiliaria.processamento.Area;
-import imobiliaria.processamento.TipoArea;
+import imobiliaria.entidades.Area;
+import imobiliaria.entidades.TipoArea;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;

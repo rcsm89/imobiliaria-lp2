@@ -1,11 +1,11 @@
 package imobiliaria.testes;
 
 import imobiliaria.controladores.ControladorImovel;
-import imobiliaria.processamento.Area; //import imobiliaria.processamento.EstadoImovel;
-import imobiliaria.processamento.EstadoImovel;
-import imobiliaria.processamento.Imovel;
-import imobiliaria.processamento.TipoContratual;
-import imobiliaria.processamento.TipoImovel;
+import imobiliaria.entidades.Area;
+import imobiliaria.entidades.EstadoImovel;
+import imobiliaria.entidades.Imovel;
+import imobiliaria.entidades.TipoContratual;
+import imobiliaria.entidades.TipoImovel;
 import junit.framework.Assert;
 
 import org.junit.Before;

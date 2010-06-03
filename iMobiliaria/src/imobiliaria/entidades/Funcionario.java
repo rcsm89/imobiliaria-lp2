@@ -1,5 +1,6 @@
-package imobiliaria.processamento;
+package imobiliaria.entidades;
 
+import imobiliaria.processamento.ColecaoImoveis;
 import imobiliaria.util.VerificaInvalido;
 
 import java.util.Calendar;

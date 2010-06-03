@@ -1,4 +1,4 @@
-package imobiliaria.processamento;
+package imobiliaria.entidades;
 
 /**
  * Enum dos Tipos de Contrato para um Imovel

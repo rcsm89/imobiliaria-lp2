@@ -3,9 +3,9 @@
  */
 package imobiliaria.userInterface;
 
-import imobiliaria.processamento.Cliente;
-import imobiliaria.processamento.Funcionario;
-import imobiliaria.processamento.Imovel;
+import imobiliaria.entidades.Cliente;
+import imobiliaria.entidades.Funcionario;
+import imobiliaria.entidades.Imovel;
 import imobiliaria.processamento.PersistenciaDados;
 import imobiliaria.processamento.Sistema;
 import imobiliaria.processamento.TipoLogin;

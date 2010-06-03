@@ -5,6 +5,10 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import imobiliaria.controladores.*;
+import imobiliaria.entidades.Cliente;
+import imobiliaria.entidades.EstadoImovel;
+import imobiliaria.entidades.Funcionario;
+import imobiliaria.entidades.Imovel;
 
 /**
  * Classe Sistema para guardar informacoes de um Sistema Imobiliario
@@ -29,14 +33,11 @@ public class Sistema implements Serializable {
 
 	private HashMap<Imovel, Cliente> listaPedidos = new HashMap<Imovel, Cliente>();
 
-	private Calendar ultimoPagamento = new GregorianCalendar(2010, 06, 1);
-	private boolean pagouNesseMes = false;
+	
+	// Assim que o Sistema eh iniciado ele ja efetua o primeiro pagamento
+	private Calendar ultimoPagamento = new GregorianCalendar();
+	private boolean pagouNesseMes = true;
 	private double caixaTotal;
-
-	/*
-	 * Para a primeira execucao coloquei que o pagamento ja foi efetuado e que
-	 * foi feito na data de 01/06/2010 :D
-	 */
 
 	/**
 	 * Metodo para efetuar pagamento no Mes

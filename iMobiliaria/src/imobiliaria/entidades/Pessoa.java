@@ -1,7 +1,7 @@
 /**
  * Package com as classes usadas pelo sistema 
  */
-package imobiliaria.processamento;
+package imobiliaria.entidades;
 
 import imobiliaria.util.FormataEntrada;
 import imobiliaria.util.VerificaInvalido;

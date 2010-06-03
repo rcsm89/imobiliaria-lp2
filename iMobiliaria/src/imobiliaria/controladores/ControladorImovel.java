@@ -1,11 +1,11 @@
 package imobiliaria.controladores;
 
-import imobiliaria.processamento.Area;
+import imobiliaria.entidades.Area;
+import imobiliaria.entidades.EstadoImovel;
+import imobiliaria.entidades.Imovel;
+import imobiliaria.entidades.TipoContratual;
+import imobiliaria.entidades.TipoImovel;
 import imobiliaria.processamento.ColecaoImoveis;
-import imobiliaria.processamento.EstadoImovel;
-import imobiliaria.processamento.Imovel;
-import imobiliaria.processamento.TipoContratual;
-import imobiliaria.processamento.TipoImovel;
 import imobiliaria.util.VerificaInvalido;
 
 import java.util.List;

@@ -3,9 +3,10 @@ package imobiliaria.controladores;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import imobiliaria.processamento.Cliente;
+
+import imobiliaria.entidades.Cliente;
+import imobiliaria.entidades.TipoImovel;
 import imobiliaria.processamento.ColecaoClientes;
-import imobiliaria.processamento.TipoImovel;
 import imobiliaria.util.VerificaInvalido;
 
 /**

@@ -1,5 +1,6 @@
 package imobiliaria.processamento;
 
+import imobiliaria.entidades.Funcionario;
 import imobiliaria.util.VerificaInvalido;
 
 import java.io.Serializable;

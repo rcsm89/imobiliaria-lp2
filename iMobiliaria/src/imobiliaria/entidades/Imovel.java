@@ -1,4 +1,4 @@
-package imobiliaria.processamento;
+package imobiliaria.entidades;
 
 import java.io.Serializable;
 

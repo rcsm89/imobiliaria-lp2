@@ -1,13 +1,13 @@
 package imobiliaria.userInterface;
 
-import imobiliaria.processamento.Area;
-import imobiliaria.processamento.Cliente;
-import imobiliaria.processamento.EstadoImovel;
-import imobiliaria.processamento.Funcionario;
-import imobiliaria.processamento.Imovel;
+import imobiliaria.entidades.Area;
+import imobiliaria.entidades.Cliente;
+import imobiliaria.entidades.EstadoImovel;
+import imobiliaria.entidades.Funcionario;
+import imobiliaria.entidades.Imovel;
+import imobiliaria.entidades.TipoContratual;
+import imobiliaria.entidades.TipoImovel;
 import imobiliaria.processamento.Sistema;
-import imobiliaria.processamento.TipoContratual;
-import imobiliaria.processamento.TipoImovel;
 import imobiliaria.util.FormataEntrada;
 import imobiliaria.util.MetodoEntrada;
 
