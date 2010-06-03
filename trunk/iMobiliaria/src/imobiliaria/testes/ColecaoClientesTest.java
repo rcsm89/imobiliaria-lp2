@@ -3,6 +3,8 @@ package imobiliaria.testes;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import imobiliaria.entidades.Cliente;
+import imobiliaria.entidades.TipoImovel;
 import imobiliaria.processamento.*;
 import junit.framework.Assert;
 import org.junit.Before;

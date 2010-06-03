@@ -1,10 +1,10 @@
 package imobiliaria.testes;
 
-import imobiliaria.processamento.Area;
+import imobiliaria.entidades.Area;
+import imobiliaria.entidades.Imovel;
+import imobiliaria.entidades.TipoContratual;
+import imobiliaria.entidades.TipoImovel;
 import imobiliaria.processamento.ColecaoImoveis;
-import imobiliaria.processamento.Imovel;
-import imobiliaria.processamento.TipoContratual;
-import imobiliaria.processamento.TipoImovel;
 
 import java.util.ArrayList;
 

@@ -4,8 +4,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
+import imobiliaria.entidades.Funcionario;
 import imobiliaria.processamento.ColecaoFuncionario;
-import imobiliaria.processamento.Funcionario;
 import imobiliaria.util.VerificaInvalido;
 
 /**
