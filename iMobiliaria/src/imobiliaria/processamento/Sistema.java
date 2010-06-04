@@ -1,14 +1,7 @@
 package imobiliaria.processamento;
 
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
 import imobiliaria.controladores.*;
-import imobiliaria.entidades.Cliente;
-import imobiliaria.entidades.EstadoImovel;
-import imobiliaria.entidades.Funcionario;
-import imobiliaria.entidades.Imovel;
 
 /**
  * Classe Sistema para guardar informacoes de um Sistema Imobiliario
@@ -24,195 +17,12 @@ import imobiliaria.entidades.Imovel;
 public class Sistema implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private final double SALARIO_DEFAULT = 1500;
-	private final double COMISSAO = 0.03;
 
 	private ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro();
 	private ControladorImovel controladorImoveis = new ControladorImovel();
 	private ControladorCliente controladorClientes = new ControladorCliente();
 	private ControladorFuncionario controladorFuncionarios = new ControladorFuncionario();
-
-	private HashMap<Imovel, Cliente> listaPedidos = new HashMap<Imovel, Cliente>();
-
-	// Assim que o Sistema eh iniciado ele ja efetua o primeiro pagamento
-	private Calendar ultimoPagamento = new GregorianCalendar();
-	private boolean pagouNesseMes = true;
-	private double caixaTotal;
-
-	/**
-	 * Metodo para efetuar pagamento no Mes
-	 * 
-	 * @return String contendo a Folha de Pagamento do mes
-	 * @throws Exception
-	 *             Lanca excecao se ja tiver feito pagamento esse mes
-	 */
-
-	public String efetuaPagamentoNoMes() throws Exception {
-
-		atualizaPagamento();
-
-		if (pagouNesseMes)
-			throw new Exception("Pagamento ja efetuado esse mes");
-
-		double despesas = 0;
-		double salarioFuncionario;
-
-		String folhaDePagamento = "";
-
-		HashMap<String, Double> listagemPagamentos = controladorFuncionarios
-				.listaTotaisDeVendas();
-
-		for (String informacaoFuncionario : listagemPagamentos.keySet()) {
-
-			salarioFuncionario = SALARIO_DEFAULT + COMISSAO
-					* listagemPagamentos.get(informacaoFuncionario);
-
-			despesas += salarioFuncionario;
-
-			folhaDePagamento += informacaoFuncionario + " - Salario: "
-					+ salarioFuncionario + "\n";
-		}
-
-		folhaDePagamento += "Saldo Anterior: " + caixaTotal + " - Despesas: "
-				+ despesas;
-
-		caixaTotal -= despesas;
-
-		folhaDePagamento += " - Novo Saldo: " + caixaTotal;
-
-		ultimoPagamento = new GregorianCalendar();
-		pagouNesseMes = true;
-
-		return folhaDePagamento;
-	}
-
-	private void atualizaPagamento() {
-		GregorianCalendar hoje = new GregorianCalendar();
-
-		// Se nao estiverem no Mes do Ano igual
-		// Entao quer dizer que ainda nao fez o pagamento do mes
-
-		if (!(ultimoPagamento.get(Calendar.YEAR) == hoje.get(Calendar.YEAR) && ultimoPagamento
-				.get(Calendar.MONTH) == hoje.get(Calendar.MONTH))) {
-			// Ainda nao pagou nesse mes
-			pagouNesseMes = false;
-		}
-	}
-
-	/* PEDIDOS */
-
-	/**
-	 * Metodo que adiciona um pedido ao Sistema
-	 * 
-	 * @param registroImovel
-	 *            Registro do Imovel pedido
-	 * @param cpf
-	 *            CPF do Cliente que fez a solicitacao
-	 * @throws Exception
-	 *             Lanca excecao caso o imovel nao exista, o cliente nao exista
-	 *             ou o imovel ja tenha sido pedido
-	 */
-	public void adicionaPedido(String registroImovel, String cpf)
-			throws Exception {
-
-		Imovel imovelPedido = controladorImoveis.getImovel(registroImovel);
-		Cliente clienteQueSolicitou = controladorClientes.getCliente(cpf);
-
-		if (imovelPedido == null || clienteQueSolicitou == null)
-			throw new IllegalArgumentException("Parametros invalidos");
-
-		if (listaPedidos.containsKey(imovelPedido)) {
-			throw new Exception("Imovel ja pedido");
-		}
-
-		clienteQueSolicitou.fazPedido(imovelPedido);
-		imovelPedido.pedido();
-		listaPedidos.put(imovelPedido, clienteQueSolicitou);
-	}
-
-	/**
-	 * Metodo que realiza a compra de um pedido ao Sistema
-	 * 
-	 * @param registroImovel
-	 *            Registro do Imovel que vai ser realizada a compra
-	 * @param creciFuncionario
-	 *            Creci do funcionario que efetuou a compra
-	 * @throws Exception
-	 *             Lanca excecao caso o Imovel ou funcionario nao exista, ou
-	 *             caso o Imovel nao tenha sido pedido
-	 */
-	public void efetuaPedido(String registroImovel, String creciFuncionario)
-			throws Exception {
-
-		Imovel imovelASerEfetuado = controladorImoveis
-				.getImovel(registroImovel);
-		Funcionario funcionarioQueEfetuouACompra = controladorFuncionarios
-				.getFuncionario(creciFuncionario);
-
-		if (imovelASerEfetuado == null || funcionarioQueEfetuouACompra == null)
-			throw new IllegalArgumentException("Parametros invalidos");
-
-		if (imovelASerEfetuado.getEstadoDoImovel() != EstadoImovel.PEDIDO)
-			throw new Exception("Imovel nao pedido");
-
-		controladorFinanceiro.adicionaTransacao(listaPedidos
-				.get(imovelASerEfetuado), funcionarioQueEfetuouACompra,
-				imovelASerEfetuado.getValor());
-		
-		funcionarioQueEfetuouACompra.addImovelVendido(imovelASerEfetuado);
-		
-		imovelASerEfetuado.vendido();
-		
-		caixaTotal += imovelASerEfetuado.getValor();
-	}
-
-	/**
-	 * Metodo que realiza a compra de um pedido ao Sistema
-	 * 
-	 * @param registroImovel
-	 *            Registro do Imovel que foi pedido
-	 * @throws Exception
-	 *             Lanca Excecao caso o imovel nao exista ou nao tenha sido
-	 *             pedido
-	 */
-	public void removePedido(String registroImovel) throws Exception {
-		Imovel imovelDoPedido = controladorImoveis.getImovel(registroImovel);
-
-		if (imovelDoPedido == null)
-			throw new IllegalArgumentException("Parametros invalidos");
-
-		if (!(listaPedidos.containsKey(imovelDoPedido)))
-			throw new Exception("Imovel nao pedido");
-
-		imovelDoPedido.a_venda();
-		listaPedidos.get(imovelDoPedido).removePedido(imovelDoPedido);
-		listaPedidos.remove(imovelDoPedido);
-	}
-
-	/* Listagem de Pedidos */
-
-	/**
-	 * Metodo que lista os pedidos
-	 * 
-	 * @return String com os pedidos
-	 */
-	public String listagemDePedido() {
-
-		String saida = "";
-
-		for (Imovel imovelPedido : listaPedidos.keySet()) {
-
-			Cliente clientePedinte = listaPedidos.get(imovelPedido);
-
-			saida += imovelPedido.getRegistroImovel() + " - "
-					+ imovelPedido.getNome() + " Valor: "
-					+ imovelPedido.getValor() + "\n" + "Cliente que pediu: "
-					+ clientePedinte.getNome() + " - CPF: "
-					+ clientePedinte.getCpf() + "\n\n";
-
-		}
-		return saida;
-	}
+	private ControladorPedidos controladorPedidos = new ControladorPedidos();
 
 	/**
 	 * Metodo Login - Efetua login baseado no login, senha e Tipo do Usuario
@@ -249,25 +59,15 @@ public class Sistema implements Serializable {
 		}
 	}
 
-	/**
-	 * Metodo informador se o pagamento do mes ja foi efetuado
-	 * 
-	 * @return Boolean<br>
-	 *         True - Se o pagamento desse mes foi efetuado<br>
-	 *         False - Se ainda nao foi efetuado
-	 */
-	public boolean pagouNesseMes() {
-		atualizaPagamento();
-		return pagouNesseMes;
-	}
+	/* Metodos Acessadores dos Controladores */
 
 	/**
-	 * Metodo Acessador do Caixa Total do Sistema
+	 * Metodo acessador do Controlador Financeiro
 	 * 
-	 * @return Caixa da Empresa
+	 * @return Controlador Financeiro
 	 */
-	public double caixa() {
-		return caixaTotal;
+	public ControladorFinanceiro controladorFinanceiro() {
+		return controladorFinanceiro;
 	}
 
 	/**
@@ -297,4 +97,61 @@ public class Sistema implements Serializable {
 		return controladorFuncionarios;
 	}
 
+	/* Metodos relacionados a Pedidos */
+
+	/**
+	 * Metodo que adiciona pedido ao sistema
+	 * 
+	 * @param registroImovel
+	 *            Registro do Imovel pedido
+	 * @param cpf
+	 *            Cpf do Cliente que fez o pedido
+	 * @throws Exception
+	 *             Lanca Excecao caso algum dos parametros esteja errado
+	 */
+	public void adicionaPedido(String registroImovel, String cpf)
+			throws Exception {
+
+		controladorPedidos.adicionaPedido(registroImovel, cpf,
+				controladorImoveis, controladorClientes);
+	}
+
+	/**
+	 * Metodo que efetua um pedido do Sistema
+	 * 
+	 * @param registroImovel
+	 *            Registro do Imovel que ja foi pedido
+	 * @param creciFuncionario
+	 *            Creci do Funcionario que efetuou a compra
+	 * @throws Exception
+	 *             Lanca excecao caso algum parametro seja invalido
+	 */
+	public void efetuaPedido(String registroImovel, String creciFuncionario)
+			throws Exception {
+
+		controladorPedidos.efetuaPedido(registroImovel, creciFuncionario,
+				controladorImoveis, controladorFuncionarios,
+				controladorFinanceiro);
+	}
+
+	/**
+	 * Metodo que remove um pedido do Sistema
+	 * 
+	 * @param registroImovel
+	 *            Registro do Imovel que foi pedido
+	 * @throws Exception
+	 *             Lanca excecao caso algum parametro seja invalido
+	 */
+	public void removePedido(String registroImovel) throws Exception {
+		controladorPedidos.removePedido(registroImovel, controladorImoveis);
+	}
+
+	/**
+	 * Metodo que lista os pedidos do Sistema
+	 * 
+	 * @return String contendo uma listagem dos pedidos do Sistema
+	 */
+	public String listagemPedidos() {
+		return controladorPedidos.listagemDePedido();
+	}
 }
