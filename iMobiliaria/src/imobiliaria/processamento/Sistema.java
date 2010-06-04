@@ -27,13 +27,13 @@ public class Sistema implements Serializable {
 	private final double SALARIO_DEFAULT = 1500;
 	private final double COMISSAO = 0.03;
 
+	private ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro();
 	private ControladorImovel controladorImoveis = new ControladorImovel();
 	private ControladorCliente controladorClientes = new ControladorCliente();
 	private ControladorFuncionario controladorFuncionarios = new ControladorFuncionario();
 
 	private HashMap<Imovel, Cliente> listaPedidos = new HashMap<Imovel, Cliente>();
 
-	
 	// Assim que o Sistema eh iniciado ele ja efetua o primeiro pagamento
 	private Calendar ultimoPagamento = new GregorianCalendar();
 	private boolean pagouNesseMes = true;
@@ -120,14 +120,13 @@ public class Sistema implements Serializable {
 
 		if (imovelPedido == null || clienteQueSolicitou == null)
 			throw new IllegalArgumentException("Parametros invalidos");
-		
-		
-		if ( listaPedidos.containsKey(imovelPedido)) {
+
+		if (listaPedidos.containsKey(imovelPedido)) {
 			throw new Exception("Imovel ja pedido");
 		}
 
 		clienteQueSolicitou.fazPedido(imovelPedido);
-		imovelPedido.setEstadoDoImovel(EstadoImovel.PEDIDO);
+		imovelPedido.pedido();
 		listaPedidos.put(imovelPedido, clienteQueSolicitou);
 	}
 
@@ -156,8 +155,14 @@ public class Sistema implements Serializable {
 		if (imovelASerEfetuado.getEstadoDoImovel() != EstadoImovel.PEDIDO)
 			throw new Exception("Imovel nao pedido");
 
+		controladorFinanceiro.adicionaTransacao(listaPedidos
+				.get(imovelASerEfetuado), funcionarioQueEfetuouACompra,
+				imovelASerEfetuado.getValor());
+		
 		funcionarioQueEfetuouACompra.addImovelVendido(imovelASerEfetuado);
-		imovelASerEfetuado.setEstadoDoImovel(EstadoImovel.VENDIDO);
+		
+		imovelASerEfetuado.vendido();
+		
 		caixaTotal += imovelASerEfetuado.getValor();
 	}
 
@@ -179,7 +184,7 @@ public class Sistema implements Serializable {
 		if (!(listaPedidos.containsKey(imovelDoPedido)))
 			throw new Exception("Imovel nao pedido");
 
-		imovelDoPedido.setEstadoDoImovel(EstadoImovel.A_VENDA);
+		imovelDoPedido.a_venda();
 		listaPedidos.get(imovelDoPedido).removePedido(imovelDoPedido);
 		listaPedidos.remove(imovelDoPedido);
 	}
@@ -267,6 +272,7 @@ public class Sistema implements Serializable {
 
 	/**
 	 * Metodo acessador do Contrador de Imoveis do Sistema
+	 * 
 	 * @return the controladorImoveis
 	 */
 	public ControladorImovel controladorImoveis() {
@@ -275,6 +281,7 @@ public class Sistema implements Serializable {
 
 	/**
 	 * Metodo acessador do Contrador de Clientes do Sistema
+	 * 
 	 * @return the controladorClientes
 	 */
 	public ControladorCliente controladorClientes() {
@@ -283,6 +290,7 @@ public class Sistema implements Serializable {
 
 	/**
 	 * Metodo acessador do Contrador de Funcionarios do Sistema
+	 * 
 	 * @return the controladorFuncionarios
 	 */
 	public ControladorFuncionario controladorFuncionarios() {

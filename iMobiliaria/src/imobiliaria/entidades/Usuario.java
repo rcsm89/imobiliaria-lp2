@@ -16,7 +16,7 @@ import java.util.Calendar;
  * @version IT01
  * 
  */
-public abstract class Pessoa implements Serializable {
+public abstract class Usuario implements Serializable {
 
     // Atributos
 
@@ -48,7 +48,7 @@ public abstract class Pessoa implements Serializable {
      *             <i>basico</i> e <i>numeroFormatado</i> da classe
      *             <i>VerificaInvalido</i>)
      */
-    public Pessoa(String cpf, Calendar dataNascimento, String endereco,
+    public Usuario(String cpf, Calendar dataNascimento, String endereco,
 	    String nome) throws Exception {
 
 	String promptErro = "";
