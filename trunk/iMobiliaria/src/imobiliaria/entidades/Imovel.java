@@ -242,14 +242,16 @@ public class Imovel implements Serializable {
 		return estadoDoImovel;
 	}
 
-	/**
-	 * Metodo modificador para o estado atual do imovel
-	 * 
-	 * @param estadoDoImovel
-	 *            Representa o estado do imovel
-	 */
-	public void setEstadoDoImovel(EstadoImovel estadoDoImovel) {
-		this.estadoDoImovel = estadoDoImovel;
+	public void vendido() {
+		estadoDoImovel = EstadoImovel.VENDIDO;
+	}
+	
+	public void a_venda() {
+		estadoDoImovel = EstadoImovel.A_VENDA;
+	}
+	
+	public void pedido() {
+		estadoDoImovel = EstadoImovel.PEDIDO;
 	}
 
 	/*

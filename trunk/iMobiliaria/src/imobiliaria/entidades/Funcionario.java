@@ -12,7 +12,7 @@ import java.util.Calendar;
  * @version IT01
  * 
  */
-public class Funcionario extends Pessoa {
+public class Funcionario extends Usuario {
 
 	private static final long serialVersionUID = 1L;
 	private ColecaoImoveis historicoVendido = new ColecaoImoveis();
