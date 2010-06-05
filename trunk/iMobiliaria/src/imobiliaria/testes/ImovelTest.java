@@ -117,7 +117,7 @@ public class ImovelTest {
 	imovel1.setEndereco("Novo Endereco!");
 	Assert.assertEquals("Novo Endereco!", imovel1.getEndereco());
 
-	imovel1.setEstadoDoImovel(EstadoImovel.VENDIDO);
+	imovel1.vendido();
 	Assert.assertEquals(EstadoImovel.VENDIDO, imovel1.getEstadoDoImovel());
 
 	imovel1.setTipoContratual(TipoContratual.VENDA);
