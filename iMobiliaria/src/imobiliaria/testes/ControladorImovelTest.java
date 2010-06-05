@@ -358,7 +358,7 @@ public class ControladorImovelTest {
 				+ "Tipo Contratual: " + imovel3.getTipoContratual() + "\n\n",
 				controladorImovel.listaImoveis(EstadoImovel.A_VENDA));
 
-		imovel1.setEstadoDoImovel(EstadoImovel.PEDIDO);
+		imovel1.pedido();
 
 		Assert.assertEquals("Registro: " + imovel1.getRegistroImovel() + "\n"
 				+ "Nome: " + imovel1.getNome() + "\n" + "Endereco: "
@@ -368,7 +368,7 @@ public class ControladorImovelTest {
 				+ "Tipo Contratual: " + imovel1.getTipoContratual() + "\n\n",
 				controladorImovel.listaImoveis(EstadoImovel.PEDIDO));
 
-		imovel2.setEstadoDoImovel(EstadoImovel.VENDIDO);
+		imovel2.vendido();
 
 		Assert.assertEquals("Registro: " + imovel2.getRegistroImovel() + "\n"
 				+ "Nome: " + imovel2.getNome() + "\n" + "Endereco: "
