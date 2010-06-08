@@ -130,7 +130,7 @@ public class Sistema implements Serializable {
 			throws Exception {
 
 		controladorPedidos.efetuaPedido(registroImovel, creciFuncionario,
-				controladorImoveis, controladorFuncionarios,
+				controladorFuncionarios,
 				controladorFinanceiro);
 	}
 
@@ -143,7 +143,7 @@ public class Sistema implements Serializable {
 	 *             Lanca excecao caso algum parametro seja invalido
 	 */
 	public void removePedido(String registroImovel) throws Exception {
-		controladorPedidos.removePedido(registroImovel, controladorImoveis);
+		controladorPedidos.removePedido(registroImovel);
 	}
 
 	/**
