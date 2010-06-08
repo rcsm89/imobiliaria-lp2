@@ -12,6 +12,7 @@ import java.util.TreeSet;
 
 /**
  * Classe que Controla os Pedidos de um Sistema Imobiliario
+ * 
  * @author Yuri
  * @version IT02
  */
@@ -65,25 +66,24 @@ public class ControladorPedidos implements Serializable {
 	public void efetuaPedido(String registroImovel, String creciFuncionario,
 			ControladorFuncionario controladorFuncionarios,
 			ControladorFinanceiro controladorFinanceiro) throws Exception {
-		
+
 		Pedido pedido = getPedido(registroImovel);
-		
-		Funcionario funcionarioQueEfetuouACompra = controladorFuncionarios
+
+		Funcionario vendedor = controladorFuncionarios
 				.getFuncionario(creciFuncionario);
 
-		if (funcionarioQueEfetuouACompra == null || pedido == null)
+		if (vendedor == null || pedido == null)
 			throw new IllegalArgumentException("Parametros invalidos");
 
-		controladorFinanceiro.adicionaTransacao(pedido.getComprador(),
-				funcionarioQueEfetuouACompra,
+		pedido.getComprador().getHistoricoCompras().addImovel(
+				pedido.getImovel());
+
+		controladorFinanceiro.adicionaTransacao(pedido.getComprador(),vendedor,
 				pedido.getImovel().getValor());
 
-		funcionarioQueEfetuouACompra.addImovelVendido(pedido.getImovel());
-
+		vendedor.addImovelVendido(pedido.getImovel());
 		pedido.getImovel().vendido();
-
 		controladorFinanceiro.adicionaAoCaixa(pedido.getImovel().getValor());
-
 		listaPedidos.remove(pedido);
 	}
 
@@ -97,10 +97,9 @@ public class ControladorPedidos implements Serializable {
 	 *             pedido
 	 */
 	public void removePedido(String registroImovel) throws Exception {
-		
-		
+
 		Pedido pedido = getPedido(registroImovel);
-		
+
 		if (pedido == null)
 			throw new IllegalArgumentException("Parametros invalidos");
 
@@ -119,11 +118,11 @@ public class ControladorPedidos implements Serializable {
 		String saida = "";
 
 		Iterator<Pedido> it = listaPedidos.iterator();
-		
+
 		while (it.hasNext()) {
-			
+
 			Pedido p = it.next();
-			
+
 			saida += p.getImovel().getRegistroImovel() + " - "
 					+ p.getImovel().getNome() + " Valor: "
 					+ p.getImovel().getValor() + "\n" + "Cliente que pediu: "
@@ -133,10 +132,9 @@ public class ControladorPedidos implements Serializable {
 		}
 		return saida;
 	}
-	
-	
+
 	/* Metodos de Auxilio */
-	
+
 	private Pedido getPedido(String registroImovel) {
 		int registro;
 		try {
@@ -144,7 +142,7 @@ public class ControladorPedidos implements Serializable {
 		} catch (ClassCastException e) {
 			throw new IllegalArgumentException("Registro invalido!");
 		}
-		
+
 		for (Pedido p : listaPedidos) {
 			if (p.getImovel().getRegistroImovel() == registro) {
 				return p;

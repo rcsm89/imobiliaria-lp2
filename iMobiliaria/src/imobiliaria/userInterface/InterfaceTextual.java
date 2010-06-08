@@ -5,7 +5,6 @@ package imobiliaria.userInterface;
 
 import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.Funcionario;
-import imobiliaria.entidades.Imovel;
 import imobiliaria.processamento.PersistenciaDados;
 import imobiliaria.processamento.Sistema;
 import imobiliaria.processamento.TipoLogin;
@@ -73,7 +72,7 @@ public class InterfaceTextual {
 		// Leitura de Dados
 		try {
 			this.sis = (Sistema) PersistenciaDados.ler("DadosDeSistema.dat");
-			Imovel.setCriadorDeRegistro( (Integer) PersistenciaDados.ler("RegistroImoveis.dat") );
+			sis.atualizaDados();
 		} catch (Exception e) {
 			System.out.println("Erro: " + e.getMessage());
 		}
@@ -94,8 +93,7 @@ public class InterfaceTextual {
 			
 			
 			// Grava Dados!
-			PersistenciaDados.gravar(sis, "DadosDeSistema.dat");
-			PersistenciaDados.gravar(Imovel.getCriadorDeRegistro(), "RegistroImoveis.dat");
+			sis.salvarDados();
 			
 			promptLogin();
 			int opcao = MetodoEntrada.recebeInt();

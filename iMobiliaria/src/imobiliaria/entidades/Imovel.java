@@ -24,20 +24,16 @@ public class Imovel implements Serializable {
 	private EstadoImovel estadoDoImovel; // bruno
 	private TipoImovel tipoDoImovel;
 	private TipoContratual tipoContratual;
-	
-	
-	
+
 	// Fazer testes desses 2 Metodos!
-	
+
 	public static int getCriadorDeRegistro() {
 		return criadorDeRegistro;
 	}
-	
+
 	public static void setCriadorDeRegistro(int registro) {
 		criadorDeRegistro = registro;
 	}
-	
-	
 
 	/**
 	 * Construtor da Classe
@@ -74,11 +70,11 @@ public class Imovel implements Serializable {
 		if (!(VerificaInvalido.pertenceAIntervalo(valor, 0.0, 999999999.0))) {
 			mensagemErro += "Valor invalido\n";
 		}
-		
+
 		if (tipoDoImovel == null) {
 			mensagemErro += "Tipo de Imovel invalido\n";
 		}
-		
+
 		if (tipoContratual == null) {
 			mensagemErro += "Tipo Contratual invalido\n";
 		}
@@ -159,7 +155,7 @@ public class Imovel implements Serializable {
 	 * @param valor
 	 *            Novo valor do Imovel
 	 */
-	
+
 	public void setValor(double valor) throws Exception {
 		if (!(VerificaInvalido.pertenceAIntervalo(valor, 0, 999999999))) {
 			throw new Exception("Valor invalido");
@@ -242,20 +238,37 @@ public class Imovel implements Serializable {
 		return estadoDoImovel;
 	}
 
+	/**
+	 * Metodo modificador do Estado do Imovel para Vendido
+	 */
 	public void vendido() {
 		estadoDoImovel = EstadoImovel.VENDIDO;
 	}
-	
+
+	/**
+	 * Metodo modificador do Estado do Imovel para A Venda
+	 */
 	public void a_venda() {
 		estadoDoImovel = EstadoImovel.A_VENDA;
 	}
-	
+
+	/**
+	 * Metodo modificador do Estado do Imovel para Pedido
+	 */
 	public void pedido() {
 		estadoDoImovel = EstadoImovel.PEDIDO;
 	}
 
-	/*
-	 * equals da Classe<br> Dois Imoveis sao iguais se possuem o mesmo registro
+	/**
+	 * Metodo modificador do Estado do Imovel para Alugado
+	 */
+	public void alugado() {
+		estadoDoImovel = EstadoImovel.ALUGADO;
+	}
+
+	/**
+	 * equals da Classe<br>
+	 * Dois Imoveis sao iguais se possuem o mesmo registro
 	 */
 	@Override
 	public boolean equals(Object objeto) {

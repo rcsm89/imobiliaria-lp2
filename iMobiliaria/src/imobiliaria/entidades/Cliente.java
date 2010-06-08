@@ -62,9 +62,9 @@ public class Cliente extends Usuario {
 	/**
 	 * Metodo modificador que adiciona um novo pedido nos pedidos do cliente.
 	 */
-	public void fazPedido(Imovel pedido) throws Exception{
+	public void fazPedido(Imovel pedido) throws Exception {
 		if (pedido == null){
-			throw new Exception("Pedido Invalido");
+			throw new IllegalArgumentException("Pedido Invalido");
 		}
 		pedidos.addImovel(pedido);
 	}
