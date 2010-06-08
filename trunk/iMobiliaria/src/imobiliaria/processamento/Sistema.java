@@ -2,6 +2,8 @@ package imobiliaria.processamento;
 
 import java.io.Serializable;
 import imobiliaria.controladores.*;
+import imobiliaria.entidades.Imovel;
+import imobiliaria.entidades.Transacao;
 
 /**
  * Classe Sistema para guardar informacoes de um Sistema Imobiliario
@@ -17,6 +19,9 @@ import imobiliaria.controladores.*;
 public class Sistema implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	private final String ARQUIVO_DO_SISTEMA = "DadosDeSistema.dat";
+	private final String ARQUIVO_DE_REGISTROS = "Registros.dat";
 
 	private ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro();
 	private ControladorImovel controladorImoveis = new ControladorImovel();
@@ -96,6 +101,30 @@ public class Sistema implements Serializable {
 	public ControladorFuncionario controladorFuncionarios() {
 		return controladorFuncionarios;
 	}
+	
+	/* Metodos de Atualizacao */
+	
+	/**
+	 * Metodo que atualiza os dados do sistema com dados gravados
+	 * @throws Exception
+	 * Lanca excecao caso os dados nao tenham sido gravados anteriormente
+	 */
+	public void atualizaDados() throws Exception {
+		Imovel.setCriadorDeRegistro( (Integer) PersistenciaDados.ler(ARQUIVO_DE_REGISTROS) );
+		Transacao.setCriadorRegistroTransacao( (Integer) PersistenciaDados.ler(ARQUIVO_DE_REGISTROS) );
+	}
+	
+	/**
+	 * Metodo que salva os dados do sistema em um arquivo
+	 */
+	public void salvarDados() {
+		PersistenciaDados.gravar(this, ARQUIVO_DO_SISTEMA);
+		PersistenciaDados.gravar(Imovel.getCriadorDeRegistro(), ARQUIVO_DE_REGISTROS);
+		PersistenciaDados.gravar(Transacao.getCriadorRegistroTransacao(), ARQUIVO_DE_REGISTROS);
+	}
+	
+
+	
 
 	/* Metodos relacionados a Pedidos */
 
