@@ -4,9 +4,11 @@ import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.EstadoImovel;
 import imobiliaria.entidades.Funcionario;
 import imobiliaria.entidades.Imovel;
+import imobiliaria.entidades.Pedido;
 
 import java.io.Serializable;
-import java.util.HashMap;
+import java.util.Iterator;
+import java.util.TreeSet;
 
 /**
  * Classe que Controla os Pedidos de um Sistema Imobiliario
@@ -17,7 +19,7 @@ import java.util.HashMap;
 public class ControladorPedidos implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private HashMap<Imovel, Cliente> listaPedidos = new HashMap<Imovel, Cliente>();
+	private TreeSet<Pedido> listaPedidos = new TreeSet<Pedido>();
 
 	/**
 	 * Metodo que adiciona um pedido ao Sistema
@@ -40,13 +42,13 @@ public class ControladorPedidos implements Serializable {
 		if (imovelPedido == null || clienteQueSolicitou == null)
 			throw new IllegalArgumentException("Parametros invalidos");
 
-		if (listaPedidos.containsKey(imovelPedido)) {
+		if (imovelPedido.getEstadoDoImovel() == EstadoImovel.PEDIDO) {
 			throw new Exception("Imovel ja pedido");
 		}
 
 		clienteQueSolicitou.fazPedido(imovelPedido);
 		imovelPedido.pedido();
-		listaPedidos.put(imovelPedido, clienteQueSolicitou);
+		listaPedidos.add(new Pedido(imovelPedido, clienteQueSolicitou));
 	}
 
 	/**
@@ -61,32 +63,28 @@ public class ControladorPedidos implements Serializable {
 	 *             caso o Imovel nao tenha sido pedido
 	 */
 	public void efetuaPedido(String registroImovel, String creciFuncionario,
-			ControladorImovel controladorImoveis,
 			ControladorFuncionario controladorFuncionarios,
 			ControladorFinanceiro controladorFinanceiro) throws Exception {
-
-		Imovel imovelASerEfetuado = controladorImoveis
-				.getImovel(registroImovel);
+		
+		Pedido pedido = getPedido(registroImovel);
+		
 		Funcionario funcionarioQueEfetuouACompra = controladorFuncionarios
 				.getFuncionario(creciFuncionario);
 
-		if (imovelASerEfetuado == null || funcionarioQueEfetuouACompra == null)
+		if (funcionarioQueEfetuouACompra == null || pedido == null)
 			throw new IllegalArgumentException("Parametros invalidos");
 
-		if (imovelASerEfetuado.getEstadoDoImovel() != EstadoImovel.PEDIDO)
-			throw new Exception("Imovel nao pedido");
+		controladorFinanceiro.adicionaTransacao(pedido.getComprador(),
+				funcionarioQueEfetuouACompra,
+				pedido.getImovel().getValor());
 
-		controladorFinanceiro.adicionaTransacao(listaPedidos
-				.get(imovelASerEfetuado), funcionarioQueEfetuouACompra,
-				imovelASerEfetuado.getValor());
+		funcionarioQueEfetuouACompra.addImovelVendido(pedido.getImovel());
 
-		funcionarioQueEfetuouACompra.addImovelVendido(imovelASerEfetuado);
+		pedido.getImovel().vendido();
 
-		imovelASerEfetuado.vendido();
+		controladorFinanceiro.adicionaAoCaixa(pedido.getImovel().getValor());
 
-		controladorFinanceiro.adicionaAoCaixa(imovelASerEfetuado.getValor());
-
-		listaPedidos.remove(imovelASerEfetuado);
+		listaPedidos.remove(pedido);
 	}
 
 	/**
@@ -98,20 +96,17 @@ public class ControladorPedidos implements Serializable {
 	 *             Lanca Excecao caso o imovel nao exista ou nao tenha sido
 	 *             pedido
 	 */
-	public void removePedido(String registroImovel,
-			ControladorImovel controladorImoveis) throws Exception {
+	public void removePedido(String registroImovel) throws Exception {
 		
-		Imovel imovelDoPedido = controladorImoveis.getImovel(registroImovel);
-
-		if (imovelDoPedido == null)
+		
+		Pedido pedido = getPedido(registroImovel);
+		
+		if (pedido == null)
 			throw new IllegalArgumentException("Parametros invalidos");
 
-		if (!(listaPedidos.containsKey(imovelDoPedido)))
-			throw new Exception("Imovel nao pedido");
-
-		imovelDoPedido.a_venda();
-		listaPedidos.get(imovelDoPedido).removePedido(imovelDoPedido);
-		listaPedidos.remove(imovelDoPedido);
+		pedido.getImovel().a_venda();
+		pedido.getComprador().removePedido(pedido.getImovel());
+		listaPedidos.remove(pedido);
 	}
 
 	/**
@@ -123,18 +118,39 @@ public class ControladorPedidos implements Serializable {
 
 		String saida = "";
 
-		for (Imovel imovelPedido : listaPedidos.keySet()) {
-
-			Cliente clientePedinte = listaPedidos.get(imovelPedido);
-
-			saida += imovelPedido.getRegistroImovel() + " - "
-					+ imovelPedido.getNome() + " Valor: "
-					+ imovelPedido.getValor() + "\n" + "Cliente que pediu: "
-					+ clientePedinte.getNome() + " - CPF: "
-					+ clientePedinte.getCpf() + "\n\n";
+		Iterator<Pedido> it = listaPedidos.iterator();
+		
+		while (it.hasNext()) {
+			
+			Pedido p = it.next();
+			
+			saida += p.getImovel().getRegistroImovel() + " - "
+					+ p.getImovel().getNome() + " Valor: "
+					+ p.getImovel().getValor() + "\n" + "Cliente que pediu: "
+					+ p.getComprador().getNome() + " - CPF: "
+					+ p.getComprador().getCpf() + "\n\n";
 
 		}
 		return saida;
+	}
+	
+	
+	/* Metodos de Auxilio */
+	
+	private Pedido getPedido(String registroImovel) {
+		int registro;
+		try {
+			registro = Integer.parseInt(registroImovel);
+		} catch (ClassCastException e) {
+			throw new IllegalArgumentException("Registro invalido!");
+		}
+		
+		for (Pedido p : listaPedidos) {
+			if (p.getImovel().getRegistroImovel() == registro) {
+				return p;
+			}
+		}
+		return null;
 	}
 
 }
