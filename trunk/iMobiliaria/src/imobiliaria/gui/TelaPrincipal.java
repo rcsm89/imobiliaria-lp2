@@ -11,8 +11,8 @@
 
 package imobiliaria.gui;
 
+import imobiliara.aux.TipoLogin;
 import imobiliaria.processamento.Sistema;
-import imobiliaria.processamento.TipoLogin;
 
 import javax.swing.JOptionPane;
 

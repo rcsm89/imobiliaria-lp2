@@ -1,11 +1,11 @@
 package imobiliaria.controladores;
 
+import imobiliara.aux.TipoContratual;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.EstadoImovel;
 import imobiliaria.entidades.Funcionario;
 import imobiliaria.entidades.Imovel;
 import imobiliaria.entidades.Pedido;
-import imobiliaria.entidades.TipoContratual;
 
 import java.io.Serializable;
 import java.util.Iterator;

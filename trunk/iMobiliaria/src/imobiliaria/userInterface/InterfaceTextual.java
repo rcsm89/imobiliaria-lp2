@@ -3,12 +3,12 @@
  */
 package imobiliaria.userInterface;
 
+import imobiliara.aux.TipoLogin;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.Funcionario;
-import imobiliaria.processamento.PersistenciaDados;
 import imobiliaria.processamento.Sistema;
-import imobiliaria.processamento.TipoLogin;
 import imobiliaria.util.MetodoEntrada;
+import imobiliaria.util.PersistenciaDados;
 
 import java.util.LinkedList;
 

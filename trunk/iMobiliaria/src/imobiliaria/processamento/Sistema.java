@@ -1,9 +1,12 @@
 package imobiliaria.processamento;
 
 import java.io.Serializable;
+
+import imobiliara.aux.TipoLogin;
 import imobiliaria.controladores.*;
 import imobiliaria.entidades.Imovel;
 import imobiliaria.entidades.Transacao;
+import imobiliaria.util.PersistenciaDados;
 
 /**
  * Classe Sistema para guardar informacoes de um Sistema Imobiliario

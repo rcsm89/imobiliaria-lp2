@@ -1,10 +1,10 @@
 package imobiliaria.controladores;
 
+import imobiliara.aux.TipoContratual;
+import imobiliara.aux.TipoImovel;
 import imobiliaria.entidades.Area;
 import imobiliaria.entidades.EstadoImovel;
 import imobiliaria.entidades.Imovel;
-import imobiliaria.entidades.TipoContratual;
-import imobiliaria.entidades.TipoImovel;
 import imobiliaria.processamento.ColecaoImoveis;
 import imobiliaria.util.VerificaInvalido;
 
