@@ -1,4 +1,6 @@
-package imobiliaria.processamento;
+package imobiliaria.util;
+
+import imobiliaria.processamento.Sistema;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

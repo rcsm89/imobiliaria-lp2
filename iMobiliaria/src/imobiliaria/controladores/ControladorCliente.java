@@ -4,8 +4,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
+import imobiliara.aux.TipoImovel;
 import imobiliaria.entidades.Cliente;
-import imobiliaria.entidades.TipoImovel;
 import imobiliaria.processamento.ColecaoClientes;
 import imobiliaria.util.VerificaInvalido;
 

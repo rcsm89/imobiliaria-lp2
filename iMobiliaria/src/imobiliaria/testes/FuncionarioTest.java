@@ -1,10 +1,10 @@
 package imobiliaria.testes;
 
+import imobiliara.aux.TipoContratual;
+import imobiliara.aux.TipoImovel;
 import imobiliaria.entidades.Area;
 import imobiliaria.entidades.Funcionario;
 import imobiliaria.entidades.Imovel;
-import imobiliaria.entidades.TipoContratual;
-import imobiliaria.entidades.TipoImovel;
 
 import java.util.GregorianCalendar;
 
