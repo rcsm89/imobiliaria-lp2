@@ -29,7 +29,7 @@ public class Transacao implements Serializable {
 	 * @param comprador
 	 *            Comprador do imovel
 	 * @param valor
-	 *            Valor d'a Transacao
+	 *            Valor da Transacao
 	 */
 	public Transacao(Funcionario vendedor, Cliente comprador, double valor) {
 

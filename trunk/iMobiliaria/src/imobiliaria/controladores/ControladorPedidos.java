@@ -5,6 +5,7 @@ import imobiliaria.entidades.EstadoImovel;
 import imobiliaria.entidades.Funcionario;
 import imobiliaria.entidades.Imovel;
 import imobiliaria.entidades.Pedido;
+import imobiliaria.entidades.TipoContratual;
 
 import java.io.Serializable;
 import java.util.Iterator;
@@ -22,6 +23,23 @@ public class ControladorPedidos implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private TreeSet<Pedido> listaPedidos = new TreeSet<Pedido>();
 
+	// Variaveis de referencia para os outros controladores
+	private ControladorImovel controladorImoveis;
+	private ControladorCliente controladorClientes;
+	private ControladorFuncionario controladorFuncionarios;
+	private ControladorFinanceiro controladorFinanceiro;
+
+	public ControladorPedidos(ControladorImovel controladorImoveis,
+			ControladorCliente controladorClientes,
+			ControladorFuncionario controladorFuncionarios,
+			ControladorFinanceiro controladorFinanceiro) {
+
+		this.controladorClientes = controladorClientes;
+		this.controladorImoveis = controladorImoveis;
+		this.controladorFinanceiro = controladorFinanceiro;
+		this.controladorFuncionarios = controladorFuncionarios;
+	}
+
 	/**
 	 * Metodo que adiciona um pedido ao Sistema
 	 * 
@@ -33,9 +51,8 @@ public class ControladorPedidos implements Serializable {
 	 *             Lanca excecao caso o imovel nao exista, o cliente nao exista
 	 *             ou o imovel ja tenha sido pedido
 	 */
-	public void adicionaPedido(String registroImovel, String cpf,
-			ControladorImovel controladorImoveis,
-			ControladorCliente controladorClientes) throws Exception {
+	public void adicionaPedido(String registroImovel, String cpf)
+			throws Exception {
 
 		Imovel imovelPedido = controladorImoveis.getImovel(registroImovel);
 		Cliente clienteQueSolicitou = controladorClientes.getCliente(cpf);
@@ -63,9 +80,8 @@ public class ControladorPedidos implements Serializable {
 	 *             Lanca excecao caso o Imovel ou funcionario nao exista, ou
 	 *             caso o Imovel nao tenha sido pedido
 	 */
-	public void efetuaPedido(String registroImovel, String creciFuncionario,
-			ControladorFuncionario controladorFuncionarios,
-			ControladorFinanceiro controladorFinanceiro) throws Exception {
+	public void efetuaPedido(String registroImovel, String creciFuncionario)
+			throws Exception {
 
 		Pedido pedido = getPedido(registroImovel);
 
@@ -75,16 +91,36 @@ public class ControladorPedidos implements Serializable {
 		if (vendedor == null || pedido == null)
 			throw new IllegalArgumentException("Parametros invalidos");
 
-		pedido.getComprador().getHistoricoCompras().addImovel(
-				pedido.getImovel());
+		if (pedido.getImovel().getTipoContratual() == TipoContratual.VENDA) {
 
-		controladorFinanceiro.adicionaTransacao(pedido.getComprador(),vendedor,
-				pedido.getImovel().getValor());
+			// A Venda
 
-		vendedor.addImovelVendido(pedido.getImovel());
-		pedido.getImovel().vendido();
-		controladorFinanceiro.adicionaAoCaixa(pedido.getImovel().getValor());
-		listaPedidos.remove(pedido);
+			pedido.getComprador().getHistoricoCompras().addImovel(
+					pedido.getImovel());
+
+			controladorFinanceiro.adicionaTransacao(pedido.getComprador()
+					.getCpf(), vendedor.getCreci(), pedido.getImovel()
+					.getValor());
+
+			vendedor.addImovelVendido(pedido.getImovel());
+			pedido.getImovel().vendido();
+			controladorFinanceiro
+					.adicionaAoCaixa(pedido.getImovel().getValor());
+			listaPedidos.remove(pedido);
+
+		} else {
+
+			// Aluguel
+
+			// Adiciona Aluguel na lista de Alugueis do Cliente (FAZER!)
+
+			controladorFinanceiro.adicionaAluguel(pedido.getComprador(),
+					vendedor, pedido.getImovel());
+			pedido.getImovel().alugado();
+			
+			// CONTINUA AKI!
+
+		}
 	}
 
 	/**

@@ -19,15 +19,20 @@ import imobiliaria.entidades.Transacao;
 public class Sistema implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private final String ARQUIVO_DO_SISTEMA = "DadosDeSistema.dat";
 	private final String ARQUIVO_DE_REGISTROS = "Registros.dat";
 
-	private ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro();
 	private ControladorImovel controladorImoveis = new ControladorImovel();
 	private ControladorCliente controladorClientes = new ControladorCliente();
 	private ControladorFuncionario controladorFuncionarios = new ControladorFuncionario();
-	private ControladorPedidos controladorPedidos = new ControladorPedidos();
+	
+	private ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro(controladorFuncionarios,
+			controladorClientes, controladorImoveis);
+
+	private ControladorPedidos controladorPedidos = new ControladorPedidos(
+			controladorImoveis, controladorClientes, controladorFuncionarios,
+			controladorFinanceiro);
 
 	/**
 	 * Metodo Login - Efetua login baseado no login, senha e Tipo do Usuario
@@ -94,6 +99,15 @@ public class Sistema implements Serializable {
 	}
 
 	/**
+	 * Metodo acessador do Controlador de Pedidos do Sistema
+	 * 
+	 * @return the controladorPedidos
+	 */
+	public ControladorPedidos controladorPedidos() {
+		return controladorPedidos;
+	}
+
+	/**
 	 * Metodo acessador do Contrador de Funcionarios do Sistema
 	 * 
 	 * @return the controladorFuncionarios
@@ -101,86 +115,38 @@ public class Sistema implements Serializable {
 	public ControladorFuncionario controladorFuncionarios() {
 		return controladorFuncionarios;
 	}
-	
+
 	/* Metodos de Atualizacao */
-	
+
 	/**
 	 * Metodo que atualiza os dados do sistema com dados gravados
+	 * 
 	 * @throws Exception
-	 * Lanca excecao caso os dados nao tenham sido gravados anteriormente
+	 *             Lanca excecao caso os dados nao tenham sido gravados
+	 *             anteriormente
 	 */
 	public void atualizaDados() throws Exception {
-		Imovel.setCriadorDeRegistro( (Integer) PersistenciaDados.ler(ARQUIVO_DE_REGISTROS) );
-		Transacao.setCriadorRegistroTransacao( (Integer) PersistenciaDados.ler(ARQUIVO_DE_REGISTROS) );
+		
+		controladorFinanceiro.atualizaControlador();
+		
+		Imovel.setCriadorDeRegistro((Integer) PersistenciaDados
+				.ler(ARQUIVO_DE_REGISTROS));
+		Transacao.setCriadorRegistroTransacao((Integer) PersistenciaDados
+				.ler(ARQUIVO_DE_REGISTROS));
+		
 	}
-	
+
 	/**
 	 * Metodo que salva os dados do sistema em um arquivo
 	 */
 	public void salvarDados() {
+		
+		controladorFinanceiro.atualizaControlador();
+		
 		PersistenciaDados.gravar(this, ARQUIVO_DO_SISTEMA);
-		PersistenciaDados.gravar(Imovel.getCriadorDeRegistro(), ARQUIVO_DE_REGISTROS);
-		PersistenciaDados.gravar(Transacao.getCriadorRegistroTransacao(), ARQUIVO_DE_REGISTROS);
-	}
-	
-
-	
-
-	/* Metodos relacionados a Pedidos */
-
-	/**
-	 * Metodo que adiciona pedido ao sistema
-	 * 
-	 * @param registroImovel
-	 *            Registro do Imovel pedido
-	 * @param cpf
-	 *            Cpf do Cliente que fez o pedido
-	 * @throws Exception
-	 *             Lanca Excecao caso algum dos parametros esteja errado
-	 */
-	public void adicionaPedido(String registroImovel, String cpf)
-			throws Exception {
-
-		controladorPedidos.adicionaPedido(registroImovel, cpf,
-				controladorImoveis, controladorClientes);
-	}
-
-	/**
-	 * Metodo que efetua um pedido do Sistema
-	 * 
-	 * @param registroImovel
-	 *            Registro do Imovel que ja foi pedido
-	 * @param creciFuncionario
-	 *            Creci do Funcionario que efetuou a compra
-	 * @throws Exception
-	 *             Lanca excecao caso algum parametro seja invalido
-	 */
-	public void efetuaPedido(String registroImovel, String creciFuncionario)
-			throws Exception {
-
-		controladorPedidos.efetuaPedido(registroImovel, creciFuncionario,
-				controladorFuncionarios,
-				controladorFinanceiro);
-	}
-
-	/**
-	 * Metodo que remove um pedido do Sistema
-	 * 
-	 * @param registroImovel
-	 *            Registro do Imovel que foi pedido
-	 * @throws Exception
-	 *             Lanca excecao caso algum parametro seja invalido
-	 */
-	public void removePedido(String registroImovel) throws Exception {
-		controladorPedidos.removePedido(registroImovel);
-	}
-
-	/**
-	 * Metodo que lista os pedidos do Sistema
-	 * 
-	 * @return String contendo uma listagem dos pedidos do Sistema
-	 */
-	public String listagemPedidos() {
-		return controladorPedidos.listagemDePedido();
+		PersistenciaDados.gravar(Imovel.getCriadorDeRegistro(),
+				ARQUIVO_DE_REGISTROS);
+		PersistenciaDados.gravar(Transacao.getCriadorRegistroTransacao(),
+				ARQUIVO_DE_REGISTROS);
 	}
 }

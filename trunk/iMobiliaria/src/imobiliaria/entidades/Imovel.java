@@ -266,6 +266,7 @@ public class Imovel implements Serializable {
 		estadoDoImovel = EstadoImovel.ALUGADO;
 	}
 
+
 	/**
 	 * equals da Classe<br>
 	 * Dois Imoveis sao iguais se possuem o mesmo registro

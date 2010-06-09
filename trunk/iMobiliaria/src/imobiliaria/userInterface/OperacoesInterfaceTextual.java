@@ -556,7 +556,7 @@ public class OperacoesInterfaceTextual {
 	protected void efetuarPagamento() {
 
 		try {
-			String folhaDePagamento = sis.efetuaPagamentoNoMes();
+			String folhaDePagamento = sis.controladorFinanceiro().efetuaPagamentoNoMes(sis.controladorFuncionarios().listaTotaisDeVendas());
 			System.out.println("Folha de Pagamento do Mes:" + lineSep
 					+ folhaDePagamento);
 
@@ -568,7 +568,7 @@ public class OperacoesInterfaceTextual {
 
 	protected void verificaSaldoAtual() {
 
-		System.out.println(lineSep + "Saldo Atual do Caixa: " + sis.caixa()
+		System.out.println(lineSep + "Saldo Atual do Caixa: " + sis.controladorFinanceiro().caixa()
 				+ lineSep);
 	}
 
