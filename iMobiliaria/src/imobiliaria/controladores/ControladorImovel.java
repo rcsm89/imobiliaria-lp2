@@ -21,7 +21,7 @@ public class ControladorImovel implements Serializable{
 	
 	//Atributos
 	
-	ColecaoImoveis colecaoImovel;
+	private static ColecaoImoveis colecaoImovel;
 	
 	/**
 	 * Construtor privado para nao ocorrer instanciacoes da classe <br>
