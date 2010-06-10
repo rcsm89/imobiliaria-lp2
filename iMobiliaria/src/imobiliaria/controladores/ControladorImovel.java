@@ -8,15 +8,37 @@ import imobiliaria.entidades.Imovel;
 import imobiliaria.processamento.ColecaoImoveis;
 import imobiliaria.util.VerificaInvalido;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Classe com objetivo de controlar as utilidades de um imovel.
  * 
  * @author Bruno Fabio de Farias Paiva
- * @version IT01
+ * @version IT02
  */
-public class ControladorImovel extends ColecaoImoveis {
+public class ControladorImovel implements Serializable{
+	
+	//Atributos
+	
+	ColecaoImoveis colecaoImovel;
+	
+	/**
+	 * Construtor privado para nao ocorrer instanciacoes da classe <br>
+	 * fora da classe.
+	 */
+	private ControladorImovel() {};
+	
+	private static ControladorImovel controladorImovelUnico = new
+													ControladorImovel();
+	
+	/**
+	 * Singleton do controlador 
+	 * @return Controlador de Imovel
+	 */
+	public static ControladorImovel getInstance(){
+		return controladorImovelUnico;
+	}
 
 	private static final long serialVersionUID = 1L;
 
@@ -77,7 +99,7 @@ public class ControladorImovel extends ColecaoImoveis {
 			return null;
 		}
 
-		return getImovelDeRegistro(registroDoImovel);
+		return colecaoImovel.getImovelDeRegistro(registroDoImovel);
 	}
 
 	/**
@@ -101,7 +123,7 @@ public class ControladorImovel extends ColecaoImoveis {
 			return null;
 		}
 
-		Imovel imovel = getImovelDeRegistro(registroDoImovel);
+		Imovel imovel = colecaoImovel.getImovelDeRegistro(registroDoImovel);
 
 		if (imovel == null) {
 			return null;
@@ -150,7 +172,7 @@ public class ControladorImovel extends ColecaoImoveis {
 	 * @return Uma String contendo a lista dos imoveis
 	 */
 	public String listaImoveis() {
-		return listaImoveis(getImoveis());
+		return listaImoveis(colecaoImovel.getImoveis());
 	}
 
 	/**
@@ -164,7 +186,7 @@ public class ControladorImovel extends ColecaoImoveis {
 	 * @return Uma String contendo a lista dos imoveis
 	 */
 	public String listaImoveis(double min, double max) {
-		return listaImoveis(getImoveisDeValor(min, max));
+		return listaImoveis(colecaoImovel.getImoveisDeValor(min, max));
 	}
 
 	/**
@@ -176,7 +198,7 @@ public class ControladorImovel extends ColecaoImoveis {
 	 * @return Uma String contendo a lista dos imoveis
 	 */
 	public String listaImoveis(TipoContratual tipo) {
-		return listaImoveis(getImoveis(tipo));
+		return listaImoveis(colecaoImovel.getImoveis(tipo));
 	}
 
 	/**
@@ -188,7 +210,7 @@ public class ControladorImovel extends ColecaoImoveis {
 	 * @return Uma String contendo a lista dos imoveis
 	 */
 	public String listaImoveis(TipoImovel tipo) {
-		return listaImoveis(getImoveis(tipo));
+		return listaImoveis(colecaoImovel.getImoveis(tipo));
 	}
 
 	/**
@@ -200,7 +222,7 @@ public class ControladorImovel extends ColecaoImoveis {
 	 * @return Uma String contendo a lista dos imoveis
 	 */
 	public String listaImoveis(EstadoImovel estado) {
-		return listaImoveis(getImoveis(estado));
+		return listaImoveis(colecaoImovel.getImoveis(estado));
 	}
 
 	/**
@@ -214,7 +236,7 @@ public class ControladorImovel extends ColecaoImoveis {
 		if (VerificaInvalido.basico(nome)) {
 			throw new IllegalArgumentException("Nome Invalido");
 		}
-		return listaImoveis(getImoveis(nome));
+		return listaImoveis(colecaoImovel.getImoveis(nome));
 	}
 
 	/* Modificacao que eu falei (Yuri) */
@@ -246,6 +268,6 @@ public class ControladorImovel extends ColecaoImoveis {
 				tipoDoImovel, tipoContratual);
 
 		// SuperClasse (ColecaoImovel)
-		addImovel(ImovelASerAdicionado);
+		colecaoImovel.addImovel(ImovelASerAdicionado);
 	}
 }
