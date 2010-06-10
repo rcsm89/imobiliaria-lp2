@@ -1,5 +1,6 @@
 package imobiliaria.controladores;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -13,12 +14,21 @@ import imobiliaria.util.VerificaInvalido;
  * 
  * @author thiagofp
  * 
- * @version IT01
+ * @version IT02
  */
-public class ControladorFuncionario extends ColecaoFuncionario {
+public class ControladorFuncionario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	private static ControladorFuncionario controladorFuncionarioUnico = new ControladorFuncionario();
 	private HashMap<String, String> loginFuncionarios = new HashMap<String, String>();
+	private ColecaoFuncionario colecaoFunc = new ColecaoFuncionario();
+
+	public static ControladorFuncionario getInstance() {
+		return controladorFuncionarioUnico;
+	}
+
+	private ControladorFuncionario() {
+	}
 
 	/**
 	 * Adiciona um funcionario no Controlador
@@ -45,7 +55,7 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 		Funcionario funcionarioASerAdicionado = new Funcionario(cpf,
 				dataNascimento, endereco, nome, creci);
 
-		if (adicionaFuncionario(funcionarioASerAdicionado)) {
+		if (colecaoFunc.adicionaFuncionario(funcionarioASerAdicionado)) {
 			loginFuncionarios.put(funcionarioASerAdicionado.getLogin(),
 					funcionarioASerAdicionado.getSenha());
 			return true;
@@ -81,7 +91,7 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 	 * @return Uma String contendo a lista dos funcionarios
 	 */
 	public String listaFuncionarios() {
-		return listaFuncionarios(getColecaoFuncionarios());
+		return listaFuncionarios(colecaoFunc.getColecaoFuncionarios());
 	}
 
 	/**
@@ -168,7 +178,7 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 		HashMap<String, Double> funcSalario = new HashMap<String, Double>();
 		double valorDeVendas;
 
-		for (Funcionario funcionario : getColecaoFuncionarios()) {
+		for (Funcionario funcionario : colecaoFunc.getColecaoFuncionarios()) {
 			funcionario.resetaImoveisVendidosMes();
 			valorDeVendas = funcionario.getTotalDeVendas();
 			funcSalario.put(funcionario.getNome(), valorDeVendas);
@@ -184,7 +194,7 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 	 * @return Funcionario ou null, caso nao exista
 	 */
 	public Funcionario getFuncionarioPorCreci(String creci) {
-		for (Funcionario func : getColecaoFuncionarios()) {
+		for (Funcionario func : colecaoFunc.getColecaoFuncionarios()) {
 			if (func.getCreci().equals(creci))
 				return func;
 		}
@@ -206,7 +216,7 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 				+ func.getDataNascimento() + "\nEndereco: "
 				+ func.getEndereco();
 	}
-		
+
 	/**
 	 * Metodo Acessador de um Funcionario
 	 * 
@@ -215,7 +225,7 @@ public class ControladorFuncionario extends ColecaoFuncionario {
 	 * @return Funcionario ou null, caso nao exista
 	 */
 	public Funcionario getFuncionarioPorCpf(String cpf) {
-		for (Funcionario func : getColecaoFuncionarios()) {
+		for (Funcionario func : colecaoFunc.getColecaoFuncionarios()) {
 			if (func.getCpf().equals(cpf))
 				return func;
 		}
