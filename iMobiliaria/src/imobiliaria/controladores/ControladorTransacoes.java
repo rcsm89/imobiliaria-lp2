@@ -11,6 +11,11 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
+/**
+ * Classe que ira ser o Controlador de Transacoes do Sistema
+ * @author Yuri Farias
+ * @version IT02
+ */
 public class ControladorTransacoes implements Serializable {
 	
 	
@@ -230,6 +235,8 @@ public class ControladorTransacoes implements Serializable {
 		atualizaPagamento();
 
 	}
+	
+	/* Metodos Privados */
 	
 	private void atualizaPagamento() {
 		GregorianCalendar hoje = new GregorianCalendar();

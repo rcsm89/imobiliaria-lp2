@@ -103,36 +103,13 @@ public class ControladorPedidos implements Serializable {
 
 			// A Venda
 
-			pedido.getComprador().getHistoricoCompras().addImovel(
-					pedido.getImovel());
-
-			ControladorTransacoes.getInstance().adicionaTransacao(
-					pedido.getComprador().getCpf(), vendedor.getCreci(),
-					pedido.getImovel().getValor());
-
-			vendedor.addImovelVendido(pedido.getImovel());
-			pedido.getImovel().vendido();
-			ControladorTransacoes.getInstance().adicionaAoCaixa(
-					pedido.getImovel().getValor());
-			listaPedidos.remove(pedido);
+			efetuaVenda(pedido, vendedor);
 
 		} else {
 
 			// Aluguel
-
-			// Adiciona Aluguel na lista de Alugueis do Cliente (FAZER!)
 			
-			vendedor.addImovelVendido(pedido.getImovel());
-
-			ControladorAlugueis.getInstance().adicionaAluguel(
-					pedido.getComprador(), vendedor, pedido.getImovel());
-			
-			pedido.getImovel().alugado();
-			
-			pedido.getComprador().getAlugueis().addImovel(pedido.getImovel());
-			
-			ControladorTransacoes.getInstance().adicionaAoCaixa(
-					pedido.getImovel().getValor());
+			efetuaAluguel(pedido);
 
 		}
 	}
@@ -199,6 +176,35 @@ public class ControladorPedidos implements Serializable {
 			}
 		}
 		return null;
+	}
+	
+	private void efetuaVenda(Pedido pedido, Funcionario vendedor) throws Exception {
+		
+		pedido.getComprador().getHistoricoCompras().addImovel(
+				pedido.getImovel());
+
+		ControladorTransacoes.getInstance().adicionaTransacao(
+				pedido.getComprador().getCpf(), vendedor.getCreci(),
+				pedido.getImovel().getValor());
+
+		vendedor.addImovelVendido(pedido.getImovel());
+		pedido.getImovel().vendido();
+		ControladorTransacoes.getInstance().adicionaAoCaixa(
+				pedido.getImovel().getValor());
+		listaPedidos.remove(pedido);
+	}
+	
+	private void efetuaAluguel(Pedido pedido) throws Exception {
+		
+		ControladorAlugueis.getInstance().adicionaAluguel(
+				pedido.getComprador(), pedido.getImovel());
+		
+		pedido.getImovel().alugado();
+		
+		pedido.getComprador().getAlugueis().addImovel(pedido.getImovel());
+		
+		ControladorTransacoes.getInstance().adicionaAoCaixa(
+				pedido.getImovel().getValor());
 	}
 
 }

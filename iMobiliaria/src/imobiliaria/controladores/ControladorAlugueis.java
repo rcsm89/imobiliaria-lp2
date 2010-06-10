@@ -2,13 +2,17 @@ package imobiliaria.controladores;
 
 import imobiliaria.entidades.Aluguel;
 import imobiliaria.entidades.Cliente;
-import imobiliaria.entidades.Funcionario;
 import imobiliaria.entidades.Imovel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Clase que ira ser o Controlador de Alugueis do Sistema
+ * @author Yuri Farias
+ * @version IT 02
+ */
 public class ControladorAlugueis implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -41,12 +45,11 @@ public class ControladorAlugueis implements Serializable {
 	 *            Imovel que foi Alugado
 	 * @return
 	 */
-	public boolean adicionaAluguel(Cliente alugante, Funcionario vendedor,
-			Imovel imovelAlugado) {
-		if (alugante == null || vendedor == null || imovelAlugado == null)
+	public boolean adicionaAluguel(Cliente alugante, Imovel imovelAlugado) {
+		if (alugante == null || imovelAlugado == null)
 			throw new IllegalArgumentException("Parametros invalidos");
 
-		Aluguel aluguel = new Aluguel(alugante, vendedor, imovelAlugado);
+		Aluguel aluguel = new Aluguel(alugante, imovelAlugado);
 
 		return alugueis.add(aluguel);
 	}
