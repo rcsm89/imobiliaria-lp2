@@ -185,7 +185,7 @@ public class ControladorPedidos implements Serializable {
 
 		ControladorTransacoes.getInstance().adicionaTransacao(
 				pedido.getComprador().getCpf(), vendedor.getCreci(),
-				pedido.getImovel().getValor());
+				String.valueOf(pedido.getImovel().getRegistroImovel()));
 
 		vendedor.addImovelVendido(pedido.getImovel());
 		pedido.getImovel().vendido();
