@@ -15,6 +15,7 @@ public class Cliente extends Usuario {
 
 	private static final long serialVersionUID = 1L;
 	private ColecaoImoveis historicoCompras = new ColecaoImoveis();
+	private ColecaoImoveis alugueis = new ColecaoImoveis();
 	private ColecaoImoveis pedidos = new ColecaoImoveis();
 	private TipoImovel preferencia;
 
@@ -49,6 +50,15 @@ public class Cliente extends Usuario {
 	 */
 	public ColecaoImoveis getHistoricoCompras() {
 		return historicoCompras;
+	}
+	
+	/**
+	 * Metodo acessador aos alugueis
+	 * @return
+	 * 		Os alugueis do clientes 
+	 */
+	public ColecaoImoveis getAlugueis() {
+		return alugueis;
 	}
 
 	/**
