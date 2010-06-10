@@ -1,20 +1,33 @@
 package imobiliaria.entidades;
 
+/**
+ * Classe Aluguel que guarda informacoes sobre um Aluguel
+ * 
+ * @author Yuri Farias
+ * @version IT 02
+ */
 public class Aluguel {
 	private Cliente alugante;
-	private Funcionario vendedor;
 	private Imovel imovelAlugado;
 
-	public Aluguel(Cliente alugante, Funcionario vendedor, Imovel imovelAlugado) {
-		if (alugante == null || vendedor == null || imovelAlugado == null)
+	/**
+	 * Construtor da Classe
+	 * 
+	 * @param alugante
+	 *            Cliente que alugou o Imovel
+	 * @param imovelAlugado
+	 *            Imovel que foi Alugado
+	 */
+	public Aluguel(Cliente alugante, Imovel imovelAlugado) {
+		if (alugante == null || imovelAlugado == null)
 			throw new IllegalArgumentException("Parametros invalidos");
 		this.alugante = alugante;
-		this.vendedor = vendedor;
 		this.imovelAlugado = imovelAlugado;
 	}
 
 	/**
 	 * Metodo acessador do Cliente do Aluguel
+	 * 
 	 * @return O Cliente do Aluguel
 	 */
 	public Cliente getAlugante() {
@@ -22,15 +35,8 @@ public class Aluguel {
 	}
 
 	/**
-	 * Metodo acessador do Vendedor do Aluguel
-	 * @return O Funcionario que vendeu o Aluguel
-	 */
-	public Funcionario getVendedor() {
-		return vendedor;
-	}
-
-	/**
 	 * Metodo acessador do Imovel Alugado
+	 * 
 	 * @return Imovel Alugado
 	 */
 	public Imovel getImovelAlugado() {
