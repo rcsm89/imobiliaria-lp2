@@ -39,26 +39,36 @@ public class ColecaoImovelTest {
 				TipoContratual.VENDA);
 		
 		// Adiciona Imoveis e testa adicionar imoveis repetidos
-
-		colecaoImovel.addImovel(imovel1);
-		Assert.assertEquals(1, colecaoImovel.getImoveis().size());
+		
+		try{
+			colecaoImovel.addImovel(imovel1);
+			Assert.assertEquals(1, colecaoImovel.getImoveis().size());
+		}catch(Exception e){
+			Assert.fail("Nao Deveria Lancar Excecao aqui");
+		}
 
 		// tentando adicionar imovel ja existente na colecao.
 		try{
 			colecaoImovel.addImovel(imovel1);
+			Assert.fail("Deveria Lancar Excecao aqui");
 		}catch(Exception e){
 			Assert.assertEquals("Imovel Existente", e.getMessage());
 		}
 		
 		Assert.assertEquals(1, colecaoImovel.getImoveis().size());
 		
-		colecaoImovel.addImovel(imovel2);
-		colecaoImovel.addImovel(imovel3);
+		try{
+			colecaoImovel.addImovel(imovel2);
+			colecaoImovel.addImovel(imovel3);
+		}catch(Exception e){
+			Assert.fail("Nao Deveria Lancar Excecao aqui");
+		}
 		
 		Assert.assertEquals(3, colecaoImovel.getImoveis().size());
 		
 		try{
 			colecaoImovel.addImovel(imovel2);
+			Assert.fail("Nao Deveria Lancar Excecao aqui");
 		}catch(Exception e){
 			Assert.assertEquals("Imovel Existente", e.getMessage());
 		}
@@ -106,20 +116,25 @@ public class ColecaoImovelTest {
 
 		// Equals
 
-		colecaoImovelParaCompararEquals.addImovel(imovel1);
-		Assert.assertEquals(1, colecaoImovelParaCompararEquals.getImoveis().
-				size());
-		
-		colecaoImovelParaCompararEquals.addImovel(imovel2);
-		Assert.assertEquals(2, colecaoImovelParaCompararEquals.getImoveis().
-				size());
-
-		colecaoImovelParaCompararEquals.addImovel(imovel3);
-		Assert.assertEquals(3, colecaoImovelParaCompararEquals.getImoveis().
-				size());
+		try{
+			colecaoImovelParaCompararEquals.addImovel(imovel1);
+			Assert.assertEquals(1, colecaoImovelParaCompararEquals.getImoveis().
+					size());
+			
+			colecaoImovelParaCompararEquals.addImovel(imovel2);
+			Assert.assertEquals(2, colecaoImovelParaCompararEquals.getImoveis().
+					size());
+	
+			colecaoImovelParaCompararEquals.addImovel(imovel3);
+			Assert.assertEquals(3, colecaoImovelParaCompararEquals.getImoveis().
+					size());
+		}catch(Exception e){
+			Assert.fail("Nao Deveria Lancar Excecao aqui");
+		}
 		
 		try{
 			colecaoImovelParaCompararEquals.addImovel(null);
+			Assert.fail("Deveria Lancar Excecao aqui");
 		}catch(Exception e){
 			Assert.assertEquals("Imovel Invalido", e.getMessage());
 		}
