@@ -69,6 +69,14 @@ public class Sistema implements Serializable {
 	}
 
 	/* Metodos Acessadores dos Controladores */
+	
+	/**
+	 * Metodo acessador do Controlador de Alugueis do Sistema
+	 * @return the controladorAlugueis
+	 */
+	public ControladorAlugueis getControladorAlugueis() {
+		return controladorAlugueis;
+	}
 
 	/**
 	 * Metodo acessador do Contrador de Imoveis do Sistema

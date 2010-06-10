@@ -121,12 +121,18 @@ public class ControladorPedidos implements Serializable {
 			// Aluguel
 
 			// Adiciona Aluguel na lista de Alugueis do Cliente (FAZER!)
+			
+			vendedor.addImovelVendido(pedido.getImovel());
 
 			ControladorAlugueis.getInstance().adicionaAluguel(
 					pedido.getComprador(), vendedor, pedido.getImovel());
+			
 			pedido.getImovel().alugado();
-
-			// CONTINUA AKI!
+			
+			pedido.getComprador().getAlugueis().addImovel(pedido.getImovel());
+			
+			ControladorTransacoes.getInstance().adicionaAoCaixa(
+					pedido.getImovel().getValor());
 
 		}
 	}

@@ -1,6 +1,5 @@
 package imobiliaria.controladores;
 
-import imobiliaria.entidades.Aluguel;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.FolhaDePagamento;
 import imobiliaria.entidades.Funcionario;
@@ -35,6 +34,10 @@ public class ControladorTransacoes implements Serializable {
 
 	private ControladorTransacoes() { }
 	
+	/**
+	 * Metodo acessador da unica instancia do Controlador de Transacoes
+	 * @return Controlador de Transacoes Unico
+	 */
 	public static ControladorTransacoes getInstance() {
 		return controladorTransacoesUnico;
 	}
@@ -100,7 +103,9 @@ public class ControladorTransacoes implements Serializable {
 
 		double despesas = 0;
 		double salarioFuncionario;
-
+		
+		// Cria a Folha de Pagamento
+		
 		HashMap<String, Double> vendasFuncionarios = ControladorFuncionario.getInstance()
 				.listaTotaisDeVendas();
 
@@ -119,9 +124,8 @@ public class ControladorTransacoes implements Serializable {
 		double saldoAnterior = caixa();
 
 		removeDoCaixa(despesas);
-
-		ultimoPagamento = new GregorianCalendar();
-		pagouNesseMes = true;
+		resetaTransacoeMensais();
+		atualizaPagamentoParaAgora();
 
 		return new FolhaDePagamento(salarioFuncionarios, saldoAnterior, despesas, caixa());
 	}
@@ -219,6 +223,9 @@ public class ControladorTransacoes implements Serializable {
 		logsFinanceirosMensal.clear();
 	}
 
+	/**
+	 * Metodo que atualiza o Controlador de Transacoes
+	 */
 	public void atualizaControlador() {
 		atualizaPagamento();
 
@@ -251,6 +258,11 @@ public class ControladorTransacoes implements Serializable {
 			saida += t.exibeInformacao() + "\n";
 		}
 		return saida;
+	}
+	
+	private void atualizaPagamentoParaAgora() {
+		ultimoPagamento = new GregorianCalendar();
+		pagouNesseMes = true;
 	}
 
 }
