@@ -1,5 +1,6 @@
 package imobiliaria.controladores;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -13,12 +14,21 @@ import imobiliaria.util.VerificaInvalido;
  * Classe ControladorCliente que ira controlar e listar algumas opcoes sobre
  * Cliente
  * 
- * @author Yuri
- * @IT 1
+ * @version IT02 
  */
-public class ControladorCliente extends ColecaoClientes {
+public class ControladorCliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	private static ControladorCliente controladorClienteUnico = new ControladorCliente();
+	private ColecaoClientes colecaoClientes = new ColecaoClientes();
+
+	public static ControladorCliente getInstance() {
+		return controladorClienteUnico;
+	}
+
+	private ControladorCliente() {
+	}
+
 	private HashMap<String, String> loginClientes = new HashMap<String, String>();
 
 	/**
@@ -42,15 +52,15 @@ public class ControladorCliente extends ColecaoClientes {
 	public boolean adicionaCliente(String cpf, Calendar dataNascimento,
 			String endereco, String nome, TipoImovel preferencia)
 			throws Exception {
-		
+
 		System.out.println("Ta aqui!");
 
 		Cliente clienteASerAdicionado = new Cliente(cpf, dataNascimento,
 				endereco, nome, preferencia);
-		
+
 		System.out.println(clienteASerAdicionado);
 
-		if (adicionaCliente(clienteASerAdicionado)) {
+		if (colecaoClientes.adicionaCliente(clienteASerAdicionado)) {
 			loginClientes.put(clienteASerAdicionado.getLogin(),
 					clienteASerAdicionado.getSenha());
 			return true;
@@ -87,7 +97,7 @@ public class ControladorCliente extends ColecaoClientes {
 	 * @return Cliente ou null, caso nao exista
 	 */
 	public Cliente getCliente(String cpf) {
-		for (Cliente c : getClientes()) {
+		for (Cliente c : colecaoClientes.getClientes()) {
 			if (c.getCpf().equals(cpf))
 				return c;
 		}
@@ -103,7 +113,7 @@ public class ControladorCliente extends ColecaoClientes {
 	 */
 	public String exibeCliente(String cpf) {
 		Cliente c = getCliente(cpf);
-		
+
 		if (c == null) {
 			return null;
 		}
@@ -120,7 +130,7 @@ public class ControladorCliente extends ColecaoClientes {
 	 * @return String contendo uma listagem dos clientes
 	 */
 	public String listaClientes() {
-		return listaClientes(getClientesPorOrdemAlfabetica());
+		return listaClientes(colecaoClientes.getClientesPorOrdemAlfabetica());
 	}
 
 	/**
@@ -131,7 +141,7 @@ public class ControladorCliente extends ColecaoClientes {
 	 * @return String contendo listagem de clientes
 	 */
 	public String listaClientes(TipoImovel preferencia) {
-		return listaClientes(getClientes(preferencia));
+		return listaClientes(colecaoClientes.getClientes(preferencia));
 	}
 
 	/**
@@ -143,7 +153,7 @@ public class ControladorCliente extends ColecaoClientes {
 	 */
 
 	public String listaClientes(String letraInicial) {
-		return listaClientes(getClientesPorLetraInicial(letraInicial));
+		return listaClientes(colecaoClientes.getClientesPorLetraInicial(letraInicial));
 	}
 
 	private String listaClientes(List<Cliente> listaDeClientes) {
