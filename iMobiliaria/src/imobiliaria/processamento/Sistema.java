@@ -26,16 +26,12 @@ public class Sistema implements Serializable {
 	private final String ARQUIVO_DO_SISTEMA = "DadosDeSistema.dat";
 	private final String ARQUIVO_DE_REGISTROS = "Registros.dat";
 
-	private ControladorImovel controladorImoveis = new ControladorImovel();
-	private ControladorCliente controladorClientes = new ControladorCliente();
-	private ControladorFuncionario controladorFuncionarios = new ControladorFuncionario();
-	
-	private ControladorFinanceiro controladorFinanceiro = new ControladorFinanceiro(controladorFuncionarios,
-			controladorClientes, controladorImoveis);
-
-	private ControladorPedidos controladorPedidos = new ControladorPedidos(
-			controladorImoveis, controladorClientes, controladorFuncionarios,
-			controladorFinanceiro);
+	private ControladorImovel controladorImoveis = ControladorImovel.getInstance();
+	private ControladorCliente controladorClientes = ControladorCliente.getInstance();
+	private ControladorFuncionario controladorFuncionarios = ControladorFuncionario.getInstance();
+	private ControladorPedidos controladorPedidos = ControladorPedidos.getInstance();
+	private ControladorTransacoes controladorTransacoes = ControladorTransacoes.getInstance();
+	private ControladorAlugueis controladorAlugueis = ControladorAlugueis.getInstance();
 
 	/**
 	 * Metodo Login - Efetua login baseado no login, senha e Tipo do Usuario
@@ -73,15 +69,6 @@ public class Sistema implements Serializable {
 	}
 
 	/* Metodos Acessadores dos Controladores */
-
-	/**
-	 * Metodo acessador do Controlador Financeiro
-	 * 
-	 * @return Controlador Financeiro
-	 */
-	public ControladorFinanceiro controladorFinanceiro() {
-		return controladorFinanceiro;
-	}
 
 	/**
 	 * Metodo acessador do Contrador de Imoveis do Sistema
@@ -130,13 +117,12 @@ public class Sistema implements Serializable {
 	 */
 	public void atualizaDados() throws Exception {
 		
-		controladorFinanceiro.atualizaControlador();
+		controladorTransacoes.atualizaControlador();
 		
 		Imovel.setCriadorDeRegistro((Integer) PersistenciaDados
 				.ler(ARQUIVO_DE_REGISTROS));
 		Transacao.setCriadorRegistroTransacao((Integer) PersistenciaDados
 				.ler(ARQUIVO_DE_REGISTROS));
-		
 	}
 
 	/**
@@ -144,7 +130,7 @@ public class Sistema implements Serializable {
 	 */
 	public void salvarDados() {
 		
-		controladorFinanceiro.atualizaControlador();
+		controladorTransacoes.atualizaControlador();
 		
 		PersistenciaDados.gravar(this, ARQUIVO_DO_SISTEMA);
 		PersistenciaDados.gravar(Imovel.getCriadorDeRegistro(),
