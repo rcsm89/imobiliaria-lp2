@@ -21,23 +21,28 @@ import java.util.TreeSet;
 public class ControladorPedidos implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	//Atributos
+	
 	private TreeSet<Pedido> listaPedidos = new TreeSet<Pedido>();
 
-	// Variaveis de referencia para os outros controladores
-	private ControladorImovel controladorImoveis;
-	private ControladorCliente controladorClientes;
-	private ControladorFuncionario controladorFuncionarios;
-	private ControladorFinanceiro controladorFinanceiro;
-
-	public ControladorPedidos(ControladorImovel controladorImoveis,
-			ControladorCliente controladorClientes,
-			ControladorFuncionario controladorFuncionarios,
-			ControladorFinanceiro controladorFinanceiro) {
-
-		this.controladorClientes = controladorClientes;
-		this.controladorImoveis = controladorImoveis;
-		this.controladorFinanceiro = controladorFinanceiro;
-		this.controladorFuncionarios = controladorFuncionarios;
+	private static ControladorPedidos controladorPedidos = new 
+		ControladorPedidos();
+	
+	//Construtor
+	
+	/**
+	 * Construtor privado para nao ocorrer instanciacoes da classe <br>
+	 * fora da classe.
+	 */
+	private ControladorPedidos() {}
+	
+	/**
+	 * Metodo que retorna uma instacia de pedidos
+	 * @return Controlador de Pedidos
+	 */
+	public static ControladorPedidos getInstance(){
+		return controladorPedidos;
 	}
 
 	/**
@@ -54,8 +59,11 @@ public class ControladorPedidos implements Serializable {
 	public void adicionaPedido(String registroImovel, String cpf)
 			throws Exception {
 
-		Imovel imovelPedido = controladorImoveis.getImovel(registroImovel);
-		Cliente clienteQueSolicitou = controladorClientes.getCliente(cpf);
+		Imovel imovelPedido = ControladorImovel.getInstance().getImovel(
+				registroImovel);
+
+		Cliente clienteQueSolicitou = ControladorCliente.getInstance()
+				.getCliente(cpf);
 
 		if (imovelPedido == null || clienteQueSolicitou == null)
 			throw new IllegalArgumentException("Parametros invalidos");
@@ -85,8 +93,8 @@ public class ControladorPedidos implements Serializable {
 
 		Pedido pedido = getPedido(registroImovel);
 
-		Funcionario vendedor = controladorFuncionarios
-				.getFuncionario(creciFuncionario);
+		Funcionario vendedor = ControladorFuncionario.getInstance().
+				getFuncionarioPorCreci(creciFuncionario);
 
 		if (vendedor == null || pedido == null)
 			throw new IllegalArgumentException("Parametros invalidos");
@@ -98,14 +106,14 @@ public class ControladorPedidos implements Serializable {
 			pedido.getComprador().getHistoricoCompras().addImovel(
 					pedido.getImovel());
 
-			controladorFinanceiro.adicionaTransacao(pedido.getComprador()
-					.getCpf(), vendedor.getCreci(), pedido.getImovel()
-					.getValor());
+			ControladorTransacoes.getInstance().adicionaTransacao(
+					pedido.getComprador().getCpf(), vendedor.getCreci(),
+					pedido.getImovel().getValor());
 
 			vendedor.addImovelVendido(pedido.getImovel());
 			pedido.getImovel().vendido();
-			controladorFinanceiro
-					.adicionaAoCaixa(pedido.getImovel().getValor());
+			ControladorTransacoes.getInstance().adicionaAoCaixa(
+					pedido.getImovel().getValor());
 			listaPedidos.remove(pedido);
 
 		} else {
@@ -114,10 +122,10 @@ public class ControladorPedidos implements Serializable {
 
 			// Adiciona Aluguel na lista de Alugueis do Cliente (FAZER!)
 
-			controladorFinanceiro.adicionaAluguel(pedido.getComprador(),
-					vendedor, pedido.getImovel());
+			ControladorAlugueis.getInstance().adicionaAluguel(
+					pedido.getComprador(), vendedor, pedido.getImovel());
 			pedido.getImovel().alugado();
-			
+
 			// CONTINUA AKI!
 
 		}
