@@ -100,7 +100,7 @@ public class Funcionario extends Usuario {
 	public void addImovelVendidoMes(Imovel imovelVendido) throws Exception {
 		historicoVendidoMes.addImovel(imovelVendido);
 	}
-
+	
 	/**
 	 * Reseta a lista de imoveis vendidos num mes
 	 */

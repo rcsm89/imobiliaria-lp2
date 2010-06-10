@@ -85,6 +85,7 @@ public class ClienteTest {
 
 		try {
 			cliente3.fazPedido(null);
+			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertEquals("Pedido Invalido", e.getMessage());
 		}
