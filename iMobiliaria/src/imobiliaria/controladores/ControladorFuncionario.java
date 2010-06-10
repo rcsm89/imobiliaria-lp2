@@ -1,9 +1,9 @@
 package imobiliaria.controladores;
 
-import java.io.Serializable;
+import java.io.Serializable; 
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
+import java.util.TreeSet;
 
 import imobiliaria.entidades.Funcionario;
 import imobiliaria.processamento.ColecaoFuncionario;
@@ -95,14 +95,14 @@ public class ControladorFuncionario implements Serializable {
 	}
 
 	/**
-	 * Metodo responsavel por listar um array de funcionario
+	 * Metodo responsavel por listar um conjunto de funcionario
 	 * 
-	 * @param listaDeFuncionarios
-	 *            Representa o array que contem os funcionarios que seram
+	 * @param conjuntoDeFuncionarios
+	 *            Representa um conjunto que contem os funcionarios que seram
 	 *            listados
-	 * @return Uma String contendo a lista dos funcionarios
+	 * @return Uma String contendo uma listagem dos funcionarios
 	 */
-	private String listaFuncionarios(List<Funcionario> listaDeFuncionarios) {
+	private String listaFuncionarios(TreeSet<Funcionario> listaDeFuncionarios) {
 		String saida = "";
 
 		for (Funcionario func : listaDeFuncionarios) {
@@ -150,17 +150,17 @@ public class ControladorFuncionario implements Serializable {
 	/**
 	 * Imprime uma listagem com dados dos funcionarios
 	 * 
-	 * @param listaFunc
-	 *            Lista a ser imprimida
+	 * @param conjuntoFunc
+	 *            Conjunto de funcionarios a ser exibido
 	 */
-	public void imprimeListagemFuncionario(List<Funcionario> listaFunc) {
+	public void imprimeListagemFuncionario(TreeSet<Funcionario> conjuntoFunc) {
 
-		if (listaFunc.isEmpty()) {
+		if (conjuntoFunc.isEmpty()) {
 			System.out.println("Nada a ser listado");
 			return;
 		}
 
-		for (Funcionario func : listaFunc) {
+		for (Funcionario func : conjuntoFunc) {
 			System.out.println("Cpf: " + func.getCpf() + " - " + func.getNome()
 					+ "Creci: " + func.getCreci() + "\n - Data de Nascimento: "
 					+ func.getDataNascimento() + "\nEndereco: "
