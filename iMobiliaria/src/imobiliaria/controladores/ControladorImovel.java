@@ -23,14 +23,16 @@ public class ControladorImovel implements Serializable{
 	
 	private static ColecaoImoveis colecaoImovel;
 	
+	private static ControladorImovel controladorImovelUnico = new
+		ControladorImovel();
+	
+	//Construtor
+	
 	/**
 	 * Construtor privado para nao ocorrer instanciacoes da classe <br>
 	 * fora da classe.
 	 */
-	private ControladorImovel() {};
-	
-	private static ControladorImovel controladorImovelUnico = new
-													ControladorImovel();
+	private ControladorImovel() {}
 	
 	/**
 	 * Singleton do controlador 
