@@ -4,26 +4,25 @@ import imobiliaria.entidades.Funcionario;
 import imobiliaria.util.VerificaInvalido;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.TreeSet;
 
 /**
  * Classe de colecao de funcionarios
  * 
  * @author thiagofp
- * @version IT01
+ * @version IT02
  */
 public class ColecaoFuncionario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private List<Funcionario> colecaoFuncionarios = new ArrayList<Funcionario>();;
+	private TreeSet<Funcionario> colecaoFuncionarios = new TreeSet<Funcionario>();;
 
 	/**
 	 * Retorna uma colecao de funcionarios
 	 * 
 	 * @return A colecao de funcionarios
 	 */
-	public List<Funcionario> getColecaoFuncionarios() {
+	public TreeSet<Funcionario> getColecaoFuncionarios() {
 		return colecaoFuncionarios;
 	}
 
@@ -48,12 +47,12 @@ public class ColecaoFuncionario implements Serializable {
 	 *             Se o nome for invalido
 	 */
 
-	public List<Funcionario> getFuncionarioPorNome(String nome)
+	public TreeSet<Funcionario> getFuncionarioPorNome(String nome)
 			throws Exception {
 		if (VerificaInvalido.nome(nome)) {
 			throw new Exception("Nome Invalido");
 		}
-		List<Funcionario> colecaoRetornada = new ArrayList<Funcionario>();
+		TreeSet<Funcionario> colecaoRetornada = new TreeSet<Funcionario>();
 
 		for (Funcionario func : colecaoFuncionarios) {
 
