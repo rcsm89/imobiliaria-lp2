@@ -16,7 +16,7 @@ import java.util.Calendar;
  * @version IT01
  * 
  */
-public abstract class Usuario implements Serializable {
+public abstract class Usuario implements Serializable, Comparable<Object> {
 
     // Atributos
 
@@ -265,6 +265,15 @@ public abstract class Usuario implements Serializable {
     public String toString() {
 	return getNome() + "|" + getCpf() + "|" + getEndereco() + "|"
 		+ getDataNascimento();
+    }
+    
+    public int compareTo(Object obj) {
+    	if (!(obj instanceof Usuario))
+    		throw new IllegalArgumentException();
+    	
+    	Usuario usuario = (Usuario) obj;
+    	
+		return getNome().compareTo(usuario.getNome());
     }
 
 }

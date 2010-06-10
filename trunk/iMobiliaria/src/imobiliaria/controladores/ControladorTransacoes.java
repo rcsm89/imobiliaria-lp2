@@ -2,6 +2,7 @@ package imobiliaria.controladores;
 
 import imobiliaria.entidades.Aluguel;
 import imobiliaria.entidades.Cliente;
+import imobiliaria.entidades.FolhaDePagamento;
 import imobiliaria.entidades.Funcionario;
 import imobiliaria.entidades.Transacao;
 
@@ -90,7 +91,7 @@ public class ControladorTransacoes implements Serializable {
 	 *             Lanca excecao se ja tiver feito pagamento esse mes
 	 */
 
-	public String efetuaPagamentoNoMes() throws Exception {
+	public FolhaDePagamento efetuaPagamentoNoMes() throws Exception {
 
 		atualizaPagamento();
 
@@ -103,7 +104,7 @@ public class ControladorTransacoes implements Serializable {
 		HashMap<String, Double> vendasFuncionarios = ControladorFuncionario.getInstance()
 				.listaTotaisDeVendas();
 
-		String folhaDePagamento = "";
+		HashMap<String, Double> salarioFuncionarios = new HashMap<String, Double>();
 
 		for (String informacaoFuncionario : vendasFuncionarios.keySet()) {
 
@@ -111,22 +112,18 @@ public class ControladorTransacoes implements Serializable {
 					* vendasFuncionarios.get(informacaoFuncionario);
 
 			despesas += salarioFuncionario;
-
-			folhaDePagamento += informacaoFuncionario + " - Salario: "
-					+ salarioFuncionario + "\n";
+			
+			salarioFuncionarios.put(informacaoFuncionario, salarioFuncionario);
 		}
-
-		folhaDePagamento += "Saldo Anterior: " + caixaTotal + " - Despesas: "
-				+ despesas;
+		
+		double saldoAnterior = caixa();
 
 		removeDoCaixa(despesas);
-
-		folhaDePagamento += " - Novo Saldo: " + caixaTotal;
 
 		ultimoPagamento = new GregorianCalendar();
 		pagouNesseMes = true;
 
-		return folhaDePagamento;
+		return new FolhaDePagamento(salarioFuncionarios, saldoAnterior, despesas, caixa());
 	}
 
 	// Transacoes
