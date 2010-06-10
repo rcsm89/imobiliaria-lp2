@@ -5,20 +5,20 @@ import imobiliaria.entidades.Cliente;
 import imobiliaria.util.VerificaInvalido;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.TreeSet;
 
 /**
  * Classe ColecaoClientes que guarda clientes
  * 
- * @version IT01
+ * @author thiagofp
+ * @version IT02
  */
 public class ColecaoClientes implements Serializable {
 
 	// Atributos
 
 	private static final long serialVersionUID = 1L;
-	private List<Cliente> colecaoClientes = new ArrayList<Cliente>();
+	private TreeSet<Cliente> colecaoClientes = new TreeSet<Cliente>();
 
 	// Metodos de adicao e remocao de clientes
 
@@ -81,7 +81,7 @@ public class ColecaoClientes implements Serializable {
 	 * 
 	 * @return ArrayList contendo todos os clientes da Colecao
 	 */
-	public List<Cliente> getClientes() {
+	public TreeSet<Cliente> getClientes() {
 		return colecaoClientes;
 	}
 
@@ -94,9 +94,9 @@ public class ColecaoClientes implements Serializable {
 	 * @return Clientes com a dada preferencia de imovel passada
 	 */
 
-	public List<Cliente> getClientes(TipoImovel preferencia) {
+	public TreeSet<Cliente> getClientes(TipoImovel preferencia) {
 
-		List<Cliente> colecaoRetornada = new ArrayList<Cliente>();
+		TreeSet<Cliente> colecaoRetornada = new TreeSet<Cliente>();
 
 		for (Cliente cliente : colecaoClientes) {
 
@@ -115,12 +115,12 @@ public class ColecaoClientes implements Serializable {
 	 *            clientes
 	 * @return List contendo os clientes que possuem o nome passado
 	 */
-	public List<Cliente> getClientes(String nome) {
+	public TreeSet<Cliente> getClientes(String nome) {
 		if (VerificaInvalido.nome(nome)) {
 			throw new IllegalArgumentException("Nome invalido");
 		}
 
-		List<Cliente> colecaoRetornada = new ArrayList<Cliente>();
+		TreeSet<Cliente> colecaoRetornada = new TreeSet<Cliente>();
 
 		for (Cliente cliente : colecaoClientes) {
 
@@ -140,13 +140,13 @@ public class ColecaoClientes implements Serializable {
 	 * @return List contendo os clientes que possuem a letra inicial do nome
 	 *         igual a passada
 	 */
-	public List<Cliente> getClientesPorLetraInicial(String letra) {
+	public TreeSet<Cliente> getClientesPorLetraInicial(String letra) {
 		if (VerificaInvalido.basico(letra) || letra.length() != 1 ||
 				Character.isDigit(letra.charAt(0))) {
 			throw new IllegalArgumentException("Letra Invalida");
 		}
 
-		List<Cliente> colecaoRetornada = new ArrayList<Cliente>();
+		TreeSet<Cliente> colecaoRetornada = new TreeSet<Cliente>();
 
 		for (Cliente cliente : colecaoClientes) {
 
@@ -162,23 +162,8 @@ public class ColecaoClientes implements Serializable {
 	 * 
 	 * @return List contendo clientes ordenados pelo alfabeto
 	 */
-	public List<Cliente> getClientesPorOrdemAlfabetica() {
-
-		String[] alfabeto = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
-				"k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v",
-				"w", "x", "y", "z" };
-
-		List<Cliente> colecaoRetornada = new ArrayList<Cliente>();
-
-		for (int i = 0; i < alfabeto.length; i++) {
-
-			for (Cliente cliente : colecaoClientes) {
-
-				if (cliente.getNome().startsWith(alfabeto[i].toUpperCase()))
-					colecaoRetornada.add(cliente);
-
-			}
-		}
+	public TreeSet<Cliente> getClientesPorOrdemAlfabetica() {
+		TreeSet<Cliente> colecaoRetornada = new TreeSet<Cliente>();
 		return colecaoRetornada;
 	}
 }
