@@ -3,7 +3,7 @@ package imobiliaria.controladores;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
+import java.util.TreeSet;
 
 import imobiliara.aux.TipoImovel;
 import imobiliaria.entidades.Cliente;
@@ -14,6 +14,7 @@ import imobiliaria.util.VerificaInvalido;
  * Classe ControladorCliente que ira controlar e listar algumas opcoes sobre
  * Cliente
  * 
+ * @author thiagofp
  * @version IT02 
  */
 public class ControladorCliente implements Serializable {
@@ -156,7 +157,7 @@ public class ControladorCliente implements Serializable {
 		return listaClientes(colecaoClientes.getClientesPorLetraInicial(letraInicial));
 	}
 
-	private String listaClientes(List<Cliente> listaDeClientes) {
+	private String listaClientes(TreeSet<Cliente> listaDeClientes) {
 		String saida = "";
 
 		for (Cliente c : listaDeClientes) {
