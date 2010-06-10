@@ -15,7 +15,7 @@ public class Transacao implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Funcionario vendedor;
 	private Cliente comprador;
-	private double valor;
+	private Imovel imovelTransacao;
 	private String data;
 	private int registroTransacao;
 
@@ -25,17 +25,18 @@ public class Transacao implements Serializable {
 	 * Construtor da Classe
 	 * 
 	 * @param vendedor
-	 *            Vendedor do imovel
+	 *            Vendedor na Transacao
 	 * @param comprador
-	 *            Comprador do imovel
+	 *            Comprador na Transacao
 	 * @param valor
 	 *            Valor da Transacao
 	 */
-	public Transacao(Funcionario vendedor, Cliente comprador, double valor) {
+	public Transacao(Funcionario vendedor, Cliente comprador,
+			Imovel imovelTransacao) {
 
 		this.vendedor = vendedor;
 		this.comprador = comprador;
-		this.valor = valor;
+		this.imovelTransacao = imovelTransacao;
 		data = FormataEntrada.data(new GregorianCalendar());
 		registroTransacao = criadorRegistroTransacao++;
 	}
@@ -47,10 +48,14 @@ public class Transacao implements Serializable {
 	 */
 	public String exibeInformacao() {
 		return "Transacao de Registro: " + registroTransacao + "\n"
-				+ "Vendedor:" + vendedor.getNome() + " - CRECI:"
-				+ vendedor.getCreci() + "\n" + "Comprador:" + comprador
+				+ "Vendedor: " + vendedor.getNome() + " - CRECI: "
+				+ vendedor.getCreci() + "\n"
+				+ "Comprador: " + comprador.getNome()
 				+ " - CPF: " + comprador.getCpf() + "\n"
-				+ "Valor da Transacao: " + valor + "\n" + "Data: " + data;
+				+ "Imovel: " + imovelTransacao.getRegistroImovel() + " - "
+				+ imovelTransacao.getNome() + "\n"
+				+ "Valor da Transacao: " + imovelTransacao.getValor()
+				+ " - Data: " + data;
 	}
 
 	/**
@@ -68,7 +73,8 @@ public class Transacao implements Serializable {
 	@Override
 	public String toString() {
 		return registroTransacao + " - " + data + " - " + vendedor.getNome()
-				+ " - " + comprador.getNome() + " - " + valor;
+				+ " - " + comprador.getNome() + " - Imovel: "
+				+ imovelTransacao.getRegistroImovel() + " - " + imovelTransacao.getValor();
 	}
 
 	/**

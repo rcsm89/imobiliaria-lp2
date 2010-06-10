@@ -3,6 +3,7 @@ package imobiliaria.controladores;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.FolhaDePagamento;
 import imobiliaria.entidades.Funcionario;
+import imobiliaria.entidades.Imovel;
 import imobiliaria.entidades.Transacao;
 
 import java.io.Serializable;
@@ -13,14 +14,14 @@ import java.util.HashMap;
 
 /**
  * Classe que ira ser o Controlador de Transacoes do Sistema
+ * 
  * @author Yuri Farias
  * @version IT02
  */
 public class ControladorTransacoes implements Serializable {
-	
-	
+
 	private static ControladorTransacoes controladorTransacoesUnico = new ControladorTransacoes();
-	
+
 	private static final long serialVersionUID = 1L;
 	private final double SALARIO_DEFAULT = 1500;
 	private final double COMISSAO = 0.03;
@@ -35,18 +36,18 @@ public class ControladorTransacoes implements Serializable {
 	private double caixaTotal;
 	private ArrayList<Transacao> logsFinanceiros = new ArrayList<Transacao>();
 	private ArrayList<Transacao> logsFinanceirosMensal = new ArrayList<Transacao>();
-	
 
-	private ControladorTransacoes() { }
-	
+	private ControladorTransacoes() {
+	}
+
 	/**
 	 * Metodo acessador da unica instancia do Controlador de Transacoes
+	 * 
 	 * @return Controlador de Transacoes Unico
 	 */
 	public static ControladorTransacoes getInstance() {
 		return controladorTransacoesUnico;
 	}
-	
 
 	/**
 	 * Metodo Acessador do Caixa Total do Sistema
@@ -65,7 +66,7 @@ public class ControladorTransacoes implements Serializable {
 	 *         False - Se ainda nao foi efetuado
 	 */
 	public boolean pagouNesseMes() {
-		atualizaPagamento();
+		atualizaDataDePagamento();
 		return pagouNesseMes;
 	}
 
@@ -101,18 +102,18 @@ public class ControladorTransacoes implements Serializable {
 
 	public FolhaDePagamento efetuaPagamentoNoMes() throws Exception {
 
-		atualizaPagamento();
+		atualizaDataDePagamento();
 
 		if (pagouNesseMes)
 			throw new Exception("Pagamento ja efetuado esse mes");
 
 		double despesas = 0;
 		double salarioFuncionario;
-		
+
 		// Cria a Folha de Pagamento
-		
-		HashMap<String, Double> vendasFuncionarios = ControladorFuncionario.getInstance()
-				.listaTotaisDeVendas();
+
+		HashMap<String, Double> vendasFuncionarios = ControladorFuncionario
+				.getInstance().listaTotaisDeVendas();
 
 		HashMap<String, Double> salarioFuncionarios = new HashMap<String, Double>();
 
@@ -122,17 +123,15 @@ public class ControladorTransacoes implements Serializable {
 					* vendasFuncionarios.get(informacaoFuncionario);
 
 			despesas += salarioFuncionario;
-			
+
 			salarioFuncionarios.put(informacaoFuncionario, salarioFuncionario);
 		}
-		
-		double saldoAnterior = caixa();
 
 		removeDoCaixa(despesas);
 		resetaTransacoeMensais();
 		atualizaPagamentoParaAgora();
 
-		return new FolhaDePagamento(salarioFuncionarios, saldoAnterior, despesas, caixa());
+		return new FolhaDePagamento(salarioFuncionarios, caixa());
 	}
 
 	// Transacoes
@@ -140,23 +139,27 @@ public class ControladorTransacoes implements Serializable {
 	/**
 	 * Metodo que adiciona uma Transacao ao Controlador
 	 * 
-	 * @param comprador
-	 *            Comprador da Transacao
-	 * @param vendedor
-	 *            Vendedor da Transacao
-	 * @param valor
-	 *            Valor da Transacao
+	 * @param cpfComprador
+	 *            CPF do Comprador da Transacao
+	 * @param creciVendedor
+	 *            Creci do Vendedor da Transacao
+	 * @param registroImovel
+	 *            Registro do Imovel da Transacao que foi vendido
 	 * @return True - Se a transacao for adicionada com sucesso <br>
 	 *         False - Se a transacao nao for adicionada
 	 */
 	public boolean adicionaTransacao(String cpfComprador, String creciVendedor,
-			double valor) {
+			String registroImovel) {
 
-		Cliente comprador = ControladorCliente.getInstance().getCliente(cpfComprador);
+		Cliente comprador = ControladorCliente.getInstance().getCliente(
+				cpfComprador);
+		
 		Funcionario vendedor = ControladorFuncionario.getInstance()
 				.getFuncionarioPorCreci(creciVendedor);
+		
+		Imovel imovel = ControladorImovel.getInstance().getImovel(registroImovel);
 
-		Transacao transacao = new Transacao(vendedor, comprador, valor);
+		Transacao transacao = new Transacao(vendedor, comprador, imovel);
 
 		if (logsFinanceiros.add(transacao)) {
 			if (logsFinanceirosMensal.add(transacao)) {
@@ -178,11 +181,9 @@ public class ControladorTransacoes implements Serializable {
 		for (Transacao t : logsFinanceiros) {
 			if (t.getRegistroTransacao() == registro) {
 				logsFinanceiros.remove(t);
-				try {
+				
+				if (logsFinanceirosMensal.contains(t))
 					logsFinanceirosMensal.remove(t);
-				} catch (Exception e) {
-					continue;
-				}
 			}
 		}
 	}
@@ -209,7 +210,7 @@ public class ControladorTransacoes implements Serializable {
 	 * @return String contendo informacoes de todas as transacoes
 	 */
 	public String listaTransacoes() {
-		return listaTransacoes(logsFinanceiros);
+		return listagemDasTransacoes(logsFinanceiros);
 	}
 
 	/**
@@ -218,27 +219,20 @@ public class ControladorTransacoes implements Serializable {
 	 * @return String contendo informacoes de todas transacoes mensais
 	 */
 	public String listaTransacoesMensais() {
-		return listaTransacoes(logsFinanceirosMensal);
-	}
-
-	/**
-	 * Metodo que reseta as Transacoes Mensais
-	 */
-	public void resetaTransacoeMensais() {
-		logsFinanceirosMensal.clear();
+		return listagemDasTransacoes(logsFinanceirosMensal);
 	}
 
 	/**
 	 * Metodo que atualiza o Controlador de Transacoes
 	 */
 	public void atualizaControlador() {
-		atualizaPagamento();
+		atualizaDataDePagamento();
 
 	}
-	
+
 	/* Metodos Privados */
-	
-	private void atualizaPagamento() {
+
+	private void atualizaDataDePagamento() {
 		GregorianCalendar hoje = new GregorianCalendar();
 
 		// Se nao estiverem no Mes do Ano igual
@@ -248,17 +242,14 @@ public class ControladorTransacoes implements Serializable {
 				.get(Calendar.MONTH) == hoje.get(Calendar.MONTH))) {
 
 			if (pagouNesseMes == true)
-				try {
-					ControladorAlugueis.getInstance().adquireAlugueis();
-				} catch (Exception e) {
-					System.out.println("Erro: " + e.getMessage());
-				}
+				adicionaAoCaixa(ControladorAlugueis.getInstance()
+						.getValorTotalDeAlugueis());
 
 			pagouNesseMes = false;
 		}
 	}
 
-	private String listaTransacoes(ArrayList<Transacao> transacoes) {
+	private String listagemDasTransacoes(ArrayList<Transacao> transacoes) {
 		String saida = "";
 
 		for (Transacao t : transacoes) {
@@ -266,10 +257,14 @@ public class ControladorTransacoes implements Serializable {
 		}
 		return saida;
 	}
-	
+
 	private void atualizaPagamentoParaAgora() {
 		ultimoPagamento = new GregorianCalendar();
 		pagouNesseMes = true;
+	}
+
+	private void resetaTransacoeMensais() {
+		logsFinanceirosMensal.clear();
 	}
 
 }

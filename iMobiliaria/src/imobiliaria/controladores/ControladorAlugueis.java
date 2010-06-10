@@ -32,8 +32,6 @@ public class ControladorAlugueis implements Serializable {
 		return controladorAlugueisUnico;
 	}
 
-	/* Metodos de Aluguel */
-
 	/**
 	 * Metodo que adiciona um Aluguel no Controlador
 	 * 
@@ -100,20 +98,17 @@ public class ControladorAlugueis implements Serializable {
 	/**
 	 * Metodo que adiciona ao caixa o valor de todos os alugueis
 	 */
-	public void adquireAlugueis() {
+	public double getValorTotalDeAlugueis() {
 
 		Iterator<Aluguel> itAluguel = alugueis.iterator();
-
-		ControladorTransacoes controladorTransacoes = ControladorTransacoes
-				.getInstance();
-
+		
+		double valorTotal = 0;
+		
 		while (itAluguel.hasNext()) {
-
-			Aluguel aluguel = itAluguel.next();
-
-			controladorTransacoes.adicionaAoCaixa(aluguel.getImovelAlugado()
-					.getValor());
+			valorTotal += itAluguel.next().getImovelAlugado().getValor();
 		}
+		
+		return valorTotal;
 	}
 
 }

@@ -1,6 +1,7 @@
 package imobiliaria.entidades;
 
 import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * Classe que guarda as informacoes de uma Folha de Pagamento
@@ -12,35 +13,35 @@ public class FolhaDePagamento {
 
 	private HashMap<String, Double> vendasFuncionarios;
 	private double saldoAnterior;
-	private double despesas;
 	private double novoSaldo;
+	private double despesas;
 
 	/**
 	 * Construtor da Classe
 	 * 
 	 * @param vendasFuncionarios
 	 *            HashMap contendo a Informacao do Funcionario e seu salario
-	 * @param saldoAnterior
-	 *            Saldo Anterior do Caixa
-	 * @param despesas
-	 *            Despesas do Caixa
 	 * @param novoSaldo
 	 *            Novo Saldo do Caixa
 	 */
-	public FolhaDePagamento(HashMap<String, Double> vendasFuncionarios,
-			double saldoAnterior, double despesas, double novoSaldo) {
+	public FolhaDePagamento(HashMap<String, Double> vendasFuncionarios, double novoSaldo) {
+		if (vendasFuncionarios == null)
+			throw new IllegalArgumentException("Parametros invalidos");
 
 		this.vendasFuncionarios = vendasFuncionarios;
-		this.saldoAnterior = saldoAnterior;
-		this.despesas = despesas;
 		this.novoSaldo = novoSaldo;
+		despesas = calculaDespesas();
+		saldoAnterior = novoSaldo + despesas;
 	}
 
 	public String getFolhaDePagamentoString() {
 
 		String folhaDePagamento = "";
-
-		for (String informacaoFuncionario : vendasFuncionarios.keySet()) {
+		
+		TreeMap<String, Double> vendas = new TreeMap<String, Double>();
+		vendas.putAll(vendasFuncionarios);
+		
+		for (String informacaoFuncionario : vendas.keySet()) {
 
 			folhaDePagamento += informacaoFuncionario + " - Salario: "
 					+ vendasFuncionarios.get(informacaoFuncionario) + "\n";
@@ -50,6 +51,15 @@ public class FolhaDePagamento {
 				+ " - Despesas: " + despesas + " - Novo Saldo: " + novoSaldo;
 
 		return folhaDePagamento;
+	}
+	
+	
+	private double calculaDespesas() {
+		double despesas = 0;
+		for (Double valor : vendasFuncionarios.values()) {
+			despesas += valor;
+		}
+		return despesas;
 	}
 
 }
