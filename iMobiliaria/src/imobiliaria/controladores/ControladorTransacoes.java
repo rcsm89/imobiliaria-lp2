@@ -259,7 +259,7 @@ public class ControladorTransacoes implements Serializable {
 		String saida = "";
 
 		for (Transacao t : transacoes) {
-			saida += t.exibeInformacao() + "\n";
+			saida += t.exibeInformacao() + "\n\n";
 		}
 		return saida;
 	}
