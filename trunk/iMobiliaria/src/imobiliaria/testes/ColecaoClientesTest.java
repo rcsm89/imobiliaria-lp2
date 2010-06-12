@@ -20,7 +20,7 @@ public class ColecaoClientesTest {
 		clientes1 = new ColecaoClientes();
 
 		// Adicionando Clientes
-
+		
 		Assert.assertTrue(clientes1.adicionaCliente(new Cliente("12345678910",
 				new GregorianCalendar(1991, Calendar.APRIL, 4),
 				"Rua Alberto de Brito, 84", "Bruno Paiva", TipoImovel.CASA)));
@@ -46,6 +46,13 @@ public class ColecaoClientesTest {
 
 	@Test
 	public void testaAdicionaCliente() throws Exception {
+		
+		try {
+			clientes1.adicionaCliente(null);
+			Assert.fail("Deveria ter lancado excessao aqui");
+		} catch (Exception e) {
+			Assert.assertEquals("Cliente invalido\n", e.getMessage());
+		}
 
 		Assert.assertFalse(clientes1.adicionaCliente(new Cliente("12345678910",
 				new GregorianCalendar(1991, Calendar.APRIL, 4),
@@ -72,11 +79,19 @@ public class ColecaoClientesTest {
 
 	@Test
 	public void testaRemoveCliente() {
+		
+		Assert.assertEquals(5, clientes1.numeroTotalDeClientes());
 
 		Assert.assertTrue(clientes1.removeCliente("123.456.789-10"));
-		Assert.assertFalse(clientes1.removeCliente("UHASHUSAU"));
 		Assert.assertTrue(clientes1.removeCliente("123.456.789-01"));
+		
+		Assert.assertEquals(3, clientes1.numeroTotalDeClientes());
+		Assert.assertFalse(clientes1.removeCliente("UHASHUSAU"));
 		Assert.assertFalse(clientes1.removeCliente(null));
+		Assert.assertFalse(clientes1.removeCliente("12A.13B.34C-0D"));
+		Assert.assertFalse(clientes1.removeCliente(""));
+		Assert.assertFalse(clientes1.removeCliente("            "));
+		
 	}
 
 	@Test
@@ -101,9 +116,9 @@ public class ColecaoClientesTest {
 	@Test
 	public void testaGetClientesPorPreferencia() {
 
-		Assert
-				.assertEquals(3, clientes1.getClientes(TipoImovel.TERRENO)
-						.size());
+		Assert.assertEquals(3, clientes1.getClientes(TipoImovel.TERRENO).size());
+		Assert.assertEquals(1, clientes1.getClientes(TipoImovel.CASA).size());
+		Assert.assertEquals(1, clientes1.getClientes(TipoImovel.APARTAMENTO).size());
 
 	}
 
@@ -181,24 +196,35 @@ public class ColecaoClientesTest {
 		Assert.assertEquals(3, clientes1.getClientes("Brun").size());
 		Assert.assertEquals(5, clientes1.getClientes("u").size());
 		Assert.assertEquals(1, clientes1.getClientes("Thi").size());
+		
+		try {
+			clientes1.getClientes("   ");
+			Assert.fail("Deveria ter lancado excecao aqui");
+		} catch (Exception e) {
+			Assert.assertEquals("Nome invalido\n", e.getMessage());
+		}
+		try {
+			clientes1.getClientes("Th14g0 F3rr31r4");
+			Assert.fail("Deveria ter lancado excecao aqui");
+		} catch (Exception e) {
+			Assert.assertEquals("Nome invalido\n", e.getMessage());
+		}
+		
 
 	}
 
 	@Test
 	public void testaGetClientesPorOrdemAlfabetica() throws Exception {
 
-		Assert
-				.assertEquals(5, clientes1.getClientesPorOrdemAlfabetica()
-						.size());
+		Assert.assertEquals(5, clientes1.getClientes().size());
 		
-		Assert
-				.assertEquals(
+		Assert.assertEquals(
 						"[Bruno Paiva|123.456.789-10|Rua Alberto De Brito, 84|04/04/1991,"
 								+ " Daniel Farias|123.456.789-01|Rua Tocatins, 929|07/08/1991,"
 								+ " Jean|110.220.330-40|Rua Antonio Joaquim Pequeno|23/07/1991,"
 								+ " Thiago Ferreira|101.202.303-44|Rua 12 De Outubro|13/03/1992,"
 								+ " Yuri Farias|123.456.789-12|Rua Argemiro De Figueiredo,"
 								+ " 207|04/04/1991]", clientes1
-								.getClientesPorOrdemAlfabetica().toString());
+								.getClientes().toString());
 	}
 }
