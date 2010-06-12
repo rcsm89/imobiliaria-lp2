@@ -137,7 +137,7 @@ public class ColecaoClientes implements Serializable {
 	 * 
 	 * @param letra
 	 *            Representa a letra inicial do nome dos clientes
-	 * @return List contendo os clientes que possuem a letra inicial do nome
+	 * @return TreeSet contendo os clientes que possuem a letra inicial do nome
 	 *         igual a passada
 	 */
 	public TreeSet<Cliente> getClientesPorLetraInicial(String letra) {
@@ -157,13 +157,4 @@ public class ColecaoClientes implements Serializable {
 		return colecaoRetornada;
 	}
 
-	/**
-	 * Metodo filtrador que retornar todos os clientes em ordem alfabetica
-	 * 
-	 * @return List contendo clientes ordenados pelo alfabeto
-	 */
-	public TreeSet<Cliente> getClientesPorOrdemAlfabetica() {
-		TreeSet<Cliente> colecaoRetornada = new TreeSet<Cliente>();
-		return colecaoRetornada;
-	}
 }
