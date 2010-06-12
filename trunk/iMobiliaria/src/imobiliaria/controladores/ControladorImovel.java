@@ -21,7 +21,7 @@ public class ControladorImovel implements Serializable{
 	
 	//Atributos
 	
-	private static ColecaoImoveis colecaoImovel;
+	private static ColecaoImoveis colecaoImovel = new ColecaoImoveis();
 	
 	private static ControladorImovel controladorImovelUnico = new
 		ControladorImovel();
@@ -65,21 +65,31 @@ public class ControladorImovel implements Serializable{
 	 *             Caso algum dos parametros que forem passados seja invalido
 	 * 
 	 */
-	public void modificaImovel(Imovel imovel, String nome, String endereco,
+	public void modificaImovel(String registro, String nome, String endereco,
 			double valor, Area area, TipoImovel tipoDoImovel,
 			TipoContratual tipoContratual) throws Exception {
-
-		if (imovel == null) {
-			throw new IllegalArgumentException("Imovel Invalido");
+		
+		int regImovel;
+		Imovel imovel = null;
+		try {
+			regImovel = Integer.parseInt(registro);
+			
+			imovel = colecaoImovel.getImovelDeRegistro(regImovel);
+			
+			if (imovel == null) {
+				throw new Exception();
+			}
+			
+		} catch (Exception e) {
+			throw new IllegalArgumentException("Registro invalido");
 		}
-
+		
 		imovel.setNome(nome);
 		imovel.setEndereco(endereco);
 		imovel.setValor(valor);
 		imovel.setArea(area);
 		imovel.setTipoDoImovel(tipoDoImovel);
 		imovel.setTipoContratual(tipoContratual);
-
 	}
 
 	/**

@@ -35,7 +35,7 @@ public class ColecaoImoveis implements Serializable {
 
 		if (colecaoImoveis.contains(imovelAadicionar))
 			throw new Exception("Imovel Existente");
-
+		
 		colecaoImoveis.add(imovelAadicionar);
 	}
 

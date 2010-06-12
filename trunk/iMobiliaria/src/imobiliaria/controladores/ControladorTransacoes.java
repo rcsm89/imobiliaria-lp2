@@ -5,6 +5,7 @@ import imobiliaria.entidades.FolhaDePagamento;
 import imobiliaria.entidades.Funcionario;
 import imobiliaria.entidades.Imovel;
 import imobiliaria.entidades.Transacao;
+import imobiliaria.exceptions.TransacaoNaoExistenteException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -26,13 +27,8 @@ public class ControladorTransacoes implements Serializable {
 	private final double SALARIO_DEFAULT = 1500;
 	private final double COMISSAO = 0.03;
 
-	/*
-	 * Assim que o Controlador eh iniciado ele ja comeca com o primeiro
-	 * pagamento efetuado
-	 */
-
-	private Calendar ultimoPagamento = new GregorianCalendar();
-	private boolean pagouNesseMes = true;
+	private Calendar ultimoPagamento = new GregorianCalendar(1990, 0, 0);
+	private boolean pagouNesseMes = false;
 	private double caixaTotal;
 	private ArrayList<Transacao> logsFinanceiros = new ArrayList<Transacao>();
 	private ArrayList<Transacao> logsFinanceirosMensal = new ArrayList<Transacao>();
@@ -158,6 +154,12 @@ public class ControladorTransacoes implements Serializable {
 				.getFuncionarioPorCreci(creciVendedor);
 		
 		Imovel imovel = ControladorImovel.getInstance().getImovel(registroImovel);
+		
+		if (vendedor == null || comprador == null || imovel == null) {
+			return false;
+		}
+		
+		
 
 		Transacao transacao = new Transacao(vendedor, comprador, imovel);
 
@@ -175,8 +177,9 @@ public class ControladorTransacoes implements Serializable {
 	 * 
 	 * @param registro
 	 *            Registro da Transacao a ser removida
+	 * @throws TransacaoNaoExistenteException 
 	 */
-	public void removeTransacao(int registro) {
+	public void removeTransacao(int registro) throws TransacaoNaoExistenteException {
 
 		for (Transacao t : logsFinanceiros) {
 			if (t.getRegistroTransacao() == registro) {
@@ -184,8 +187,11 @@ public class ControladorTransacoes implements Serializable {
 				
 				if (logsFinanceirosMensal.contains(t))
 					logsFinanceirosMensal.remove(t);
+				
+				return;
 			}
 		}
+		throw new TransacaoNaoExistenteException("Transacao nao existente");
 	}
 
 	/**

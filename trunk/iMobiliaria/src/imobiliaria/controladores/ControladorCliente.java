@@ -54,12 +54,8 @@ public class ControladorCliente implements Serializable {
 			String endereco, String nome, TipoImovel preferencia)
 			throws Exception {
 
-		System.out.println("Ta aqui!");
-
 		Cliente clienteASerAdicionado = new Cliente(cpf, dataNascimento,
 				endereco, nome, preferencia);
-
-		System.out.println(clienteASerAdicionado);
 
 		if (colecaoClientes.adicionaCliente(clienteASerAdicionado)) {
 			loginClientes.put(clienteASerAdicionado.getLogin(),
