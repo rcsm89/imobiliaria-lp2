@@ -2,7 +2,7 @@ package imobiliaria.processamento;
 
 import java.io.Serializable;
 
-import imobiliara.aux.TipoLogin;
+import imobiliara.auxiliar.TipoLogin;
 import imobiliaria.controladores.*;
 import imobiliaria.entidades.Imovel;
 import imobiliaria.entidades.Transacao;

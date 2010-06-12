@@ -3,7 +3,7 @@
  */
 package imobiliaria.userInterface;
 
-import imobiliara.aux.TipoLogin;
+import imobiliara.auxiliar.TipoLogin;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.Funcionario;
 import imobiliaria.processamento.Sistema;

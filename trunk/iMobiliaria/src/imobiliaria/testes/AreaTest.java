@@ -1,6 +1,6 @@
 package imobiliaria.testes;
 
-import imobiliara.aux.TipoArea;
+import imobiliara.auxiliar.TipoArea;
 import imobiliaria.entidades.Area;
 import junit.framework.Assert;
 import org.junit.Before;

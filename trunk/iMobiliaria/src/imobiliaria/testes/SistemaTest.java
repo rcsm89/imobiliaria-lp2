@@ -1,8 +1,8 @@
 package imobiliaria.testes;
 
-import imobiliara.aux.TipoContratual;
-import imobiliara.aux.TipoImovel;
-import imobiliara.aux.TipoLogin;
+import imobiliara.auxiliar.TipoContratual;
+import imobiliara.auxiliar.TipoImovel;
+import imobiliara.auxiliar.TipoLogin;
 import imobiliaria.entidades.Area;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.EstadoImovel;

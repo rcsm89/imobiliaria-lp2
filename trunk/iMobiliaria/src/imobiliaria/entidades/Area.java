@@ -1,7 +1,7 @@
 package imobiliaria.entidades;
 
 
-import imobiliara.aux.TipoArea;
+import imobiliara.auxiliar.TipoArea;
 
 import java.io.Serializable;
 
