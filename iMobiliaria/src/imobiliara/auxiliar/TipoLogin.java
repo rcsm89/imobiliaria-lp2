@@ -1,4 +1,4 @@
-package imobiliara.aux;
+package imobiliara.auxiliar;
 
 public enum TipoLogin {
 

@@ -1,6 +1,6 @@
 package imobiliaria.entidades;
 
-import imobiliara.aux.TipoImovel;
+import imobiliara.auxiliar.TipoImovel;
 import imobiliaria.processamento.ColecaoImoveis;
 
 import java.util.Calendar;

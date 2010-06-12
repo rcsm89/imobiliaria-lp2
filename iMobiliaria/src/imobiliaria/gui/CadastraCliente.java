@@ -15,7 +15,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 
-import imobiliara.aux.TipoImovel;
+import imobiliara.auxiliar.TipoImovel;
 import imobiliaria.processamento.Sistema;
  
 

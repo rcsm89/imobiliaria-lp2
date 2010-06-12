@@ -1,6 +1,6 @@
 package imobiliaria.entidades;
 
-import imobiliara.aux.TipoLogin;
+import imobiliara.auxiliar.TipoLogin;
 
 public class Login {
 
