@@ -33,8 +33,15 @@ public class ColecaoFuncionarioTest {
 		// Nao adiciona um mesmo funcionario
 		Assert.assertFalse(colFunc1.adicionaFuncionario(func1));
 		Assert.assertEquals(2, colFunc1.getNumFuncionarios());
+
+		try {
+			colFunc1.adicionaFuncionario(null);
+			Assert.fail("Deveria ter lancado excecao aqui");
+		} catch (Exception e) {
+			Assert.assertEquals("Funcionario Invalido", e.getMessage());
+		}
 	}
-	
+
 	@Test(expected = Exception.class)
 	public void testaAdicionaNull() {
 		colFunc1.adicionaFuncionario(null);
@@ -74,6 +81,14 @@ public class ColecaoFuncionarioTest {
 		}
 
 		try {
+			String creciInvalido = null;
+			colFunc1.removeFuncionario(creciInvalido);
+			Assert.fail("Esperava creci invalido");
+		} catch (Exception e) {
+			Assert.assertEquals("Creci Invalido", e.getMessage());
+		}
+
+		try {
 			String nomeInvalido = "";
 			colFunc1.removeFuncionarioPorNome(nomeInvalido);
 			Assert.fail("Esperava nome invalido");
@@ -105,6 +120,52 @@ public class ColecaoFuncionarioTest {
 		Assert.assertEquals(2, colFunc1.getFuncionarioPorNome("Thiago").size());
 		Assert.assertEquals(1, colFunc1.getFuncionarioPorNome("Yuri").size());
 		Assert.assertEquals(0, colFunc1.getFuncionarioPorNome("Fulano").size());
+
+		try {
+			colFunc1.getFuncionario(null);
+			Assert.fail("Deveria ter lancado excecao aqui");
+		} catch (Exception e) {
+			Assert.assertEquals("Creci Invalido", e.getMessage());
+		}
+		try {
+			colFunc1.getFuncionario("12AB");
+			Assert.fail("Deveria ter lancado excecao aqui");
+		} catch (Exception e) {
+			Assert.assertEquals("Creci Invalido", e.getMessage());
+		}
+		try {
+			colFunc1.getFuncionarioPorNome(" ");
+			Assert.fail("Deveria ter lancado excecao aqui");
+		} catch (Exception e) {
+			Assert.assertEquals("Nome Invalido", e.getMessage());
+		}
+		try {
+			colFunc1.getFuncionarioPorNome(null);
+			Assert.fail("Deveria ter lancado excecao aqui");
+		} catch (Exception e) {
+			Assert.assertEquals("Nome Invalido", e.getMessage());
+		}
+	}
+
+	@Test
+	public void testaFuncionarioAddPorOdemAlfabetica() throws Exception {
+		colFunc1.adicionaFuncionario(new Funcionario("10120230344",
+				new GregorianCalendar(1991, 1, 18), "Rua Rodrigues Alves",
+				"Thiago Ferreira", "00111"));
+		colFunc1.adicionaFuncionario(new Funcionario("12345678910",
+				new GregorianCalendar(1991, 2, 17), "Rua Antonio Pequeno",
+				"Yuri Farias", "12345"));
+		colFunc1.adicionaFuncionario(new Funcionario("11223344556",
+				new GregorianCalendar(1991, 3, 18), "Rua 12 de Outubro",
+				"Bruno Fabio", "11111"));
+
+		Assert
+				.assertEquals(
+						"[Bruno Fabio|112.233.445-56|Rua 12 De Outubro|18/04/1991|11111,"
+								+ " Thiago Ferreira|101.202.303-44|Rua Rodrigues Alves|18/02/1991|00111,"
+								+ " Yuri Farias|123.456.789-10|Rua Antonio Pequeno|17/03/1991|12345]",
+						colFunc1.getColecaoFuncionarios().toString());
+
 	}
 
 	@Test
