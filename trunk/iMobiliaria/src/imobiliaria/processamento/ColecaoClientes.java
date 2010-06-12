@@ -29,8 +29,12 @@ public class ColecaoClientes implements Serializable {
 	 *            cliente que sera Adicionado
 	 * @return True - Caso o cliente tenha sido adicionado <br>
 	 *         False - Caso o cliente ja exista na colecao
+	 * @throws Caso o cliente seja invalido
 	 */
 	public boolean adicionaCliente(Cliente clienteASerAdicionado) throws Exception {
+		if (clienteASerAdicionado == null){
+			throw new Exception("Cliente invalido\n");
+		}
 		
 		if (colecaoClientes.contains(clienteASerAdicionado)) {
 			return false;
@@ -117,7 +121,7 @@ public class ColecaoClientes implements Serializable {
 	 */
 	public TreeSet<Cliente> getClientes(String nome) {
 		if (VerificaInvalido.nome(nome)) {
-			throw new IllegalArgumentException("Nome invalido");
+			throw new IllegalArgumentException("Nome invalido\n");
 		}
 
 		TreeSet<Cliente> colecaoRetornada = new TreeSet<Cliente>();
