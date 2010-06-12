@@ -131,7 +131,7 @@ public class ControladorCliente implements Serializable {
 	 * @return String contendo uma listagem dos clientes
 	 */
 	public String listaClientes() {
-		return listaClientes(colecaoClientes.getClientesPorOrdemAlfabetica());
+		return listaClientes(colecaoClientes.getClientes());
 	}
 
 	/**
