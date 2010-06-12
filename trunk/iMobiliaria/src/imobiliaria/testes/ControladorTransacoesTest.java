@@ -119,13 +119,13 @@ public class ControladorTransacoesTest {
 	}
 
 	@Test
-	public final void testListaTransacoesDoControlador() throws TransacaoNaoExistenteException {
+	public final void testListaTransacoesDoControlador() throws Exception {
 		
 		Assert.assertEquals("Transacao de Registro: 1\n" +
 				"Vendedor: Thiago Ferreira - CRECI: 00111\n" +
 				"Comprador: Brunaaaaaa - CPF: 123.456.789-10\n" +
 				"Imovel: 0 - Casa imobiliada para Alugar\n" +
-				"Valor da Transacao: 3500.0 - Data: 12/06/2010\n",
+				"Valor da Transacao: 3500.0 - Data: 12/06/2010\n\n",
 				controladorTransacoes.listaTransacoes());
 		
 		
@@ -135,31 +135,56 @@ public class ControladorTransacoesTest {
 		
 		// Adiciona Transacoes
 		
+		ControladorImovel.getInstance().addImovel("Apartamento a Venda!!!",
+				"Rua Fernando Luiz Henrique dos Santos Altiplano, num 2831,"
+						+ " JP/PB, Ed. Java, apto 1300", 25000, new Area(4, 6),
+				TipoImovel.APARTAMENTO, TipoContratual.VENDA);
+		
+		ControladorImovel.getInstance().addImovel("Terreno a venda no Altiplano!",
+				"Rua Algumacoisa de algo, no Altiplano, Num 9999, JP/PB",
+				50000, new Area(15, 7), TipoImovel.TERRENO,
+				TipoContratual.VENDA);
+		
 		controladorTransacoes.adicionaTransacao("123.456.789-10",
-				"00111", "0");
+				"00111", "1");
 		controladorTransacoes.adicionaTransacao("123.456.789-10",
-				"00111", "0");
+				"00111", "2");
 		controladorTransacoes.adicionaTransacao("123.456.789-10",
 				"00111", "0");
 		
 		Assert.assertEquals("Transacao de Registro: 2\n" +
 				"Vendedor: Thiago Ferreira - CRECI: 00111\n" +
 				"Comprador: Brunaaaaaa - CPF: 123.456.789-10\n" +
-				"Imovel: 0 - Casa imobiliada para Alugar\n" +
-				"Valor da Transacao: 3500.0 - Data: 12/06/2010\n" +
+				"Imovel: 1 - Apartamento a Venda!!!\n" +
+				"Valor da Transacao: 25000.0 - Data: 12/06/2010\n\n" +
 				"Transacao de Registro: 3\n" +
 				"Vendedor: Thiago Ferreira - CRECI: 00111\n" +
 				"Comprador: Brunaaaaaa - CPF: 123.456.789-10\n" +
-				"Imovel: 0 - Casa imobiliada para Alugar\n" +
-				"Valor da Transacao: 3500.0 - Data: 12/06/2010\n" +
+				"Imovel: 2 - Terreno a venda no Altiplano!\n" +
+				"Valor da Transacao: 50000.0 - Data: 12/06/2010\n\n" +
 				"Transacao de Registro: 4\n" +
 				"Vendedor: Thiago Ferreira - CRECI: 00111\n" +
 				"Comprador: Brunaaaaaa - CPF: 123.456.789-10\n" +
 				"Imovel: 0 - Casa imobiliada para Alugar\n" +
-				"Valor da Transacao: 3500.0 - Data: 12/06/2010\n",
+				"Valor da Transacao: 3500.0 - Data: 12/06/2010\n\n",
 				controladorTransacoes.listaTransacoes());
 		
-		
+		Assert.assertEquals("Transacao de Registro: 2\n" +
+				"Vendedor: Thiago Ferreira - CRECI: 00111\n" +
+				"Comprador: Brunaaaaaa - CPF: 123.456.789-10\n" +
+				"Imovel: 1 - Apartamento a Venda!!!\n" +
+				"Valor da Transacao: 25000.0 - Data: 12/06/2010\n\n" +
+				"Transacao de Registro: 3\n" +
+				"Vendedor: Thiago Ferreira - CRECI: 00111\n" +
+				"Comprador: Brunaaaaaa - CPF: 123.456.789-10\n" +
+				"Imovel: 2 - Terreno a venda no Altiplano!\n" +
+				"Valor da Transacao: 50000.0 - Data: 12/06/2010\n\n" +
+				"Transacao de Registro: 4\n" +
+				"Vendedor: Thiago Ferreira - CRECI: 00111\n" +
+				"Comprador: Brunaaaaaa - CPF: 123.456.789-10\n" +
+				"Imovel: 0 - Casa imobiliada para Alugar\n" +
+				"Valor da Transacao: 3500.0 - Data: 12/06/2010\n\n",
+				controladorTransacoes.listaTransacoesMensais());
 	}
 
 	@Test
