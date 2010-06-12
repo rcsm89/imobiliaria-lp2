@@ -20,7 +20,7 @@ public class ControladorImovelTest {
 
 	@Before
 	public void setUp() throws Exception {
-		controladorImovel = new ControladorImovel();
+		controladorImovel = ControladorImovel.getInstance();
 
 		imovel1 = new Imovel("Casa imobiliada para Alugar",
 				"Rua Joaquim Caroca, Bodocongo, Num 2471, CG/PB", 3500.0,
@@ -47,7 +47,7 @@ public class ControladorImovelTest {
 		TipoImovel tipoDoImovel = imovel1.getTipoDoImovel();
 		TipoContratual tipoDeContrato = imovel1.getTipoContratual();
 
-		controladorImovel.modificaImovel(imovel1, nome, endereco, preco, area,
+		controladorImovel.modificaImovel(String.valueOf(imovel1.getRegistroImovel()), nome, endereco, preco, area,
 				tipoDoImovel, tipoDeContrato);
 
 		Assert.assertFalse("Casa imobiliada para Alugar".equals(imovel1
@@ -83,8 +83,13 @@ public class ControladorImovelTest {
 
 		// Testando o metodo getImovel(String registro)
 
-		controladorImovel.addImovel(imovel1);
-		controladorImovel.addImovel(imovel2);
+		controladorImovel.addImovel("Casa imobiliada para Alugar",
+				"Rua Joaquim Caroca, Bodocongo, Num 2471, CG/PB", 3500.0,
+				new Area(30, 20), TipoImovel.CASA, TipoContratual.ALUGUEL);
+		controladorImovel.addImovel("Apartamento a Venda!!!",
+				"Rua Fernando Luiz Henrique dos Santos Altiplano, num 2831,"
+				+ " JP/PB, Ed. Java, apto 1300", 25000, new Area(4, 6),
+		TipoImovel.APARTAMENTO, TipoContratual.VENDA);
 		controladorImovel.addImovel(imovel3);
 
 		Assert.assertEquals(imovel1, controladorImovel.getImovel("0"));
