@@ -64,6 +64,32 @@ public class ControladorCliente implements Serializable {
 		}
 		return false;
 	}
+	
+	/**
+	 * Metodo que remove um cliente da Colecao
+	 * 
+	 * @param cpfASerRemovido
+	 *            Representa o CPF do cliente a Ser Removido
+	 * @return True - Caso o cliente seja removido <br>
+	 *         False - Caso ele nao seja encontrado
+	 */
+	public boolean removeCliente(String cpfASerRemovido) {
+		final int TAM_CPF_FORMATADO = 14;
+		
+		if (VerificaInvalido.basico(cpfASerRemovido))
+			return false;
+		
+		if (!(cpfASerRemovido.length() == TAM_CPF_FORMATADO)) {
+			return false;
+		}
+		
+		for (Cliente cliente : colecaoClientes.getClientes()) {
+			if (cpfASerRemovido.equals(cliente.getCpf())) {
+				return colecaoClientes.getClientes().remove(cliente);
+			}
+		}
+		return false;
+	}
 
 	/**
 	 * Metodo verificador de login e senha para Clientes
