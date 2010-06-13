@@ -113,6 +113,15 @@ public class Sistema implements Serializable {
 	public ControladorFuncionario controladorFuncionarios() {
 		return controladorFuncionarios;
 	}
+	
+	/**
+	 * Metodo acessador do Contrador de Transacoes do Sistema
+	 * 
+	 * @return the controladorTransacoes
+	 */
+	public ControladorTransacoes controladorTransacoes() {
+		return controladorTransacoes;
+	}
 
 	/* Metodos de Atualizacao */
 
