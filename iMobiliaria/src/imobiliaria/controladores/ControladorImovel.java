@@ -282,4 +282,37 @@ public class ControladorImovel implements Serializable{
 		// SuperClasse (ColecaoImovel)
 		colecaoImovel.addImovel(ImovelASerAdicionado);
 	}
+	
+	/**
+	 * Metodo que remove um imovel da Colecao
+	 * 
+	 * @param registroImovel
+	 *            Registro do Imovel a Ser Removido
+	 * @return True - Caso o imovel seja removido <br>
+	 *         False - Caso ele nao seja encontrado
+	 *         
+	 * @throws - Exception
+	 * 				Lanca excecao caso o imovel o imovel passado seja null ou
+	 * 				Seja passado letras ao invers do numero de registro de um
+	 *  imovel
+	 */
+	public boolean removeImovel(String registroImovel) throws Exception {
+		
+		if (registroImovel == null){
+			throw new Exception("Imovel Invalido");
+		}
+
+		int registro;
+
+		try {
+			registro = Integer.parseInt(registroImovel);
+		} catch (Exception e) {
+			throw new Exception("Registro Invalido");
+		}
+		for (Imovel imovel : colecaoImovel.getImoveis()) {
+			if (imovel.getRegistroImovel() == registro)
+				return colecaoImovel.getImoveis().remove(imovel);
+		}
+		return false;
+	}
 }
