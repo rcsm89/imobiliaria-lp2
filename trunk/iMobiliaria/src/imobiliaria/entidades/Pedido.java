@@ -30,7 +30,7 @@ public class Pedido implements Comparable<Object> {
 
 		if (imovel == null
 				|| imovel.getEstadoDoImovel() != EstadoImovel.A_VENDA)
-			msgErro += "Imovel invalido";
+			msgErro += "Imovel invalido\n";
 
 		if (comprador == null)
 			msgErro += "Comprador invalido";
