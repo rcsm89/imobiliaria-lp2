@@ -256,5 +256,27 @@ public class ControladorFuncionario implements Serializable {
 				+ func.getDataNascimento() + "\nEndereco: "
 				+ func.getEndereco();
 	}
+	
+	/**
+	 * Remove um funcionario da colecao apartir do seu creci
+	 * 
+	 * @param creci
+	 *            Creci do funcionario a ser removido
+	 * @return True, se o funcionario foi removido<br>
+	 *         False, caso contrario
+	 * @throws Exception
+	 *             Caso o creci seja invalido
+	 */
+	public boolean removeFuncionario(String creci) throws Exception {
+		if (VerificaInvalido.numero(creci)) {
+			throw new Exception("Creci Invalido");
+		}
+		for (Funcionario func : colecaoFunc.getColecaoFuncionarios()) {
+			if (func.getCreci().equals(creci)) {
+				return colecaoFunc.getColecaoFuncionarios().remove(func);
+			}
+		}
+		return false;
+	}
 
 }
