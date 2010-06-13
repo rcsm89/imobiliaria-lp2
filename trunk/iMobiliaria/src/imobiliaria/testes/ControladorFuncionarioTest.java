@@ -8,17 +8,11 @@ import junit.framework.Assert;
 import imobiliaria.controladores.ControladorFuncionario;
 import imobiliaria.entidades.Funcionario;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class ControladorFuncionarioTest {
 
-	private ControladorFuncionario controlFunc1;
-
-	@Before
-	public void setUp() throws Exception {
-		controlFunc1 = new ControladorFuncionario();
-	}
+	private ControladorFuncionario controlFunc1 = ControladorFuncionario.getInstance();
 
 	@Test
 	public void testaModificaFuncionario() throws Exception {
@@ -31,7 +25,8 @@ public class ControladorFuncionarioTest {
 		controlFunc1.adicionaFuncionario(cpf, dataNascimento, endereco, nome,
 				numCreci);
 		// Obtendo o funcionario pelo creci
-		Funcionario funcMod = controlFunc1.getFuncionario(numCreci);
+		
+		Funcionario funcMod = controlFunc1.getFuncionarioPorCreci(numCreci);
 
 		Assert.assertEquals("Thiago Ferreira", funcMod.getNome());
 		Assert.assertEquals("Rua 12 De Outubro", funcMod.getEndereco());
@@ -93,6 +88,25 @@ public class ControladorFuncionarioTest {
 		controlFunc1.exibeFuncionarioPorCreci("123sa");
 
 	}
+	
+	@Test
+	public void testLogin() throws Exception {
+		String cpf = "08957792100";
+		Calendar dataNascimento = new GregorianCalendar(1991, Calendar.MAY, 5);
+		String endereco = "Rua Rodrigues Alves";
+		String nome = "Jean";
+		String numCreci = "00123";
+
+		controlFunc1.adicionaFuncionario(cpf, dataNascimento, endereco, nome,
+				numCreci);
+		
+		Assert.assertTrue(controlFunc1.login("08957792100", "05051991"));
+		Assert.assertFalse(controlFunc1.login("    ", "04041991"));
+		Assert.assertFalse(controlFunc1.login("12345678910", ""));
+		Assert.assertFalse(controlFunc1.login("loginInexistente", "04041991"));
+		Assert.assertFalse(controlFunc1.login("12345678910", "Senha  Errada"));
+	}
+
 	
 	@Test
 	public void testaExibeFuncionarioPorCpf() throws Exception {
