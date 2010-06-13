@@ -1,10 +1,11 @@
-package imobiliaria.userInterface;
+	package imobiliaria.userInterface;
 
 import imobiliara.auxiliar.TipoContratual;
 import imobiliara.auxiliar.TipoImovel;
 import imobiliaria.entidades.Area;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.EstadoImovel;
+import imobiliaria.entidades.FolhaDePagamento;
 import imobiliaria.entidades.Funcionario;
 import imobiliaria.entidades.Imovel;
 import imobiliaria.processamento.Sistema;
@@ -85,7 +86,7 @@ public class OperacoesInterfaceTextual {
 
 		try {
 
-			sis.adicionaPedido(registroImovel, cpfCliente);
+			sis.controladorPedidos().adicionaPedido(registroImovel, cpfCliente);
 
 		} catch (Exception e) {
 
@@ -187,7 +188,7 @@ public class OperacoesInterfaceTextual {
 				if (sis.controladorFuncionarios().adicionaFuncionario(cpf,
 						dataNascimento, endereco, nome, creci)) {
 
-					novoFunc = sis.controladorFuncionarios().getFuncionario(
+					novoFunc = sis.controladorFuncionarios().getFuncionarioPorCreci(
 							creci);
 
 					repeteCadastro = false;
@@ -213,7 +214,6 @@ public class OperacoesInterfaceTextual {
 
 	protected void cadastroDeImovel() {
 
-		Imovel novoImovel = null;
 		String nome, endereco;
 
 		TipoImovel tipoDoImovel;
@@ -263,9 +263,8 @@ public class OperacoesInterfaceTextual {
 				tipoDoImovel = TipoImovel.values()[opcaoImovel - 1];
 				tipoContratual = TipoContratual.values()[opcaoContrato - 1];
 				area = new Area(comprimento, largura);
-				novoImovel = new Imovel(nome, endereco, valor, area,
+				sis.controladorImoveis().addImovel(nome, endereco, valor, area,
 						tipoDoImovel, tipoContratual);
-				sis.controladorImoveis().addImovel(novoImovel);
 				repeteCadastro = false;
 
 			} catch (Exception erro) {
@@ -545,7 +544,7 @@ public class OperacoesInterfaceTextual {
 				.recebeString("Digite o CRECI do Funcionario que realizou a Compra: ");
 
 		try {
-			sis.efetuaPedido(registroImovel, creciFuncionario);
+			sis.controladorPedidos().adicionaPedido(registroImovel, creciFuncionario);
 			System.out.println("Pedido Efetuado com Sucesso!");
 		} catch (Exception e) {
 			System.out
@@ -556,9 +555,10 @@ public class OperacoesInterfaceTextual {
 	protected void efetuarPagamento() {
 
 		try {
-			String folhaDePagamento = sis.controladorFinanceiro().efetuaPagamentoNoMes(sis.controladorFuncionarios().listaTotaisDeVendas());
+			FolhaDePagamento folhaDePagamento = sis.controladorTransacoes()
+												.efetuaPagamentoNoMes();
 			System.out.println("Folha de Pagamento do Mes:" + lineSep
-					+ folhaDePagamento);
+					+ folhaDePagamento.getFolhaDePagamentoString());
 
 		} catch (Exception e) {
 			System.out.println("Erro: " + e.getMessage());
@@ -568,7 +568,7 @@ public class OperacoesInterfaceTextual {
 
 	protected void verificaSaldoAtual() {
 
-		System.out.println(lineSep + "Saldo Atual do Caixa: " + sis.controladorFinanceiro().caixa()
+		System.out.println(lineSep + "Saldo Atual do Caixa: " + sis.controladorTransacoes().caixa()
 				+ lineSep);
 	}
 
