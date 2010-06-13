@@ -29,6 +29,15 @@ public class ControladorFuncionario implements Serializable {
 
 	private ControladorFuncionario() {
 	}
+	
+	/**
+	 * Metodo acessador da colecao de funcionario
+	 * @return
+	 * 		Colecao de funcionario
+	 */
+	public ColecaoFuncionario getColecaoFuncionario(){
+		return colecaoFunc;
+	}
 
 	/**
 	 * Adiciona um funcionario no Controlador
