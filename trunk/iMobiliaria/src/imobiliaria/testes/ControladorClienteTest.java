@@ -7,24 +7,22 @@ import junit.framework.Assert;
 import imobiliara.auxiliar.TipoImovel;
 import imobiliaria.controladores.*;
 import imobiliaria.entidades.Cliente;
-
-import org.junit.Before;
 import org.junit.Test;
 
 public class ControladorClienteTest {
 
-	private ControladorCliente controladorCliente;
+	private ControladorCliente controladorCliente = ControladorCliente
+			.getInstance();
 
-	@Before
+	@Test
 	public void criaControlador() throws Exception {
-		controladorCliente = new ControladorCliente();
 
 		Assert.assertTrue(controladorCliente.adicionaCliente("12345678910",
 				new GregorianCalendar(1991, Calendar.APRIL, 4),
 				"Rua Alberto de Brito, 84", "Bruno Paiva", TipoImovel.CASA));
 
 		Assert.assertTrue(controladorCliente.adicionaCliente("10120230344",
-				new GregorianCalendar(1991, 14, 13), "Rua 12 de Outubro",
+				new GregorianCalendar(1991, Calendar.MARCH, 13), "Rua 12 de Outubro",
 				"Thiago Ferreira", TipoImovel.APARTAMENTO));
 
 		Assert.assertTrue(controladorCliente.adicionaCliente("11022033040",
@@ -39,6 +37,15 @@ public class ControladorClienteTest {
 		Assert.assertTrue(controladorCliente.adicionaCliente("12345678901",
 				new GregorianCalendar(1991, Calendar.AUGUST, 7),
 				"Rua Tocatins, 929", "Daniel Farias", TipoImovel.TERRENO));
+
+		try {
+			controladorCliente.adicionaCliente(null, null, null, null, null);
+			Assert.fail("Deveria ter lancado excecao");
+		} catch (Exception e) {
+			Assert.assertEquals("Nome invalido\nEndereco invalido\nCPF invalido\n" +
+					"Data de nascimento invalida\n",e.getMessage());
+		}
+
 	}
 
 	@Test
@@ -48,26 +55,45 @@ public class ControladorClienteTest {
 				1991, Calendar.APRIL, 4), "Rua Alberto de Brito, 84",
 				"Bruno Paiva", TipoImovel.CASA), controladorCliente
 				.getCliente("123.456.789-10"));
+		
+		
 	}
 
 	@Test
-	public void testExibeCliente() {
+	public void testExibeCliente() throws Exception {
 
-		Assert
-				.assertEquals(
-						"Nome: Bruno Paiva - CPF: 123.456.789-10\n"
-								+ "Endereco: Rua Alberto De Brito, 84 - Data de Nascimento: 04/04/1991 - Preferencia: CASA",
+		Assert.assertEquals("Nome: Bruno Paiva - CPF: 123.456.789-10\n"
+						+ "Endereco: Rua Alberto De Brito, 84 - " 
+						+ "Data de Nascimento: 04/04/1991 - Preferencia: CASA",
 						controladorCliente.exibeCliente("123.456.789-10"));
 
-		Assert
-				.assertEquals(
-						"Nome: Yuri Farias - CPF: 123.456.789-12\n"
-								+ "Endereco: Rua Argemiro De Figueiredo, 207 - Data de Nascimento: 04/04/1991 - Preferencia: TERRENO",
+		Assert.assertEquals("Nome: Yuri Farias - CPF: 123.456.789-12\n"
+						+ "Endereco: Rua Argemiro De Figueiredo, 207 - " 
+						+ "Data de Nascimento: 04/04/1991 - Preferencia: TERRENO",
 						controladorCliente.exibeCliente("123.456.789-12"));
+		
+		try{
+			controladorCliente.exibeCliente("123456789101112");
+		}catch (Exception ex){
+			Assert.assertEquals(" "	, ex.getMessage());
+			
+		}
+		
+	}
+	
+	@Test
+	public void testLogin() {
+		Assert.assertTrue(controladorCliente.login("12345678910", "04041991"));
+		Assert.assertTrue(controladorCliente.login("10120230344", "13031991"));
+
+		Assert.assertFalse(controladorCliente.login("    ", "04041991"));
+		Assert.assertFalse(controladorCliente.login("12345678910", ""));
+		Assert.assertFalse(controladorCliente.login("loginInexistente", "04041991"));
+		Assert.assertFalse(controladorCliente.login("12345678910", "Senha  Errada"));
 	}
 
 	@Test
-	public void testListaClientes() {
+	public void testListaClientes() throws Exception {
 
 		Assert
 				.assertEquals(
@@ -77,7 +103,7 @@ public class ControladorClienteTest {
 								+ "Endereco: Rua Tocatins, 929 - Preferencia: TERRENO\n\n"
 								+ "Nome: Jean - CPF: 110.220.330-40 - Data de Nascimento: 23/07/1991\n"
 								+ "Endereco: Rua Antonio Joaquim Pequeno - Preferencia: TERRENO\n\n"
-								+ "Nome: Thiago Ferreira - CPF: 101.202.303-44 - Data de Nascimento: 13/03/1992\n"
+								+ "Nome: Thiago Ferreira - CPF: 101.202.303-44 - Data de Nascimento: 13/03/1991\n"
 								+ "Endereco: Rua 12 De Outubro - Preferencia: APARTAMENTO\n\n"
 								+ "Nome: Yuri Farias - CPF: 123.456.789-12 - Data de Nascimento: 04/04/1991\n"
 								+ "Endereco: Rua Argemiro De Figueiredo, 207 - Preferencia: TERRENO\n\n",
@@ -89,17 +115,18 @@ public class ControladorClienteTest {
 
 		Assert
 				.assertEquals(
-						"Nome: Jean - CPF: 110.220.330-40 - Data de Nascimento: 23/07/1991\n"
+						"Nome: Daniel Farias - CPF: 123.456.789-01 - Data de Nascimento: 07/08/1991\n"
+								+ "Endereco: Rua Tocatins, 929 - Preferencia: TERRENO\n\n"
+								+ "Nome: Jean - CPF: 110.220.330-40 - Data de Nascimento: 23/07/1991\n"
 								+ "Endereco: Rua Antonio Joaquim Pequeno - Preferencia: TERRENO\n\n"
 								+ "Nome: Yuri Farias - CPF: 123.456.789-12 - Data de Nascimento: 04/04/1991\n"
-								+ "Endereco: Rua Argemiro De Figueiredo, 207 - Preferencia: TERRENO\n\n"
-								+ "Nome: Daniel Farias - CPF: 123.456.789-01 - Data de Nascimento: 07/08/1991\n"
-								+ "Endereco: Rua Tocatins, 929 - Preferencia: TERRENO\n\n",
+								+ "Endereco: Rua Argemiro De Figueiredo, 207 - Preferencia: TERRENO\n\n",
+
 						controladorCliente.listaClientes(TipoImovel.TERRENO));
 
 		Assert
 				.assertEquals(
-						"Nome: Thiago Ferreira - CPF: 101.202.303-44 - Data de Nascimento: 13/03/1992\n"
+						"Nome: Thiago Ferreira - CPF: 101.202.303-44 - Data de Nascimento: 13/03/1991\n"
 								+ "Endereco: Rua 12 De Outubro - Preferencia: APARTAMENTO\n\n",
 						controladorCliente
 								.listaClientes(TipoImovel.APARTAMENTO));
@@ -114,14 +141,14 @@ public class ControladorClienteTest {
 
 	@Test
 	public void testListaClientesPorInicial() throws Exception {
-		
+
 		try {
 			controladorCliente.listaClientes("1823828");
 			Assert.fail();
 		} catch (IllegalArgumentException e) {
 			Assert.assertEquals("Letra Invalida", e.getMessage());
 		}
-		
+
 		try {
 			controladorCliente.listaClientes("UAHSHUSAHUUASH");
 			Assert.fail();
@@ -141,10 +168,10 @@ public class ControladorClienteTest {
 
 		Assert
 				.assertEquals(
-						"Nome: Bruno Paiva - CPF: 123.456.789-10 - Data de Nascimento: 04/04/1991\n"
-								+ "Endereco: Rua Alberto De Brito, 84 - Preferencia: CASA\n\n"
-								+ "Nome: Bruna Vasconcelos - CPF: 098.765.432-10 - Data de Nascimento: 05/03/1990\n"
-								+ "Endereco: Rua Oliveira - Preferencia: APARTAMENTO\n\n",
+						"Nome: Bruna Vasconcelos - CPF: 098.765.432-10 - Data de Nascimento: 05/03/1990\n"
+								+ "Endereco: Rua Oliveira - Preferencia: APARTAMENTO\n\n"
+								+ "Nome: Bruno Paiva - CPF: 123.456.789-10 - Data de Nascimento: 04/04/1991\n"
+								+ "Endereco: Rua Alberto De Brito, 84 - Preferencia: CASA\n\n",
 						controladorCliente.listaClientes("b"));
 	}
 
