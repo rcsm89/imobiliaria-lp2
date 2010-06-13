@@ -537,11 +537,11 @@ public class InterfaceTextual {
 
 		} else if (tipo == FUNCIONARIO) {
 			for (Funcionario f : sis.controladorFuncionarios()
-					.getColecaoFuncionarios()) {
+					.getColecaoFuncionario().getColecaoFuncionarios()) {
 				if ((f.getLogin().equals(userName))
 						&& (f.getSenha().equals(password))) {
 					try {
-						func = sis.controladorFuncionarios().getFuncionario(
+						func = sis.controladorFuncionarios().getFuncionarioPorCreci(
 								f.getCreci());
 					} catch (Exception e) {
 						return false;
@@ -551,7 +551,7 @@ public class InterfaceTextual {
 			return sis.login(userName, password, TipoLogin.FUNCIONARIO);
 
 		} else if (tipo == CLIENTE) {
-			for (Cliente cl : sis.controladorClientes().getClientes()) {
+			for (Cliente cl : sis.controladorClientes().getColecaoClientes().getClientes()) {
 				if ((cl.getLogin().equals(userName))
 						&& (cl.getSenha().equals(password))) {
 					cliente = sis.controladorClientes().getCliente(cl.getCpf());
