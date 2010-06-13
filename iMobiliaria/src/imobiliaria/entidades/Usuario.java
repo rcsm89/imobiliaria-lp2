@@ -88,8 +88,8 @@ public abstract class Usuario implements Serializable, Comparable<Object> {
 	    senha += digitos;
 	}
 	this.senha = senha;
-	// O Login sao os 6 primeiros digitos
-	this.login = cpf.substring(0, 6);
+	// O Login eh igual ao cpf
+	this.login = cpf;
     }
 
     // Metodos
