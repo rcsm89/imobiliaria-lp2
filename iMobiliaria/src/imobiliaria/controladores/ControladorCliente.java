@@ -15,7 +15,7 @@ import imobiliaria.util.VerificaInvalido;
  * Cliente
  * 
  * @author thiagofp
- * @version IT02 
+ * @version IT02
  */
 public class ControladorCliente implements Serializable {
 
@@ -87,13 +87,24 @@ public class ControladorCliente implements Serializable {
 	}
 
 	/**
+	 * Metodo acessador da colecao de clientes
+	 * 
+	 * @return Colecao de clientes
+	 */
+	public ColecaoClientes getColecaoClientes() {
+		return colecaoClientes;
+	}
+
+	/**
 	 * Metodo Acessador de um Cliente
 	 * 
 	 * @param cpf
 	 *            CPF do Cliente a ser retornado
 	 * @return Cliente ou null, caso nao exista
+	 * 
 	 */
 	public Cliente getCliente(String cpf) {
+
 		for (Cliente c : colecaoClientes.getClientes()) {
 			if (c.getCpf().equals(cpf))
 				return c;
@@ -107,6 +118,8 @@ public class ControladorCliente implements Serializable {
 	 * @param cpf
 	 *            CPF do Cliente a ser exibido
 	 * @return String contendo informacoes do Cliente
+	 * 
+	 * 
 	 */
 	public String exibeCliente(String cpf) {
 		Cliente c = getCliente(cpf);
@@ -150,13 +163,14 @@ public class ControladorCliente implements Serializable {
 	 */
 
 	public String listaClientes(String letraInicial) {
-		return listaClientes(colecaoClientes.getClientesPorLetraInicial(letraInicial));
+		return listaClientes(colecaoClientes
+				.getClientesPorLetraInicial(letraInicial));
 	}
 
-	private String listaClientes(TreeSet<Cliente> listaDeClientes) {
+	private String listaClientes(TreeSet<Cliente> conjDeClientes) {
 		String saida = "";
 
-		for (Cliente c : listaDeClientes) {
+		for (Cliente c : conjDeClientes) {
 			saida += "Nome: " + c.getNome() + " - CPF: " + c.getCpf()
 					+ " - Data de Nascimento: " + c.getDataNascimento() + "\n"
 					+ "Endereco: " + c.getEndereco() + " - Preferencia: "
