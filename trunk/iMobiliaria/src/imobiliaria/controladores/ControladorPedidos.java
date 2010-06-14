@@ -8,6 +8,8 @@ import imobiliaria.entidades.Imovel;
 import imobiliaria.entidades.Pedido;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.TreeSet;
 
@@ -21,27 +23,28 @@ import java.util.TreeSet;
 public class ControladorPedidos implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	//Atributos
-	
+
+	// Atributos
+
 	private TreeSet<Pedido> listaPedidos = new TreeSet<Pedido>();
 
-	private static ControladorPedidos controladorPedidos = new 
-		ControladorPedidos();
-	
-	//Construtor
-	
+	private static ControladorPedidos controladorPedidos = new ControladorPedidos();
+
+	// Construtor
+
 	/**
 	 * Construtor privado para nao ocorrer instanciacoes da classe <br>
 	 * fora da classe.
 	 */
-	private ControladorPedidos() {}
-	
+	private ControladorPedidos() {
+	}
+
 	/**
 	 * Metodo que retorna uma instacia de pedidos
+	 * 
 	 * @return Controlador de Pedidos
 	 */
-	public static ControladorPedidos getInstance(){
+	public static ControladorPedidos getInstance() {
 		return controladorPedidos;
 	}
 
@@ -72,7 +75,6 @@ public class ControladorPedidos implements Serializable {
 			throw new Exception("Imovel ja pedido");
 		}
 
-		clienteQueSolicitou.fazPedido(imovelPedido);
 		imovelPedido.pedido();
 		listaPedidos.add(new Pedido(imovelPedido, clienteQueSolicitou));
 	}
@@ -93,8 +95,8 @@ public class ControladorPedidos implements Serializable {
 
 		Pedido pedido = getPedido(registroImovel);
 
-		Funcionario vendedor = ControladorFuncionario.getInstance().
-				getFuncionarioPorCreci(creciFuncionario);
+		Funcionario vendedor = ControladorFuncionario.getInstance()
+				.getFuncionarioPorCreci(creciFuncionario);
 
 		if (vendedor == null || pedido == null)
 			throw new IllegalArgumentException("Parametros invalidos");
@@ -108,7 +110,7 @@ public class ControladorPedidos implements Serializable {
 		} else {
 
 			// Aluguel
-			
+
 			efetuaAluguel(pedido);
 
 		}
@@ -131,36 +133,54 @@ public class ControladorPedidos implements Serializable {
 			throw new IllegalArgumentException("Parametros invalidos");
 
 		pedido.getImovel().a_venda();
-		pedido.getComprador().removePedido(pedido.getImovel());
 		listaPedidos.remove(pedido);
 	}
 
 	/**
-	 * Metodo que lista os pedidos
+	 * Metodo de Listagem de Pedido de um Cliente
 	 * 
-	 * @return String com os pedidos
+	 * @param cpf
+	 *            CPF do Cliente
+	 * @return Listagem de Pedidos
+	 */
+	public String listaPedidosDeCliente(String cpf) {
+
+		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+
+		for (Pedido p : listaPedidos) {
+			if (p.getComprador().getCpf().equals(cpf)) {
+				pedidos.add(p);
+			}
+		}
+
+		return listaPedidos(pedidos);
+	}
+
+	/**
+	 * Metodo de Listagem para Todos os Pedidos do Controlador
+	 * 
+	 * @return Todos os Pedidos do Controlador
 	 */
 	public String listagemDePedido() {
+		return listaPedidos(listaPedidos);
+	}
+
+	/* Metodos de Auxilio */
+
+	private String listaPedidos(Collection<Pedido> pedidos) {
 
 		String saida = "";
 
-		Iterator<Pedido> it = listaPedidos.iterator();
+		Iterator<Pedido> it = pedidos.iterator();
 
 		while (it.hasNext()) {
 
 			Pedido p = it.next();
 
-			saida += p.getImovel().getRegistroImovel() + " - "
-					+ p.getImovel().getNome() + " Valor: "
-					+ p.getImovel().getValor() + "\n" + "Cliente que pediu: "
-					+ p.getComprador().getNome() + " - CPF: "
-					+ p.getComprador().getCpf() + "\n\n";
-
+			saida += p.exibeInformacao() + "\n\n";
 		}
 		return saida;
 	}
-
-	/* Metodos de Auxilio */
 
 	private Pedido getPedido(String registroImovel) {
 		int registro;
@@ -177,9 +197,10 @@ public class ControladorPedidos implements Serializable {
 		}
 		return null;
 	}
-	
-	private void efetuaVenda(Pedido pedido, Funcionario vendedor) throws Exception {
-		
+
+	private void efetuaVenda(Pedido pedido, Funcionario vendedor)
+			throws Exception {
+
 		pedido.getComprador().getHistoricoCompras().addImovel(
 				pedido.getImovel());
 
@@ -193,16 +214,15 @@ public class ControladorPedidos implements Serializable {
 				pedido.getImovel().getValor());
 		listaPedidos.remove(pedido);
 	}
-	
+
 	private void efetuaAluguel(Pedido pedido) throws Exception {
-		
+
 		ControladorAlugueis.getInstance().adicionaAluguel(
-				pedido.getComprador(), pedido.getImovel());
-		
+				pedido.getComprador().getCpf(),
+				String.valueOf(pedido.getImovel().getRegistroImovel()));
+
 		pedido.getImovel().alugado();
-		
-		pedido.getComprador().getAlugueis().addImovel(pedido.getImovel());
-		
+
 		ControladorTransacoes.getInstance().adicionaAoCaixa(
 				pedido.getImovel().getValor());
 	}
