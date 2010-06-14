@@ -47,7 +47,8 @@ public class ControladorImovelTest {
 		TipoImovel tipoDoImovel = imovel1.getTipoDoImovel();
 		TipoContratual tipoDeContrato = imovel1.getTipoContratual();
 
-		controladorImovel.modificaImovel(String.valueOf(imovel1.getRegistroImovel()), nome, endereco, preco, area,
+		controladorImovel.modificaImovel(//String.valueOf(imovel1.getRegistroImovel()),
+				"0" ,nome, endereco, preco, area,
 				tipoDoImovel, tipoDeContrato);
 
 		Assert.assertFalse("Casa imobiliada para Alugar".equals(imovel1
@@ -55,9 +56,10 @@ public class ControladorImovelTest {
 
 		Assert.assertEquals("Casa imobiliada para Vender", imovel1.getNome());
 
-		controladorImovel.modificaImovel(imovel2, "Apartamento para Vender",
-				"Rua Antonio Joaquim de Oliveira, num 230", 20.000, new Area(
-						20, 30), TipoImovel.CASA, TipoContratual.ALUGUEL);
+		controladorImovel.modificaImovel(String.valueOf(imovel2.
+				getRegistroImovel()), "Apartamento para Vender",
+				"Rua Antonio Joaquim de Oliveira, num 230", 20.000,
+				new Area(20, 30), TipoImovel.CASA, TipoContratual.ALUGUEL);
 
 		Assert.assertFalse("Apartamento a Venda!!!".equals(imovel2.getNome()));
 
@@ -86,11 +88,15 @@ public class ControladorImovelTest {
 		controladorImovel.addImovel("Casa imobiliada para Alugar",
 				"Rua Joaquim Caroca, Bodocongo, Num 2471, CG/PB", 3500.0,
 				new Area(30, 20), TipoImovel.CASA, TipoContratual.ALUGUEL);
+		
 		controladorImovel.addImovel("Apartamento a Venda!!!",
 				"Rua Fernando Luiz Henrique dos Santos Altiplano, num 2831,"
 				+ " JP/PB, Ed. Java, apto 1300", 25000, new Area(4, 6),
-		TipoImovel.APARTAMENTO, TipoContratual.VENDA);
-		controladorImovel.addImovel(imovel3);
+				TipoImovel.APARTAMENTO, TipoContratual.VENDA);
+		
+		controladorImovel.addImovel(imovel3.getNome(), imovel3.getEndereco(),
+				imovel3.getRegistroImovel(), imovel3.getArea(), imovel3.getTipoDoImovel(),
+				imovel3.getTipoContratual());
 
 		Assert.assertEquals(imovel1, controladorImovel.getImovel("0"));
 		Assert.assertEquals(imovel2, controladorImovel.getImovel("1"));
@@ -101,10 +107,22 @@ public class ControladorImovelTest {
 	@Test
 	public void testaGetImovelPorRegistro() throws Exception {
 
-		controladorImovel.addImovel(imovel1);
-		controladorImovel.addImovel(imovel2);
-		controladorImovel.addImovel(imovel3);
-
+		try{
+			controladorImovel.addImovel(imovel1.getNome(), imovel1.getEndereco(),
+					imovel1.getRegistroImovel(), imovel1.getArea(), imovel1.getTipoDoImovel(),
+					imovel1.getTipoContratual());
+			
+			controladorImovel.addImovel(imovel2.getNome(), imovel2.getEndereco(),
+					imovel2.getRegistroImovel(), imovel2.getArea(), imovel2.getTipoDoImovel(),
+					imovel2.getTipoContratual());
+			
+			controladorImovel.addImovel(imovel3.getNome(), imovel3.getEndereco(),
+					imovel3.getRegistroImovel(), imovel3.getArea(), imovel3.getTipoDoImovel(),
+					imovel3.getTipoContratual());
+		}catch(Exception e){
+			Assert.fail("Nao Deveria Cair Nesse catch");
+		}
+			
 		Assert.assertEquals(imovel1, controladorImovel.getImovel("3"));
 		Assert.assertEquals(imovel2, controladorImovel.getImovel("4"));
 		Assert.assertEquals(imovel3, controladorImovel.getImovel("5"));
@@ -119,7 +137,9 @@ public class ControladorImovelTest {
 	@Test
 	public void testaExibeImovel() throws Exception {
 
-		controladorImovel.addImovel(imovel1);
+		controladorImovel.addImovel(imovel1.getNome(), imovel1.getEndereco(),
+				imovel1.getRegistroImovel(), imovel1.getArea(), imovel1.getTipoDoImovel(),
+				imovel1.getTipoContratual());
 
 		try {
 			controladorImovel.exibeImovel(null);
@@ -143,7 +163,10 @@ public class ControladorImovelTest {
 	public void testaAddImovel() throws Exception {
 
 		try {
-			controladorImovel.addImovel(null);
+			controladorImovel.addImovel(null, imovel1.getEndereco(),
+					imovel1.getRegistroImovel(), imovel1.getArea(),
+					imovel1.getTipoDoImovel(), imovel1.getTipoContratual());
+			Assert.fail("Deveria Lancar Excecao aqui");
 		} catch (Exception e) {
 			Assert.assertEquals("Imovel Invalido", e.getMessage());
 		}
@@ -153,7 +176,13 @@ public class ControladorImovelTest {
 	@Test
 	public void testaListaImoveis() throws Exception {
 
-		controladorImovel.addImovel(imovel1);
+		try {
+			controladorImovel.addImovel(imovel1.getNome(), imovel1.getEndereco(),
+					imovel1.getRegistroImovel(), imovel1.getArea(),
+					imovel1.getTipoDoImovel(), imovel1.getTipoContratual());
+		} catch (Exception e) {
+			Assert.fail("Nao Deveria Cair Nesse catch");
+		}
 
 		Assert.assertEquals("Registro: " + imovel1.getRegistroImovel() + "\n"
 				+ "Nome: " + imovel1.getNome() + "\n" + "Endereco: "
@@ -163,7 +192,13 @@ public class ControladorImovelTest {
 				+ "Tipo Contratual: " + imovel1.getTipoContratual() + "\n\n",
 				controladorImovel.listaImoveis());
 
-		controladorImovel.addImovel(imovel2);
+		try{
+			controladorImovel.addImovel(imovel2.getNome(), imovel2.getEndereco(),
+			imovel2.getRegistroImovel(), imovel2.getArea(), imovel2.getTipoDoImovel(),
+			imovel2.getTipoContratual());
+		}catch(Exception e){
+			Assert.fail("Nao Deveria Cair Nesse catch");
+		}
 
 		Assert.assertEquals("Registro: " + imovel1.getRegistroImovel() + "\n"
 				+ "Nome: " + imovel1.getNome() + "\n" + "Endereco: "
@@ -178,9 +213,15 @@ public class ControladorImovelTest {
 				+ "Tipo do Imovel: " + imovel2.getTipoDoImovel() + "\n"
 				+ "Tipo Contratual: " + imovel2.getTipoContratual() + "\n\n",
 				controladorImovel.listaImoveis());
-
-		controladorImovel.addImovel(imovel3);
-
+		
+		try{
+			controladorImovel.addImovel(imovel3.getNome(), imovel3.getEndereco(),
+			imovel3.getRegistroImovel(), imovel3.getArea(), imovel3.getTipoDoImovel(),
+			imovel3.getTipoContratual());
+		}catch(Exception e){
+			Assert.fail("Nao Deveria Cair Nesse catch");
+		}
+		
 		Assert.assertEquals("Registro: " + imovel1.getRegistroImovel() + "\n"
 				+ "Nome: " + imovel1.getNome() + "\n" + "Endereco: "
 				+ imovel1.getEndereco() + "\n" + "Valor: " + imovel1.getValor()
@@ -205,10 +246,22 @@ public class ControladorImovelTest {
 	@Test
 	public void testaListaImoveis1() throws Exception {
 
-		controladorImovel.addImovel(imovel1);
-		controladorImovel.addImovel(imovel2);
-		controladorImovel.addImovel(imovel3);
-
+		try{
+			controladorImovel.addImovel(imovel1.getNome(), imovel1.getEndereco(),
+					imovel1.getRegistroImovel(), imovel1.getArea(), imovel1.getTipoDoImovel(),
+					imovel1.getTipoContratual());
+			
+			controladorImovel.addImovel(imovel2.getNome(), imovel2.getEndereco(),
+					imovel2.getRegistroImovel(), imovel2.getArea(), imovel2.getTipoDoImovel(),
+					imovel2.getTipoContratual());
+			
+			controladorImovel.addImovel(imovel3.getNome(), imovel3.getEndereco(),
+					imovel3.getRegistroImovel(), imovel3.getArea(), imovel3.getTipoDoImovel(),
+					imovel3.getTipoContratual());
+		}catch(Exception e){
+			Assert.fail("Nao Deveria Cair Nesse catch");
+		}
+		
 		try {
 			controladorImovel.listaImoveis(10, 5);
 		} catch (Exception e) {
@@ -277,9 +330,21 @@ public class ControladorImovelTest {
 	@Test
 	public void testaListaImoveis2() throws Exception {
 
-		controladorImovel.addImovel(imovel1);
-		controladorImovel.addImovel(imovel2);
-		controladorImovel.addImovel(imovel3);
+		try{
+			controladorImovel.addImovel(imovel1.getNome(), imovel1.getEndereco(),
+					imovel1.getRegistroImovel(), imovel1.getArea(), imovel1.getTipoDoImovel(),
+					imovel1.getTipoContratual());
+			
+			controladorImovel.addImovel(imovel2.getNome(), imovel2.getEndereco(),
+					imovel2.getRegistroImovel(), imovel2.getArea(), imovel2.getTipoDoImovel(),
+					imovel2.getTipoContratual());
+			
+			controladorImovel.addImovel(imovel3.getNome(), imovel3.getEndereco(),
+					imovel3.getRegistroImovel(), imovel3.getArea(), imovel3.getTipoDoImovel(),
+					imovel3.getTipoContratual());
+		}catch(Exception e){
+			Assert.fail("Nao Deveria Cair Nesse catch");
+		}
 
 		Assert.assertEquals("Registro: " + imovel1.getRegistroImovel() + "\n"
 				+ "Nome: " + imovel1.getNome() + "\n" + "Endereco: "
@@ -307,9 +372,21 @@ public class ControladorImovelTest {
 	@Test
 	public void testaListaImoveis3() throws Exception {
 
-		controladorImovel.addImovel(imovel1);
-		controladorImovel.addImovel(imovel2);
-		controladorImovel.addImovel(imovel3);
+		try{
+			controladorImovel.addImovel(imovel1.getNome(), imovel1.getEndereco(),
+					imovel1.getRegistroImovel(), imovel1.getArea(), imovel1.getTipoDoImovel(),
+					imovel1.getTipoContratual());
+			
+			controladorImovel.addImovel(imovel2.getNome(), imovel2.getEndereco(),
+					imovel2.getRegistroImovel(), imovel2.getArea(), imovel2.getTipoDoImovel(),
+					imovel2.getTipoContratual());
+			
+			controladorImovel.addImovel(imovel3.getNome(), imovel3.getEndereco(),
+					imovel3.getRegistroImovel(), imovel3.getArea(), imovel3.getTipoDoImovel(),
+					imovel3.getTipoContratual());
+		}catch(Exception e){
+			Assert.fail("Nao Deveria Cair Nesse catch");
+		}
 
 		Assert.assertEquals("Registro: " + imovel1.getRegistroImovel() + "\n"
 				+ "Nome: " + imovel1.getNome() + "\n" + "Endereco: "
@@ -339,10 +416,21 @@ public class ControladorImovelTest {
 	@Test
 	public void testaListaImoveis4() throws Exception {
 
-		controladorImovel.addImovel(imovel1);
-		controladorImovel.addImovel(imovel2);
-		controladorImovel.addImovel(imovel3);
-
+		try{
+			controladorImovel.addImovel(imovel1.getNome(), imovel1.getEndereco(),
+					imovel1.getRegistroImovel(), imovel1.getArea(), imovel1.getTipoDoImovel(),
+					imovel1.getTipoContratual());
+			
+			controladorImovel.addImovel(imovel2.getNome(), imovel2.getEndereco(),
+					imovel2.getRegistroImovel(), imovel2.getArea(), imovel2.getTipoDoImovel(),
+					imovel2.getTipoContratual());
+			
+			controladorImovel.addImovel(imovel3.getNome(), imovel3.getEndereco(),
+					imovel3.getRegistroImovel(), imovel3.getArea(), imovel3.getTipoDoImovel(),
+					imovel3.getTipoContratual());
+		}catch(Exception e){
+			Assert.fail("Nao Deveria Cair Nesse catch");
+		}
 		Assert.assertEquals("Registro: " + imovel1.getRegistroImovel() + "\n"
 				+ "Nome: " + imovel1.getNome() + "\n" + "Endereco: "
 				+ imovel1.getEndereco() + "\n" + "Valor: " + imovel1.getValor()
@@ -387,9 +475,21 @@ public class ControladorImovelTest {
 	@Test
 	public void testaListaImoveis5() throws Exception {
 
-		controladorImovel.addImovel(imovel1);
-		controladorImovel.addImovel(imovel2);
-		controladorImovel.addImovel(imovel3);
+		try{
+			controladorImovel.addImovel(imovel1.getNome(), imovel1.getEndereco(),
+					imovel1.getRegistroImovel(), imovel1.getArea(), imovel1.getTipoDoImovel(),
+					imovel1.getTipoContratual());
+			
+			controladorImovel.addImovel(imovel2.getNome(), imovel2.getEndereco(),
+					imovel2.getRegistroImovel(), imovel2.getArea(), imovel2.getTipoDoImovel(),
+					imovel2.getTipoContratual());
+			
+			controladorImovel.addImovel(imovel3.getNome(), imovel3.getEndereco(),
+					imovel3.getRegistroImovel(), imovel3.getArea(), imovel3.getTipoDoImovel(),
+					imovel3.getTipoContratual());
+		}catch(Exception e){
+			Assert.fail("Nao Deveria Cair Nesse catch");
+		}
 
 		Assert.assertEquals("Registro: " + imovel1.getRegistroImovel() + "\n"
 				+ "Nome: " + imovel1.getNome() + "\n" + "Endereco: "
