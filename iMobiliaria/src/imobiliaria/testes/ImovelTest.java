@@ -1,9 +1,9 @@
 package imobiliaria.testes;
 
+import imobiliara.auxiliar.EstadoImovel;
 import imobiliara.auxiliar.TipoContratual;
 import imobiliara.auxiliar.TipoImovel;
 import imobiliaria.entidades.Area;
-import imobiliaria.entidades.EstadoImovel;
 import imobiliaria.entidades.Imovel;
 import junit.framework.Assert;
 

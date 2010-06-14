@@ -1,9 +1,9 @@
 package imobiliaria.controladores;
 
+import imobiliara.auxiliar.EstadoImovel;
 import imobiliara.auxiliar.TipoContratual;
 import imobiliaria.entidades.Aluguel;
 import imobiliaria.entidades.Cliente;
-import imobiliaria.entidades.EstadoImovel;
 import imobiliaria.entidades.Imovel;
 
 import java.io.Serializable;

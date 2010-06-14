@@ -1,5 +1,7 @@
 package imobiliaria.entidades;
 
+import imobiliara.auxiliar.EstadoImovel;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 

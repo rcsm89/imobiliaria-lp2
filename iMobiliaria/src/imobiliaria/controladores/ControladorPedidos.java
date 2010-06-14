@@ -1,8 +1,8 @@
 package imobiliaria.controladores;
 
+import imobiliara.auxiliar.EstadoImovel;
 import imobiliara.auxiliar.TipoContratual;
 import imobiliaria.entidades.Cliente;
-import imobiliaria.entidades.EstadoImovel;
 import imobiliaria.entidades.Funcionario;
 import imobiliaria.entidades.Imovel;
 import imobiliaria.entidades.Pedido;
@@ -49,6 +49,20 @@ public class ControladorPedidos implements Serializable {
 	}
 
 	/**
+	 * Metodo que modifica a instancia unica do Controlador de Pedidos
+	 * 
+	 * @param controlador
+	 *            Nova Instancia para o Controlador
+	 */
+	public static void setInstance(ControladorPedidos controlador) {
+		if (controlador == null) {
+			throw new IllegalArgumentException(
+					"Controlador de Pedidos invalido");
+		}
+		controladorPedidos = controlador;
+	}
+
+	/**
 	 * Metodo que adiciona um pedido ao Sistema
 	 * 
 	 * @param registroImovel
@@ -62,14 +76,19 @@ public class ControladorPedidos implements Serializable {
 	public void adicionaPedido(String registroImovel, String cpf)
 			throws Exception {
 
+		System.out.println(ControladorImovel.getInstance().listaImoveis());
+
 		Imovel imovelPedido = ControladorImovel.getInstance().getImovel(
 				registroImovel);
 
 		Cliente clienteQueSolicitou = ControladorCliente.getInstance()
 				.getCliente(cpf);
 
-		if (imovelPedido == null || clienteQueSolicitou == null)
-			throw new IllegalArgumentException("Parametros invalidos");
+		if (imovelPedido == null)
+			throw new IllegalArgumentException("Imovel invalido");
+
+		if (clienteQueSolicitou == null)
+			throw new IllegalArgumentException("Cliente invalido");
 
 		if (imovelPedido.getEstadoDoImovel() == EstadoImovel.PEDIDO) {
 			throw new Exception("Imovel ja pedido");

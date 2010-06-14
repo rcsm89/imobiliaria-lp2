@@ -74,7 +74,7 @@ public class Sistema implements Serializable {
 	 * Metodo acessador do Controlador de Alugueis do Sistema
 	 * @return the controladorAlugueis
 	 */
-	public ControladorAlugueis getControladorAlugueis() {
+	public ControladorAlugueis controladorAlugueis() {
 		return controladorAlugueis;
 	}
 
@@ -134,6 +134,32 @@ public class Sistema implements Serializable {
 	 */
 	public void atualizaDados() throws Exception {
 		
+		
+		ControladorImovel.setInstance( (ControladorImovel)
+				PersistenciaDados.ler(ARQUIVO_DO_SISTEMA));
+		ControladorCliente.setInstance( (ControladorCliente)
+				PersistenciaDados.ler(ARQUIVO_DO_SISTEMA));
+		ControladorFuncionario.setInstance( (ControladorFuncionario)
+				PersistenciaDados.ler(ARQUIVO_DO_SISTEMA));
+		ControladorTransacoes.setInstance( (ControladorTransacoes)
+				PersistenciaDados.ler(ARQUIVO_DO_SISTEMA));
+		ControladorPedidos.setInstance( (ControladorPedidos)
+				PersistenciaDados.ler(ARQUIVO_DO_SISTEMA));
+		ControladorAlugueis.setInstance( (ControladorAlugueis)
+				PersistenciaDados.ler(ARQUIVO_DO_SISTEMA));
+		/*ControladorLogin.setInstance(
+				PersistenciaDados.ler(ARQUIVO_DO_SISTEMA));*/
+		
+		// Verificar necessidade!
+		
+		this.controladorImoveis = ControladorImovel.getInstance();
+		this.controladorClientes = ControladorCliente.getInstance();
+		this.controladorFuncionarios = ControladorFuncionario.getInstance();
+		this.controladorTransacoes = ControladorTransacoes.getInstance();
+		this.controladorPedidos = ControladorPedidos.getInstance();
+		this.controladorAlugueis = ControladorAlugueis.getInstance();
+		//this.controladorLogin = ControladorLogin.getInstance();
+		
 		controladorTransacoes.atualizaControlador();
 		
 		Imovel.setCriadorDeRegistro((Integer) PersistenciaDados
@@ -149,7 +175,14 @@ public class Sistema implements Serializable {
 		
 		controladorTransacoes.atualizaControlador();
 		
-		PersistenciaDados.gravar(this, ARQUIVO_DO_SISTEMA);
+		PersistenciaDados.gravar(ControladorImovel.getInstance(), ARQUIVO_DO_SISTEMA);
+		PersistenciaDados.gravar(ControladorCliente.getInstance(), ARQUIVO_DO_SISTEMA);
+		PersistenciaDados.gravar(ControladorFuncionario.getInstance(), ARQUIVO_DO_SISTEMA);
+		PersistenciaDados.gravar(ControladorTransacoes.getInstance(), ARQUIVO_DO_SISTEMA);
+		PersistenciaDados.gravar(ControladorPedidos.getInstance(), ARQUIVO_DO_SISTEMA);
+		PersistenciaDados.gravar(ControladorAlugueis.getInstance(), ARQUIVO_DO_SISTEMA);
+		//PersistenciaDados.gravar(ControladorLogin.getInstance(), ARQUIVO_DO_SISTEMA);
+		
 		PersistenciaDados.gravar(Imovel.getCriadorDeRegistro(),
 				ARQUIVO_DE_REGISTROS);
 		PersistenciaDados.gravar(Transacao.getCriadorRegistroTransacao(),

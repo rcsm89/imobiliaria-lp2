@@ -41,9 +41,9 @@ public class PersistenciaDados {
 				Sistema sis = new Sistema();
 				
 				gravar(sis, "DadosDeSistema.dat");
-			} else if (arquivo.equals("RegistroImoveis.dat")) {
+			} else if (arquivo.equals("Registros.dat")) {
 				
-				gravar(0, "RegistroImoveis.dat");
+				gravar(0, "Registros.dat");
 				
 			} else {
 				
