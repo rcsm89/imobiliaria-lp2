@@ -6,7 +6,7 @@ package imobiliaria.gui;
 
 /**
  *
- * @author thiagofp
+ * @author Thiago Ferreira Patricio
  */
 public class FuncionarioGUI extends javax.swing.JFrame {
 
