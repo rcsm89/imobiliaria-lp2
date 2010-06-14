@@ -6,6 +6,7 @@ import imobiliaria.entidades.Area;
 import imobiliaria.entidades.EstadoImovel;
 import imobiliaria.entidades.Imovel;
 import junit.framework.Assert;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -40,6 +41,7 @@ public class ImovelTest {
 			imovel1 = new Imovel("     ",
 					"Rua Joaquim Caroca, Bodocongo, Num 2471, CG/PB", 3500,
 					new Area(4, 6), TipoImovel.CASA, TipoContratual.ALUGUEL);
+			Assert.fail("Deveria Lancar Excecao aqui");
 		} catch (Exception e) {
 			Assert.assertEquals("Nome invalido\n", e.getMessage());
 		}
@@ -48,6 +50,7 @@ public class ImovelTest {
 			imovel1 = new Imovel("     ",
 					"                                       ", 3500, new Area(
 							4, 6), TipoImovel.CASA, TipoContratual.ALUGUEL);
+			Assert.fail("Deveria Lancar Excecao aqui");
 		} catch (Exception e) {
 			Assert.assertEquals("Nome invalido\nEndereco invalido\n", e
 					.getMessage());
@@ -57,6 +60,7 @@ public class ImovelTest {
 			imovel1 = new Imovel("     ",
 					"Rua Joaquim Caroca, Bodocongo, Num 2471, CG/PB", -8000,
 					new Area(4, 6), TipoImovel.CASA, TipoContratual.ALUGUEL);
+			Assert.fail("Deveria Lancar Excecao aqui");
 		} catch (Exception e) {
 			Assert.assertEquals("Nome invalido\nValor invalido\n", e
 					.getMessage());
@@ -65,8 +69,9 @@ public class ImovelTest {
 		try {
 			imovel1 = new Imovel("Nome do Imovel",
 					"Rua Joaquim Caroca, Bodocongo, Num 2471, CG/PB", 0,
-					new Area(4, 6), TipoImovel.CASA, TipoContratual.ALUGUEL);
+					new Area(4, 6), TipoImovel.CASA, TipoContratual.ALUGUEL);			
 		} catch (Exception e) {
+			Assert.fail("Não Deveria Cair Nesse catch");
 			Assert.assertEquals("Valor invalido\n", e.getMessage());
 		}
 	}
@@ -99,7 +104,6 @@ public class ImovelTest {
 		Assert.assertEquals(new Area(4,6), imovel1.getArea());
 		Assert.assertEquals(TipoImovel.CASA, imovel1.getTipoDoImovel());
 		Assert.assertEquals(TipoContratual.ALUGUEL, imovel1.getTipoContratual());
-		System.out.println(imovel1.getTipoContratual());
 		Assert.assertEquals(3500.0, imovel1.getValor());
 		Assert.assertEquals(EstadoImovel.A_VENDA ,imovel1.getEstadoDoImovel());
 		
@@ -128,12 +132,14 @@ public class ImovelTest {
 		
 		try {
 			imovel1.setEndereco("        ");
+			Assert.fail("Deveria Lancar Excecao aqui");
 		} catch (Exception e) {
 			Assert.assertEquals("Endereco invalido", e.getMessage());
 		}
 		
 		try {
 			imovel1.setNome(null);
+			Assert.fail("Deveria Lancar Excecao aqui");
 		} catch (Exception e) {
 			Assert.assertEquals("Nome invalido", e.getMessage());
 		}
@@ -141,6 +147,7 @@ public class ImovelTest {
 		try {
 			imovel1.setValor(0);
 		} catch (Exception e) {
+			Assert.fail("Não Deveria Cair Nesse catch");
 			Assert.assertEquals("Valor invalido", e.getMessage());
 		}
 	}
