@@ -44,7 +44,7 @@ public class ColecaoImovelTest {
 			colecaoImovel.addImovel(imovel1);
 			Assert.assertEquals(1, colecaoImovel.getImoveis().size());
 		}catch(Exception e){
-			Assert.fail("Nao Deveria Lancar Excecao aqui");
+			Assert.fail("Nao Deveria Cair Nesse catch");
 		}
 
 		// tentando adicionar imovel ja existente na colecao.
@@ -61,14 +61,14 @@ public class ColecaoImovelTest {
 			colecaoImovel.addImovel(imovel2);
 			colecaoImovel.addImovel(imovel3);
 		}catch(Exception e){
-			Assert.fail("Nao Deveria Lancar Excecao aqui");
+			Assert.fail("Nao Deveria Cair Nesse catch");
 		}
 		
 		Assert.assertEquals(3, colecaoImovel.getImoveis().size());
 		
 		try{
 			colecaoImovel.addImovel(imovel2);
-			Assert.fail("Nao Deveria Lancar Excecao aqui");
+			Assert.fail("Deveria Lancar Excecao aqui");
 		}catch(Exception e){
 			Assert.assertEquals("Imovel Existente", e.getMessage());
 		}
@@ -129,7 +129,7 @@ public class ColecaoImovelTest {
 			Assert.assertEquals(3, colecaoImovelParaCompararEquals.getImoveis().
 					size());
 		}catch(Exception e){
-			Assert.fail("Nao Deveria Lancar Excecao aqui");
+			Assert.fail("Nao Deveria Cair Nesse catch");
 		}
 		
 		try{
@@ -155,6 +155,7 @@ public class ColecaoImovelTest {
 		
 		try{
 			colecaoImovel.removeImovel("a");
+			Assert.fail("Deveria Lancar Excecao aqui");
 		}catch(Exception e){
 			Assert.assertEquals("Registro Invalido", e.getMessage());
 		}
@@ -164,6 +165,7 @@ public class ColecaoImovelTest {
 		
 		try{
 			colecaoImovel.removeImovel(null);
+			Assert.fail("Deveria Lancar Excecao aqui");
 		}catch(Exception e){
 			Assert.assertEquals("Imovel Invalido", e.getMessage());
 		}
