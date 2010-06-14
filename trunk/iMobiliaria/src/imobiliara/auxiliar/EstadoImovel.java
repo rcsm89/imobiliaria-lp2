@@ -1,4 +1,4 @@
-package imobiliaria.entidades;
+package imobiliara.auxiliar;
 
 public enum EstadoImovel {
 	
