@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 
 /**
  * GUI para tela principal
- * @author thiagofp
+ * @author Thiago Ferreira Patricio
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
@@ -91,6 +91,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         butGroupLogin.add(rdbCliente);
+        rdbCliente.setSelected(true);
         rdbCliente.setText("Cliente");
         rdbCliente.setToolTipText("Escolha uma das opções de login");
 

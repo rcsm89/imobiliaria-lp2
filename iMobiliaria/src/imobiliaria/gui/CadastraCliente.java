@@ -17,11 +17,11 @@ import javax.swing.JOptionPane;
 
 import imobiliara.auxiliar.TipoImovel;
 import imobiliaria.processamento.Sistema;
- 
+   
 
 /**
  * Gui para Cadastramento de clientes
- * @author thiagofp
+ * @author Thiago Ferreira Patricio
  */
 public class CadastraCliente extends javax.swing.JFrame {
     
@@ -70,7 +70,7 @@ public class CadastraCliente extends javax.swing.JFrame {
         butVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Cadastramento de Cliente");
+        setTitle("iMobiliaria - Cadastramento de Cliente");
         setResizable(false);
 
         lbNome.setText("Nome:");
