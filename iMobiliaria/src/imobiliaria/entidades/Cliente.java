@@ -15,8 +15,6 @@ public class Cliente extends Usuario {
 
 	private static final long serialVersionUID = 1L;
 	private ColecaoImoveis historicoCompras = new ColecaoImoveis();
-	private ColecaoImoveis alugueis = new ColecaoImoveis();
-	private ColecaoImoveis pedidos = new ColecaoImoveis();
 	private TipoImovel preferencia;
 
 	/**
@@ -53,34 +51,6 @@ public class Cliente extends Usuario {
 	}
 	
 	/**
-	 * Metodo acessador aos alugueis
-	 * @return
-	 * 		Os alugueis do clientes 
-	 */
-	public ColecaoImoveis getAlugueis() {
-		return alugueis;
-	}
-
-	/**
-	 * Metodo acessador aos pedidos de um cliente
-	 * 
-	 * @return Os pedidos que um cliente efetuou
-	 */
-	public ColecaoImoveis getPedidos() {
-		return pedidos;
-	}
-
-	/**
-	 * Metodo modificador que adiciona um novo pedido nos pedidos do cliente.
-	 */
-	public void fazPedido(Imovel pedido) throws Exception {
-		if (pedido == null){
-			throw new IllegalArgumentException("Pedido Invalido");
-		}
-		pedidos.addImovel(pedido);
-	}
- 
-	/**
 	 * Metodo acessador a preferencia do cliente
 	 * 
 	 * @return Tipo de imovel que o cliente prefere
@@ -113,16 +83,6 @@ public class Cliente extends Usuario {
 
 		return getCpf().equals(outroCliente.getCpf());
 		
-	}
-	
-	public boolean removePedido(Imovel pedido) throws Exception{
-		
-		if (pedido == null){
-			throw new Exception("Pedido Invalido");
-		}
-		
-		return pedidos.removeImovel(String.valueOf(pedido.getRegistroImovel()));
-
 	}
 }
 

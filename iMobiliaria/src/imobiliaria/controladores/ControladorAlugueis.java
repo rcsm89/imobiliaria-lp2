@@ -1,7 +1,9 @@
 package imobiliaria.controladores;
 
+import imobiliara.auxiliar.TipoContratual;
 import imobiliaria.entidades.Aluguel;
 import imobiliaria.entidades.Cliente;
+import imobiliaria.entidades.EstadoImovel;
 import imobiliaria.entidades.Imovel;
 
 import java.io.Serializable;
@@ -10,6 +12,7 @@ import java.util.Iterator;
 
 /**
  * Clase que ira ser o Controlador de Alugueis do Sistema
+ * 
  * @author Yuri Farias
  * @version IT 02
  */
@@ -43,9 +46,17 @@ public class ControladorAlugueis implements Serializable {
 	 *            Imovel que foi Alugado
 	 * @return
 	 */
-	public boolean adicionaAluguel(Cliente alugante, Imovel imovelAlugado) {
-		if (alugante == null || imovelAlugado == null)
+	public boolean adicionaAluguel(String cpfCliente, String registroDoImovel) {
+		
+		Cliente alugante = ControladorCliente.getInstance().getCliente(cpfCliente);
+		Imovel imovelAlugado = ControladorImovel.getInstance().getImovel(registroDoImovel);
+		
+		if (alugante == null || imovelAlugado == null ||
+				imovelAlugado.getEstadoDoImovel() != EstadoImovel.PEDIDO ||
+				imovelAlugado.getTipoContratual() != TipoContratual.ALUGUEL) {
+			
 			throw new IllegalArgumentException("Parametros invalidos");
+		}
 
 		Aluguel aluguel = new Aluguel(alugante, imovelAlugado);
 
@@ -55,24 +66,22 @@ public class ControladorAlugueis implements Serializable {
 	/**
 	 * Metodo que remove um Aluguel do Controlador de Alugueis
 	 * 
-	 * @param imovelDoAluguel
-	 *            Imovel do Aluguel a ser removido
+	 * @param registroDoImovel
+	 *            Registro Imovel do Aluguel a ser removido
 	 * @return True - Caso o imovel tenha sido removido <br>
 	 *         False - Caso o imovel nao seja encontrado
-	 * @throws Exception
-	 *             Lanca excecao caso o imovel nao seja encontrado na lista de
-	 *             Alugueis de Cliente
 	 */
-	public boolean removeAluguel(Imovel imovelDoAluguel) throws Exception {
+	public boolean removeAluguel(String registroDoImovel) {
+		
+		int registroImovel;
+		try {
+			registroImovel = Integer.parseInt(registroDoImovel);
+		} catch (Exception e) {
+			throw new IllegalArgumentException("Registro invalido");
+		}
 
 		for (Aluguel a : alugueis) {
-			if (a.getImovelAlugado() == imovelDoAluguel) {
-
-				a.getAlugante().getAlugueis().removeImovel(
-						String
-								.valueOf(a.getImovelAlugado()
-										.getRegistroImovel()));
-
+			if (a.getImovelAlugado().getRegistroImovel() == registroImovel) {
 				return alugueis.remove(a);
 			}
 		}
@@ -82,13 +91,22 @@ public class ControladorAlugueis implements Serializable {
 	/**
 	 * Metodo acessador do Aluguel de um Dado Imovel Alugado
 	 * 
-	 * @param imovelAlugado
-	 *            Imovel Alugado
-	 * @return Aluguel
+	 * @param registroDoImovel
+	 *            Registro do Imovel Alugado
+	 * @return Aluguel ou <br>
+	 *         Null caso ele nao esteja alugado
 	 */
-	public Aluguel getAluguel(Imovel imovelAlugado) {
+	public Aluguel getAluguel(String registroDoImovel) {
+
+		int registroImovel;
+		try {
+			registroImovel = Integer.parseInt(registroDoImovel);
+		} catch (Exception e) {
+			throw new IllegalArgumentException("Registro invalido");
+		}
+
 		for (Aluguel a : alugueis) {
-			if (a.getImovelAlugado().equals(imovelAlugado)) {
+			if (a.getImovelAlugado().getRegistroImovel() == registroImovel) {
 				return a;
 			}
 		}
@@ -96,19 +114,22 @@ public class ControladorAlugueis implements Serializable {
 	}
 
 	/**
-	 * Metodo que adiciona ao caixa o valor de todos os alugueis
+	 * Metodo que retorna o valor total de todos os alugueis
+	 * @return Valor Total de Todos os Alugueis no Controlador
 	 */
 	public double getValorTotalDeAlugueis() {
 
 		Iterator<Aluguel> itAluguel = alugueis.iterator();
-		
+
 		double valorTotal = 0;
-		
+
 		while (itAluguel.hasNext()) {
 			valorTotal += itAluguel.next().getImovelAlugado().getValor();
 		}
-		
+
 		return valorTotal;
 	}
+	
+	
 
 }

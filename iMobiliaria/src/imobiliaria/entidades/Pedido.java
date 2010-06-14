@@ -43,7 +43,6 @@ public class Pedido implements Comparable<Object> {
 		dataDoPedido = new GregorianCalendar();
 
 		imovel.pedido();
-		comprador.fazPedido(imovel);
 	}
 
 	/**
@@ -73,6 +72,22 @@ public class Pedido implements Comparable<Object> {
 		return comprador;
 	}
 	
+	
+	/**
+	 * Metodo que mostra as informacoes do Pedido
+	 * @return String contendo informacoes completas do Pedido
+	 */
+	public String exibeInformacao() {
+		return getImovel().getRegistroImovel() + " - " +
+			getImovel().getNome() + " Valor: " + 
+			getImovel().getValor() + "\n" + "Cliente que pediu: " +
+			getComprador().getNome() + " - CPF: " +
+			getComprador().getCpf();
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
 	@Override
 	public int compareTo(Object obj) {
 		if (!(obj instanceof Pedido))
