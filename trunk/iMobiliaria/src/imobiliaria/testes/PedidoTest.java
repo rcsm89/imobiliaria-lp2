@@ -125,5 +125,18 @@ public class PedidoTest {
 		Assert.assertTrue(pedido3.compareTo(pedido1) == 0);
 		
 	}
+	
+	@Test
+	public final void testExibeInformacao() throws Exception {
+		
+		Assert.assertEquals("Imovel: (15) Casa imobiliada para Alugar - Valor: 3500.0\n" +
+				"Cliente: Bruno (123.456.789-10)", pedido1.exibeInformacao());
+		
+		Assert.assertEquals("Imovel: (16) Apartamento a Venda!!! - Valor: 25000.0\n" +
+				"Cliente: Bruno (123.456.789-10)", pedido2.exibeInformacao());
+		
+		Assert.assertEquals("Imovel: (17) Terreno a venda no Altiplano! - Valor: 50000.0\n" +
+				"Cliente: Thiago Ferreira (101.202.303-44)", pedido3.exibeInformacao());
+	}
 
 }
