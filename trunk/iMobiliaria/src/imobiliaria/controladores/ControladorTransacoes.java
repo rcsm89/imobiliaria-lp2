@@ -17,7 +17,7 @@ import java.util.HashMap;
  * Classe que ira ser o Controlador de Transacoes do Sistema
  * 
  * @author Yuri Farias
- * @version IT02
+ * @version version 02
  */
 public class ControladorTransacoes implements Serializable {
 
