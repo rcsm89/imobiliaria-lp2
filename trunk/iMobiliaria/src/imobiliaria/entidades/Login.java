@@ -156,4 +156,9 @@ public class Login {
 	Login outroLogin = (Login) obj;
 	return userName.equals(outroLogin.getLogin());
     }
+
+    @Override
+    public String toString() {
+	return "Login: " + userName + "\nSenha: " + senha;
+    }
 }
