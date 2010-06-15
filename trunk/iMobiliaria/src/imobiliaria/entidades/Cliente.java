@@ -36,9 +36,8 @@ public class Cliente extends Usuario {
 	super(cpf, dataNascimento, endereco, nome, TipoLogin.CLIENTE);
 
 	if (preferencia == null) {
-	    throw new Exception("Preferencia invalida!");
+	    throw new IllegalArgumentException("Preferencia invalida!");
 	}
-
 	this.preferencia = preferencia;
     }
 

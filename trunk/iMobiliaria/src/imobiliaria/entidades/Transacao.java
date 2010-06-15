@@ -33,6 +33,9 @@ public class Transacao implements Serializable {
 	 */
 	public Transacao(Funcionario vendedor, Cliente comprador,
 			Imovel imovelTransacao) {
+		
+		if (vendedor == null || comprador == null || imovelTransacao == null)
+			throw new IllegalArgumentException("Parametros invalidos");
 
 		this.vendedor = vendedor;
 		this.comprador = comprador;

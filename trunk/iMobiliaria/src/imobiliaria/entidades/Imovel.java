@@ -84,7 +84,7 @@ public class Imovel implements Serializable {
 
 		final int PALAVRA_VAZIA = 0;
 		if (mensagemErro.length() != PALAVRA_VAZIA) {
-			throw new Exception(mensagemErro);
+			throw new IllegalArgumentException(mensagemErro);
 		}
 
 		this.nome = nome;
@@ -116,7 +116,7 @@ public class Imovel implements Serializable {
 	 */
 	public void setNome(String nome) throws Exception {
 		if (VerificaInvalido.basico(nome)) {
-			throw new Exception("Nome invalido");
+			throw new IllegalArgumentException("Nome invalido");
 		}
 		this.nome = nome;
 	}
@@ -138,7 +138,7 @@ public class Imovel implements Serializable {
 	 */
 	public void setEndereco(String endereco) throws Exception {
 		if (VerificaInvalido.basico(endereco)) {
-			throw new Exception("Endereco invalido");
+			throw new IllegalArgumentException("Endereco invalido");
 		}
 		this.endereco = endereco;
 	}
@@ -161,7 +161,7 @@ public class Imovel implements Serializable {
 
 	public void setValor(double valor) throws Exception {
 		if (!(VerificaInvalido.pertenceAIntervalo(valor, 0, 999999999))) {
-			throw new Exception("Valor invalido");
+			throw new IllegalArgumentException("Valor invalido");
 		}
 		this.valor = valor;
 	}

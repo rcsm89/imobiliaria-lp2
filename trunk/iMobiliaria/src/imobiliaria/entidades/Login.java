@@ -44,11 +44,11 @@ public class Login {
     public Login(String nome, String password, TipoLogin tipo) throws Exception {
 
 	if ((nome == null) || (password == null) || (tipo == null)) {
-	    throw new Exception("Message");
+	    throw new IllegalArgumentException("Message");
 	}
 	nome = nome.replace(" ", "");
 	if (VerificaInvalido.basico(nome) || password.isEmpty()) {
-	    throw new Exception("Message");
+	    throw new IllegalArgumentException("Message");
 	}
 	tipoLogin = tipo;
 	senha = password;
