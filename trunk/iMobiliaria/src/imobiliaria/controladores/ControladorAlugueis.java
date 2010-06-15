@@ -34,19 +34,33 @@ public class ControladorAlugueis implements Serializable {
     public static ControladorAlugueis getInstance() {
 	return controladorAlugueisUnico;
     }
+	
+	/**
+	 * Metodo que modifica a instancia unica do Controlador de Alugueis
+	 * 
+	 * @param controlador
+	 *            Nova Instancia para o Controlador
+	 */
+	public static void setInstance(ControladorAlugueis controlador) {
+		if (controlador == null) {
+			throw new IllegalArgumentException(
+					"Controlador de Alugueis invalido");
+		}
+		controladorAlugueisUnico = controlador;
+	}
 
-    /**
-     * Metodo que adiciona um Aluguel no Controlador
-     * 
-     * @param alugante
-     *            Cliente que alugou o Imovel
-     * @param vendedor
-     *            Vendedor do Imovel vendido
-     * @param imovelAlugado
-     *            Imovel que foi Alugado
-     * @return
-     */
-    public boolean adicionaAluguel(String cpfCliente, String registroDoImovel) {
+	/**
+	 * Metodo que adiciona um Aluguel no Controlador
+	 * 
+	 * @param alugante
+	 *            Cliente que alugou o Imovel
+	 * @param vendedor
+	 *            Vendedor do Imovel vendido
+	 * @param imovelAlugado
+	 *            Imovel que foi Alugado
+	 * @return
+	 */
+	public boolean adicionaAluguel(String cpfCliente, String registroDoImovel) {
 
 	Cliente alugante = ControladorCliente.getInstance().getCliente(
 		cpfCliente);

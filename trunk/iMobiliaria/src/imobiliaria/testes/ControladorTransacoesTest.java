@@ -18,7 +18,7 @@ public class ControladorTransacoesTest {
 
 	private ControladorTransacoes controladorTransacoes = ControladorTransacoes
 			.getInstance();
-
+	
 	@Test
 	public final void testCaixa() {
 

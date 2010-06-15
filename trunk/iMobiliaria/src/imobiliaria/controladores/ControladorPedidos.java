@@ -75,9 +75,7 @@ public class ControladorPedidos implements Serializable {
      */
     public void adicionaPedido(String registroImovel, String cpf)
 	    throws Exception {
-
-	System.out.println(ControladorImovel.getInstance().listaImoveis());
-
+    	
 	Imovel imovelPedido = ControladorImovel.getInstance().getImovel(
 		registroImovel);
 

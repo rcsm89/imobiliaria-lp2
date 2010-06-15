@@ -44,6 +44,20 @@ public class ControladorTransacoes implements Serializable {
 	public static ControladorTransacoes getInstance() {
 		return controladorTransacoesUnico;
 	}
+	
+	/**
+	 * Metodo que modifica a instancia unica do Controlador de Transacoes
+	 * 
+	 * @param controlador
+	 *            Nova Instancia para o Controlador
+	 */
+	public static void setInstance(ControladorTransacoes controlador) {
+		if (controlador == null) {
+			throw new IllegalArgumentException(
+					"Controlador de Transacoes invalido");
+		}
+		controladorTransacoesUnico = controlador;
+	}
 
 	/**
 	 * Metodo Acessador do Caixa Total do Sistema
