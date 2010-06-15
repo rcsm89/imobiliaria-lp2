@@ -70,19 +70,17 @@ public class ControladorImovel implements Serializable{
 			TipoContratual tipoContratual) throws Exception {
 		
 		int regImovel;
-		Imovel imovel = null;
+
 		try {
 			regImovel = Integer.parseInt(registro);
-			
-			imovel = colecaoImovel.getImovelDeRegistro(regImovel);
-			
-			if (imovel == null) {
-				throw new Exception();
-			}
-			
 		} catch (Exception e) {
 			throw new IllegalArgumentException("Registro invalido");
 		}
+		
+		Imovel imovel = colecaoImovel.getImovelDeRegistro(regImovel);
+		
+		if (imovel == null)
+			throw new Exception("Imovel nao existente");
 		
 		imovel.setNome(nome);
 		imovel.setEndereco(endereco);
