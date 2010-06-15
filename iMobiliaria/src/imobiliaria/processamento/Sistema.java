@@ -131,7 +131,8 @@ public class Sistema implements Serializable {
 	ControladorAlugueis.setInstance((ControladorAlugueis) PersistenciaDados
 		.ler(ARQUIVO_DO_SISTEMA));
 
-	ControladorLogin.setInstance(PersistenciaDados.ler(ARQUIVO_DO_SISTEMA));
+	ControladorLogin.setInstance((ControladorLogin)
+			PersistenciaDados.ler(ARQUIVO_DO_SISTEMA));
 
 	// Verificar necessidade!
 
