@@ -47,9 +47,9 @@ public class ImovelTest {
 		}
 
 		try {
-			imovel1 = new Imovel("     ",
-					"                                       ", 3500, new Area(
-							4, 6), TipoImovel.CASA, TipoContratual.ALUGUEL);
+			imovel1 = new Imovel("     ", "                                  ",
+					3500, new Area(4, 6), TipoImovel.CASA,
+					TipoContratual.ALUGUEL);
 			Assert.fail("Deveria Lancar Excecao aqui");
 		} catch (Exception e) {
 			Assert.assertEquals("Nome invalido\nEndereco invalido\n", e
