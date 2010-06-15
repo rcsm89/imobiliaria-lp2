@@ -6,6 +6,7 @@ import imobiliaria.entidades.Funcionario;
 import imobiliaria.entidades.Imovel;
 import imobiliaria.entidades.Transacao;
 import imobiliaria.exceptions.TransacaoNaoExistenteException;
+import imobiliaria.exceptions.ValorInvalidoException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class ControladorTransacoes implements Serializable {
 	public static ControladorTransacoes getInstance() {
 		return controladorTransacoesUnico;
 	}
-	
+
 	/**
 	 * Metodo que modifica a instancia unica do Controlador de Transacoes
 	 * 
@@ -85,9 +86,14 @@ public class ControladorTransacoes implements Serializable {
 	 * 
 	 * @param valor
 	 *            Valor a ser adicionado
+	 * @throws ValorInvalidoException
+	 *             Caso o valor seja igual ou menor que zero
 	 */
 
-	public void adicionaAoCaixa(double valor) {
+	public void adicionaAoCaixa(double valor) throws ValorInvalidoException {
+		if (valor <= 0) {
+			throw new ValorInvalidoException("Valor invalido");
+		}
 		caixaTotal += valor;
 	}
 
@@ -96,9 +102,14 @@ public class ControladorTransacoes implements Serializable {
 	 * 
 	 * @param valor
 	 *            Valor a ser removido
+	 * @throws ValorInvalidoException
+	 *             Caso o valor seja igual ou menor que zero
 	 */
 
-	public void removeDoCaixa(double valor) {
+	public void removeDoCaixa(double valor) throws ValorInvalidoException {
+		if (valor <= 0) {
+			throw new ValorInvalidoException("Valor invalido");
+		}
 		caixaTotal -= valor;
 	}
 
@@ -163,17 +174,16 @@ public class ControladorTransacoes implements Serializable {
 
 		Cliente comprador = ControladorCliente.getInstance().getCliente(
 				cpfComprador);
-		
+
 		Funcionario vendedor = ControladorFuncionario.getInstance()
 				.getFuncionarioPorCreci(creciVendedor);
-		
-		Imovel imovel = ControladorImovel.getInstance().getImovel(registroImovel);
-		
+
+		Imovel imovel = ControladorImovel.getInstance().getImovel(
+				registroImovel);
+
 		if (vendedor == null || comprador == null || imovel == null) {
 			return false;
 		}
-		
-		
 
 		Transacao transacao = new Transacao(vendedor, comprador, imovel);
 
@@ -191,17 +201,18 @@ public class ControladorTransacoes implements Serializable {
 	 * 
 	 * @param registro
 	 *            Registro da Transacao a ser removida
-	 * @throws TransacaoNaoExistenteException 
+	 * @throws TransacaoNaoExistenteException
 	 */
-	public void removeTransacao(int registro) throws TransacaoNaoExistenteException {
+	public void removeTransacao(int registro)
+			throws TransacaoNaoExistenteException {
 
 		for (Transacao t : logsFinanceiros) {
 			if (t.getRegistroTransacao() == registro) {
 				logsFinanceiros.remove(t);
-				
+
 				if (logsFinanceirosMensal.contains(t))
 					logsFinanceirosMensal.remove(t);
-				
+
 				return;
 			}
 		}
@@ -262,9 +273,13 @@ public class ControladorTransacoes implements Serializable {
 				.get(Calendar.MONTH) == hoje.get(Calendar.MONTH))) {
 
 			if (pagouNesseMes == true)
-				adicionaAoCaixa(ControladorAlugueis.getInstance()
-						.getValorTotalDeAlugueis());
-
+				try {
+					adicionaAoCaixa(ControladorAlugueis.getInstance()
+							.getValorTotalDeAlugueis());
+				} catch (ValorInvalidoException e) {
+					System.out.println("Erro ao adicionar no caixa : "
+							+ e.getMessage());
+				}
 			pagouNesseMes = false;
 		}
 	}
