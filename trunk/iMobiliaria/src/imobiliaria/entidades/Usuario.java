@@ -1,8 +1,6 @@
-/**
- * Package com as classes usadas pelo sistema 
- */
 package imobiliaria.entidades;
 
+import imobiliara.auxiliar.TipoLogin;
 import imobiliaria.util.FormataEntrada;
 import imobiliaria.util.VerificaInvalido;
 
@@ -20,16 +18,13 @@ public abstract class Usuario implements Serializable, Comparable<Object> {
 
     // Atributos
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private String dataNascimento; // data de nascimento da pessoa
+    private static final long serialVersionUID = 1L;
+
+    private String dataNascimento; // data de nascimento da pessoa
     private String endereco; // residencia da pessoa
     private String nome; // nome da pessoa
     private String cpf; // cpf da pessoa
-    private String login; // login do sistema
-    private String senha; // senha do login
+    private Login login;
 
     // Construtor
 
@@ -49,7 +44,7 @@ public abstract class Usuario implements Serializable, Comparable<Object> {
      *             <i>VerificaInvalido</i>)
      */
     public Usuario(String cpf, Calendar dataNascimento, String endereco,
-	    String nome) throws Exception {
+	    String nome, TipoLogin tLogin) throws Exception {
 
 	String promptErro = "";
 	// Verif Nome
@@ -76,20 +71,7 @@ public abstract class Usuario implements Serializable, Comparable<Object> {
 	this.endereco = FormataEntrada.capitalize(endereco).trim();
 	this.nome = FormataEntrada.capitalize(nome).trim();
 	this.cpf = FormataEntrada.cpf(cpf).trim();
-	/*
-	 * Criacao de uma senha default do usuario do sistema A senha default
-	 * sao os digitos da data de nascimento
-	 * 
-	 * [Exemplo: 08/05/1991] [Senha Default: 08051991]
-	 */
-	String[] dataApenasNumeros = getDataNascimento().split("/");
-	String senha = "";
-	for (String digitos : dataApenasNumeros) {
-	    senha += digitos;
-	}
-	this.senha = senha;
-	// O Login eh igual ao cpf
-	this.login = cpf;
+	this.login = new Login(this.cpf, this.dataNascimento, tLogin);
     }
 
     // Metodos
@@ -159,7 +141,7 @@ public abstract class Usuario implements Serializable, Comparable<Object> {
     }
 
     /**
-     * Modifccica o nome
+     * Modifica o nome
      * 
      * @param nome
      *            O nome a ser definido
@@ -202,52 +184,6 @@ public abstract class Usuario implements Serializable, Comparable<Object> {
 	this.cpf = FormataEntrada.cpf(cpf);
     }
 
-    /**
-     * Retorna o login do usuario
-     * 
-     * @return O login do usuario
-     */
-    public String getLogin() {
-	return login;
-    }
-
-    /**
-     * Redefine o Login do usuario do sistema
-     * 
-     * @param login
-     *            O login a ser definido
-     * @throws Exception
-     *             Caso o login seja null, uma string vazia ou espacos em branco
-     */
-    public void setLogin(String login) throws Exception {
-	if (VerificaInvalido.basico(login)) {
-	    throw new Exception("Login invalido\n");
-	}
-	this.login = login;
-    }
-
-    /**
-     * @return the senha
-     */
-    public String getSenha() {
-	return senha;
-    }
-
-    /**
-     * Redefine a senha do usuario do sistema
-     * 
-     * @param senha
-     *            A senha a ser definida
-     * @throws Exception
-     *             Caso a senha seja null, uma string vazia ou espacos em branco
-     */
-    public void setSenha(String senha) throws Exception {
-	if (VerificaInvalido.basico(senha)) {
-	    throw new Exception("Senha invalida\n");
-	}
-	this.senha = senha;
-    }
-
     /*
      * (non-Javadoc)
      * 
@@ -266,14 +202,25 @@ public abstract class Usuario implements Serializable, Comparable<Object> {
 	return getNome() + "|" + getCpf() + "|" + getEndereco() + "|"
 		+ getDataNascimento();
     }
-    
+
     public int compareTo(Object obj) {
-    	if (!(obj instanceof Usuario))
-    		throw new IllegalArgumentException();
-    	
-    	Usuario usuario = (Usuario) obj;
-    	
-		return getNome().compareTo(usuario.getNome());
+	if (!(obj instanceof Usuario))
+	    throw new IllegalArgumentException();
+
+	Usuario usuario = (Usuario) obj;
+
+	return getNome().compareTo(usuario.getNome());
+    }
+
+    /**
+     * Retorna o login de um usuario<br>
+     * Returns the user's login
+     * 
+     * @return O login do usuario<br>
+     *         The user's login
+     */
+    public Login getLogin() {
+	return login;
     }
 
 }
