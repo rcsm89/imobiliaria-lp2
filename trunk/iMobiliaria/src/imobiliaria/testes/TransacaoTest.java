@@ -133,8 +133,5 @@ public class TransacaoTest {
 		Transacao.setCriadorRegistroTransacao(-5);
 		
 		Assert.assertEquals(-5, Transacao.getCriadorRegistroTransacao());
-		
-		
-		
 	}
 }
