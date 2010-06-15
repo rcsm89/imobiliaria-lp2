@@ -33,7 +33,7 @@ public class Funcionario extends Usuario {
 	    String nome, String creci) throws Exception {
 	super(cpf, dataNascimento, endereco, nome, TipoLogin.FUNCIONARIO);
 	if (VerificaInvalido.numero(creci))
-	    throw new Exception("Creci invalido\n");
+	    throw new IllegalArgumentException("Creci invalido\n");
 	this.creci = creci;
     }
 

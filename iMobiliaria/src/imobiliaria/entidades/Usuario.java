@@ -64,7 +64,7 @@ public abstract class Usuario implements Serializable, Comparable<Object> {
 	}
 	final int TAM_PALAVRA_VAZIA = 0;
 	if (promptErro.length() != TAM_PALAVRA_VAZIA) {
-	    throw new Exception(promptErro);
+	    throw new IllegalArgumentException(promptErro);
 	}
 
 	this.dataNascimento = FormataEntrada.data(dataNascimento);
@@ -99,7 +99,7 @@ public abstract class Usuario implements Serializable, Comparable<Object> {
 	// Verif Data Nascimento
 	if ((VerificaInvalido.maiorIdade(dataNascimento))
 		|| VerificaInvalido.data(dataNascimento)) {
-	    throw new Exception("Data de nascimento invalida");
+	    throw new IllegalArgumentException("Data de nascimento invalida");
 	}
 	this.dataNascimento = FormataEntrada.data(dataNascimento);
     }
@@ -126,7 +126,7 @@ public abstract class Usuario implements Serializable, Comparable<Object> {
     public void setEndereco(String endereco) throws Exception {
 	// Verif Endereco
 	if (VerificaInvalido.endereco(endereco)) {
-	    throw new Exception("Endereco invalido\n");
+	    throw new IllegalArgumentException("Endereco invalido\n");
 	}
 	this.endereco = FormataEntrada.capitalize(endereco).trim();
     }
@@ -152,7 +152,7 @@ public abstract class Usuario implements Serializable, Comparable<Object> {
     public void setNome(String nome) throws Exception {
 	// Verif Nome
 	if (VerificaInvalido.nome(nome))
-	    throw new Exception("Nome invalido\n");
+	    throw new IllegalArgumentException("Nome invalido\n");
 	this.nome = FormataEntrada.capitalize(nome);
     }
 
@@ -179,7 +179,7 @@ public abstract class Usuario implements Serializable, Comparable<Object> {
 	// Verif CPF
 	final int TAM_CPF_FORMATADO = 11;
 	if (VerificaInvalido.numeroFormatado(cpf, TAM_CPF_FORMATADO)) {
-	    throw new Exception("CPF invalido\n");
+	    throw new IllegalArgumentException("CPF invalido\n");
 	}
 	this.cpf = FormataEntrada.cpf(cpf);
     }

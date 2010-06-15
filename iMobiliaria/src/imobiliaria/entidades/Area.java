@@ -2,6 +2,7 @@ package imobiliaria.entidades;
 
 
 import imobiliara.auxiliar.TipoArea;
+import imobiliaria.exceptions.MedidaInvalidaException;
 
 import java.io.Serializable;
 
@@ -37,13 +38,12 @@ public class Area implements Serializable {
 			mensagemDeErro += "Largura invalida\n";
 		
 		if (mensagemDeErro.length() != TAM_ZERO)
-			throw new Exception(mensagemDeErro);
+			throw new MedidaInvalidaException(mensagemDeErro);
 
 		this.comprimento = comprimento;
 		this.largura = largura;
 
 		atualizaClassificacao();
-
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class Area implements Serializable {
 	public void setComprimento(double comprimento) throws Exception {
 		final int TAM_VAZIO = 0;
 		if (comprimento <= TAM_VAZIO) {
-			throw new Exception("Comprimento invalido");
+			throw new MedidaInvalidaException("Comprimento invalido");
 		}
 		this.comprimento = comprimento;
 		atualizaClassificacao();
@@ -87,7 +87,7 @@ public class Area implements Serializable {
 	public void setLargura(double largura) throws Exception {
 		final int TAM_VAZIO = 0;
 		if (largura <= TAM_VAZIO) {
-			throw new Exception("Largura invalida");
+			throw new MedidaInvalidaException("Largura invalida");
 		}
 		this.largura = largura;
 		atualizaClassificacao();
