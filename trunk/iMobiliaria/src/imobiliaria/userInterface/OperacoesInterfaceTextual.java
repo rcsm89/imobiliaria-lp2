@@ -153,9 +153,8 @@ public class OperacoesInterfaceTextual {
 
 	System.out.println(lineSep
 		+ "=========== Cadastro Efetuado com Sucesso ============="
-		+ lineSep + lineSep + "Login default: "
-		+ novoCliente.getLogin() + lineSep + "Senha default: "
-		+ novoCliente.getSenha() + lineSep + lineSep
+		+ lineSep + lineSep + novoCliente.getLogin().toString()
+		+ lineSep + lineSep
 		+ "        Voce podera redefinir suas preferencias\n"
 		+ "        posteriormente quando acessar sua conta\n");
     }
@@ -206,8 +205,7 @@ public class OperacoesInterfaceTextual {
 
 	System.out.println(lineSep
 		+ "=========== Cadastro Efetuado com Sucesso ============="
-		+ lineSep + lineSep + "Login default: " + novoFunc.getLogin()
-		+ lineSep + "Senha default: " + novoFunc.getSenha() + lineSep
+		+ lineSep + lineSep + novoFunc.getLogin().toString() + lineSep
 		+ lineSep + "        Voce podera redefinir suas preferencias\n"
 		+ "        posteriormente quando acessar sua conta\n");
     }
