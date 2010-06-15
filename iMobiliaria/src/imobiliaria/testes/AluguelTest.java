@@ -96,5 +96,29 @@ public class AluguelTest {
 		Assert.assertFalse(aluguel2.getImovelAlugado().equals(imovel1));
 		
 	}
+	
+	@Test
+	public final void testToString() {
+		
+		Assert.assertEquals(
+				"Alugante: Jean (110.220.330-40) Imovel: Casa imobiliada para Alugar (6)",
+				aluguel1.toString());
+		
+		Assert.assertEquals(
+				"Alugante: Thiago Ferreira (101.202.303-44) Imovel: Apartamento a Venda!!! (7)",
+				aluguel2.toString());
+	}
+	
+	@Test
+	public final void testEquals() {
+		
+		Assert.assertTrue(aluguel1.equals(new Aluguel(cliente1, imovel1)));
+		Assert.assertTrue(aluguel2.equals(new Aluguel(cliente2, imovel2)));
+		Assert.assertFalse(aluguel1.equals(new Aluguel(cliente1, imovel2)));
+		Assert.assertFalse(aluguel1.equals(new Aluguel(cliente1, imovel2)));
+		Assert.assertFalse(aluguel1.equals(new Aluguel(cliente2, imovel2)));
+		Assert.assertFalse(aluguel2.equals(new Aluguel(cliente1, imovel2)));
+		
+	}
 
 }

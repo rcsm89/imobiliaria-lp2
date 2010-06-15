@@ -80,11 +80,11 @@ public class Pedido implements Comparable<Object> {
 	 * @return String contendo informacoes completas do Pedido
 	 */
 	public String exibeInformacao() {
-		return getImovel().getRegistroImovel() + " - " +
-			getImovel().getNome() + " Valor: " + 
-			getImovel().getValor() + "\n" + "Cliente que pediu: " +
-			getComprador().getNome() + " - CPF: " +
-			getComprador().getCpf();
+		return "Imovel: (" + getImovel().getRegistroImovel() + ") " +
+			getImovel().getNome() + " - Valor: " + 
+			getImovel().getValor() + "\n" + "Cliente: " +
+			getComprador().getNome() + " (" +
+			getComprador().getCpf() + ")";
 	}
 	
 	/* (non-Javadoc)

@@ -259,6 +259,8 @@ public class ControladorPedidos implements Serializable {
 
 		ControladorTransacoes.getInstance().adicionaAoCaixa(
 				pedido.getImovel().getValor());
+		
+		listaPedidos.remove(pedido);
 	}
 
 }
