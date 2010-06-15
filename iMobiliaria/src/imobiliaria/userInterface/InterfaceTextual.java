@@ -7,6 +7,7 @@ import imobiliara.auxiliar.MenuInterfaceFuncionario;
 import imobiliara.auxiliar.TipoLogin;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.Funcionario;
+import imobiliaria.entidades.Login;
 import imobiliaria.processamento.Sistema;
 import imobiliaria.util.FerramentaMenu;
 import imobiliaria.util.MetodoEntrada;
@@ -64,7 +65,7 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 
 	    switch (opcao) {
 	    case CLIENTE:
-		if (acesso(CLIENTE)) {
+		if (acesso(TipoLogin.CLIENTE)) {
 		    System.out.println(loginOk);
 		    interfaceCliente(cliente);
 		    System.out.println(logOut);
@@ -74,7 +75,7 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 		break;
 
 	    case FUNCIONARIO:
-		if (acesso(FUNCIONARIO)) {
+		if (acesso(TipoLogin.FUNCIONARIO)) {
 		    System.out.println(loginOk);
 		    interfaceFuncionario(func);
 		    System.out.println(logOut);
@@ -84,7 +85,7 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 		break;
 
 	    case ADMINISTRADOR:
-		if (acesso(ADMINISTRADOR)) {
+		if (acesso(TipoLogin.ADMINISTRADOR)) {
 		    System.out.println(loginOk);
 		    interfaceAdmin();
 		    System.out.println(logOut);
@@ -370,43 +371,15 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 				.opcoesMenu(FUNCIONARIO)));
     }
 
-    private boolean acesso(int tipo) {
+    private boolean acesso(TipoLogin tipo) {
 
 	String userName = MetodoEntrada.recebeString("Login: ");
 	String password = MetodoEntrada.recebeString("Senha: ");
+	
+	Login teste = sis.getControladorLogin().getLogin(Username);
 
-	if (tipo == ADMINISTRADOR) {
-	    return sis.login(userName, password, TipoLogin.ADMINISTRADOR);
+	return sis.getControladorLogin().verificaLogin(teste);
 
-	} else if (tipo == FUNCIONARIO) {
-	    for (Funcionario f : sis.controladorFuncionarios()
-		    .getColecaoFuncionario().getColecaoFuncionarios()) {
-		if ((f.getLogin().equals(userName))
-			&& (f.getSenha().equals(password))) {
-		    try {
-			func = sis.controladorFuncionarios()
-				.getFuncionarioPorCreci(f.getCreci());
-		    } catch (Exception e) {
-			return false;
-		    }
-		}
-	    }
-	    return sis.login(userName, password, TipoLogin.FUNCIONARIO);
-
-	} else if (tipo == CLIENTE) {
-	    for (Cliente cl : sis.controladorClientes().getColecaoClientes()
-		    .getClientes()) {
-		if ((cl.getLogin().equals(userName))
-			&& (cl.getSenha().equals(password))) {
-		    cliente = sis.controladorClientes().getCliente(cl.getCpf());
-		}
-	    }
-
-	    return sis.login(userName, password, TipoLogin.CLIENTE);
-
-	} else {
-	    return false;
-	}
     }
 
 }
