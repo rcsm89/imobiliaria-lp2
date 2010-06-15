@@ -22,6 +22,7 @@ public class ControladorLogin implements Serializable {
     // Attribute
     private Collection<Login> loginsDoSistema;
     private static final long serialVersionUID = 1L;
+    private static ControladorLogin controladorLoginsUnico = new ControladorLogin();
 
     // Constructor
     /**
@@ -33,6 +34,14 @@ public class ControladorLogin implements Serializable {
     }
 
     // Methods
+    /**
+     * Singleton do controlador
+     * 
+     * @return Controlador de Logins
+     */
+    public static ControladorLogin getInstance() {
+	return controladorLoginsUnico;
+    }
 
     /**
      * Retorna o numero de logins cadastrados<br>
