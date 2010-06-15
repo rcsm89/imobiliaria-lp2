@@ -17,7 +17,7 @@ import imobiliaria.util.PersistenciaDados;
  * System's textual interface
  * 
  * @author Jeanderson Barros Candido
- * @version version 01
+ * @version version 02 (update)
  * 
  */
 public class InterfaceTextual implements MenuInterfaceCliente,
