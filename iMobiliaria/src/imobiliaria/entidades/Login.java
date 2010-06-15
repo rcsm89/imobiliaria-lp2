@@ -5,7 +5,10 @@
 package imobiliaria.entidades;
 
 import imobiliara.auxiliar.TipoLogin;
+import imobiliaria.util.FormataEntrada;
 import imobiliaria.util.VerificaInvalido;
+
+import java.util.Calendar;
 
 /**
  * Login de acesso para uma conta do iMobiliaria<br>
@@ -50,6 +53,31 @@ public class Login {
 	tipoLogin = tipo;
 	senha = password;
 	userName = nome;
+    }
+
+    /**
+     * Gera uma senha a partir da data de aniversario<br>
+     * Generates a password by a date
+     * 
+     * @param data
+     *            Uma data qualquer<br>
+     *            Any date
+     * @return String representando uma senha<br>
+     *         String representing the password
+     */
+    public static String geraSenha(Calendar data) {
+	/*
+	 * Criacao de uma senha default do usuario do sistema A senha default
+	 * sao os digitos da data de nascimento
+	 * 
+	 * [Exemplo: 08/05/1991] [Senha Default: 08051991]
+	 */
+	String[] dataApenasNumeros = FormataEntrada.data(data).split("/");
+	String senha = "";
+	for (String digitos : dataApenasNumeros) {
+	    senha += digitos;
+	}
+	return senha;
     }
 
     /**
