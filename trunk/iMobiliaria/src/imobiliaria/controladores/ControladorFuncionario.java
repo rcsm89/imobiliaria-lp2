@@ -1,20 +1,19 @@
 package imobiliaria.controladores;
 
-import imobiliaria.entidades.Funcionario;
-import imobiliaria.processamento.ColecaoFuncionario;
-import imobiliaria.util.VerificaInvalido;
-
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.TreeSet;
+import imobiliaria.entidades.Funcionario;
+import imobiliaria.processamento.ColecaoFuncionario;
+import imobiliaria.util.VerificaInvalido;
 
 /**
  * Classe ControladorFuncionario que controla e lista opcoes sobre Funcionario
  * 
- * @author thiagofp
+ * @author Thiago Ferreira Patricio
  * 
- * @version version 02
+ * @version IT02
  */
 public class ControladorFuncionario implements Serializable {
 
@@ -22,13 +21,33 @@ public class ControladorFuncionario implements Serializable {
     private static ControladorFuncionario controladorFuncionarioUnico = new ControladorFuncionario();
     private ColecaoFuncionario colecaoFunc = new ColecaoFuncionario();
 
-    public static ControladorFuncionario getInstance() {
-	return controladorFuncionarioUnico;
-    }
 
-    private ControladorFuncionario() {
-    }
+	private ControladorFuncionario() {
+	}
 
+	/**
+	 * Metodo que retorna uma instacia de controlador de funcionario
+	 * 
+	 * @return Controlador de Funcionario
+	 */
+	public static ControladorFuncionario getInstance() {
+		return controladorFuncionarioUnico;
+	}
+	
+	/**
+	 * Metodo que modifica a instancia unica do Controlador de Funcionario
+	 * 
+	 * @param controlador
+	 *            Nova Instancia para o Funcionario
+	 */
+	public static void setInstance(ControladorFuncionario controladorFuncionario){
+	
+		if (controladorFuncionario == null){
+			throw new IllegalArgumentException("Controlador invalido");
+		}
+		controladorFuncionarioUnico = controladorFuncionario;
+	}
+	
     /**
      * Metodo acessador da colecao de funcionario
      * 
@@ -229,26 +248,27 @@ public class ControladorFuncionario implements Serializable {
 		+ func.getEndereco();
     }
 
-    /**
-     * Remove um funcionario da colecao apartir do seu creci
-     * 
-     * @param creci
-     *            Creci do funcionario a ser removido
-     * @return True, se o funcionario foi removido<br>
-     *         False, caso contrario
-     * @throws Exception
-     *             Caso o creci seja invalido
-     */
-    public boolean removeFuncionario(String creci) throws Exception {
-	if (VerificaInvalido.numero(creci)) {
-	    throw new Exception("Creci Invalido");
+	/**
+	 * Remove um funcionario da colecao apartir do seu creci
+	 * 
+	 * @param creci
+	 *            Creci do funcionario a ser removido
+	 * @return True, se o funcionario foi removido<br>
+	 *         False, caso contrario
+	 * @throws Exception
+	 *             Caso o creci seja invalido
+	 */
+	public boolean removeFuncionario(String creci) throws Exception {
+		if (VerificaInvalido.numero(creci)) {
+			throw new Exception("Creci Invalido");
+		}
+		for (Funcionario func : colecaoFunc.getColecaoFuncionarios()) {
+			if (func.getCreci().equals(creci)) {
+				return colecaoFunc.getColecaoFuncionarios().remove(func);
+			}
+		}
+		return false;
 	}
-	for (Funcionario func : colecaoFunc.getColecaoFuncionarios()) {
-	    if (func.getCreci().equals(creci)) {
-		return colecaoFunc.getColecaoFuncionarios().remove(func);
-	    }
-	}
-	return false;
-    }
+
 
 }
