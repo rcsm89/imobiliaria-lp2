@@ -1,13 +1,13 @@
 package imobiliaria.controladores;
 
+import imobiliaria.entidades.Funcionario;
+import imobiliaria.processamento.ColecaoFuncionario;
+import imobiliaria.util.VerificaInvalido;
+
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.TreeSet;
-
-import imobiliaria.entidades.Funcionario;
-import imobiliaria.processamento.ColecaoFuncionario;
-import imobiliaria.util.VerificaInvalido;
 
 /**
  * Classe ControladorFuncionario que controla e lista opcoes sobre Funcionario
@@ -20,7 +20,6 @@ public class ControladorFuncionario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private static ControladorFuncionario controladorFuncionarioUnico = new ControladorFuncionario();
-    private HashMap<String, String> loginFuncionarios = new HashMap<String, String>();
     private ColecaoFuncionario colecaoFunc = new ColecaoFuncionario();
 
     public static ControladorFuncionario getInstance() {
@@ -64,34 +63,7 @@ public class ControladorFuncionario implements Serializable {
 	Funcionario funcionarioASerAdicionado = new Funcionario(cpf,
 		dataNascimento, endereco, nome, creci);
 
-	if (colecaoFunc.adicionaFuncionario(funcionarioASerAdicionado)) {
-	    loginFuncionarios.put(funcionarioASerAdicionado.getLogin(),
-		    funcionarioASerAdicionado.getSenha());
-	    return true;
-	}
-
-	return false;
-    }
-
-    /**
-     * Metodo verificador de login e senha para Funcionarios
-     * 
-     * @param login
-     *            Login
-     * @param senha
-     *            Senha
-     * @return True - caso o login seja efetuado <br>
-     *         False - caso o login e senha sejam invalidos
-     */
-
-    public boolean login(String login, String senha) {
-	if (VerificaInvalido.basico(login) || VerificaInvalido.basico(senha))
-	    return false;
-	if (loginFuncionarios.containsKey(login)) {
-	    if (loginFuncionarios.get(login).equals(senha))
-		return true;
-	}
-	return false;
+	return colecaoFunc.adicionaFuncionario(funcionarioASerAdicionado);
     }
 
     /**
