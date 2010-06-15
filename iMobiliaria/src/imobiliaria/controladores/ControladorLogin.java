@@ -6,6 +6,7 @@ package imobiliaria.controladores;
 
 import imobiliaria.entidades.Login;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -14,12 +15,13 @@ import java.util.HashSet;
  * Manager the system's logins
  * 
  * @author Jeanderson Barros Candido
- * @version iteracao 2
+ * @version version 02
  */
-public class ControladorLogin {
+public class ControladorLogin implements Serializable {
 
     // Attribute
     private Collection<Login> loginsDoSistema;
+    private static final long serialVersionUID = 1L;
 
     // Constructor
     /**
