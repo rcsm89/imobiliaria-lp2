@@ -106,6 +106,9 @@ public class ControladorLoginTest {
 	c2.adicionaLogin(lg2);
 	c2.adicionaLogin(lg3);
 
+	Login x = lg1;
+	Assert.assertTrue(c2.verificaLogin(x));
+
 	final int EXPECTED_SIZE = 3;
 	Assert.assertEquals(EXPECTED_SIZE, c2.numLoginsCadastrados());
 
