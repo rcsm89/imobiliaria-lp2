@@ -47,10 +47,15 @@ public class ControladorImovelTest {
 		TipoImovel tipoDoImovel = imovel1.getTipoDoImovel();
 		TipoContratual tipoDeContrato = imovel1.getTipoContratual();
 
-		controladorImovel.modificaImovel(//String.valueOf(imovel1.getRegistroImovel()),
-				"0" ,nome, endereco, preco, area,
+		controladorImovel.addImovel(imovel1.getNome(), imovel1.getEndereco(),
+				imovel1.getValor(),	imovel1.getArea(), imovel1.getTipoDoImovel(),
+				imovel1.getTipoContratual());
+		
+		System.out.println(controladorImovel.listaImoveis());
+		
+		controladorImovel.modificaImovel("3", nome, endereco, preco, area,
 				tipoDoImovel, tipoDeContrato);
-
+		
 		Assert.assertFalse("Casa imobiliada para Alugar".equals(imovel1
 				.getNome()));
 
