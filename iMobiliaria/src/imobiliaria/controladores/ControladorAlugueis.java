@@ -66,14 +66,19 @@ public class ControladorAlugueis implements Serializable {
 		Imovel imovelAlugado = ControladorImovel.getInstance().getImovel(
 				registroDoImovel);
 
-		if (alugante == null || imovelAlugado == null
+		if (alugante == null )
+			throw new IllegalArgumentException("Cliente invalido");
+		
+		if ( imovelAlugado == null
 				|| imovelAlugado.getEstadoDoImovel() != EstadoImovel.PEDIDO
 				|| imovelAlugado.getTipoContratual() != TipoContratual.ALUGUEL) {
 
-			throw new IllegalArgumentException("Parametros invalidos");
+			throw new IllegalArgumentException("Imovel invalido");
 		}
 
 		Aluguel aluguel = new Aluguel(alugante, imovelAlugado);
+		
+		imovelAlugado.alugado();
 
 		return alugueis.add(aluguel);
 	}
@@ -97,6 +102,7 @@ public class ControladorAlugueis implements Serializable {
 
 		for (Aluguel a : alugueis) {
 			if (a.getImovelAlugado().getRegistroImovel() == registroImovel) {
+				a.getImovelAlugado().a_venda();
 				return alugueis.remove(a);
 			}
 		}

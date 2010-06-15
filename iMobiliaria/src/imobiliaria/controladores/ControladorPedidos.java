@@ -22,226 +22,243 @@ import java.util.TreeSet;
 
 public class ControladorPedidos implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    // Atributos
+	// Atributos
 
-    private TreeSet<Pedido> listaPedidos = new TreeSet<Pedido>();
+	private TreeSet<Pedido> listaPedidos = new TreeSet<Pedido>();
 
-    private static ControladorPedidos controladorPedidos = new ControladorPedidos();
+	private static ControladorPedidos controladorPedidos = new ControladorPedidos();
 
-    // Construtor
+	// Construtor
 
-    /**
-     * Construtor privado para nao ocorrer instanciacoes da classe <br>
-     * fora da classe.
-     */
-    private ControladorPedidos() {
-    }
-
-    /**
-     * Metodo que retorna uma instacia de pedidos
-     * 
-     * @return Controlador de Pedidos
-     */
-    public static ControladorPedidos getInstance() {
-	return controladorPedidos;
-    }
-
-    /**
-     * Metodo que modifica a instancia unica do Controlador de Pedidos
-     * 
-     * @param controlador
-     *            Nova Instancia para o Controlador
-     */
-    public static void setInstance(ControladorPedidos controlador) {
-	if (controlador == null) {
-	    throw new IllegalArgumentException(
-		    "Controlador de Pedidos invalido");
-	}
-	controladorPedidos = controlador;
-    }
-
-    /**
-     * Metodo que adiciona um pedido ao Sistema
-     * 
-     * @param registroImovel
-     *            Registro do Imovel pedido
-     * @param cpf
-     *            CPF do Cliente que fez a solicitacao
-     * @throws Exception
-     *             Lanca excecao caso o imovel nao exista, o cliente nao exista
-     *             ou o imovel ja tenha sido pedido
-     */
-    public void adicionaPedido(String registroImovel, String cpf)
-	    throws Exception {
-    	
-	Imovel imovelPedido = ControladorImovel.getInstance().getImovel(
-		registroImovel);
-
-	Cliente clienteQueSolicitou = ControladorCliente.getInstance()
-		.getCliente(cpf);
-
-	if (imovelPedido == null)
-	    throw new IllegalArgumentException("Imovel invalido");
-
-	if (clienteQueSolicitou == null)
-	    throw new IllegalArgumentException("Cliente invalido");
-
-	if (imovelPedido.getEstadoDoImovel() == EstadoImovel.PEDIDO) {
-	    throw new Exception("Imovel ja pedido");
+	/**
+	 * Construtor privado para nao ocorrer instanciacoes da classe <br>
+	 * fora da classe.
+	 */
+	private ControladorPedidos() {
 	}
 
-	imovelPedido.pedido();
-	listaPedidos.add(new Pedido(imovelPedido, clienteQueSolicitou));
-    }
-
-    /**
-     * Metodo que realiza a compra de um pedido ao Sistema
-     * 
-     * @param registroImovel
-     *            Registro do Imovel que vai ser realizada a compra
-     * @param creciFuncionario
-     *            Creci do funcionario que efetuou a compra
-     * @throws Exception
-     *             Lanca excecao caso o Imovel ou funcionario nao exista, ou
-     *             caso o Imovel nao tenha sido pedido
-     */
-    public void efetuaPedido(String registroImovel, String creciFuncionario)
-	    throws Exception {
-
-	Pedido pedido = getPedido(registroImovel);
-
-	Funcionario vendedor = ControladorFuncionario.getInstance()
-		.getFuncionarioPorCreci(creciFuncionario);
-
-	if (vendedor == null || pedido == null)
-	    throw new IllegalArgumentException("Parametros invalidos");
-
-	if (pedido.getImovel().getTipoContratual() == TipoContratual.VENDA) {
-
-	    // A Venda
-
-	    efetuaVenda(pedido, vendedor);
-
-	} else {
-
-	    // Aluguel
-
-	    efetuaAluguel(pedido);
-
-	}
-    }
-
-    /**
-     * Metodo que realiza a compra de um pedido ao Sistema
-     * 
-     * @param registroImovel
-     *            Registro do Imovel que foi pedido
-     * @throws Exception
-     *             Lanca Excecao caso o imovel nao exista ou nao tenha sido
-     *             pedido
-     */
-    public void removePedido(String registroImovel) throws Exception {
-
-	Pedido pedido = getPedido(registroImovel);
-
-	if (pedido == null)
-	    throw new IllegalArgumentException("Parametros invalidos");
-
-	pedido.getImovel().a_venda();
-	listaPedidos.remove(pedido);
-    }
-
-    /**
-     * Metodo de Listagem de Pedido de um Cliente
-     * 
-     * @param cpf
-     *            CPF do Cliente
-     * @return Listagem de Pedidos
-     */
-    public String listaPedidosDeCliente(String cpf) {
-
-	ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
-
-	for (Pedido p : listaPedidos) {
-	    if (p.getComprador().getCpf().equals(cpf)) {
-		pedidos.add(p);
-	    }
+	/**
+	 * Metodo que retorna uma instacia de pedidos
+	 * 
+	 * @return Controlador de Pedidos
+	 */
+	public static ControladorPedidos getInstance() {
+		return controladorPedidos;
 	}
 
-	return listaPedidos(pedidos);
-    }
-
-    /**
-     * Metodo de Listagem para Todos os Pedidos do Controlador
-     * 
-     * @return Todos os Pedidos do Controlador
-     */
-    public String listagemDePedido() {
-	return listaPedidos(listaPedidos);
-    }
-
-    /* Metodos de Auxilio */
-
-    private String listaPedidos(Collection<Pedido> pedidos) {
-
-	String saida = "";
-
-	Iterator<Pedido> it = pedidos.iterator();
-
-	while (it.hasNext()) {
-
-	    Pedido p = it.next();
-
-	    saida += p.exibeInformacao() + "\n\n";
-	}
-	return saida;
-    }
-
-    private Pedido getPedido(String registroImovel) {
-	int registro;
-	try {
-	    registro = Integer.parseInt(registroImovel);
-	} catch (ClassCastException e) {
-	    throw new IllegalArgumentException("Registro invalido!");
+	/**
+	 * Metodo que modifica a instancia unica do Controlador de Pedidos
+	 * 
+	 * @param controlador
+	 *            Nova Instancia para o Controlador
+	 */
+	public static void setInstance(ControladorPedidos controlador) {
+		if (controlador == null) {
+			throw new IllegalArgumentException(
+					"Controlador de Pedidos invalido");
+		}
+		controladorPedidos = controlador;
 	}
 
-	for (Pedido p : listaPedidos) {
-	    if (p.getImovel().getRegistroImovel() == registro) {
-		return p;
-	    }
+	/**
+	 * Metodo que adiciona um pedido ao Sistema
+	 * 
+	 * @param registroImovel
+	 *            Registro do Imovel pedido
+	 * @param cpf
+	 *            CPF do Cliente que fez a solicitacao
+	 * @throws Exception
+	 *             Lanca excecao caso o imovel nao exista, o cliente nao exista
+	 *             ou o imovel ja tenha sido pedido
+	 */
+	public void adicionaPedido(String registroImovel, String cpf)
+			throws Exception {
+
+		Imovel imovelPedido = ControladorImovel.getInstance().getImovel(
+				registroImovel);
+
+		Cliente clienteQueSolicitou = ControladorCliente.getInstance()
+				.getCliente(cpf);
+
+		if (imovelPedido == null)
+			throw new IllegalArgumentException("Imovel invalido");
+
+		if (clienteQueSolicitou == null)
+			throw new IllegalArgumentException("Cliente invalido");
+
+		if (imovelPedido.getEstadoDoImovel() == EstadoImovel.PEDIDO) {
+			throw new Exception("Imovel ja pedido");
+		}
+
+		listaPedidos.add(new Pedido(imovelPedido, clienteQueSolicitou));
 	}
-	return null;
-    }
 
-    private void efetuaVenda(Pedido pedido, Funcionario vendedor)
-	    throws Exception {
+	/**
+	 * Metodo que realiza a compra de um pedido ao Sistema sem necessidade do
+	 * Funcionario
+	 * 
+	 * @param registroImovel
+	 *            Registro do Imovel que foi Pedido
+	 * @throws Exception
+	 *             Caso o Registro seja invalido ou o Imovel nao tenha sido
+	 *             pedido ou seu <br>
+	 *             tipo contratual eh de venda.
+	 */
+	public void efetuaPedido(String registroImovel) throws Exception {
+		efetuaPedido(registroImovel, "");
+	}
 
-	pedido.getComprador().getHistoricoCompras().addImovel(
-		pedido.getImovel());
+	/**
+	 * Metodo que realiza a compra de um pedido ao Sistema
+	 * 
+	 * @param registroImovel
+	 *            Registro do Imovel que vai ser realizada a compra
+	 * @param creciFuncionario
+	 *            Creci do funcionario que efetuou a compra
+	 * @throws Exception
+	 *             Lanca excecao caso o Imovel ou funcionario nao exista, ou
+	 *             caso o Imovel nao tenha sido pedido
+	 */
+	public void efetuaPedido(String registroImovel, String creciFuncionario)
+			throws Exception {
 
-	ControladorTransacoes.getInstance().adicionaTransacao(
-		pedido.getComprador().getCpf(), vendedor.getCreci(),
-		String.valueOf(pedido.getImovel().getRegistroImovel()));
+		Pedido pedido = getPedido(registroImovel);
 
-	vendedor.addImovelVendido(pedido.getImovel());
-	pedido.getImovel().vendido();
-	ControladorTransacoes.getInstance().adicionaAoCaixa(
-		pedido.getImovel().getValor());
-	listaPedidos.remove(pedido);
-    }
+		if (pedido == null)
+			throw new IllegalArgumentException("Imovel de Pedido invalido");
 
-    private void efetuaAluguel(Pedido pedido) throws Exception {
+		if (pedido.getImovel().getTipoContratual() == TipoContratual.VENDA) {
 
-	ControladorAlugueis.getInstance().adicionaAluguel(
-		pedido.getComprador().getCpf(),
-		String.valueOf(pedido.getImovel().getRegistroImovel()));
+			Funcionario vendedor = ControladorFuncionario.getInstance()
+					.getFuncionarioPorCreci(creciFuncionario);
 
-	pedido.getImovel().alugado();
+			if (vendedor == null)
+				throw new IllegalArgumentException("Funcionario invalido");
 
-	ControladorTransacoes.getInstance().adicionaAoCaixa(
-		pedido.getImovel().getValor());
-    }
+			// A Venda
+
+			efetuaVenda(pedido, vendedor);
+
+		} else {
+
+			// Aluguel
+
+			efetuaAluguel(pedido);
+
+		}
+	}
+
+	/**
+	 * Metodo que realiza a compra de um pedido ao Sistema
+	 * 
+	 * @param registroImovel
+	 *            Registro do Imovel que foi pedido
+	 * @throws Exception
+	 *             Lanca Excecao caso o imovel nao exista ou nao tenha sido
+	 *             pedido
+	 */
+	public void removePedido(String registroImovel) throws Exception {
+
+		Pedido pedido = getPedido(registroImovel);
+
+		if (pedido == null)
+			throw new IllegalArgumentException("Parametros invalidos");
+
+		pedido.getImovel().a_venda();
+		listaPedidos.remove(pedido);
+	}
+
+	/**
+	 * Metodo de Listagem de Pedido de um Cliente
+	 * 
+	 * @param cpf
+	 *            CPF do Cliente
+	 * @return Listagem de Pedidos
+	 */
+	public String listaPedidosDeCliente(String cpf) {
+
+		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+
+		for (Pedido p : listaPedidos) {
+			if (p.getComprador().getCpf().equals(cpf)) {
+				pedidos.add(p);
+			}
+		}
+
+		return listaPedidos(pedidos);
+	}
+
+	/**
+	 * Metodo de Listagem para Todos os Pedidos do Controlador
+	 * 
+	 * @return Todos os Pedidos do Controlador
+	 */
+	public String listagemDePedido() {
+		return listaPedidos(listaPedidos);
+	}
+
+	/* Metodos de Auxilio */
+
+	private String listaPedidos(Collection<Pedido> pedidos) {
+
+		String saida = "";
+
+		Iterator<Pedido> it = pedidos.iterator();
+
+		while (it.hasNext()) {
+
+			Pedido p = it.next();
+
+			saida += p.exibeInformacao() + "\n\n";
+		}
+		return saida;
+	}
+
+	private Pedido getPedido(String registroImovel) {
+		int registro;
+		try {
+			registro = Integer.parseInt(registroImovel);
+		} catch (ClassCastException e) {
+			throw new IllegalArgumentException("Registro invalido!");
+		}
+
+		for (Pedido p : listaPedidos) {
+			if (p.getImovel().getRegistroImovel() == registro) {
+				return p;
+			}
+		}
+		return null;
+	}
+
+	private void efetuaVenda(Pedido pedido, Funcionario vendedor)
+			throws Exception {
+
+		pedido.getComprador().getHistoricoCompras().addImovel(
+				pedido.getImovel());
+
+		ControladorTransacoes.getInstance().adicionaTransacao(
+				pedido.getComprador().getCpf(), vendedor.getCreci(),
+				String.valueOf(pedido.getImovel().getRegistroImovel()));
+
+		vendedor.addImovelVendido(pedido.getImovel());
+		pedido.getImovel().vendido();
+		ControladorTransacoes.getInstance().adicionaAoCaixa(
+				pedido.getImovel().getValor());
+		listaPedidos.remove(pedido);
+	}
+
+	private void efetuaAluguel(Pedido pedido) throws Exception {
+
+		ControladorAlugueis.getInstance().adicionaAluguel(
+				pedido.getComprador().getCpf(),
+				String.valueOf(pedido.getImovel().getRegistroImovel()));
+
+		pedido.getImovel().alugado();
+
+		ControladorTransacoes.getInstance().adicionaAoCaixa(
+				pedido.getImovel().getValor());
+	}
 
 }

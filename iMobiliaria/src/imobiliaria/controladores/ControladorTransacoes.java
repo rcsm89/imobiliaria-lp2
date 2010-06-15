@@ -87,11 +87,11 @@ public class ControladorTransacoes implements Serializable {
 	 * @param valor
 	 *            Valor a ser adicionado
 	 * @throws ValorInvalidoException
-	 *             Caso o valor seja igual ou menor que zero
+	 *             Caso o valor seja menor que zero
 	 */
 
 	public void adicionaAoCaixa(double valor) throws ValorInvalidoException {
-		if (valor <= 0) {
+		if (valor < 0) {
 			throw new ValorInvalidoException("Valor invalido");
 		}
 		caixaTotal += valor;
@@ -103,11 +103,11 @@ public class ControladorTransacoes implements Serializable {
 	 * @param valor
 	 *            Valor a ser removido
 	 * @throws ValorInvalidoException
-	 *             Caso o valor seja igual ou menor que zero
+	 *             Caso o valor seja menor que zero
 	 */
 
 	public void removeDoCaixa(double valor) throws ValorInvalidoException {
-		if (valor <= 0) {
+		if (valor < 0) {
 			throw new ValorInvalidoException("Valor invalido");
 		}
 		caixaTotal -= valor;
@@ -147,7 +147,7 @@ public class ControladorTransacoes implements Serializable {
 
 			salarioFuncionarios.put(informacaoFuncionario, salarioFuncionario);
 		}
-
+		
 		removeDoCaixa(despesas);
 		resetaTransacoeMensais();
 		atualizaPagamentoParaAgora();
