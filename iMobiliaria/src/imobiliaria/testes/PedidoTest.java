@@ -1,7 +1,7 @@
 package imobiliaria.testes;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
-
 import junit.framework.Assert;
 import imobiliara.auxiliar.TipoContratual;
 import imobiliara.auxiliar.TipoImovel;
@@ -30,6 +30,10 @@ public class PedidoTest {
 	
 	private Cliente comprador1;
 	private Cliente comprador2;
+	
+	private Calendar dataCriacao1;
+	private Calendar dataCriacao2;
+	private Calendar dataCriacao3;
 
 	@Before
 	public void setUp() throws Exception {
@@ -37,7 +41,7 @@ public class PedidoTest {
 		imovel1 = new Imovel("Casa imobiliada para Alugar",
 				"Rua Joaquim Caroca, Bodocongo, Num 2471, CG/PB", 3500.0,
 				new Area(4, 6), TipoImovel.CASA, TipoContratual.ALUGUEL);
-
+		
 		imovel2 = new Imovel(
 				"Apartamento a Venda!!!",
 				"Rua Fernando Luiz Henrique dos Santos, num 2831, JP/PB, Ed. Java, apto 1300",
@@ -59,8 +63,18 @@ public class PedidoTest {
 		
 		
 		pedido1 = new Pedido(imovel1, comprador1);
+		dataCriacao1 = new GregorianCalendar();
+		
+		// Aguarda um tempo
+		
+		Thread.sleep(200);
 		pedido2 = new Pedido(imovel2, comprador1);
+		dataCriacao2 = new GregorianCalendar();
+		
+		// Aguarda um tempo
+		Thread.sleep(200);
 		pedido3 = new Pedido(imovel3, comprador2);
+		dataCriacao3 = new GregorianCalendar();
 	}
 	
 	@Test
@@ -83,11 +97,11 @@ public class PedidoTest {
 	}
 
 	@Test
-	public final void testGetDataDoPedido() {
+	public final void testGetDataDoPedido() throws InterruptedException {
 		
-		Assert.assertTrue(pedido1.getDataDoPedido().equals(new GregorianCalendar()));
-		Assert.assertTrue(pedido2.getDataDoPedido().equals(new GregorianCalendar()));
-		Assert.assertTrue(pedido3.getDataDoPedido().equals(new GregorianCalendar()));
+		Assert.assertTrue(pedido1.getDataDoPedido().equals(dataCriacao1));
+		Assert.assertTrue(pedido2.getDataDoPedido().equals(dataCriacao2));
+		Assert.assertTrue(pedido3.getDataDoPedido().equals(dataCriacao3));
 		
 	}
 
@@ -116,13 +130,14 @@ public class PedidoTest {
 	@Test
 	public final void testCompareTo() throws Exception {
 		
-		// Foram criados na mesma hora
+		// Pedido foi criado primeiro que o pedido2
+		Assert.assertTrue(pedido1.compareTo(pedido2) < 0);
 		
-		Assert.assertTrue(pedido1.compareTo(pedido2) == 0);
+		// Pedido 2 foi criado primeiro que pedido3
+		Assert.assertTrue(pedido2.compareTo(pedido3) < 0);
 		
-		Assert.assertTrue(pedido2.compareTo(pedido3) == 0);
-		
-		Assert.assertTrue(pedido3.compareTo(pedido1) == 0);
+		// Pedido 3 foi criado depois de pedido1
+		Assert.assertTrue(pedido3.compareTo(pedido1) > 0);
 		
 	}
 	
