@@ -43,4 +43,21 @@ public class Aluguel {
 		return imovelAlugado;
 	}
 
+	public String toString() {
+		return "Alugante: " + alugante.getNome() + " (" + alugante.getCpf()
+				+ ") Imovel: " + imovelAlugado.getNome() + " ("
+				+ imovelAlugado.getRegistroImovel() + ")";
+
+	}
+
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Aluguel))
+			return false;
+
+		Aluguel outroAluguel = (Aluguel) obj;
+
+		return outroAluguel.getAlugante().equals(alugante)
+				&& outroAluguel.getImovelAlugado().equals(imovelAlugado);
+	}
+
 }

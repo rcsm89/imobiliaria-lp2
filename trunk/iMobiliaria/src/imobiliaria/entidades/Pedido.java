@@ -43,7 +43,7 @@ public class Pedido implements Comparable<Object> {
 		this.imovel = imovel;
 		this.comprador = comprador;
 		dataDoPedido = new GregorianCalendar();
-
+		
 		imovel.pedido();
 	}
 
