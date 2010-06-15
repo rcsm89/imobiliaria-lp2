@@ -1,14 +1,13 @@
 package imobiliaria.controladores;
 
-import java.io.Serializable;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.TreeSet;
-
 import imobiliara.auxiliar.TipoImovel;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.processamento.ColecaoClientes;
 import imobiliaria.util.VerificaInvalido;
+
+import java.io.Serializable;
+import java.util.Calendar;
+import java.util.TreeSet;
 
 /**
  * Classe ControladorCliente que ira controlar e listar algumas opcoes sobre
@@ -29,8 +28,6 @@ public class ControladorCliente implements Serializable {
 
     private ControladorCliente() {
     }
-
-    private HashMap<String, String> loginClientes = new HashMap<String, String>();
 
     /**
      * Metodo que adiciona um Cliente no Controlador
@@ -57,12 +54,7 @@ public class ControladorCliente implements Serializable {
 	Cliente clienteASerAdicionado = new Cliente(cpf, dataNascimento,
 		endereco, nome, preferencia);
 
-	if (colecaoClientes.adicionaCliente(clienteASerAdicionado)) {
-	    loginClientes.put(clienteASerAdicionado.getLogin(),
-		    clienteASerAdicionado.getSenha());
-	    return true;
-	}
-	return false;
+	return (colecaoClientes.adicionaCliente(clienteASerAdicionado));
     }
 
     /**
@@ -87,27 +79,6 @@ public class ControladorCliente implements Serializable {
 	    if (cpfASerRemovido.equals(cliente.getCpf())) {
 		return colecaoClientes.getClientes().remove(cliente);
 	    }
-	}
-	return false;
-    }
-
-    /**
-     * Metodo verificador de login e senha para Clientes
-     * 
-     * @param login
-     *            Login
-     * @param senha
-     *            Senha
-     * @return True - caso o login seja efetuado <br>
-     *         False - caso o login e senha sejam invalidos
-     */
-
-    public boolean login(String login, String senha) {
-	if (VerificaInvalido.basico(login) || VerificaInvalido.basico(senha))
-	    return false;
-	if (loginClientes.containsKey(login)) {
-	    if (loginClientes.get(login).equals(senha))
-		return true;
 	}
 	return false;
     }
