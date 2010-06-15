@@ -127,21 +127,28 @@ public class ColecaoClientesTest {
 		
 		try {
 			clientes1.getClientesPorLetraInicial(null);
-			Assert.fail();
+			Assert.fail("Deveria ter lancado excecao");
 		} catch (IllegalArgumentException e) {
 			Assert.assertEquals("Letra Invalida", e.getMessage());
 		}
 		
 		try {
 			clientes1.getClientesPorLetraInicial("2");
-			Assert.fail();
+			Assert.fail("Deveria ter lancado excecao");
 		} catch (IllegalArgumentException e) {
 			Assert.assertEquals("Letra Invalida", e.getMessage());
 		}
 		
 		try {
 			clientes1.getClientesPorLetraInicial("UASHDUASD");
-			Assert.fail();
+			Assert.fail("Deveria ter lancado excecao");
+		} catch (IllegalArgumentException e) {
+			Assert.assertEquals("Letra Invalida", e.getMessage());
+		}
+
+		try {
+			clientes1.getClientesPorLetraInicial(" ");
+			Assert.fail("Deveria ter lancado excecao");
 		} catch (IllegalArgumentException e) {
 			Assert.assertEquals("Letra Invalida", e.getMessage());
 		}
