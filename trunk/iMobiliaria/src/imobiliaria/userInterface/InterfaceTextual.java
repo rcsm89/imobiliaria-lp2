@@ -36,8 +36,9 @@ public class InterfaceTextual implements MenuInterfaceCliente,
     public InterfaceTextual() {
 
 	// Leitura de Dados
-	try {
-	    this.sis = (Sistema) PersistenciaDados.ler("DadosDeSistema.dat");
+    
+    this.sis = new Sistema();
+    try {
 	    sis.atualizaDados();
 	} catch (Exception e) {
 	    System.out.println("Erro: " + e.getMessage());
