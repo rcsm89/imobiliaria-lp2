@@ -2,7 +2,7 @@ package imobiliara.auxiliar;
 
 /**
  * Interface auxiliar para o menu de cliente<br>
- * Auxiliary interface for a cliente's menu
+ * Auxiliary interface for the cliente's menu
  * 
  * @author Jeanderson Barros Candido
  * @version version 02 (new)
