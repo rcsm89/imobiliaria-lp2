@@ -162,4 +162,21 @@ public class ControladorLogin implements Serializable {
     private Collection<Login> getCollection() {
 	return loginsDoSistema;
     }
+
+    public Login getLogin(String userName) {
+	if (verificaLogin(userName)) {
+	    for (Login lg : getCollection()) {
+		if (lg.getUserName().equals(userName))
+		    return lg;
+	    }
+	}
+	return null;
+    }
+
+    public boolean checkPassword(Login login, String password) {
+	if (!(login == null) || (password == null)) {
+	    return login.getSenha().equals(password);
+	}
+	return false;
+    }
 }
