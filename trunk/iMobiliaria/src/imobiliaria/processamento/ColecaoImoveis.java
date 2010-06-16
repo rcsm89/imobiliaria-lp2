@@ -4,6 +4,7 @@ import imobiliara.auxiliar.EstadoImovel;
 import imobiliara.auxiliar.TipoContratual;
 import imobiliara.auxiliar.TipoImovel;
 import imobiliaria.entidades.Imovel;
+import imobiliaria.exceptions.ValorInvalidoException;
 import imobiliaria.util.VerificaInvalido;
 
 import java.io.Serializable;
@@ -55,7 +56,7 @@ public class ColecaoImoveis implements Serializable {
 	public boolean removeImovel(String registroImovel) throws Exception {
 		
 		if (registroImovel == null){
-			throw new Exception("Imovel Invalido");
+			throw new IllegalArgumentException("Imovel Invalido");
 		}
 
 		int registro;
@@ -63,7 +64,7 @@ public class ColecaoImoveis implements Serializable {
 		try {
 			registro = Integer.parseInt(registroImovel);
 		} catch (Exception e) {
-			throw new Exception("Registro Invalido");
+			throw new IllegalArgumentException("Registro Invalido");
 		}
 		for (Imovel imovel : colecaoImoveis) {
 			if (imovel.getRegistroImovel() == registro)
@@ -90,11 +91,12 @@ public class ColecaoImoveis implements Serializable {
 	 * @param max
 	 *            Valor maximo dos imoveis filtrados
 	 * @return ArrayList contendo os imoveis filtrados
+	 * @throws ValorInvalidoException 
 	 */
-	public ArrayList<Imovel> getImoveisDeValor(double min, double max) {
+	public ArrayList<Imovel> getImoveisDeValor(double min, double max) throws ValorInvalidoException {
 		
 		if (min > max){
-			throw new  IllegalArgumentException("Intervalo Invalido");
+			throw new  ValorInvalidoException("Intervalo Invalido");
 		}
 
 		ArrayList<Imovel> colecaoRetornada = new ArrayList<Imovel>();

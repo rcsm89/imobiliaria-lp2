@@ -6,6 +6,7 @@ import java.util.TreeSet;
 
 import imobiliara.auxiliar.TipoImovel;
 import imobiliaria.entidades.Cliente;
+import imobiliaria.exceptions.ClienteNotFoundException;
 import imobiliaria.processamento.ColecaoClientes;
 import imobiliaria.util.VerificaInvalido;
 
@@ -144,7 +145,7 @@ public class ControladorCliente implements Serializable {
 		Cliente c = getCliente(cpf);
 
 		if (c == null) {
-			throw new IllegalArgumentException("Cliente nao existente");
+			throw new ClienteNotFoundException("Cliente nao existente");
 		}
 
 		return "Nome: " + c.getNome() + " - CPF: " + c.getCpf() + "\n"

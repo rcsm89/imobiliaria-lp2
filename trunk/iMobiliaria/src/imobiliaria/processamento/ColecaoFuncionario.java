@@ -50,7 +50,7 @@ public class ColecaoFuncionario implements Serializable {
 	public TreeSet<Funcionario> getFuncionarioPorNome(String nome)
 			throws Exception {
 		if (VerificaInvalido.nome(nome)) {
-			throw new Exception("Nome Invalido");
+			throw new IllegalArgumentException("Nome Invalido");
 		}
 		TreeSet<Funcionario> colecaoRetornada = new TreeSet<Funcionario>();
 
@@ -76,7 +76,7 @@ public class ColecaoFuncionario implements Serializable {
 	 */
 	public Funcionario getFuncionario(String creci) throws Exception {
 		if (VerificaInvalido.numero(creci)) {
-			throw new Exception("Creci Invalido");
+			throw new IllegalArgumentException("Creci Invalido");
 		}
 
 		Funcionario funcRetornado = null;
@@ -142,7 +142,7 @@ public class ColecaoFuncionario implements Serializable {
 	 */
 	public boolean removeFuncionarioPorNome(String nome) throws Exception {
 		if (VerificaInvalido.nome(nome)) {
-			throw new Exception("Nome Invalido");
+			throw new IllegalArgumentException("Nome Invalido");
 		}
 		for (Funcionario func : colecaoFuncionarios) {
 			if (func.getNome().equals(nome)) {
