@@ -71,7 +71,7 @@ public class ImovelTest {
 					"Rua Joaquim Caroca, Bodocongo, Num 2471, CG/PB", 0,
 					new Area(4, 6), TipoImovel.CASA, TipoContratual.ALUGUEL);			
 		} catch (Exception e) {
-			Assert.fail("Não Deveria Cair Nesse catch");
+			Assert.fail("Nao Deveria Cair Nesse catch");
 			Assert.assertEquals("Valor invalido\n", e.getMessage());
 		}
 	}
@@ -147,7 +147,7 @@ public class ImovelTest {
 		try {
 			imovel1.setValor(0);
 		} catch (Exception e) {
-			Assert.fail("Não Deveria Cair Nesse catch");
+			Assert.fail("Nao Deveria Cair Nesse catch");
 			Assert.assertEquals("Valor invalido", e.getMessage());
 		}
 	}
