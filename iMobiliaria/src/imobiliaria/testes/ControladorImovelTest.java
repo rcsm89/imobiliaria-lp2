@@ -609,5 +609,12 @@ public class ControladorImovelTest {
 		Assert.assertNull(controladorImovel.getImovel("0"));
 		Assert.assertNull(controladorImovel.getImovel("1"));
 		Assert.assertNull(controladorImovel.getImovel("2"));
+		
+		try{
+			controladorImovel.removeImovel(null);
+			Assert.fail("Deveria Lancar Excecao aqui");
+		}catch(IllegalArgumentException e){
+			Assert.assertEquals("Imovel Invalido", e.getMessage());
+		}
 	}
 }
