@@ -10,7 +10,7 @@ import imobiliaria.util.VerificaInvalido;
 /**
  * Classe Imovel que guarda informacoes de um Imovel
  * 
- * @version IT 1.1
+ * @version IT02
  */
 public class Imovel implements Serializable {
 
