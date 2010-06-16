@@ -29,7 +29,7 @@ public class ColecaoImoveis implements Serializable {
 	 * @throws Exception
 	 *             Lanca excecao caso o imovel ja exista na colecao
 	 */
-	public void addImovel(Imovel imovelAadicionar) throws Exception {
+	public void addImovel(Imovel imovelAadicionar) throws ImovelInvalidoException {
 		
 		if (imovelAadicionar == null){
 			throw new IllegalArgumentException("Imovel Invalido");

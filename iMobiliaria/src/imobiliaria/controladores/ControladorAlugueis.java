@@ -65,7 +65,7 @@ public class ControladorAlugueis implements Serializable {
 	 * @throws Exception
 	 */
 	public boolean adicionaAluguel(String cpfCliente, String registroDoImovel)
-			throws Exception {
+			throws ClienteNotFoundException, ImovelInvalidoException, ImovelNotFoundException {
 
 		Cliente alugante = ControladorCliente.getInstance().getCliente(
 				cpfCliente);

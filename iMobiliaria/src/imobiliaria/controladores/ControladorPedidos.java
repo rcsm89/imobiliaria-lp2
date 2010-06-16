@@ -6,9 +6,12 @@ import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.Funcionario;
 import imobiliaria.entidades.Imovel;
 import imobiliaria.entidades.Pedido;
+import imobiliaria.exceptions.ClienteNotFoundException;
 import imobiliaria.exceptions.FuncionarioNotFoundException;
 import imobiliaria.exceptions.ImovelInvalidoException;
+import imobiliaria.exceptions.ImovelNotFoundException;
 import imobiliaria.exceptions.PedidoNotFoundException;
+import imobiliaria.exceptions.ValorInvalidoException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -77,7 +80,7 @@ public class ControladorPedidos implements Serializable {
 	 *             ou o imovel ja tenha sido pedido
 	 */
 	public void adicionaPedido(String registroImovel, String cpf)
-			throws Exception {
+			throws ImovelInvalidoException {
 
 		Imovel imovelPedido = ControladorImovel.getInstance().getImovel(
 				registroImovel);
@@ -141,8 +144,8 @@ public class ControladorPedidos implements Serializable {
 				throw new FuncionarioNotFoundException("Funcionario invalido");
 
 			// A Venda
-
-			efetuaVenda(pedido, vendedor);
+			
+				efetuaVenda(pedido, vendedor);
 
 		} else {
 
@@ -236,7 +239,7 @@ public class ControladorPedidos implements Serializable {
 	}
 
 	private void efetuaVenda(Pedido pedido, Funcionario vendedor)
-			throws Exception {
+			throws ValorInvalidoException, ImovelInvalidoException {
 
 		pedido.getComprador().getHistoricoCompras().addImovel(
 				pedido.getImovel());
@@ -252,14 +255,15 @@ public class ControladorPedidos implements Serializable {
 		listaPedidos.remove(pedido);
 	}
 
-	private void efetuaAluguel(Pedido pedido) throws Exception {
+	private void efetuaAluguel(Pedido pedido) throws ClienteNotFoundException,
+	ImovelInvalidoException, ImovelNotFoundException, ValorInvalidoException {
 
 		ControladorAlugueis.getInstance().adicionaAluguel(
 				pedido.getComprador().getCpf(),
 				String.valueOf(pedido.getImovel().getRegistroImovel()));
 
 		pedido.getImovel().alugado();
-
+		
 		ControladorTransacoes.getInstance().adicionaAoCaixa(
 				pedido.getImovel().getValor());
 		

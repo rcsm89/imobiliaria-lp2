@@ -26,7 +26,7 @@ public class Pedido implements Comparable<Object> {
 	 *            Comprador do Imovel
 	 * @throws Exception
 	 */
-	public Pedido(Imovel imovel, Cliente comprador) throws Exception {
+	public Pedido(Imovel imovel, Cliente comprador) {
 
 		String msgErro = "";
 
