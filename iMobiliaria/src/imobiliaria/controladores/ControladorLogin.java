@@ -20,9 +20,9 @@ import java.util.HashSet;
 public class ControladorLogin implements Serializable {
 
     // Attribute
+    private static ControladorLogin controladorLoginsUnico = new ControladorLogin();
     private Collection<Login> loginsDoSistema;
     private static final long serialVersionUID = 1L;
-    private static ControladorLogin controladorLoginsUnico = new ControladorLogin();
 
     // Constructor
     /**
@@ -66,7 +66,7 @@ public class ControladorLogin implements Serializable {
      *         Number of registered logins
      */
     public int numLoginsCadastrados() {
-	return loginsDoSistema.size();
+	return getCollection().size();
     }
 
     // Register
@@ -87,7 +87,7 @@ public class ControladorLogin implements Serializable {
 		if (lg.equals(login))
 		    return false;
 	    }
-	    return loginsDoSistema.add(login);
+	    return getCollection().add(login);
 	}
 	return false;
     }
@@ -95,17 +95,17 @@ public class ControladorLogin implements Serializable {
     // Removes
     /**
      * Remove um login em ColecaoLogin<br>
-     * Removes a login from ColecaoLogin
      * 
-     * @param login
-     *            A ser removido<br>
-     *            To be removed
-     * @return True se ColecaoLogin contem o login especificado<br>
-     *         True if ColecaoLogin contained the specified login
+     * @param userName
+     *            Do login a ser removido
+     * @return True se ColecaoLogin contem o login especificado
      */
-    public boolean removeLogin(Login login) {
-	if (!(login == null)) {
-	    return loginsDoSistema.remove(login);
+    public boolean removeLogin(String userName) {
+	if (!(userName == null)) {
+	    for (Login lg : loginsDoSistema) {
+		if (lg.getUserName().equals(userName))
+		    return loginsDoSistema.remove(lg);
+	    }
 	}
 	return false;
     }
@@ -122,9 +122,12 @@ public class ControladorLogin implements Serializable {
      * @return True se o login estiver cadastradro<br>
      *         True if the login has been registered
      */
-    public boolean verificaLogin(Login lg) {
-	if (!(lg == null)) {
-	    return loginsDoSistema.contains(lg);
+    public boolean verificaLogin(String userName) {
+	if (!(userName == null)) {
+	    for (Login lg : loginsDoSistema) {
+		if (lg.getUserName().equals(userName))
+		    return loginsDoSistema.contains(lg);
+	    }
 	}
 	return false;
     }
