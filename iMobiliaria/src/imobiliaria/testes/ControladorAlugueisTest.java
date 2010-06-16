@@ -37,7 +37,7 @@ public class ControladorAlugueisTest {
 		
 		try {
 			cAlugueis.adicionaAluguel("101.202.303-44", "0");
-			Assert.fail();
+			Assert.fail("Nao Deveria Chegar aqui");
 		} catch (IllegalArgumentException e) {
 			Assert.assertEquals("Imovel invalido", e.getMessage());
 		}
@@ -46,7 +46,7 @@ public class ControladorAlugueisTest {
 		
 		try {
 			cAlugueis.adicionaAluguel("101.000.000-44", "0");
-			Assert.fail();
+			Assert.fail("Nao Deveria Chegar aqui");
 		} catch (IllegalArgumentException e) {
 			Assert.assertEquals("Cliente invalido", e.getMessage());
 		}
@@ -56,7 +56,7 @@ public class ControladorAlugueisTest {
 		// Imovel ja pedido
 		try {
 			cAlugueis.adicionaAluguel("101.202.303-44", "0");
-			Assert.fail();
+			Assert.fail("Nao Deveria Chegar aqui");
 		} catch (IllegalArgumentException e) {
 			Assert.assertEquals("Imovel invalido", e.getMessage());
 		}
@@ -75,7 +75,7 @@ public class ControladorAlugueisTest {
 		
 		try {
 			cAlugueis.removeAluguel("OITUDOBOM?");
-			Assert.fail();
+			Assert.fail("Nao Deveria Chegar aqui");
 		} catch (IllegalArgumentException e) {
 			Assert.assertEquals("Registro invalido", e.getMessage());
 		}
