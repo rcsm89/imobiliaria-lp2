@@ -3,6 +3,7 @@ package imobiliaria.userInterface;
 import imobiliara.auxiliar.EstadoImovel;
 import imobiliara.auxiliar.TipoContratual;
 import imobiliara.auxiliar.TipoImovel;
+import imobiliaria.controladores.ControladorAlugueis;
 import imobiliaria.controladores.ControladorCliente;
 import imobiliaria.controladores.ControladorFuncionario;
 import imobiliaria.controladores.ControladorImovel;
@@ -572,5 +573,20 @@ public class OperacoesInterfaceTextual {
 	System.out.println(lineSep + "Saldo Atual do Caixa: "
 		+ ControladorTransacoes.getInstance().caixa() + lineSep);
     }
+    
+    // NOVOS METODOS!1111!11 (Yuri)
+    
+    protected void listaPedidosDeCliente(String cpfCliente) {
+    	System.out.println(ControladorPedidos.getInstance().
+    			listaPedidosDeCliente(cpfCliente));
+    }
+    
+    protected void listaAlugueisDeCliente(String cpfCliente) {
+    	System.out.println(ControladorAlugueis.getInstance().
+    			listaAlugueisDeCliente(cpfCliente));
+    	
+    }
+     
+    
 
 }
