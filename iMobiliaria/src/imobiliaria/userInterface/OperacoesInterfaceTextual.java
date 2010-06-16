@@ -3,11 +3,17 @@ package imobiliaria.userInterface;
 import imobiliara.auxiliar.EstadoImovel;
 import imobiliara.auxiliar.TipoContratual;
 import imobiliara.auxiliar.TipoImovel;
+import imobiliaria.controladores.ControladorCliente;
+import imobiliaria.controladores.ControladorFuncionario;
+import imobiliaria.controladores.ControladorImovel;
+import imobiliaria.controladores.ControladorPedidos;
+import imobiliaria.controladores.ControladorTransacoes;
 import imobiliaria.entidades.Area;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.FolhaDePagamento;
 import imobiliaria.entidades.Funcionario;
 import imobiliaria.entidades.Imovel;
+import imobiliaria.exceptions.ClienteNotFoundException;
 import imobiliaria.processamento.Sistema;
 import imobiliaria.util.FormataEntrada;
 import imobiliaria.util.MetodoEntrada;
@@ -17,18 +23,20 @@ import java.util.Calendar;
 public class OperacoesInterfaceTextual {
 
     private String lineSep;
-    private Sistema sis;
 
     public OperacoesInterfaceTextual(Sistema sis) {
 	this.lineSep = System.getProperty("line.separator");
-	this.sis = sis;
     }
 
     // METODOS DA INTERFACE DE CLIENTE
 
     protected void verificarDadosPessoais(Cliente cliente) {
-	System.out.println(sis.controladorClientes().exibeCliente(
+    	try {
+    		System.out.println(ControladorCliente.getInstance().exibeCliente(
 		cliente.getCpf()));
+    	} catch (ClienteNotFoundException e) {
+    		System.out.println("Cliente nao encontrado");
+    	}
     }
 
     protected void historicoCompras(Cliente cl) {
@@ -56,7 +64,7 @@ public class OperacoesInterfaceTextual {
 		.println(lineSep
 			+ "======================= Listagem de Imoveis ======================="
 			+ lineSep
-			+ sis.controladorImoveis().listaImoveis(
+			+ ControladorImovel.getInstance().listaImoveis(
 				EstadoImovel.A_VENDA));
     }
 
@@ -64,7 +72,7 @@ public class OperacoesInterfaceTextual {
 	System.out
 		.println(lineSep
 			+ "======================= Listagem de Clientes ======================="
-			+ lineSep + sis.controladorClientes().listaClientes());
+			+ lineSep + ControladorCliente.getInstance().listaClientes());
     }
 
     protected void listarFuncionarios() {
@@ -72,7 +80,7 @@ public class OperacoesInterfaceTextual {
 		.println(lineSep
 			+ "===================== Listagem de Funcionarios ====================="
 			+ lineSep
-			+ sis.controladorFuncionarios().listaFuncionarios());
+			+ ControladorFuncionario.getInstance().listaFuncionarios());
     }
 
     protected void fazerPedido(String cpfCliente) {
@@ -86,7 +94,7 @@ public class OperacoesInterfaceTextual {
 
 	try {
 
-	    sis.controladorPedidos().adicionaPedido(registroImovel, cpfCliente);
+	    ControladorPedidos.getInstance().adicionaPedido(registroImovel, cpfCliente);
 
 	} catch (Exception e) {
 
@@ -133,7 +141,7 @@ public class OperacoesInterfaceTextual {
 
 	    try {
 
-		if (sis.controladorClientes().adicionaCliente(cpf,
+		if (ControladorCliente.getInstance().adicionaCliente(cpf,
 			dataNascimento, endereco, nome, preferencia)) {
 		    repeteCadastro = false;
 		} else {
@@ -148,7 +156,7 @@ public class OperacoesInterfaceTextual {
 
 	} while (repeteCadastro);
 
-	Cliente novoCliente = sis.controladorClientes().getCliente(
+	Cliente novoCliente = ControladorCliente.getInstance().getCliente(
 		FormataEntrada.cpf(cpf));
 
 	System.out.println(lineSep
@@ -184,10 +192,10 @@ public class OperacoesInterfaceTextual {
 	    creci = MetodoEntrada.recebeString("Numero do CRECI: ");
 
 	    try {
-		if (sis.controladorFuncionarios().adicionaFuncionario(cpf,
+		if (ControladorFuncionario.getInstance().adicionaFuncionario(cpf,
 			dataNascimento, endereco, nome, creci)) {
 
-		    novoFunc = sis.controladorFuncionarios()
+		    novoFunc = ControladorFuncionario.getInstance()
 			    .getFuncionarioPorCreci(creci);
 
 		    repeteCadastro = false;
@@ -261,7 +269,7 @@ public class OperacoesInterfaceTextual {
 		tipoDoImovel = TipoImovel.values()[opcaoImovel - 1];
 		tipoContratual = TipoContratual.values()[opcaoContrato - 1];
 		area = new Area(comprimento, largura);
-		sis.controladorImoveis().addImovel(nome, endereco, valor, area,
+		ControladorImovel.getInstance().addImovel(nome, endereco, valor, area,
 			tipoDoImovel, tipoContratual);
 		repeteCadastro = false;
 
@@ -283,7 +291,7 @@ public class OperacoesInterfaceTextual {
     protected void verificaDadosPessoais(Funcionario func) {
 
 	System.out.println(lineSep
-		+ sis.controladorFuncionarios().exibeFuncionarioPorCreci(
+		+ ControladorFuncionario.getInstance().exibeFuncionarioPorCreci(
 			func.getCreci()) + lineSep);
 
     }
@@ -301,12 +309,12 @@ public class OperacoesInterfaceTextual {
 		    .recebeString("Digite o CPF (XXX.XXX.XXX-XX) do Cliente que deseja Excluir: ");
 
 	    String informacoes;
-
-	    informacoes = sis.controladorClientes().exibeCliente(cpf);
-
-	    if (informacoes == null) {
-		System.out.println("Cliente nao cadastrado");
-		return;
+	    
+	    try {
+	    informacoes = ControladorCliente.getInstance().exibeCliente(cpf);
+	    } catch (ClienteNotFoundException e) {
+	    	System.out.println("Cliente nao encontrado");
+	    	return;
 	    }
 
 	    System.out.println(informacoes);
@@ -317,7 +325,7 @@ public class OperacoesInterfaceTextual {
 
 	    switch (opcao) {
 	    case 1:
-		if (sis.controladorClientes().removeCliente(cpf)) {
+		if (ControladorCliente.getInstance().removeCliente(cpf)) {
 
 		    System.out.println("Cliente removido com Sucesso!");
 		    continuaRodandoMenu = false;
@@ -350,12 +358,12 @@ public class OperacoesInterfaceTextual {
 		.recebeString("Digite o CPF (XXX.XXX.XXX-XX) do Cliente que deseja verificar:");
 
 	String informacoes;
-
-	informacoes = sis.controladorClientes().exibeCliente(cpf);
-
-	if (informacoes == null) {
-	    System.out.println("Cliente nao cadastrado");
-	    return;
+	
+	try {
+	informacoes = ControladorCliente.getInstance().exibeCliente(cpf);
+	} catch (ClienteNotFoundException e) {
+		System.out.println("Cliente nao encontrado");
+		return;
 	}
 
 	System.out.println(informacoes + lineSep);
@@ -375,7 +383,7 @@ public class OperacoesInterfaceTextual {
 	    String registroImovel = MetodoEntrada
 		    .recebeString("Digite o registro do imovel que deseja Excluir: ");
 
-	    String informacoes = sis.controladorImoveis().exibeImovel(
+	    String informacoes = ControladorImovel.getInstance().exibeImovel(
 		    registroImovel);
 
 	    if (informacoes == null) {
@@ -392,7 +400,7 @@ public class OperacoesInterfaceTextual {
 	    try {
 		switch (opcao) {
 		case 1:
-		    if (sis.controladorImoveis().removeImovel(registroImovel)) {
+		    if (ControladorImovel.getInstance().removeImovel(registroImovel)) {
 
 			System.out.println("Imovel removido com Sucesso!");
 			continuaRodandoMenu = false;
@@ -429,7 +437,7 @@ public class OperacoesInterfaceTextual {
 	String registroImovel = MetodoEntrada
 		.recebeString("Digite o Registro do Imovel que deseja verificar: ");
 
-	String informacoes = sis.controladorImoveis().exibeImovel(
+	String informacoes = ControladorImovel.getInstance().exibeImovel(
 		registroImovel);
 
 	if (informacoes == null) {
@@ -458,7 +466,7 @@ public class OperacoesInterfaceTextual {
 	    String informacoes = "";
 
 	    try {
-		informacoes = sis.controladorFuncionarios()
+		informacoes = ControladorFuncionario.getInstance()
 			.exibeFuncionarioPorCreci(creci);
 	    } catch (NullPointerException e) {
 		System.out.println("Funcionario nao cadastrado");
@@ -475,7 +483,7 @@ public class OperacoesInterfaceTextual {
 	    case 1:
 
 		try {
-		    if (sis.controladorFuncionarios().removeFuncionario(creci)) {
+		    if (ControladorFuncionario.getInstance().removeFuncionario(creci)) {
 
 			System.out.println("Funcionario removido com Sucesso!");
 			continuaRodandoMenu = false;
@@ -512,7 +520,7 @@ public class OperacoesInterfaceTextual {
 	String informacoes;
 
 	try {
-	    informacoes = sis.controladorFuncionarios()
+	    informacoes = ControladorFuncionario.getInstance()
 		    .exibeFuncionarioPorCreci(creci);
 	} catch (NullPointerException e) {
 	    System.out.println("Funcionario nao cadastrado");
@@ -536,7 +544,7 @@ public class OperacoesInterfaceTextual {
 		.recebeString("Digite o CRECI do Funcionario que realizou a Compra: ");
 
 	try {
-	    sis.controladorPedidos().adicionaPedido(registroImovel,
+	    ControladorPedidos.getInstance().adicionaPedido(registroImovel,
 		    creciFuncionario);
 	    System.out.println("Pedido Efetuado com Sucesso!");
 	} catch (Exception e) {
@@ -548,7 +556,7 @@ public class OperacoesInterfaceTextual {
     protected void efetuarPagamento() {
 
 	try {
-	    FolhaDePagamento folhaDePagamento = sis.controladorTransacoes()
+	    FolhaDePagamento folhaDePagamento = ControladorTransacoes.getInstance()
 		    .efetuaPagamentoNoMes();
 	    System.out.println("Folha de Pagamento do Mes:" + lineSep
 		    + folhaDePagamento.getFolhaDePagamentoString());
@@ -562,7 +570,7 @@ public class OperacoesInterfaceTextual {
     protected void verificaSaldoAtual() {
 
 	System.out.println(lineSep + "Saldo Atual do Caixa: "
-		+ sis.controladorTransacoes().caixa() + lineSep);
+		+ ControladorTransacoes.getInstance().caixa() + lineSep);
     }
 
 }
