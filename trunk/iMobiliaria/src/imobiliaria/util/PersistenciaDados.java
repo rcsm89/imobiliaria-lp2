@@ -5,10 +5,8 @@ import imobiliaria.processamento.Sistema;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 
 
 public class PersistenciaDados {
@@ -28,8 +26,7 @@ public class PersistenciaDados {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
-	public static ArrayList<Object> ler(String arquivo) throws IOException, ClassNotFoundException {
+	public static Object ler(String arquivo) throws Exception {
 		
 		
 		FileInputStream fis;
@@ -40,22 +37,18 @@ public class PersistenciaDados {
 			
 		} catch (FileNotFoundException e) {
 			
-			if (arquivo == "DadosDeSistema.dat") {
-				(new Sistema()).salvarDados();
-			} else {
+			(new Sistema()).salvarDados();
 			
-				throw new FileNotFoundException("Arquivo nao encontrado!");
-				
+			try {
+				fis = new FileInputStream(arquivo);
+			} catch (FileNotFoundException exNotFound) {
+				throw new FileNotFoundException("Erro Critico de Arquivo: "
+						+ exNotFound.getMessage());
 			}
 		}
 		    
-		fis = new FileInputStream(arquivo);
-			
-		
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		
-		ArrayList<Object> objetos = (ArrayList<Object>) ois.readObject();
-		
-		return objetos;
+		return ois.readObject();
 	}
 }
