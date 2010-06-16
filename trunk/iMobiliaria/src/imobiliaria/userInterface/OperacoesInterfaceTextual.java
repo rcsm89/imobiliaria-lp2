@@ -15,6 +15,8 @@ import imobiliaria.entidades.FolhaDePagamento;
 import imobiliaria.entidades.Funcionario;
 import imobiliaria.entidades.Imovel;
 import imobiliaria.exceptions.ClienteNotFoundException;
+import imobiliaria.exceptions.PedidoNotFoundException;
+import imobiliaria.exceptions.TransacaoNaoExistenteException;
 import imobiliaria.processamento.Sistema;
 import imobiliaria.util.FormataEntrada;
 import imobiliaria.util.MetodoEntrada;
@@ -584,9 +586,46 @@ public class OperacoesInterfaceTextual {
     			listaPedidosDeCliente(cpfCliente));
     }
     
+    
+    protected void cancelaPedido() {
+    	
+    	String registroImovel = "RECEBE UM REGISTRO DE IMOVEL";
+    	
+    	try {
+    		
+    		ControladorPedidos.getInstance().removePedido(registroImovel);
+    		
+    	} catch (PedidoNotFoundException e) {
+    		//Se nao for encontrado entra aqui
+    		
+			System.out.println("Pedido nao encontrado");
+			return;
+		} catch (Exception e) {
+			//Qualquer outro erro entra aqui
+			
+			System.out.println("Erro ao remover Pedido: " + e.getMessage());
+			return;
+		}
+    	
+    	System.out.println("Pedido removido com sucesso");
+    }
+    
     protected void listaAlugueisDeCliente(String cpfCliente) {
     	System.out.println(ControladorAlugueis.getInstance().
     			listaAlugueisDeCliente(cpfCliente));
+    }
+    
+    protected void cancelaAluguel() {
+    	
+    	String registroImovel = "RECEBE REGISTRO DO IMOVEL";
+    	
+    	// Metodo retorna boolean
+    	
+    	if (ControladorAlugueis.getInstance().removeAluguel(registroImovel)) {
+    		System.out.println("Aluguel removido com sucesso!");
+    	} else {
+    		System.out.println("Erro ao remover aluguel");
+    	}
     }
     
     protected void listaHistoricoDeComprasDeCliente(String cpfCliente) {
@@ -628,6 +667,7 @@ public class OperacoesInterfaceTextual {
     	listaHistorico(historico);
     }
      
+    //PRIVADO!11
     private void listaHistorico(ArrayList<Imovel> historico) {
     	if (historico.isEmpty()) {
     		System.out.println("Historico Vazio");
@@ -659,6 +699,21 @@ public class OperacoesInterfaceTextual {
     protected void listaAlugueis() {
     	
     	System.out.println(ControladorAlugueis.getInstance().listaAlugueis());
+    	
+    }
+    
+    protected void removeTransacao() {
+    	
+    	String registroTransacao = "RECEBE REGISTRO DA TRANSACAO";
+    	
+    	// Converte pra INT!
+    	int regTransacao = Integer.parseInt(registroTransacao);
+    	
+    	try {
+			ControladorTransacoes.getInstance().removeTransacao(regTransacao);
+		} catch (TransacaoNaoExistenteException e) {
+			System.out.println("Transacao nao existente");
+		}
     	
     }
     
