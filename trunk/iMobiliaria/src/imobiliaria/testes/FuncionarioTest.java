@@ -103,7 +103,7 @@ public class FuncionarioTest {
 			func1.addImovelVendidoMes(imovel1);
 			Assert.fail("Deveria ter lancado excecao");
 		}catch (Exception e) {
-			Assert.assertEquals("Imovel Existente", e.getMessage());
+			Assert.assertEquals("Imovel ja Existente", e.getMessage());
 		}
 
 		try{
