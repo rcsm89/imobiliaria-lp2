@@ -10,10 +10,9 @@ import org.junit.Test;
 
 /**
  * Teste que verifica se ControladorLogin foi implementado corretamente<br>
- * Test that verify if ControladorLogin was implemented correctly
  * 
  * @author Jeanderson Barros Candido
- * @version iteracao 2
+ * @version version 2
  * 
  */
 public class ControladorLoginTest {
@@ -59,7 +58,6 @@ public class ControladorLoginTest {
 
     /**
      * Verifica se o metodo removeLogin() foi implementado corretamente<br>
-     * Verify if the method removeLogin() was implemented correctly
      */
     @Test
     public void testRemoveLogin() throws Exception {
