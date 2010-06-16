@@ -1,8 +1,6 @@
 package imobiliaria.processamento;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-
 import imobiliaria.controladores.*;
 import imobiliaria.entidades.Imovel;
 import imobiliaria.entidades.Transacao;
@@ -23,8 +21,15 @@ public class Sistema implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private final String ARQUIVO_DO_SISTEMA = "DadosDeSistema.dat";
-    private final String ARQUIVO_DE_REGISTROS = "Registros.dat";
+    private final String ARQUIVO_DE_IMOVEIS = "DadosImoveis.im";
+    private final String ARQUIVO_DE_CLIENTES = "DadosClientes.im";
+    private final String ARQUIVO_DE_FUNCIONARIOS = "DadosFuncionarios.im";
+    private final String ARQUIVO_DE_TRANSACOES = "DadosTransacoes.im";
+    private final String ARQUIVO_DE_PEDIDOS = "DadosPedidos.im";
+    private final String ARQUIVO_DE_ALUGUEIS = "DadosAlugueis.im";
+    private final String ARQUIVO_DE_LOGINS = "DadosLogins.im";
+    private final String ARQUIVO_DE_REGISTRO_IMOVEL = "RegistrosImovel.dat";
+    private final String ARQUIVO_DE_REGISTRO_TRANSACAO = "RegistrosTransacoes.dat";
 
     /* Metodos de Atualizacao */
 
@@ -39,35 +44,33 @@ public class Sistema implements Serializable {
     	
     	try {
     		
-    		ArrayList<Object> controladores = PersistenciaDados.ler(ARQUIVO_DO_SISTEMA);
+    		ControladorImovel.setInstance((ControladorImovel)
+    				PersistenciaDados.ler(ARQUIVO_DE_IMOVEIS));
     		
-    		ControladorImovel.setInstance((ControladorImovel) controladores.get(0));
+    		ControladorCliente.setInstance((ControladorCliente)
+    				PersistenciaDados.ler(ARQUIVO_DE_CLIENTES));
     		
-    		ControladorCliente.setInstance((ControladorCliente) controladores.get(1));
+    		ControladorFuncionario.setInstance((ControladorFuncionario)
+    				PersistenciaDados.ler(ARQUIVO_DE_FUNCIONARIOS));
     		
-    		ControladorFuncionario
-    		.setInstance((ControladorFuncionario) controladores.get(2));
+    		ControladorTransacoes.setInstance((ControladorTransacoes)
+    				PersistenciaDados.ler(ARQUIVO_DE_TRANSACOES));
     		
-    		ControladorTransacoes
-    		.setInstance((ControladorTransacoes) controladores.get(3));
+    		ControladorPedidos.setInstance((ControladorPedidos)
+    				PersistenciaDados.ler(ARQUIVO_DE_PEDIDOS));
     		
-    		ControladorPedidos.setInstance((ControladorPedidos) controladores.get(4));
-    		
-    		ControladorAlugueis.setInstance((ControladorAlugueis) controladores.get(5));
+    		ControladorAlugueis.setInstance((ControladorAlugueis)
+    				PersistenciaDados.ler(ARQUIVO_DE_ALUGUEIS));
     		
     		ControladorLogin.setInstance((ControladorLogin)
-    				controladores.get(6));
-    		
-    		
-    		
-    		
-    		
+    				PersistenciaDados.ler(ARQUIVO_DE_LOGINS));
     		
 
-	/*Imovel.setCriadorDeRegistro((Integer) PersistenciaDados
-		.ler(ARQUIVO_DE_REGISTROS));
-	Transacao.setCriadorRegistroTransacao((Integer) PersistenciaDados
-		.ler(ARQUIVO_DE_REGISTROS));*/
+    		Imovel.setCriadorDeRegistro((Integer) PersistenciaDados
+    				.ler(ARQUIVO_DE_REGISTRO_IMOVEL));
+    		Transacao.setCriadorRegistroTransacao((Integer) PersistenciaDados
+    				.ler(ARQUIVO_DE_REGISTRO_TRANSACAO));
+	
     	} catch (Exception e) {
     		System.out.println("Erro atualizando dados: " + e.getMessage());
     	}
@@ -80,25 +83,34 @@ public class Sistema implements Serializable {
 
 	ControladorTransacoes.getInstance().atualizaControlador();
 	
-	ArrayList<Object> controladores = new ArrayList<Object>();
-	
 	try {
 		
-		controladores.add(ControladorImovel.getInstance());
-		controladores.add(ControladorCliente.getInstance());
-		controladores.add(ControladorFuncionario.getInstance());
-		controladores.add(ControladorTransacoes.getInstance());
-		controladores.add(ControladorPedidos.getInstance());
-		controladores.add(ControladorAlugueis.getInstance());
-		controladores.add(ControladorLogin.getInstance());
+		PersistenciaDados.gravar(ControladorImovel.getInstance(),
+				ARQUIVO_DE_IMOVEIS);
 		
-	PersistenciaDados.gravar(controladores,
-		ARQUIVO_DO_SISTEMA);
-
-	PersistenciaDados.gravar(Imovel.getCriadorDeRegistro(),
-		ARQUIVO_DE_REGISTROS);
-	PersistenciaDados.gravar(Transacao.getCriadorRegistroTransacao(),
-		ARQUIVO_DE_REGISTROS);
+		PersistenciaDados.gravar(ControladorCliente.getInstance(),
+				ARQUIVO_DE_CLIENTES);
+		
+		PersistenciaDados.gravar(ControladorFuncionario.getInstance(),
+				ARQUIVO_DE_FUNCIONARIOS);
+		
+		PersistenciaDados.gravar(ControladorTransacoes.getInstance(),
+				ARQUIVO_DE_TRANSACOES);
+		
+		PersistenciaDados.gravar(ControladorPedidos.getInstance(),
+				ARQUIVO_DE_PEDIDOS);
+		
+		PersistenciaDados.gravar(ControladorAlugueis.getInstance(),
+				ARQUIVO_DE_ALUGUEIS);
+		
+		PersistenciaDados.gravar(ControladorLogin.getInstance(),
+				ARQUIVO_DE_LOGINS);
+		
+		PersistenciaDados.gravar(Imovel.getCriadorDeRegistro(),
+				ARQUIVO_DE_REGISTRO_IMOVEL);
+		PersistenciaDados.gravar(Transacao.getCriadorRegistroTransacao(),
+				ARQUIVO_DE_REGISTRO_TRANSACAO);
+		
 	} catch (Exception e) {
 		System.out.println("Erro Salvando Dados: " + e.getMessage());
 	}
