@@ -377,7 +377,12 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 	String userName = MetodoEntrada.recebeString("Login: ");
 	String password = MetodoEntrada.recebeString("Senha: ");
 	
-	Login teste = sis.getControladorLogin().getLogin(Username);
+	Login teste = null;
+	try {
+	    teste = new Login(userName, password, tipo);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
 
 	return sis.getControladorLogin().verificaLogin(teste);
 
