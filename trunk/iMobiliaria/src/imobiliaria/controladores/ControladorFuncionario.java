@@ -4,12 +4,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.TreeSet;
-
-import imobiliara.auxiliar.TipoContratual;
-import imobiliara.auxiliar.TipoImovel;
-import imobiliaria.entidades.Area;
 import imobiliaria.entidades.Funcionario;
-import imobiliaria.entidades.Imovel;
 import imobiliaria.exceptions.FuncionarioNotFoundException;
 import imobiliaria.processamento.ColecaoFuncionario;
 import imobiliaria.util.VerificaInvalido;
@@ -142,10 +137,10 @@ public class ControladorFuncionario implements Serializable {
 	public void modificaFuncionario(String creci, String cpf,
 			Calendar dataNascimento, String endereco, String nome)
 			throws Exception {
-		
+
 		Funcionario funcionario = colecaoFunc.getFuncionario(creci);
-		
-		if (funcionario == null){
+
+		if (funcionario == null) {
 			throw new FuncionarioNotFoundException("Funcionario nao existente");
 		}
 
@@ -154,33 +149,7 @@ public class ControladorFuncionario implements Serializable {
 		funcionario.setEndereco(endereco);
 		funcionario.setNome(nome);
 	}
-	
-	/*
-	 * public void modificaImovel(String registro, String nome, String endereco,
-			double valor, Area area, TipoImovel tipoDoImovel,
-			TipoContratual tipoContratual) throws Exception {
 
-		int regImovel;
-
-		try {
-			regImovel = Integer.parseInt(registro);
-		} catch (Exception e) {
-			throw new IllegalArgumentException("Registro Invalido");
-		}
-
-		Imovel imovel = colecaoImovel.getImovelDeRegistro(regImovel);
-
-		if (imovel == null)
-			throw new Exception("Imovel Nao Pertencente ao Controlador");
-
-		imovel.setNome(nome);
-		imovel.setEndereco(endereco);
-		imovel.setValor(valor);
-		imovel.setArea(area);
-		imovel.setTipoDoImovel(tipoDoImovel);
-		imovel.setTipoContratual(tipoContratual);
-	}
-	 */
 	/**
 	 * Imprime uma listagem com dados dos funcionarios
 	 * 
@@ -228,6 +197,10 @@ public class ControladorFuncionario implements Serializable {
 	 * @return Funcionario ou null, caso nao exista
 	 */
 	public Funcionario getFuncionarioPorCreci(String creci) {
+		if (VerificaInvalido.numero(creci)){
+			throw new IllegalArgumentException("Creci invalido");
+		}
+			
 		for (Funcionario func : colecaoFunc.getColecaoFuncionarios()) {
 			if (func.getCreci().equals(creci))
 				return func;
@@ -243,6 +216,10 @@ public class ControladorFuncionario implements Serializable {
 	 * @return String contendo informacoes do Funcionario
 	 */
 	public String exibeFuncionarioPorCreci(String creci) {
+		if (VerificaInvalido.numero(creci)){
+			throw new IllegalArgumentException("Creci invalido");
+		}
+		
 		Funcionario func = getFuncionarioPorCreci(creci);
 
 		return "Nome: " + func.getNome() + "\nCreci: " + func.getCreci()
@@ -259,6 +236,10 @@ public class ControladorFuncionario implements Serializable {
 	 * @return Funcionario ou null, caso nao exista
 	 */
 	public Funcionario getFuncionarioPorCpf(String cpf) {
+		if(VerificaInvalido.basico(cpf)){
+			throw new IllegalArgumentException("CPF invalido");
+		}
+		
 		for (Funcionario func : colecaoFunc.getColecaoFuncionarios()) {
 			if (func.getCpf().equals(cpf))
 				return func;
@@ -274,6 +255,9 @@ public class ControladorFuncionario implements Serializable {
 	 * @return String contendo informacoes do Funcionario
 	 */
 	public String exibeFuncionarioPorCpf(String cpf) {
+		if(VerificaInvalido.basico(cpf)){
+			throw new IllegalArgumentException("CPF invalido");
+		}
 		Funcionario func = getFuncionarioPorCpf(cpf);
 
 		return "Nome: " + func.getNome() + "\nCreci: " + func.getCreci()
@@ -292,9 +276,9 @@ public class ControladorFuncionario implements Serializable {
 	 * @throws Exception
 	 *             Caso o creci seja invalido
 	 */
-	public boolean removeFuncionario(String creci) throws Exception {
+	public boolean removeFuncionario(String creci) {
 		if (VerificaInvalido.numero(creci)) {
-			throw new Exception("Creci Invalido");
+			throw new IllegalArgumentException("Creci Invalido");
 		}
 		for (Funcionario func : colecaoFunc.getColecaoFuncionarios()) {
 			if (func.getCreci().equals(creci)) {

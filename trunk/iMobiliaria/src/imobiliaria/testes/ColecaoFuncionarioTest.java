@@ -33,13 +33,6 @@ public class ColecaoFuncionarioTest {
 		// Nao adiciona um mesmo funcionario
 		Assert.assertFalse(colFunc1.adicionaFuncionario(func1));
 		Assert.assertEquals(2, colFunc1.getNumFuncionarios());
-
-		try {
-			colFunc1.adicionaFuncionario(null);
-			Assert.fail("Deveria ter lancado excecao aqui");
-		} catch (Exception e) {
-			Assert.assertEquals("Funcionario Invalido", e.getMessage());
-		}
 	}
 
 	@Test(expected = Exception.class)
@@ -87,6 +80,30 @@ public class ColecaoFuncionarioTest {
 		} catch (Exception e) {
 			Assert.assertEquals("Creci Invalido", e.getMessage());
 		}
+		
+		try {
+			String creciInvalido = "";
+			colFunc1.removeFuncionario(creciInvalido);
+			Assert.fail("Esperava creci invalido");
+		} catch (Exception e) {
+			Assert.assertEquals("Creci Invalido", e.getMessage());
+		}
+		
+		try {
+			String nomeInvalido = "Th14g0";
+			colFunc1.removeFuncionarioPorNome(nomeInvalido);
+			Assert.fail("Esperava nome invalido");
+		} catch (Exception e) {
+			Assert.assertEquals("Nome Invalido", e.getMessage());
+		}
+
+		try {
+			String nomeInvalido = null;
+			colFunc1.removeFuncionarioPorNome(nomeInvalido);
+			Assert.fail("Esperava nome invalido");
+		} catch (Exception e) {
+			Assert.assertEquals("Nome Invalido", e.getMessage());
+		}
 
 		try {
 			String nomeInvalido = "";
@@ -111,11 +128,10 @@ public class ColecaoFuncionarioTest {
 				new GregorianCalendar(1991, 2, 17), "Rua Rodrigues Alves",
 				"Yuri Farias", "12345"));
 
-		Assert.assertEquals("12345", colFunc1.getFuncionario("12345")
-				.getCreci());
+		Assert.assertEquals("12345", colFunc1.getFuncionario("12345").getCreci());
 
-		String creciInexistente = "12321345";
-		Assert.assertEquals(null, colFunc1.getFuncionario(creciInexistente));
+		String creciFuncInexistente = "12321345";
+		Assert.assertEquals(null, colFunc1.getFuncionario(creciFuncInexistente));
 
 		Assert.assertEquals(2, colFunc1.getFuncionarioPorNome("Thiago").size());
 		Assert.assertEquals(1, colFunc1.getFuncionarioPorNome("Yuri").size());
@@ -134,7 +150,19 @@ public class ColecaoFuncionarioTest {
 			Assert.assertEquals("Creci Invalido", e.getMessage());
 		}
 		try {
+			colFunc1.getFuncionario(" ");
+			Assert.fail("Deveria ter lancado excecao aqui");
+		} catch (Exception e) {
+			Assert.assertEquals("Creci Invalido", e.getMessage());
+		}
+		try {
 			colFunc1.getFuncionarioPorNome(" ");
+			Assert.fail("Deveria ter lancado excecao aqui");
+		} catch (Exception e) {
+			Assert.assertEquals("Nome Invalido", e.getMessage());
+		}
+		try {
+			colFunc1.getFuncionarioPorNome("Th14g0");
 			Assert.fail("Deveria ter lancado excecao aqui");
 		} catch (Exception e) {
 			Assert.assertEquals("Nome Invalido", e.getMessage());
