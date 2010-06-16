@@ -188,20 +188,23 @@ public class ControladorFuncionario implements Serializable {
 		}
 		return funcSalario;
 	}
-	
+
 	/**
-	 * @return
+	 * Exibe informacoes de totais de vendas
+	 * 
+	 * @return Uma string com informacoes de venda de cada funcionario
 	 */
 	public String exibeTotaisDeVendas() {
-		HashMap<String,Double> funcSalario = listaTotaisDeVendas();
+		HashMap<String, Double> funcSalario = listaTotaisDeVendas();
 		String saida = "";
-		
-		for (String nomeFunc : funcSalario.keySet()){
-			saida += "Nome: " + nomeFunc + "\nValor de Vendas: " + funcSalario.get(nomeFunc) + "\n"; 
+
+		for (String nomeFunc : funcSalario.keySet()) {
+			saida += "Nome: " + nomeFunc + "\nValor de Vendas: "
+					+ funcSalario.get(nomeFunc) + "\n\n";
 		}
-		
+
 		return saida;
-		
+
 	}
 
 	/**
@@ -212,10 +215,10 @@ public class ControladorFuncionario implements Serializable {
 	 * @return Funcionario ou null, caso nao exista
 	 */
 	public Funcionario getFuncionarioPorCreci(String creci) {
-		if (VerificaInvalido.numero(creci)){
+		if (VerificaInvalido.numero(creci)) {
 			throw new IllegalArgumentException("Creci invalido");
 		}
-			
+
 		for (Funcionario func : colecaoFunc.getColecaoFuncionarios()) {
 			if (func.getCreci().equals(creci))
 				return func;
@@ -231,10 +234,10 @@ public class ControladorFuncionario implements Serializable {
 	 * @return String contendo informacoes do Funcionario
 	 */
 	public String exibeFuncionarioPorCreci(String creci) {
-		if (VerificaInvalido.numero(creci)){
+		if (VerificaInvalido.numero(creci)) {
 			throw new IllegalArgumentException("Creci invalido");
 		}
-		
+
 		Funcionario func = getFuncionarioPorCreci(creci);
 
 		return "Nome: " + func.getNome() + "\nCreci: " + func.getCreci()
@@ -251,10 +254,10 @@ public class ControladorFuncionario implements Serializable {
 	 * @return Funcionario ou null, caso nao exista
 	 */
 	public Funcionario getFuncionarioPorCpf(String cpf) {
-		if(VerificaInvalido.basico(cpf)){
+		if (VerificaInvalido.basico(cpf)) {
 			throw new IllegalArgumentException("CPF invalido");
 		}
-		
+
 		for (Funcionario func : colecaoFunc.getColecaoFuncionarios()) {
 			if (func.getCpf().equals(cpf))
 				return func;
@@ -270,7 +273,7 @@ public class ControladorFuncionario implements Serializable {
 	 * @return String contendo informacoes do Funcionario
 	 */
 	public String exibeFuncionarioPorCpf(String cpf) {
-		if(VerificaInvalido.basico(cpf)){
+		if (VerificaInvalido.basico(cpf)) {
 			throw new IllegalArgumentException("CPF invalido");
 		}
 		Funcionario func = getFuncionarioPorCpf(cpf);
