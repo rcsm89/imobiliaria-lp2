@@ -11,6 +11,7 @@ import imobiliaria.exceptions.ImovelNotFoundException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 
 /**
@@ -61,28 +62,29 @@ public class ControladorAlugueis implements Serializable {
 	 *            Registro do Imovel que foi Alugado
 	 * @return True - caso ele tenha sido adicionado com sucesso <br>
 	 *         False - caso contrario
-	 * @throws Exception 
+	 * @throws Exception
 	 */
-	public boolean adicionaAluguel(String cpfCliente, String registroDoImovel) throws Exception {
+	public boolean adicionaAluguel(String cpfCliente, String registroDoImovel)
+			throws Exception {
 
 		Cliente alugante = ControladorCliente.getInstance().getCliente(
 				cpfCliente);
 		Imovel imovelAlugado = ControladorImovel.getInstance().getImovel(
 				registroDoImovel);
 
-		if (alugante == null )
+		if (alugante == null)
 			throw new ClienteNotFoundException("Cliente invalido");
-		
-		if ( imovelAlugado == null )
+
+		if (imovelAlugado == null)
 			throw new ImovelNotFoundException("Imovel nao encontrado");
-		
-		if ( imovelAlugado.getEstadoDoImovel() != EstadoImovel.PEDIDO
+
+		if (imovelAlugado.getEstadoDoImovel() != EstadoImovel.PEDIDO
 				|| imovelAlugado.getTipoContratual() != TipoContratual.ALUGUEL) {
 			throw new ImovelInvalidoException("Imovel invalido");
 		}
 
 		Aluguel aluguel = new Aluguel(alugante, imovelAlugado);
-		
+
 		imovelAlugado.alugado();
 
 		return alugueis.add(aluguel);
@@ -155,6 +157,47 @@ public class ControladorAlugueis implements Serializable {
 		}
 
 		return valorTotal;
+	}
+
+	/**
+	 * Metodo de Listagem dos Alugueis de um Cliente
+	 * 
+	 * @param cpfCliente
+	 *            CPF do Cliente
+	 * @return Listagem dos Alugueis do Cliente
+	 */
+	public String listaAlugueisDeCliente(String cpfCliente) {
+
+		ArrayList<Aluguel> alugueisDoCliente = new ArrayList<Aluguel>();
+		
+		for (Aluguel a : alugueis) {
+			if (a.getAlugante().getCpf().equals(cpfCliente))
+				alugueisDoCliente.add(a);
+		}
+		
+		return listaAlugueisDaColecao(alugueisDoCliente);
+	}
+	
+	/**
+	 * Metodo de Listagem dos Alugueis do Controlador
+	 * @return Listagem dos Alugueis do Controlador
+	 */
+	public String listaAlugueis() {
+		return listaAlugueisDaColecao(alugueis);
+	}
+	
+	
+	// Privados
+	
+	private String listaAlugueisDaColecao(Collection<Aluguel> colecao)  {
+		
+		String saida = "";
+		
+		for (Aluguel a : colecao) {
+			saida += a.exibeInformacao() + "\n\n";
+		}
+		
+		return saida;
 	}
 
 }
