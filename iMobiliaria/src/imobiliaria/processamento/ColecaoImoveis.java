@@ -4,6 +4,7 @@ import imobiliara.auxiliar.EstadoImovel;
 import imobiliara.auxiliar.TipoContratual;
 import imobiliara.auxiliar.TipoImovel;
 import imobiliaria.entidades.Imovel;
+import imobiliaria.exceptions.ImovelInvalidoException;
 import imobiliaria.exceptions.ValorInvalidoException;
 import imobiliaria.util.VerificaInvalido;
 
@@ -31,11 +32,11 @@ public class ColecaoImoveis implements Serializable {
 	public void addImovel(Imovel imovelAadicionar) throws Exception {
 		
 		if (imovelAadicionar == null){
-			throw new Exception("Imovel Invalido");
+			throw new IllegalArgumentException("Imovel Invalido");
 		}
 
 		if (colecaoImoveis.contains(imovelAadicionar))
-			throw new Exception("Imovel Existente");
+			throw new ImovelInvalidoException("Imovel ja Existente");
 		
 		colecaoImoveis.add(imovelAadicionar);
 	}

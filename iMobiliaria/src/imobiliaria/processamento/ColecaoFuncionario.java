@@ -120,7 +120,7 @@ public class ColecaoFuncionario implements Serializable {
 	 */
 	public boolean removeFuncionario(String creci) throws Exception {
 		if (VerificaInvalido.numero(creci)) {
-			throw new Exception("Creci Invalido");
+			throw new IllegalArgumentException("Creci Invalido");
 		}
 		for (Funcionario func : colecaoFuncionarios) {
 			if (func.getCreci().equals(creci)) {
