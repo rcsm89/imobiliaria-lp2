@@ -5,6 +5,9 @@ import imobiliara.auxiliar.TipoContratual;
 import imobiliaria.entidades.Aluguel;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.Imovel;
+import imobiliaria.exceptions.ClienteNotFoundException;
+import imobiliaria.exceptions.ImovelInvalidoException;
+import imobiliaria.exceptions.ImovelNotFoundException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -58,8 +61,9 @@ public class ControladorAlugueis implements Serializable {
 	 *            Registro do Imovel que foi Alugado
 	 * @return True - caso ele tenha sido adicionado com sucesso <br>
 	 *         False - caso contrario
+	 * @throws Exception 
 	 */
-	public boolean adicionaAluguel(String cpfCliente, String registroDoImovel) {
+	public boolean adicionaAluguel(String cpfCliente, String registroDoImovel) throws Exception {
 
 		Cliente alugante = ControladorCliente.getInstance().getCliente(
 				cpfCliente);
@@ -67,13 +71,14 @@ public class ControladorAlugueis implements Serializable {
 				registroDoImovel);
 
 		if (alugante == null )
-			throw new IllegalArgumentException("Cliente invalido");
+			throw new ClienteNotFoundException("Cliente invalido");
 		
-		if ( imovelAlugado == null
-				|| imovelAlugado.getEstadoDoImovel() != EstadoImovel.PEDIDO
+		if ( imovelAlugado == null )
+			throw new ImovelNotFoundException("Imovel nao encontrado");
+		
+		if ( imovelAlugado.getEstadoDoImovel() != EstadoImovel.PEDIDO
 				|| imovelAlugado.getTipoContratual() != TipoContratual.ALUGUEL) {
-
-			throw new IllegalArgumentException("Imovel invalido");
+			throw new ImovelInvalidoException("Imovel invalido");
 		}
 
 		Aluguel aluguel = new Aluguel(alugante, imovelAlugado);

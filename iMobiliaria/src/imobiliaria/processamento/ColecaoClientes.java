@@ -33,7 +33,7 @@ public class ColecaoClientes implements Serializable {
 	 */
 	public boolean adicionaCliente(Cliente clienteASerAdicionado) throws Exception {
 		if (clienteASerAdicionado == null){
-			throw new Exception("Cliente invalido\n");
+			throw new IllegalArgumentException("Cliente invalido\n");
 		}
 		
 		if (colecaoClientes.contains(clienteASerAdicionado)) {
