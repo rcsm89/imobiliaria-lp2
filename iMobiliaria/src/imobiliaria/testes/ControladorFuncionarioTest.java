@@ -5,12 +5,8 @@ import java.util.GregorianCalendar;
 
 import junit.framework.Assert;
 
-import imobiliara.auxiliar.TipoContratual;
-import imobiliara.auxiliar.TipoImovel;
 import imobiliaria.controladores.ControladorFuncionario;
-import imobiliaria.entidades.Area;
 import imobiliaria.entidades.Funcionario;
-import imobiliaria.entidades.Imovel;
 import imobiliaria.exceptions.FuncionarioNotFoundException;
 
 import org.junit.Before;
