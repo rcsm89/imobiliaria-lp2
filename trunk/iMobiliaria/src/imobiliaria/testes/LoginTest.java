@@ -11,8 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Teste que verifica se o tipo Login foi implementado corretamente<br>
- * Test that verify if the type Login was implemented correctly
+ * Teste que verifica se o tipo Login foi implementado corretamente
  * 
  * @author Jeanderson Barros Candido
  * @version iteracao 2
@@ -25,12 +24,10 @@ public class LoginTest {
     private Login lg3;
 
     /**
-     * Configura tres tipos diferentes de Login<br>
-     * Sets up three different types of Login
+     * Configura tres tipos diferentes de Login
      * 
      * @throws Exception
-     *             se um dos parametros for invalido<br>
-     *             if one of those parameters is invalid
+     *             se um dos parametros for invalido
      */
     @Before
     public void setUp() throws Exception {
@@ -99,7 +96,6 @@ public class LoginTest {
 
     /**
      * Verifica se cada metodo acessador esta retornando o valor correto<br>
-     * Verify if the each access method is returning the correct value
      */
     @Test
     public void getsTest() {
@@ -123,7 +119,6 @@ public class LoginTest {
 
     /**
      * Verifica se o metodo mudarLogin() esta mudando os atributos corretamente<br>
-     * Verify if the method mudarLogin() is changing correctly the attributes
      */
     @Test
     public void mudarLoginTest() {
@@ -150,7 +145,6 @@ public class LoginTest {
 
     /**
      * Verifica se o metodo mudarSenha() esta mudando os atributos corretamente<br>
-     * Verify if the method mudarSenha() is changing correctly the attributes
      */
     @Test
     public void mudarSenhaTest() {
@@ -176,7 +170,6 @@ public class LoginTest {
 
     /**
      * Verifica se as condicoes para logins serem iguais estao corretas<br>
-     * Verify if the conditions to have same logins are correct
      */
     @Test
     public void equalsTest() {
