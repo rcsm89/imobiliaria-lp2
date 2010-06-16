@@ -320,7 +320,7 @@ public class ControladorImovel implements Serializable {
 		try {
 			registro = Integer.parseInt(registroImovel);
 		} catch (Exception e) {
-			throw new Exception("Registro Invalido");
+			throw new IllegalArgumentException("Registro Invalido");
 		}
 		for (Imovel imovel : colecaoImovel.getImoveis()) {
 			if (imovel.getRegistroImovel() == registro)
