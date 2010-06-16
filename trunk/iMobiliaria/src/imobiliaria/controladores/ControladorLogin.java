@@ -29,7 +29,7 @@ public class ControladorLogin implements Serializable {
      * Cria um Controlador de Logins<br>
      * Creates a new Login's Controller
      */
-    public ControladorLogin() {
+    private ControladorLogin() {
 	loginsDoSistema = new HashSet<Login>();
     }
 
@@ -41,6 +41,21 @@ public class ControladorLogin implements Serializable {
      */
     public static ControladorLogin getInstance() {
 	return controladorLoginsUnico;
+    }
+
+    /**
+     * Metodo que modifica a instancia unica do Controlador de Logins<br>
+     * Method that modified the unique instance of Login's Controller
+     * 
+     * @param controlador
+     *            Nova Instancia para o Controlador<br>
+     *            New controller's instance
+     */
+    public static void setInstance(ControladorLogin controlador) {
+	if (controlador == null) {
+	    throw new IllegalArgumentException("Controlador de Logins invalido");
+	}
+	controladorLoginsUnico = controlador;
     }
 
     /**
@@ -126,7 +141,6 @@ public class ControladorLogin implements Serializable {
 	ControladorLogin outro = (ControladorLogin) obj;
 	return (outro.getCollection().containsAll(loginsDoSistema) && loginsDoSistema
 		.containsAll(outro.getCollection()));
-
     }
 
     /*
@@ -145,5 +159,4 @@ public class ControladorLogin implements Serializable {
     private Collection<Login> getCollection() {
 	return loginsDoSistema;
     }
-
 }
