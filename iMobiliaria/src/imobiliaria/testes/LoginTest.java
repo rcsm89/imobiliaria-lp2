@@ -82,14 +82,14 @@ public class LoginTest {
 	Login x;
 	try {
 	    x = new Login("    a  ", "     ", TipoLogin.ADMINISTRADOR);
-	    Assert.assertEquals("a", x.getLogin());
+	    Assert.assertEquals("a", x.getUserName());
 	    Assert.assertEquals("     ", x.getSenha());
 	} catch (Exception erro) {
 	    Assert.fail("It shouldn't thrower exception");
 	}
 	try {
 	    x = new Login("    a  c c  ", "     ", TipoLogin.ADMINISTRADOR);
-	    Assert.assertEquals("acc", x.getLogin());
+	    Assert.assertEquals("acc", x.getUserName());
 	    Assert.assertEquals("     ", x.getSenha());
 	} catch (Exception erro) {
 	    Assert.fail("It shouldn't thrower exception");
@@ -110,9 +110,9 @@ public class LoginTest {
 	Assert.assertEquals(TipoLogin.FUNCIONARIO, lg3.getTipoLogin());
 
 	// Case 2: get for UserName
-	Assert.assertEquals("login1", lg1.getLogin());
-	Assert.assertEquals("login2", lg2.getLogin());
-	Assert.assertEquals("login3", lg3.getLogin());
+	Assert.assertEquals("login1", lg1.getUserName());
+	Assert.assertEquals("login2", lg2.getUserName());
+	Assert.assertEquals("login3", lg3.getUserName());
 
 	// Case 3: get for Password
 	Assert.assertEquals("password1", lg1.getSenha());
@@ -128,9 +128,9 @@ public class LoginTest {
     @Test
     public void mudarLoginTest() {
 
-	Assert.assertEquals("login1", lg1.getLogin());
+	Assert.assertEquals("login1", lg1.getUserName());
 	lg1.mudarLogin("NovoLogin");
-	Assert.assertEquals("NovoLogin", lg1.getLogin());
+	Assert.assertEquals("NovoLogin", lg1.getUserName());
 
 	// Trying to set a invalid parameter: null/empty space
 	lg1.mudarLogin("");
@@ -138,13 +138,13 @@ public class LoginTest {
 	lg1.mudarLogin(null);
 
 	// Proving that the method doesn't permits those invalids types
-	Assert.assertEquals("NovoLogin", lg1.getLogin());
+	Assert.assertEquals("NovoLogin", lg1.getUserName());
 
 	// Mixing spaces with characters
 	lg1.mudarLogin("   acc ");
-	Assert.assertEquals("acc", lg1.getLogin());
+	Assert.assertEquals("acc", lg1.getUserName());
 	lg1.mudarLogin("   b  c c ");
-	Assert.assertEquals("bcc", lg1.getLogin());
+	Assert.assertEquals("bcc", lg1.getUserName());
 
     }
 
@@ -191,7 +191,7 @@ public class LoginTest {
 
 	// The condition to have one login equals to another, is having the same
 	// user-name, independent of the login's type :)
-	lg2.mudarLogin(lg1.getLogin());
+	lg2.mudarLogin(lg1.getUserName());
 	Assert.assertTrue(lg1.equals(lg2));
     }
 
