@@ -128,7 +128,7 @@ public class Login {
      * @return O username de um login<br>
      *         The login's user-name
      */
-    public String getLogin() {
+    public String getUserName() {
 	return userName;
     }
 
@@ -154,7 +154,7 @@ public class Login {
 	    return false;
 	}
 	Login outroLogin = (Login) obj;
-	return userName.equals(outroLogin.getLogin());
+	return userName.equals(outroLogin.getUserName());
     }
 
     @Override
