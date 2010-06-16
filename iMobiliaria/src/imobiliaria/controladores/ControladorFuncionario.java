@@ -188,6 +188,21 @@ public class ControladorFuncionario implements Serializable {
 		}
 		return funcSalario;
 	}
+	
+	/**
+	 * @return
+	 */
+	public String exibeTotaisDeVendas() {
+		HashMap<String,Double> funcSalario = listaTotaisDeVendas();
+		String saida = "";
+		
+		for (String nomeFunc : funcSalario.keySet()){
+			saida += "Nome: " + nomeFunc + "\nValor de Vendas: " + funcSalario.get(nomeFunc) + "\n"; 
+		}
+		
+		return saida;
+		
+	}
 
 	/**
 	 * Metodo Acessador de um Funcionario
