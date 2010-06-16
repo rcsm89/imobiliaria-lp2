@@ -71,7 +71,7 @@ public abstract class Usuario implements Serializable, Comparable<Object> {
 	this.endereco = FormataEntrada.capitalize(endereco).trim();
 	this.nome = FormataEntrada.capitalize(nome).trim();
 	this.cpf = FormataEntrada.cpf(cpf).trim();
-	this.login = new Login(this.cpf, this.dataNascimento, tLogin);
+	this.login = new Login(cpf, this.dataNascimento.replace("/", ""), tLogin);
     }
 
     // Metodos
