@@ -6,6 +6,7 @@ import imobiliara.auxiliar.TipoImovel;
 import imobiliaria.entidades.Area;
 import imobiliaria.entidades.Imovel;
 import imobiliaria.exceptions.ImovelNotFoundException;
+import imobiliaria.exceptions.ValorInvalidoException;
 import imobiliaria.processamento.ColecaoImoveis;
 import imobiliaria.util.VerificaInvalido;
 
@@ -97,7 +98,8 @@ public class ControladorImovel implements Serializable {
 		Imovel imovel = colecaoImovel.getImovelDeRegistro(regImovel);
 
 		if (imovel == null)
-			throw new ImovelNotFoundException("Imovel Nao Pertencente ao Controlador");
+			throw new ImovelNotFoundException(
+					"Imovel Nao Pertencente ao Controlador");
 
 		imovel.setNome(nome);
 		imovel.setEndereco(endereco);
@@ -210,8 +212,11 @@ public class ControladorImovel implements Serializable {
 	 * @param max
 	 *            Representa um valor maximo de preco para o imovel
 	 * @return Uma String contendo a lista dos imoveis
+	 * @throws ValorInvalidoException
+	 *             Caso os valores sejam invalidos
 	 */
-	public String listaImoveis(double min, double max) {
+	public String listaImoveis(double min, double max)
+			throws ValorInvalidoException {
 		return listaImoveis(colecaoImovel.getImoveisDeValor(min, max));
 	}
 

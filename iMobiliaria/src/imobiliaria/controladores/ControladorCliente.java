@@ -22,10 +22,10 @@ public class ControladorCliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static ControladorCliente controladorClienteUnico = new ControladorCliente();
 	private ColecaoClientes colecaoClientes = new ColecaoClientes();
-	
+
 	private ControladorCliente() {
 	}
-	
+
 	/**
 	 * Metodo que retorna uma instacia de controlador de cliente
 	 * 
@@ -48,7 +48,7 @@ public class ControladorCliente implements Serializable {
 		}
 		controladorClienteUnico = controlador;
 	}
-	
+
 	/**
 	 * Metodo que adiciona um Cliente no Controlador
 	 * 
@@ -73,8 +73,8 @@ public class ControladorCliente implements Serializable {
 
 		Cliente clienteASerAdicionado = new Cliente(cpf, dataNascimento,
 				endereco, nome, preferencia);
-		return colecaoClientes.adicionaCliente(clienteASerAdicionado); 
-		
+		return colecaoClientes.adicionaCliente(clienteASerAdicionado);
+
 	}
 
 	/**
@@ -121,10 +121,10 @@ public class ControladorCliente implements Serializable {
 	 * 
 	 */
 	public Cliente getCliente(String cpf) {
-		if(VerificaInvalido.basico(cpf)){
+		if (VerificaInvalido.basico(cpf)) {
 			throw new IllegalArgumentException("CPF invalido");
 		}
-		
+
 		for (Cliente c : colecaoClientes.getClientes()) {
 			if (c.getCpf().equals(cpf))
 				return c;
@@ -138,10 +138,12 @@ public class ControladorCliente implements Serializable {
 	 * @param cpf
 	 *            CPF do Cliente a ser exibido
 	 * @return String contendo informacoes do Cliente
+	 * @throws ClienteNotFoundException
+	 *             Caso o cliente nao seja encontrado
 	 * 
 	 * 
 	 */
-	public String exibeCliente(String cpf) {
+	public String exibeCliente(String cpf) throws ClienteNotFoundException {
 		Cliente c = getCliente(cpf);
 
 		if (c == null) {
