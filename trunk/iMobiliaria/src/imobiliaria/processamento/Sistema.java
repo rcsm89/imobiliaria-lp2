@@ -25,85 +25,6 @@ public class Sistema implements Serializable {
     private final String ARQUIVO_DO_SISTEMA = "DadosDeSistema.dat";
     private final String ARQUIVO_DE_REGISTROS = "Registros.dat";
 
-    private ControladorImovel controladorImoveis = ControladorImovel
-	    .getInstance();
-    private ControladorCliente controladorClientes = ControladorCliente
-	    .getInstance();
-    private ControladorFuncionario controladorFuncionarios = ControladorFuncionario
-	    .getInstance();
-    private ControladorPedidos controladorPedidos = ControladorPedidos
-	    .getInstance();
-    private ControladorTransacoes controladorTransacoes = ControladorTransacoes
-	    .getInstance();
-    private ControladorAlugueis controladorAlugueis = ControladorAlugueis
-	    .getInstance();
-    private ControladorLogin controladorLogin = ControladorLogin.getInstance();
-
-    /* Metodos Acessadores dos Controladores */
-
-    /**
-     * Metodo acessador do Controlador de Alugueis do Sistema
-     * 
-     * @return the controladorAlugueis
-     */
-    public ControladorAlugueis controladorAlugueis() {
-	return controladorAlugueis;
-    }
-
-    /**
-     * Metodo acessador do Controlador de Logins do Sistema
-     * 
-     * @return the controladorLogin
-     */
-    public ControladorLogin getControladorLogin() {
-	return controladorLogin;
-    }
-
-    /**
-     * Metodo acessador do Contrador de Imoveis do Sistema
-     * 
-     * @return the controladorImoveis
-     */
-    public ControladorImovel controladorImoveis() {
-	return controladorImoveis;
-    }
-
-    /**
-     * Metodo acessador do Contrador de Clientes do Sistema
-     * 
-     * @return the controladorClientes
-     */
-    public ControladorCliente controladorClientes() {
-	return controladorClientes;
-    }
-
-    /**
-     * Metodo acessador do Controlador de Pedidos do Sistema
-     * 
-     * @return the controladorPedidos
-     */
-    public ControladorPedidos controladorPedidos() {
-	return controladorPedidos;
-    }
-
-    /**
-     * Metodo acessador do Contrador de Funcionarios do Sistema
-     * 
-     * @return the controladorFuncionarios
-     */
-    public ControladorFuncionario controladorFuncionarios() {
-	return controladorFuncionarios;
-    }
-
-    /**
-     * Metodo acessador do Contrador de Transacoes do Sistema
-     * 
-     * @return the controladorTransacoes
-     */
-    public ControladorTransacoes controladorTransacoes() {
-	return controladorTransacoes;
-    }
-
     /* Metodos de Atualizacao */
 
     /**
@@ -133,18 +54,6 @@ public class Sistema implements Serializable {
 	ControladorLogin.setInstance((ControladorLogin)
 			PersistenciaDados.ler(ARQUIVO_DO_SISTEMA));
 
-	// Verificar necessidade!
-
-	this.controladorImoveis = ControladorImovel.getInstance();
-	this.controladorClientes = ControladorCliente.getInstance();
-	this.controladorFuncionarios = ControladorFuncionario.getInstance();
-	this.controladorTransacoes = ControladorTransacoes.getInstance();
-	this.controladorPedidos = ControladorPedidos.getInstance();
-	this.controladorAlugueis = ControladorAlugueis.getInstance();
-	this.controladorLogin = ControladorLogin.getInstance();
-
-	controladorTransacoes.atualizaControlador();
-
 	Imovel.setCriadorDeRegistro((Integer) PersistenciaDados
 		.ler(ARQUIVO_DE_REGISTROS));
 	Transacao.setCriadorRegistroTransacao((Integer) PersistenciaDados
@@ -156,7 +65,7 @@ public class Sistema implements Serializable {
      */
     public void salvarDados() {
 
-	controladorTransacoes.atualizaControlador();
+	ControladorTransacoes.getInstance().atualizaControlador();
 
 	PersistenciaDados.gravar(ControladorImovel.getInstance(),
 		ARQUIVO_DO_SISTEMA);

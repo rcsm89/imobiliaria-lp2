@@ -5,13 +5,13 @@ import imobiliara.auxiliar.MenuInterfaceAdmin;
 import imobiliara.auxiliar.MenuInterfaceCliente;
 import imobiliara.auxiliar.MenuInterfaceFuncionario;
 import imobiliara.auxiliar.TipoLogin;
+import imobiliaria.controladores.ControladorLogin;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.Funcionario;
 import imobiliaria.entidades.Login;
 import imobiliaria.processamento.Sistema;
 import imobiliaria.util.FerramentaMenu;
 import imobiliaria.util.MetodoEntrada;
-import imobiliaria.util.PersistenciaDados;
 
 /**
  * Interface textual do sistema<br>
@@ -384,7 +384,7 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 	    e.printStackTrace();
 	}
 
-	return sis.getControladorLogin().verificaLogin(teste);
+	return ControladorLogin.getInstance().verificaLogin(teste);
 
     }
 
