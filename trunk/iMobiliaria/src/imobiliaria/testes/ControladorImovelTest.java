@@ -14,161 +14,182 @@ import org.junit.Test;
 public class ControladorImovelTest {
 
 	private ControladorImovel controladorImovel;
-	private Imovel imovel1;
-	private Imovel imovel2;
-	private Imovel imovel3;
+	private Imovel imovel1;//deletar..
+	private Imovel imovel2;//deletar..
+	private Imovel imovel3;//deletar..
+	
+	//Atributos Imovel1
+	String nomeIm1;
+	private String enderecoIm1;
+	double precoIm1;
+	private Area areaIm1;
+	private TipoImovel tipoDoImovel1;
+	private TipoContratual tipoDeContrato1;
+	
+	//Atributos Imovel2
+	String nomeIm2;
+	private String enderecoIm2;
+	double precoIm2;
+	private Area areaIm2;
+	private TipoImovel tipoDoImovel2;
+	private TipoContratual tipoDeContrato2;
+	
+	//Atributos Imovel3
+	String nomeIm3;
+	private String enderecoIm3;
+	double precoIm3;
+	private Area areaIm3;
+	private TipoImovel tipoDoImovel3;
+	private TipoContratual tipoDeContrato3;
 
 	@Before
 	public void setUp() throws Exception {
 		controladorImovel = ControladorImovel.getInstance();
 
-		imovel1 = new Imovel("Casa imobiliada para Alugar",
-				"Rua Joaquim Caroca, Bodocongo, Num 2471, CG/PB", 3500.0,
-				new Area(30, 20), TipoImovel.CASA, TipoContratual.ALUGUEL);
-
-		imovel2 = new Imovel("Apartamento a Venda!!!",
-				"Rua Fernando Luiz Henrique dos Santos Altiplano, num 2831,"
-						+ " JP/PB, Ed. Java, apto 1300", 25000, new Area(4, 6),
-				TipoImovel.APARTAMENTO, TipoContratual.VENDA);
-
-		imovel3 = new Imovel("Terreno a venda no Altiplano!",
-				"Rua Algumacoisa de algo, no Altiplano, Num 9999, JP/PB",
-				50000, new Area(15, 7), TipoImovel.TERRENO,
-				TipoContratual.VENDA);
+		nomeIm1 = "Casa imobiliada para Vender";
+		enderecoIm1 = "Rua Joaquim Caroca, Bodocongo, Num 2471, CG/PB"; 
+		precoIm1 = 3500.0;
+		areaIm1 = new Area(30, 20);
+		tipoDoImovel1 = TipoImovel.CASA;
+		tipoDeContrato1 = TipoContratual.VENDA;
+		
+		nomeIm2 = "Apartamento a Venda!!!";
+		enderecoIm2 = "Rua Fernando Luiz Henrique dos Santos Altiplano," +
+				" num 2831, JP/PB, Ed. Java, apto 1300"; 
+		precoIm2 = 2500.0;
+		areaIm2 = new Area(4, 6);
+		tipoDoImovel2 = TipoImovel.APARTAMENTO;
+		tipoDeContrato2 = TipoContratual.VENDA;
+		
+		nomeIm3 = "Terreno a venda no Altiplano!";
+		enderecoIm3 = "Rua Algumacoisa de algo, no Altiplano, Num 9999, JP/PB"; 
+		precoIm3 = 50000.0;
+		areaIm3 = new Area(15, 7);
+		tipoDoImovel3 = TipoImovel.TERRENO;
+		tipoDeContrato3 = TipoContratual.VENDA;
 	}
 
 	@Test
-	public void testaModificaImovel() throws Exception {
+	public void testaModificaImovel() throws Exception {		
+		
+		try{
+			controladorImovel.addImovel(nomeIm1, enderecoIm1, precoIm1, areaIm1,
+					tipoDoImovel1, tipoDeContrato1);
+			
+			controladorImovel.addImovel(nomeIm2, enderecoIm2, precoIm2, areaIm2,
+					tipoDoImovel2, tipoDeContrato2);
+			
+			controladorImovel.addImovel(nomeIm3, enderecoIm3, precoIm3, areaIm3,
+					tipoDoImovel3, tipoDeContrato3);
+		}catch(IllegalArgumentException e){
+			Assert.fail("Nao Deveria Chegar aqui");
+		}
 
-		/*
-		 * String nome = "Casa imobiliada para Vender"; String endereco =
-		 * imovel1.getEndereco(); double preco = imovel1.getValor(); Area area =
-		 * imovel1.getArea(); TipoImovel tipoDoImovel =
-		 * imovel1.getTipoDoImovel(); TipoContratual tipoDeContrato =
-		 * imovel1.getTipoContratual();
-		 */
+		controladorImovel.modificaImovel("0", "Casa imobiliada para Alugar",
+				enderecoIm1, precoIm1, areaIm1,	tipoDoImovel1, TipoContratual.
+				ALUGUEL);
 
-		controladorImovel.addImovel(imovel1.getNome(), imovel1.getEndereco(),
-				imovel1.getValor(), imovel1.getArea(), imovel1
-						.getTipoDoImovel(), imovel1.getTipoContratual());
+		Assert.assertNotSame("Casa imobiliada para Vender", controladorImovel
+				.getImovel("0").getNome());
 
-		controladorImovel.addImovel(imovel2.getNome(), imovel2.getEndereco(),
-				imovel2.getValor(), imovel2.getArea(), imovel2
-						.getTipoDoImovel(), imovel2.getTipoContratual());
+		Assert.assertEquals("Casa imobiliada para Alugar", controladorImovel
+				.getImovel("0").getNome());
+		
+		Assert.assertNotSame(tipoDeContrato1, controladorImovel.getImovel("0").
+				getTipoContratual());
+		
+		Assert.assertEquals(TipoContratual.ALUGUEL, controladorImovel.
+				getImovel("0").getTipoContratual());
+		
+		try{
+			controladorImovel.modificaImovel("0", null, enderecoIm1, precoIm1,
+					areaIm1, tipoDoImovel1, tipoDeContrato1);
+			Assert.fail("Nao Deveria Chegar aqui");
+		}catch(IllegalArgumentException e){
+			Assert.assertEquals("Nome invalido", e.getMessage());
+		}
+		
+		//provando que nao alterou nada, apos o modificaImovel passando null.
+		Assert.assertEquals("Casa imobiliada para Alugar",
+				 controladorImovel.getImovel("0").getNome());
+		
+		controladorImovel.modificaImovel("1", nomeIm2, enderecoIm2, 26000.0,
+				areaIm2, tipoDoImovel2, tipoDeContrato2);
 
-		controladorImovel.addImovel(imovel3.getNome(), imovel3.getEndereco(),
-				imovel3.getValor(), imovel3.getArea(), imovel3
-						.getTipoDoImovel(), imovel3.getTipoContratual());
+		Assert.assertNotSame(25000,	controladorImovel.getImovel("1").getValor());
 
-		// Testando Metodo - ModificaImovel -
-		// numero "3" indica o numero de registro do imovel no controlador
-		controladorImovel.modificaImovel("3", "Casa imobiliada para Vender",
-				imovel1.getEndereco(), imovel1.getValor(), imovel1.getArea(),
-				imovel1.getTipoDoImovel(), imovel1.getTipoContratual());
-
-		// Nao ta meio contraditorio? o imovel continua do jeito que era
-		Assert.assertTrue("Casa imobiliada para Alugar".equals(imovel1
-				.getNome()));
-		// ao meu ver deveria modificar o imovel em si, mas só muda da visao
-		// do controlador!
-
-		Assert.assertNotSame("Casa imobiliada para Alugar", controladorImovel
-				.getImovel("3").getNome());
-
-		Assert.assertEquals("Casa imobiliada para Vender", controladorImovel
-				.getImovel("3").getNome());
-
-		controladorImovel.modificaImovel("4", imovel2.getNome(), imovel2
-				.getEndereco(), 26000, imovel2.getArea(), imovel2
-				.getTipoDoImovel(), imovel2.getTipoContratual());
-
-		// Nao ta meio contraditorio? o imovel continua do jeito que era
-		// so ta mudando a visao do imovel - visto do controlador.
-		Assert.assertNotSame(25000,// ou imovel2.getValor()-pq naum mudou o
-				// im2.,
-				controladorImovel.getImovel("4").getValor());
-
-		Assert.assertEquals(26000.0, controladorImovel.getImovel("4")
+		Assert.assertEquals(26000.0, controladorImovel.getImovel("1")
 				.getValor());
 
 		try {
-			controladorImovel.modificaImovel(null, imovel1.getNome(), imovel1
-					.getEndereco(), imovel1.getValor(), imovel1.getArea(),
-					imovel1.getTipoDoImovel(), imovel1.getTipoContratual());
+			controladorImovel.modificaImovel(null, nomeIm1, enderecoIm1, 
+					precoIm1, areaIm1, tipoDoImovel1, tipoDeContrato1);
 			Assert.fail("Deveria Lancar Excecao aqui");
 		} catch (IllegalArgumentException e) {
 			Assert.assertEquals("Registro Invalido", e.getMessage());
 		}
 
-		// esse teste comentado era pra ta pegando!
-		// Assert.assertEquals("Casa imobiliada para Vender",
-		// imovel1.getNome());
-		Assert.assertEquals("Rua Joaquim Caroca, Bodocongo, Num 2471, CG/PB",
-				imovel1.getEndereco());
-		Assert.assertEquals(3500.0, imovel1.getValor());
-		Assert.assertEquals(new Area(30, 20), imovel1.getArea());
-		Assert.assertEquals(TipoImovel.CASA, imovel1.getTipoDoImovel());
-		Assert
-				.assertEquals(TipoContratual.ALUGUEL, imovel1
-						.getTipoContratual());
-
 		// Testando o metodo getImovel(String registro)
+		
+		try{
+			controladorImovel.addImovel(nomeIm1, enderecoIm1, precoIm1, areaIm1,
+					tipoDoImovel1, tipoDeContrato1);
+			
+			controladorImovel.addImovel(nomeIm2, enderecoIm2, precoIm2, areaIm2,
+					tipoDoImovel2, tipoDeContrato2);
+			
+			controladorImovel.addImovel(nomeIm3, enderecoIm3, precoIm3, areaIm3,
+					tipoDoImovel3, tipoDeContrato3);
+		}catch(IllegalArgumentException e){
+			Assert.fail("Nao Deveria Chegar aqui");
+		}
+		
 
-		controladorImovel.addImovel("Casa imobiliada para Alugar",
-				"Rua Joaquim Caroca, Bodocongo, Num 2471, CG/PB", 3500.0,
-				new Area(30, 20), TipoImovel.CASA, TipoContratual.ALUGUEL);
-
-		controladorImovel.addImovel("Apartamento a Venda!!!",
-				"Rua Fernando Luiz Henrique dos Santos Altiplano, num 2831,"
-						+ " JP/PB, Ed. Java, apto 1300", 25000, new Area(4, 6),
-				TipoImovel.APARTAMENTO, TipoContratual.VENDA);
-
-		controladorImovel.addImovel(imovel3.getNome(), imovel3.getEndereco(),
-				imovel3.getRegistroImovel(), imovel3.getArea(), imovel3
-						.getTipoDoImovel(), imovel3.getTipoContratual());
-
-		/*Assert.assertEquals(
-				"6|Casa imobiliada para Alugar|Rua Joaquim Caroca, "
-						+ "Bodocongo, Num 2471, CG/PB|3500.0|30.0x20.0 "
-						+ "(GRANDE)|CASA|ALUGUEL|A_VENDA", controladorImovel
-						.getImovel("6"));
-		*/
-		//buggado!por conta do registro que naum altera no objeto 'imovel'
-		//Assert.assertEquals(imovel1, controladorImovel.getImovel("6"));
-
-		//Assert.assertEquals(imovel2, controladorImovel.getImovel("1"));
-		//Assert.assertEquals(imovel3, controladorImovel.getImovel("2"));
-
+		Assert.assertEquals(nomeIm2, controladorImovel.getImovel("1").
+				getNome());
+		Assert.assertEquals(nomeIm3, controladorImovel.getImovel("2").
+				getNome());
+		Assert.assertEquals(nomeIm1, controladorImovel.getImovel("3").
+				getNome());
+		Assert.assertEquals(nomeIm2, controladorImovel.getImovel("4").
+				getNome());
+		Assert.assertEquals(nomeIm3, controladorImovel.getImovel("5").
+				getNome());
+		Assert.assertEquals("Casa imobiliada para Alugar",
+				controladorImovel.getImovel("0").getNome());
+	
 	}
 
 	@Test
 	public void testaGetImovelPorRegistro() throws Exception {
+		
+		Assert.assertEquals(nomeIm2, controladorImovel.getImovel("1").
+				getNome());
+		
+		try{
+			controladorImovel.addImovel("imovel1 adicionado para teste",
+					enderecoIm1, precoIm1, areaIm1, tipoDoImovel1,
+					tipoDeContrato1);
+			
+			controladorImovel.addImovel("imovel2 adicionado para teste",
+					enderecoIm2, precoIm2, areaIm2, tipoDoImovel2,
+					tipoDeContrato2);
+			
+			controladorImovel.addImovel("imovel3 adicionado para teste",
+					enderecoIm3, precoIm3, areaIm3,	tipoDoImovel3,
+					tipoDeContrato3);
+		}catch(IllegalArgumentException e){
+			Assert.fail("Nao Deveria Chegar aqui");
+		}
+		
+		Assert.assertEquals("imovel1 adicionado para teste",
+				controladorImovel.getImovel("6").getNome());
+		Assert.assertEquals("imovel2 adicionado para teste",
+				controladorImovel.getImovel("7").getNome());
+		Assert.assertEquals("imovel3 adicionado para teste",
+				controladorImovel.getImovel("8").getNome());
 
 		try {
-			controladorImovel.addImovel(imovel1.getNome(), imovel1
-					.getEndereco(), imovel1.getRegistroImovel(), imovel1
-					.getArea(), imovel1.getTipoDoImovel(), imovel1
-					.getTipoContratual());
-
-			controladorImovel.addImovel(imovel2.getNome(), imovel2
-					.getEndereco(), imovel2.getRegistroImovel(), imovel2
-					.getArea(), imovel2.getTipoDoImovel(), imovel2
-					.getTipoContratual());
-
-			controladorImovel.addImovel(imovel3.getNome(), imovel3
-					.getEndereco(), imovel3.getRegistroImovel(), imovel3
-					.getArea(), imovel3.getTipoDoImovel(), imovel3
-					.getTipoContratual());
-		} catch (Exception e) {
-			Assert.fail("Nao Deveria Cair Nesse catch");
-		}
-		//Buggado!
-/*
-		Assert.assertEquals(imovel1, controladorImovel.getImovel("3"));
-		Assert.assertEquals(imovel2, controladorImovel.getImovel("4"));
-		Assert.assertEquals(imovel3, controladorImovel.getImovel("5"));
-
-*/		try {
 			controladorImovel.getImovel(null);
 		} catch (IllegalArgumentException e) {
 			Assert.assertEquals("Registro Invalido", e.getMessage());
@@ -177,41 +198,93 @@ public class ControladorImovelTest {
 
 	@Test
 	public void testaExibeImovel() throws Exception {
-
-		controladorImovel.addImovel(imovel1.getNome(), imovel1.getEndereco(),
-				imovel1.getRegistroImovel(), imovel1.getArea(), imovel1
-						.getTipoDoImovel(), imovel1.getTipoContratual());
-
+		
 		try {
 			controladorImovel.exibeImovel(null);
 		} catch (IllegalArgumentException e) {
 			Assert.assertEquals("Registro Invalido", e.getMessage());
 		}
 
-		System.out.println(controladorImovel.getImovel("3"));
-		Assert.assertEquals("Registro: " + controladorImovel.getImovel("3").
-				getRegistroImovel() + "\n"
-				+ "Nome: " + controladorImovel.getImovel("3").getNome() + "\n" + "Endereco: "
-				+ imovel1.getEndereco() + "\n" + "Valor: " + imovel1.getValor()
-				+ "\n" + "Area: " + "\n\t" + "Comprimento: "
-				+ imovel1.getArea().getComprimento() + "m\n\t" + "Largura: "
-				+ imovel1.getArea().getLargura() + "m\n\t" + "Classificacao: "
-				+ imovel1.getArea().getClassificacao() + "\n"
-				+ "Tipo do Imovel: " + imovel1.getTipoDoImovel() + "\n"
-				+ "Tipo Contratual: " + imovel1.getTipoContratual(),
-				controladorImovel.exibeImovel("3"));
+		Assert.assertEquals("Registro: 0\n" +
+				"Nome: Casa imobiliada para Alugar\n" +
+				"Endereco: Rua Joaquim Caroca, Bodocongo, Num 2471, CG/PB\n" +
+				"Valor: 3500.0\n" +
+				"Area: \n" +
+				"	Comprimento: 30.0m\n" +
+				"	Largura: 20.0m\n" +
+				"	Classificacao: GRANDE\n" +
+				"Tipo do Imovel: CASA\n" +
+				"Tipo Contratual: ALUGUEL",
+				controladorImovel.exibeImovel("0"));
 	}
 
 	@Test
 	public void testaAddImovel() throws Exception {
 
 		try {
-			controladorImovel.addImovel(null, imovel1.getEndereco(), imovel1
-					.getRegistroImovel(), imovel1.getArea(), imovel1
-					.getTipoDoImovel(), imovel1.getTipoContratual());
+			controladorImovel.addImovel(null, enderecoIm1, 20000,
+					areaIm1, tipoDoImovel1, tipoDeContrato1);
 			Assert.fail("Deveria Lancar Excecao aqui");
 		} catch (Exception e) {
 			Assert.assertEquals("Nome invalido\n", e.getMessage());
+		}
+		
+		try {
+			controladorImovel.addImovel(nomeIm1, null, 20000,
+					areaIm1, tipoDoImovel1, tipoDeContrato1);
+			Assert.fail("Deveria Lancar Excecao aqui");
+		} catch (Exception e) {
+			Assert.assertEquals("Endereco invalido\n", e.getMessage());
+		}
+		
+		try {
+			controladorImovel.addImovel(null, null, 20000,
+					areaIm1, tipoDoImovel1, tipoDeContrato1);
+			Assert.fail("Deveria Lancar Excecao aqui");
+		} catch (IllegalArgumentException e) {
+			Assert.assertEquals("Nome invalido\nEndereco invalido\n",
+					e.getMessage());
+		}
+		
+		try {
+			controladorImovel.addImovel(nomeIm1, enderecoIm1, -1,
+					areaIm1, tipoDoImovel1, tipoDeContrato1);
+			Assert.fail("Deveria Lancar Excecao aqui");
+		} catch (IllegalArgumentException e) {
+			Assert.assertEquals("Valor invalido\n", e.getMessage());
+		}
+		
+		try {
+			controladorImovel.addImovel(nomeIm1, enderecoIm1, 20000,
+					null, tipoDoImovel1, tipoDeContrato1);
+			Assert.fail("Deveria Lancar Excecao aqui");
+		} catch (IllegalArgumentException e) {
+			Assert.assertEquals("Area invalida\n", e.getMessage());
+		}
+		
+		try {
+			controladorImovel.addImovel(nomeIm1, enderecoIm1, 20000,
+					areaIm1, null, tipoDeContrato1);
+			Assert.fail("Deveria Lancar Excecao aqui");
+		} catch (IllegalArgumentException e) {
+			Assert.assertEquals("Tipo de Imovel invalido\n", e.getMessage());
+		}
+		
+		try {
+			controladorImovel.addImovel(nomeIm1, enderecoIm1, 20000,
+					areaIm1, tipoDoImovel1, null);
+			Assert.fail("Deveria Lancar Excecao aqui");
+		} catch (IllegalArgumentException e) {
+			Assert.assertEquals("Tipo Contratual invalido\n", e.getMessage());
+		}
+		
+		try {
+			controladorImovel.addImovel(null, null, -1,	null, null, null);
+			Assert.fail("Deveria Lancar Excecao aqui");
+		} catch (IllegalArgumentException e) {
+			Assert.assertEquals("Nome invalido\nEndereco invalido\n" +
+					"Valor invalido\nArea invalida\nTipo de Imovel invalido\n" +
+					"Tipo Contratual invalido\n", e.getMessage());
 		}
 
 	}
@@ -227,7 +300,7 @@ public class ControladorImovelTest {
 		} catch (Exception e) {
 			Assert.fail("Nao Deveria Cair Nesse catch");
 		}
-/*
+
 		Assert.assertEquals("Registro: " + imovel1.getRegistroImovel() + "\n"
 				+ "Nome: " + imovel1.getNome() + "\n" + "Endereco: "
 				+ imovel1.getEndereco() + "\n" + "Valor: " + imovel1.getValor()
@@ -286,7 +359,7 @@ public class ControladorImovelTest {
 				+ "\n" + "Area: " + imovel3.getArea() + "\n"
 				+ "Tipo do Imovel: " + imovel3.getTipoDoImovel() + "\n"
 				+ "Tipo Contratual: " + imovel3.getTipoContratual() + "\n\n",
-				controladorImovel.listaImoveis());*/
+				controladorImovel.listaImoveis());
 	}
 
 	@Test

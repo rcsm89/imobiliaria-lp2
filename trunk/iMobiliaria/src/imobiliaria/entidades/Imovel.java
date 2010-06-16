@@ -73,6 +73,10 @@ public class Imovel implements Serializable {
 		if (!(VerificaInvalido.pertenceAIntervalo(valor, 0.0, 999999999.0))) {
 			mensagemErro += "Valor invalido\n";
 		}
+		
+		if (area == null) {
+			mensagemErro += "Area invalida\n";
+		}
 
 		if (tipoDoImovel == null) {
 			mensagemErro += "Tipo de Imovel invalido\n";
