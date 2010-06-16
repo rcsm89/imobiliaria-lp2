@@ -5,8 +5,12 @@ import java.util.GregorianCalendar;
 
 import junit.framework.Assert;
 
+import imobiliara.auxiliar.TipoContratual;
+import imobiliara.auxiliar.TipoImovel;
 import imobiliaria.controladores.ControladorFuncionario;
+import imobiliaria.entidades.Area;
 import imobiliaria.entidades.Funcionario;
+import imobiliaria.entidades.Imovel;
 import imobiliaria.exceptions.FuncionarioNotFoundException;
 
 import org.junit.Before;
@@ -239,12 +243,15 @@ public class ControladorFuncionarioTest {
 	}
 
 	@Test
-	public void testaTotaisDeVendas() {
-		// Nenhum dos funcionario fizeram uma venda
+	public void testaTotaisDeVendas() throws Exception {
+		// Nenhum dos funcionario fizeram uma venda neste mes
 		Assert.assertEquals("{Bruno Fabio=0.0, Yuri Farias Gomes=0.0}",
 				controlFuncionario.listaTotaisDeVendas().toString());
-		
+
+		Assert.assertEquals("Nome: Bruno Fabio\n" +
+				"Valor de Vendas: 0.0\n\n" +
+				"Nome: Yuri Farias Gomes\n" +
+				"Valor de Vendas: 0.0\n\n", controlFuncionario.exibeTotaisDeVendas());
 		
 	}
-
 }
