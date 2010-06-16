@@ -39,7 +39,7 @@ public class ClienteTest {
 					"Rua Antonio Joaquim Pequeno", "Jean", null);
 			Assert.fail("Deveria ter lancado");
 		} catch (Exception e) {
-			Assert.assertEquals("Preferencia invalida", e.getMessage());
+			Assert.assertEquals("Preferencia invalida!", e.getMessage());
 		}
 
 		try {
@@ -90,13 +90,6 @@ public class ClienteTest {
 		cliente1.setPreferencia(TipoImovel.CASA);
 
 		Assert.assertEquals(TipoImovel.CASA, cliente1.getPreferencia());
-		
-		try{
-			cliente1.setPreferencia(null);
-			Assert.fail("Deveria ter lancado excecao");
-		}catch (Exception e) {
-			Assert.assertEquals("Preferencia invalida", e.getMessage());
-		}
 
 	}
 
@@ -112,7 +105,6 @@ public class ClienteTest {
 		Assert.assertFalse(cliente2.equals(cliente3));
 		Assert.assertTrue(cliente3.equals(cliente3));
 		Assert.assertFalse(cliente3.equals(cliente1));
-
 		Assert.assertTrue(cliente1.equals(cliente));
 		Assert.assertTrue(cliente.equals(cliente1));
 
