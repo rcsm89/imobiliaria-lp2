@@ -146,9 +146,11 @@ public class ColecaoImovelTest {
 				.equals(colecaoImovel));
 		
 		// Tamanho atual da colecao e 3.
+		Assert.assertEquals(3, colecaoImovel.getImoveis().size());
 		
 		colecaoImovel.removeImovel("2");
 		
+		//apos a remocao de um imovel ficou 2.
 		Assert.assertEquals(2, colecaoImovel.getImoveis().size());
 		
 		//Tentando remover imovel com registro impossivel
@@ -161,7 +163,8 @@ public class ColecaoImovelTest {
 		}
 		
 		//Imovel com registro nao pertencente a colecao
-		Assert.assertEquals(false, colecaoImovel.removeImovel("3"));
+		Assert.assertFalse(colecaoImovel.removeImovel("3"));
+		Assert.assertTrue(colecaoImovel.removeImovel("1"));
 		
 		try{
 			colecaoImovel.removeImovel(null);
