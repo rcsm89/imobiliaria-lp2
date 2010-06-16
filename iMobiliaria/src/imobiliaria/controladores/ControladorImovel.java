@@ -5,6 +5,7 @@ import imobiliara.auxiliar.TipoContratual;
 import imobiliara.auxiliar.TipoImovel;
 import imobiliaria.entidades.Area;
 import imobiliaria.entidades.Imovel;
+import imobiliaria.exceptions.ImovelNotFoundException;
 import imobiliaria.processamento.ColecaoImoveis;
 import imobiliaria.util.VerificaInvalido;
 
@@ -96,7 +97,7 @@ public class ControladorImovel implements Serializable {
 		Imovel imovel = colecaoImovel.getImovelDeRegistro(regImovel);
 
 		if (imovel == null)
-			throw new Exception("Imovel Nao Pertencente ao Controlador");
+			throw new ImovelNotFoundException("Imovel Nao Pertencente ao Controlador");
 
 		imovel.setNome(nome);
 		imovel.setEndereco(endereco);
@@ -311,7 +312,7 @@ public class ControladorImovel implements Serializable {
 	public boolean removeImovel(String registroImovel) throws Exception {
 
 		if (registroImovel == null) {
-			throw new Exception("Imovel Invalido");
+			throw new IllegalArgumentException("Imovel Invalido");
 		}
 
 		int registro;

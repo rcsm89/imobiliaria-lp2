@@ -6,6 +6,9 @@ import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.Funcionario;
 import imobiliaria.entidades.Imovel;
 import imobiliaria.entidades.Pedido;
+import imobiliaria.exceptions.FuncionarioNotFoundException;
+import imobiliaria.exceptions.ImovelInvalidoException;
+import imobiliaria.exceptions.PedidoNotFoundException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -83,13 +86,13 @@ public class ControladorPedidos implements Serializable {
 				.getCliente(cpf);
 
 		if (imovelPedido == null)
-			throw new IllegalArgumentException("Imovel invalido");
+			throw new IllegalArgumentException("Registro de Imovel invalido");
 
 		if (clienteQueSolicitou == null)
-			throw new IllegalArgumentException("Cliente invalido");
+			throw new IllegalArgumentException("CPF de Cliente invalido");
 
 		if (imovelPedido.getEstadoDoImovel() == EstadoImovel.PEDIDO) {
-			throw new Exception("Imovel ja pedido");
+			throw new ImovelInvalidoException("Imovel ja pedido");
 		}
 
 		listaPedidos.add(new Pedido(imovelPedido, clienteQueSolicitou));
@@ -127,7 +130,7 @@ public class ControladorPedidos implements Serializable {
 		Pedido pedido = getPedido(registroImovel);
 
 		if (pedido == null)
-			throw new IllegalArgumentException("Imovel de Pedido invalido");
+			throw new PedidoNotFoundException("Pedido nao encontrado");
 
 		if (pedido.getImovel().getTipoContratual() == TipoContratual.VENDA) {
 
@@ -135,7 +138,7 @@ public class ControladorPedidos implements Serializable {
 					.getFuncionarioPorCreci(creciFuncionario);
 
 			if (vendedor == null)
-				throw new IllegalArgumentException("Funcionario invalido");
+				throw new FuncionarioNotFoundException("Funcionario invalido");
 
 			// A Venda
 
@@ -164,7 +167,7 @@ public class ControladorPedidos implements Serializable {
 		Pedido pedido = getPedido(registroImovel);
 
 		if (pedido == null)
-			throw new IllegalArgumentException("Parametros invalidos");
+			throw new PedidoNotFoundException("Parametros invalidos");
 
 		pedido.getImovel().a_venda();
 		listaPedidos.remove(pedido);
