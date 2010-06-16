@@ -9,11 +9,6 @@ import imobiliaria.controladores.ControladorImovel;
 import imobiliaria.controladores.ControladorPedidos;
 import imobiliaria.controladores.ControladorTransacoes;
 import imobiliaria.processamento.Sistema;
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class SistemaTest {

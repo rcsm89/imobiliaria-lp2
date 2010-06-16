@@ -5,6 +5,7 @@ import imobiliaria.entidades.FolhaDePagamento;
 import imobiliaria.entidades.Funcionario;
 import imobiliaria.entidades.Imovel;
 import imobiliaria.entidades.Transacao;
+import imobiliaria.exceptions.PagamentoJaEfetuadoException;
 import imobiliaria.exceptions.TransacaoNaoExistenteException;
 import imobiliaria.exceptions.ValorInvalidoException;
 
@@ -34,8 +35,7 @@ public class ControladorTransacoes implements Serializable {
 	private ArrayList<Transacao> logsFinanceiros = new ArrayList<Transacao>();
 	private ArrayList<Transacao> logsFinanceirosMensal = new ArrayList<Transacao>();
 
-	private ControladorTransacoes() {
-	}
+	private ControladorTransacoes() {}
 
 	/**
 	 * Metodo acessador da unica instancia do Controlador de Transacoes
@@ -126,7 +126,7 @@ public class ControladorTransacoes implements Serializable {
 		atualizaDataDePagamento();
 
 		if (pagouNesseMes)
-			throw new Exception("Pagamento ja efetuado esse mes");
+			throw new PagamentoJaEfetuadoException("Pagamento ja efetuado esse mes");
 
 		double despesas = 0;
 		double salarioFuncionario;
