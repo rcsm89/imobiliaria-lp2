@@ -52,7 +52,7 @@ public class ColecaoImovelTest {
 			colecaoImovel.addImovel(imovel1);
 			Assert.fail("Deveria Lancar Excecao aqui");
 		}catch(Exception e){
-			Assert.assertEquals("Imovel Existente", e.getMessage());
+			Assert.assertEquals("Imovel ja Existente", e.getMessage());
 		}
 		
 		Assert.assertEquals(1, colecaoImovel.getImoveis().size());
@@ -70,7 +70,7 @@ public class ColecaoImovelTest {
 			colecaoImovel.addImovel(imovel2);
 			Assert.fail("Deveria Lancar Excecao aqui");
 		}catch(Exception e){
-			Assert.assertEquals("Imovel Existente", e.getMessage());
+			Assert.assertEquals("Imovel ja Existente", e.getMessage());
 		}
 		
 		Assert.assertEquals(3, colecaoImovel.getImoveis().size());
