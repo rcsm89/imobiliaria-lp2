@@ -36,9 +36,9 @@ public class InterfaceTextual implements MenuInterfaceCliente,
     public InterfaceTextual() {
 
 	// Leitura de Dados
-    
-    this.sis = new Sistema();
-    try {
+
+	this.sis = new Sistema();
+	try {
 	    sis.atualizaDados();
 	} catch (Exception e) {
 	    System.out.println("Erro: " + e.getMessage());
@@ -376,15 +376,13 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 
 	String userName = MetodoEntrada.recebeString("Login: ");
 	String password = MetodoEntrada.recebeString("Senha: ");
-	
-	Login teste = null;
-	try {
-	    teste = new Login(userName, password, tipo);
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
 
-	return ControladorLogin.getInstance().verificaLogin(teste);
+	if (ControladorLogin.getInstance().verificaLogin(userName)) {
+	    Login login = ControladorLogin.getInstance().getLogin(userName);
+	    return ControladorLogin.getInstance()
+		    .checkPassword(login, password);
+	}
+	return false;
 
     }
 
