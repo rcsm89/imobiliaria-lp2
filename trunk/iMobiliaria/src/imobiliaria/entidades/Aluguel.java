@@ -42,6 +42,16 @@ public class Aluguel {
 	public Imovel getImovelAlugado() {
 		return imovelAlugado;
 	}
+	
+	/**
+	 * Metodo que exibe informacoes do Aluguel formatadas
+	 * @return Informacoes do Aluguel formatada
+	 */
+	public String exibeInformacao() {
+		return "Aluguel de " + alugante.getNome() + " (" + alugante.getCpf() + ")\n" +
+				"Imovel Alugado: (" + imovelAlugado.getRegistroImovel() + ") " +
+				imovelAlugado.getNome() + " - Valor: " + imovelAlugado.getValor();
+	}
 
 	public String toString() {
 		return "Alugante: " + alugante.getNome() + " (" + alugante.getCpf()

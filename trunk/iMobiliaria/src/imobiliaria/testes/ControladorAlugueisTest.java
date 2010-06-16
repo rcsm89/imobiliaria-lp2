@@ -12,6 +12,9 @@ import imobiliaria.controladores.ControladorImovel;
 import imobiliaria.controladores.ControladorPedidos;
 import imobiliaria.entidades.Aluguel;
 import imobiliaria.entidades.Area;
+import imobiliaria.exceptions.ClienteNotFoundException;
+import imobiliaria.exceptions.ImovelInvalidoException;
+
 import org.junit.Test;
 
 public class ControladorAlugueisTest {
@@ -38,7 +41,7 @@ public class ControladorAlugueisTest {
 		try {
 			cAlugueis.adicionaAluguel("101.202.303-44", "0");
 			Assert.fail("Nao Deveria Chegar aqui");
-		} catch (IllegalArgumentException e) {
+		} catch (ImovelInvalidoException e) {
 			Assert.assertEquals("Imovel invalido", e.getMessage());
 		}
 		
@@ -47,7 +50,7 @@ public class ControladorAlugueisTest {
 		try {
 			cAlugueis.adicionaAluguel("101.000.000-44", "0");
 			Assert.fail("Nao Deveria Chegar aqui");
-		} catch (IllegalArgumentException e) {
+		} catch (ClienteNotFoundException e) {
 			Assert.assertEquals("Cliente invalido", e.getMessage());
 		}
 		
@@ -57,16 +60,15 @@ public class ControladorAlugueisTest {
 		try {
 			cAlugueis.adicionaAluguel("101.202.303-44", "0");
 			Assert.fail("Nao Deveria Chegar aqui");
-		} catch (IllegalArgumentException e) {
+		} catch (ImovelInvalidoException e) {
 			Assert.assertEquals("Imovel invalido", e.getMessage());
 		}
 		
 		ControladorPedidos.getInstance().adicionaPedido("1", "101.202.303-44");
 		
 		Assert.assertTrue(cAlugueis.adicionaAluguel("101.202.303-44", "1"));
-		
 	}
-
+	
 	@Test
 	public final void testRemoveAluguel() {
 		// Tentando remover Aluguel inexistente
@@ -83,14 +85,40 @@ public class ControladorAlugueisTest {
 		Assert.assertTrue(cAlugueis.removeAluguel("0"));
 		
 	}
+	
+	@Test
+	public final void testListaAlugueis() throws Exception {
+		
+		Assert.assertEquals("Aluguel de Thiago Ferreira (101.202.303-44)\n" +
+				"Imovel Alugado: (1) Terreno para alugar no Altiplano! - Valor: 2500.0\n\n"
+				, cAlugueis.listaAlugueisDeCliente("101.202.303-44"));
+		
+		// Adiciona novo pedido para outro cliente
+		
+		ControladorCliente.getInstance().adicionaCliente(
+				"11022033040", new GregorianCalendar(1991, 06,
+						23), "Rua Antonio Joaquim Pequeno", "Jean", TipoImovel.TERRENO);
+		
+		ControladorPedidos.getInstance().adicionaPedido("0", "110.220.330-40");
+		cAlugueis.adicionaAluguel("110.220.330-40", "0");
+		
+		Assert.assertEquals("Aluguel de Jean (110.220.330-40)\n" +
+				"Imovel Alugado: (0) Casa imobiliada para Alugar - Valor: 800.0\n\n",
+				cAlugueis.listaAlugueisDeCliente("110.220.330-40"));
+		
+		Assert.assertEquals("Aluguel de Thiago Ferreira (101.202.303-44)\n" +
+				"Imovel Alugado: (1) Terreno para alugar no Altiplano! - Valor: 2500.0\n\n" +
+				"Aluguel de Jean (110.220.330-40)\n" +
+				"Imovel Alugado: (0) Casa imobiliada para Alugar - Valor: 800.0\n\n"
+				, cAlugueis.listaAlugueis());
+		
+	}
 
 	@Test
 	public final void testGetAluguel() throws Exception {
-		ControladorPedidos.getInstance().adicionaPedido("0", "101.202.303-44");
-		cAlugueis.adicionaAluguel("101.202.303-44", "0");
 		
 		Aluguel aluguel1 = new Aluguel(
-				ControladorCliente.getInstance().getCliente("101.202.303-44"),
+				ControladorCliente.getInstance().getCliente("110.220.330-40"),
 				ControladorImovel.getInstance().getImovel("0"));
 		
 		Aluguel aluguel2 = new Aluguel(
