@@ -8,6 +8,7 @@ import imobiliara.auxiliar.TipoLogin;
 import imobiliaria.util.FormataEntrada;
 import imobiliaria.util.VerificaInvalido;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 /**
@@ -18,9 +19,10 @@ import java.util.Calendar;
  * @version iteracao 2
  * 
  */
-public class Login {
+public class Login implements Serializable {
 
-    private TipoLogin tipoLogin;
+	private static final long serialVersionUID = 1L;
+	private TipoLogin tipoLogin;
     private String senha;
     private String userName;
 
