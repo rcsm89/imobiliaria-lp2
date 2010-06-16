@@ -19,6 +19,7 @@ import imobiliaria.processamento.Sistema;
 import imobiliaria.util.FormataEntrada;
 import imobiliaria.util.MetodoEntrada;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class OperacoesInterfaceTextual {
@@ -576,6 +577,8 @@ public class OperacoesInterfaceTextual {
     
     // NOVOS METODOS!1111!11 (Yuri)
     
+    // Para Clientes
+    
     protected void listaPedidosDeCliente(String cpfCliente) {
     	System.out.println(ControladorPedidos.getInstance().
     			listaPedidosDeCliente(cpfCliente));
@@ -584,9 +587,87 @@ public class OperacoesInterfaceTextual {
     protected void listaAlugueisDeCliente(String cpfCliente) {
     	System.out.println(ControladorAlugueis.getInstance().
     			listaAlugueisDeCliente(cpfCliente));
+    }
+    
+    protected void listaHistoricoDeComprasDeCliente(String cpfCliente) {
+    	// Refazer no Controlador
+    	
+    	Cliente cliente = ControladorCliente.getInstance().getCliente(cpfCliente);
+    	if (cliente == null) {
+    		System.out.println("Cliente nao encontrado");
+    		return;
+    	}
+    	
+    	ArrayList<Imovel> historico =
+    		ControladorCliente.getInstance().getCliente(cpfCliente).getHistoricoCompras().getImoveis();
+    	
+    	listaHistorico(historico);
+    }
+    
+    // Para Funcionarios
+    
+    
+    protected void listaPedidos() {
+    	
+    	System.out.println(ControladorPedidos.getInstance().listagemDePedido());
     	
     }
+    
+    protected void HistoricoDeVendasDeFuncionario(String creci) {
+    	
+    	Funcionario funcionario =
+    		ControladorFuncionario.getInstance().getFuncionarioPorCreci(creci);
+    	if (funcionario == null) {
+    		System.out.println("Funcionario nao encontrado");
+    		return;
+    	}
+    	
+    	ArrayList<Imovel> historico =
+    		ControladorFuncionario.getInstance().getFuncionarioPorCreci(creci).getImoveisVendidos().getImoveis();
+    	
+    	listaHistorico(historico);
+    }
      
+    private void listaHistorico(ArrayList<Imovel> historico) {
+    	if (historico.isEmpty()) {
+    		System.out.println("Historico Vazio");
+    		return;
+    	}
+    	
+    	String saida = "";
+    	for (Imovel i : historico) {
+    		saida += ControladorImovel.getInstance().exibeImovel(
+    				String.valueOf(i.getRegistroImovel())) + "\n\n";
+    	}
+    	System.out.println(saida);
+    }
+    
+    // Para Admin
+    
+    protected void listaTransacoesMensais() {
+    	
+    	System.out.println(ControladorTransacoes.getInstance().listaTransacoesMensais());
+    	
+    }
+    
+    protected void listaTransacoes() {
+    	
+    	System.out.println(ControladorTransacoes.getInstance().listaTransacoes());
+    	
+    }
+    
+    protected void listaAlugueis() {
+    	
+    	System.out.println(ControladorAlugueis.getInstance().listaAlugueis());
+    	
+    }
+    
+    /* Falta os Metodos de Login que eu n sei oq foi adicionado, dai tu completa...
+     * Lembrando que alguns dos metodos de cliente por ex podem ser usados tanto por funcionario
+     * qto pelo admin... mesma coisa de func pra admin...
+     * 
+     * (O Historico ta muito mau feito ainda, vamos arrumar pra proxima IT)
+     */
     
 
 }
