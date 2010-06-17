@@ -1,7 +1,7 @@
 package imobiliaria.controladores;
 
-import imobiliara.auxiliar.EstadoImovel;
-import imobiliara.auxiliar.TipoContratual;
+import imobiliaria.auxiliar.EstadoImovel;
+import imobiliaria.auxiliar.TipoContratual;
 import imobiliaria.entidades.Aluguel;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.Imovel;

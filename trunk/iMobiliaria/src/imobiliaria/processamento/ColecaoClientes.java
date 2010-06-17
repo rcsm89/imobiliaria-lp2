@@ -1,6 +1,6 @@
 package imobiliaria.processamento;
 
-import imobiliara.auxiliar.TipoImovel;
+import imobiliaria.auxiliar.TipoImovel;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.util.VerificaInvalido;
 

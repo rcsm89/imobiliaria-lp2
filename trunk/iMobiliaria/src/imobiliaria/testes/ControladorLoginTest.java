@@ -1,6 +1,6 @@
 package imobiliaria.testes;
 
-import imobiliara.auxiliar.TipoLogin;
+import imobiliaria.auxiliar.TipoLogin;
 import imobiliaria.controladores.ControladorLogin;
 import imobiliaria.entidades.Login;
 import junit.framework.Assert;

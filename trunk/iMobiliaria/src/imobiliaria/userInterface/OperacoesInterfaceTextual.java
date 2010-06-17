@@ -1,8 +1,8 @@
 package imobiliaria.userInterface;
 
-import imobiliara.auxiliar.EstadoImovel;
-import imobiliara.auxiliar.TipoContratual;
-import imobiliara.auxiliar.TipoImovel;
+import imobiliaria.auxiliar.EstadoImovel;
+import imobiliaria.auxiliar.TipoContratual;
+import imobiliaria.auxiliar.TipoImovel;
 import imobiliaria.controladores.ControladorAlugueis;
 import imobiliaria.controladores.ControladorCliente;
 import imobiliaria.controladores.ControladorFuncionario;

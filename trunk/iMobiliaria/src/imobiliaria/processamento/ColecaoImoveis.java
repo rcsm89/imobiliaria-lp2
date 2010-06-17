@@ -1,8 +1,8 @@
 package imobiliaria.processamento;
 
-import imobiliara.auxiliar.EstadoImovel;
-import imobiliara.auxiliar.TipoContratual;
-import imobiliara.auxiliar.TipoImovel;
+import imobiliaria.auxiliar.EstadoImovel;
+import imobiliaria.auxiliar.TipoContratual;
+import imobiliaria.auxiliar.TipoImovel;
 import imobiliaria.entidades.Imovel;
 import imobiliaria.exceptions.ImovelInvalidoException;
 import imobiliaria.exceptions.ValorInvalidoException;

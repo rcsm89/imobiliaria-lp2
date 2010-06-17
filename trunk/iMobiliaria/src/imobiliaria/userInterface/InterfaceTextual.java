@@ -1,10 +1,10 @@
 package imobiliaria.userInterface;
 
-import imobiliara.auxiliar.MenuInterface;
-import imobiliara.auxiliar.MenuInterfaceAdmin;
-import imobiliara.auxiliar.MenuInterfaceCliente;
-import imobiliara.auxiliar.MenuInterfaceFuncionario;
-import imobiliara.auxiliar.TipoLogin;
+import imobiliaria.auxiliar.MenuInterface;
+import imobiliaria.auxiliar.MenuInterfaceAdmin;
+import imobiliaria.auxiliar.MenuInterfaceCliente;
+import imobiliaria.auxiliar.MenuInterfaceFuncionario;
+import imobiliaria.auxiliar.TipoLogin;
 import imobiliaria.controladores.ControladorLogin;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.Funcionario;
