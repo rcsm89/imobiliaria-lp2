@@ -12,6 +12,7 @@ import imobiliaria.exceptions.ImovelInvalidoException;
 import imobiliaria.exceptions.ImovelNotFoundException;
 import imobiliaria.exceptions.PedidoNotFoundException;
 import imobiliaria.exceptions.ValorInvalidoException;
+import imobiliaria.util.VerificaInvalido;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import java.util.TreeSet;
  * Classe que Controla os Pedidos de um Sistema Imobiliario
  * 
  * @author Yuri
- * @version version 02
+ * @version IT02
  */
 
 public class ControladorPedidos implements Serializable {
@@ -166,6 +167,9 @@ public class ControladorPedidos implements Serializable {
 	 *             pedido
 	 */
 	public void removePedido(String registroImovel) throws Exception {
+		if (VerificaInvalido.basico(registroImovel)){
+			throw new IllegalArgumentException("Registro invalido");
+		}
 
 		Pedido pedido = getPedido(registroImovel);
 
@@ -184,6 +188,9 @@ public class ControladorPedidos implements Serializable {
 	 * @return Listagem de Pedidos
 	 */
 	public String listaPedidosDeCliente(String cpf) {
+		if (VerificaInvalido.basico(cpf)){
+			throw new IllegalArgumentException("CPF invalido");
+		}
 
 		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 
