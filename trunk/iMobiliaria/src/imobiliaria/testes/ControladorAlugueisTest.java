@@ -89,8 +89,9 @@ public class ControladorAlugueisTest {
 	@Test
 	public final void testListaAlugueis() throws Exception {
 		
-		Assert.assertEquals("Aluguel de Thiago Ferreira (101.202.303-44)\n" +
-				"Imovel Alugado: (1) Terreno para alugar no Altiplano! - Valor: 2500.0\n\n"
+		Assert.assertEquals("Informacoes do Aluguel de Thiago Ferreira\n" +
+				"Imovel: (1) Terreno para alugar no Altiplano! - Valor: 2500.0\n" +
+				"Cliente: Thiago Ferreira (101.202.303-44)\n\n"
 				, cAlugueis.listaAlugueisDeCliente("101.202.303-44"));
 		
 		// Adiciona novo pedido para outro cliente
@@ -102,14 +103,17 @@ public class ControladorAlugueisTest {
 		ControladorPedidos.getInstance().adicionaPedido("0", "110.220.330-40");
 		cAlugueis.adicionaAluguel("110.220.330-40", "0");
 		
-		Assert.assertEquals("Aluguel de Jean (110.220.330-40)\n" +
-				"Imovel Alugado: (0) Casa imobiliada para Alugar - Valor: 800.0\n\n",
+		Assert.assertEquals("Informacoes do Aluguel de Jean\n" +
+				"Imovel: (0) Casa imobiliada para Alugar - Valor: 800.0\n" +
+				"Cliente: Jean (110.220.330-40)\n\n",
 				cAlugueis.listaAlugueisDeCliente("110.220.330-40"));
 		
-		Assert.assertEquals("Aluguel de Thiago Ferreira (101.202.303-44)\n" +
-				"Imovel Alugado: (1) Terreno para alugar no Altiplano! - Valor: 2500.0\n\n" +
-				"Aluguel de Jean (110.220.330-40)\n" +
-				"Imovel Alugado: (0) Casa imobiliada para Alugar - Valor: 800.0\n\n"
+		Assert.assertEquals("Informacoes do Aluguel de Thiago Ferreira\n" +
+				"Imovel: (1) Terreno para alugar no Altiplano! - Valor: 2500.0\n" +
+				"Cliente: Thiago Ferreira (101.202.303-44)\n\n" +
+				"Informacoes do Aluguel de Jean\n" +
+				"Imovel: (0) Casa imobiliada para Alugar - Valor: 800.0\n" +
+				"Cliente: Jean (110.220.330-40)\n\n"
 				, cAlugueis.listaAlugueis());
 		
 	}

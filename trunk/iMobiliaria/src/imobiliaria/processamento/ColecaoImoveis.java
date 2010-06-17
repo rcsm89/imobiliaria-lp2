@@ -94,16 +94,16 @@ public class ColecaoImoveis implements Serializable {
 	 *            Valor minimo dos imoveis filtrados
 	 * @param max
 	 *            Valor maximo dos imoveis filtrados
-	 * @return ArrayList contendo os imoveis filtrados <<<<<<< .mine
+	 * @return ArrayList contendo os imoveis filtrado
 	 * @throws ValorInvalidoException
-	 *             Caso o valor minimo seja maior que o maximo =======
+	 *             Caso o valor minimo seja maior que o maximo
 	 * @throws ValorInvalidoException
-	 *             >>>>>>> .r325
+	 *             Valor min igual ou maior que o max
 	 */
 	public ArrayList<Imovel> getImoveisDeValor(double min, double max)
 			throws ValorInvalidoException {
 
-		if (min > max)
+		if (min >= max)
 			throw new ValorInvalidoException("Intervalo Invalido");
 
 		ArrayList<Imovel> colecaoRetornada = new ArrayList<Imovel>();

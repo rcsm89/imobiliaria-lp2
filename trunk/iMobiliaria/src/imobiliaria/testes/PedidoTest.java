@@ -90,8 +90,7 @@ public class PedidoTest {
 			pedido3 = new Pedido(null, null);
 			Assert.fail();
 		} catch (Exception e) {
-			Assert.assertEquals("Imovel invalido\n" +
-					"Comprador invalido", e.getMessage());
+			Assert.assertEquals("Imovel ou Cliente invalidos", e.getMessage());
 		}
 	}
 
