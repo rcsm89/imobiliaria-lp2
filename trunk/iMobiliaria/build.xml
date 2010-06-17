@@ -114,26 +114,26 @@
 	  		a suite de testes -->
 			<test name="imobiliaria.testes.AreaTest"/>
 	  		<test name="imobiliaria.testes.ClienteTest"/>
-	  		<test name="imobiliaria.testes.ColecaoClientesTest"/>
-	  		<test name="imobiliaria.testes.ColecaoImovelTest"/>
-	  		<test name="imobiliaria.testes.ColecaoFuncionarioTest"/>
 	  		<test name="imobiliaria.testes.FuncionarioTest"/>
 	  		<test name="imobiliaria.testes.ImovelTest"/>
-	  		
-	  		<test name="imobiliaria.testes.ControladorClienteTest"/>
-	  		<test name="imobiliaria.testes.ControladorImovelTest"/>
-	  		<test name="imobiliaria.testes.ControladorFuncionarioTest"/>
-	  		
-	  		<test name="imobiliaria.testes.ControladorAlugueisTest"/>
-	  		<test name="imobiliaria.testes.ControladorLoginTest"/>
-	  		<test name="imobiliaria.testes.ControladorPedidosTest"/>
-	  		<test name="imobiliaria.testes.ControladorTransacoesTest"/>
 	  		<test name="imobiliaria.testes.FolhaDePagamentoTest"/>
 	  		<test name="imobiliaria.testes.LoginTest"/>
 	  		<test name="imobiliaria.testes.PedidoTest"/>
 	  		<test name="imobiliaria.testes.TransacaoTest"/>
 	  		<test name="imobiliaria.testes.AluguelTest"/>
-	  		<test name="imobiliaria.testes.SistemaTest"/>
+	  		
+	  		<test name="imobiliaria.testes.ColecaoClientesTest"/>
+	  		<test name="imobiliaria.testes.ColecaoImovelTest"/>
+	  		<test name="imobiliaria.testes.ColecaoFuncionarioTest"/>
+	  		
+	  		<test name="imobiliaria.testes.ControladorClienteTest"/>
+	  		<test name="imobiliaria.testes.ControladorImovelTest"/>
+	  		<test name="imobiliaria.testes.ControladorFuncionarioTest"/>
+	  		<test name="imobiliaria.testes.ControladorAlugueisTest"/>
+	  		<test name="imobiliaria.testes.ControladorLoginTest"/>
+	  		<test name="imobiliaria.testes.ControladorPedidosTest"/>
+	  		<test name="imobiliaria.testes.ControladorTransacoesTest"/>
+
 	  	</junit>
 	  </target>	
 	
