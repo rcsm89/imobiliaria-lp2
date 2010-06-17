@@ -9,6 +9,7 @@ import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.Funcionario;
 import imobiliaria.entidades.Imovel;
 import imobiliaria.entidades.Transacao;
+import imobiliaria.util.FormataEntrada;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -20,6 +21,8 @@ public class TransacaoTest {
 	private Transacao transacao2;
 	private Transacao transacao3;
 	private Transacao transacao4;
+	
+	private String hoje = FormataEntrada.data(new GregorianCalendar());
 
 	@Before
 	public void setUp() throws Exception {
@@ -69,28 +72,28 @@ public class TransacaoTest {
 				"Vendedor: Thiago Ferreira - CRECI: 00111\n" +
 				"Comprador: Jean - CPF: 110.220.330-40\n" +
 				"Imovel: 0 - Casa imobiliada para Alugar\n" +
-				"Valor da Transacao: 3500.0 - Data: 10/06/2010"
+				"Valor da Transacao: 3500.0 - Data: " + hoje
 				,transacao1.exibeInformacao());
 		
 		Assert.assertEquals("Transacao de Registro: 1\n" +
 				"Vendedor: Thiago Ferreira - CRECI: 00111\n" +
 				"Comprador: Brunaaaaaa - CPF: 123.456.789-10\n" +
 				"Imovel: 1 - Apartamento a Venda!!!\n" +
-				"Valor da Transacao: 25000.0 - Data: 10/06/2010"
+				"Valor da Transacao: 25000.0 - Data: " + hoje
 				, transacao2.exibeInformacao());
 		
 		Assert.assertEquals("Transacao de Registro: 2\n" +
 				"Vendedor: Yuri Farias - CRECI: 1234325\n" +
 				"Comprador: Fulano De Tal - CPF: 110.225.761-25\n" +
 				"Imovel: 0 - Casa imobiliada para Alugar\n" +
-				"Valor da Transacao: 3500.0 - Data: 10/06/2010"
+				"Valor da Transacao: 3500.0 - Data: " + hoje
 				,transacao3.exibeInformacao());
 		
 		Assert.assertEquals("Transacao de Registro: 3\n" +
 				"Vendedor: Yuri Farias - CRECI: 1234325\n" +
 				"Comprador: Brunaaaaaa - CPF: 123.456.789-10\n" +
 				"Imovel: 1 - Apartamento a Venda!!!\n" +
-				"Valor da Transacao: 25000.0 - Data: 10/06/2010"
+				"Valor da Transacao: 25000.0 - Data: " + hoje
 				,transacao4.exibeInformacao());
 		
 	}
@@ -107,16 +110,16 @@ public class TransacaoTest {
 
 	@Test
 	public final void testToString() {
-		Assert.assertEquals("0 - 10/06/2010 - Thiago Ferreira - Jean - Imovel: 4 - 3500.0"
+		Assert.assertEquals("0 - " + hoje + " - Thiago Ferreira - Jean - Imovel: 4 - 3500.0"
 				, transacao1.toString());
 		
-		Assert.assertEquals("1 - 10/06/2010 - Thiago Ferreira - Brunaaaaaa - Imovel: 5 - 25000.0"
+		Assert.assertEquals("1 - " + hoje + " - Thiago Ferreira - Brunaaaaaa - Imovel: 5 - 25000.0"
 				, transacao2.toString());
 		
-		Assert.assertEquals("2 - 10/06/2010 - Yuri Farias - Fulano De Tal - Imovel: 4 - 3500.0"
+		Assert.assertEquals("2 - " + hoje + " - Yuri Farias - Fulano De Tal - Imovel: 4 - 3500.0"
 				, transacao3.toString());
 		
-		Assert.assertEquals("3 - 10/06/2010 - Yuri Farias - Brunaaaaaa - Imovel: 5 - 25000.0"
+		Assert.assertEquals("3 - " + hoje + " - Yuri Farias - Brunaaaaaa - Imovel: 5 - 25000.0"
 				, transacao4.toString());
 		
 	}
