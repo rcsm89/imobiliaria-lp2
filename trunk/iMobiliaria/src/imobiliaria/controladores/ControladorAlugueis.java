@@ -62,13 +62,16 @@ public class ControladorAlugueis implements Serializable {
 	 *            Registro do Imovel que foi Alugado
 	 * @return True - caso ele tenha sido adicionado com sucesso <br>
 	 *         False - caso contrario
-	 * @throws Exception
-	 *             Caso o Cliente nao seja encontrado, se o Imovel nao existir,
-	 *             também se o Imovel nao estiver no estado Pedido e
-	 *             TipoContratual Aluguel
+	 * @throws ClienteNotFoundException
+	 *             Se o Cliente nao for Encontrado
+	 * @throws ImovelInvalidoException
+	 *             Se o Imovel for Invalido
+	 * @throws ImovelNotFoundException
+	 *             Se o Imovel nao for encontrado
 	 */
 	public boolean adicionaAluguel(String cpfCliente, String registroDoImovel)
-			throws ClienteNotFoundException, ImovelInvalidoException, ImovelNotFoundException {
+			throws ClienteNotFoundException, ImovelInvalidoException,
+			ImovelNotFoundException {
 
 		Cliente alugante = ControladorCliente.getInstance().getCliente(
 				cpfCliente);

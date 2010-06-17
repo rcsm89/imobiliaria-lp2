@@ -76,12 +76,16 @@ public class ControladorPedidos implements Serializable {
 	 *            Registro do Imovel pedido
 	 * @param cpf
 	 *            CPF do Cliente que fez a solicitacao
-	 * @throws Exception
-	 *             Lanca excecao caso o imovel nao exista, o cliente nao exista
-	 *             ou o imovel ja tenha sido pedido
+	 * @throws ClienteNotFoundException
+	 *             Se o Cliente nao for Encontrado
+	 * @throws ImovelInvalidoException
+	 *             Se o Imovel for Invalido (Nao estiver a venda)
+	 * @throws ImovelNotFoundException
+	 *             Se o Imovel nao for encontrado
 	 */
 	public void adicionaPedido(String registroImovel, String cpf)
-			throws ImovelInvalidoException {
+			throws ImovelInvalidoException, ClienteNotFoundException,
+			ImovelNotFoundException {
 
 		Imovel imovelPedido = ControladorImovel.getInstance().getImovel(
 				registroImovel);
@@ -90,10 +94,10 @@ public class ControladorPedidos implements Serializable {
 				.getCliente(cpf);
 
 		if (imovelPedido == null)
-			throw new IllegalArgumentException("Registro de Imovel invalido");
+			throw new ImovelNotFoundException("Registro de Imovel invalido");
 
 		if (clienteQueSolicitou == null)
-			throw new IllegalArgumentException("CPF de Cliente invalido");
+			throw new ClienteNotFoundException("CPF de Cliente invalido");
 
 		if (imovelPedido.getEstadoDoImovel() != EstadoImovel.A_VENDA)
 			throw new ImovelInvalidoException("Imovel precisa estar a venda");
