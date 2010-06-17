@@ -14,10 +14,10 @@ import java.util.ArrayList;
 /**
  * Classe ColecaoImoveis que guarda uma Colecao da classe Imovel
  * 
- * @version IT01
+ * @version IT02
  */
 public class ColecaoImoveis implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Imovel> colecaoImoveis = new ArrayList<Imovel>();
 
@@ -30,14 +30,14 @@ public class ColecaoImoveis implements Serializable {
 	 *             Lanca excecao caso o imovel ja exista na colecao
 	 */
 	public void addImovel(Imovel imovelAadicionar) throws ImovelInvalidoException {
-		
-		if (imovelAadicionar == null){
+
+		if (imovelAadicionar == null) {
 			throw new IllegalArgumentException("Imovel Invalido");
 		}
 
 		if (colecaoImoveis.contains(imovelAadicionar))
 			throw new ImovelInvalidoException("Imovel ja Existente");
-		
+
 		colecaoImoveis.add(imovelAadicionar);
 	}
 
@@ -48,15 +48,14 @@ public class ColecaoImoveis implements Serializable {
 	 *            Registro do Imovel a Ser Removido
 	 * @return True - Caso o imovel seja removido <br>
 	 *         False - Caso ele nao seja encontrado
-	 *         
-	 * @throws - Exception
-	 * 				Lanca excecao caso o imovel o imovel passado seja null ou
-	 * 				Seja passado letras ao invers do numero de registro de um
-	 *  imovel
+	 * 
+	 * @throws - Exception Lanca excecao caso o imovel o imovel passado seja
+	 *         null ou Seja passado letras ao invers do numero de registro de um
+	 *         imovel
 	 */
 	public boolean removeImovel(String registroImovel) throws Exception {
-		
-		if (registroImovel == null){
+
+		if (registroImovel == null) {
 			throw new IllegalArgumentException("Imovel Invalido");
 		}
 
@@ -92,12 +91,13 @@ public class ColecaoImoveis implements Serializable {
 	 * @param max
 	 *            Valor maximo dos imoveis filtrados
 	 * @return ArrayList contendo os imoveis filtrados
-	 * @throws ValorInvalidoException 
+	 * @throws ValorInvalidoException
 	 */
-	public ArrayList<Imovel> getImoveisDeValor(double min, double max) throws ValorInvalidoException {
-		
-		if (min > max){
-			throw new  ValorInvalidoException("Intervalo Invalido");
+	public ArrayList<Imovel> getImoveisDeValor(double min, double max)
+			throws ValorInvalidoException {
+
+		if (min >= max) {
+			throw new ValorInvalidoException("Intervalo Invalido");
 		}
 
 		ArrayList<Imovel> colecaoRetornada = new ArrayList<Imovel>();
@@ -183,8 +183,8 @@ public class ColecaoImoveis implements Serializable {
 	 * @return ArrayList contendo os imoveis filtrados
 	 */
 	public ArrayList<Imovel> getImoveis(String nomeRequerido) {
-		
-		if(VerificaInvalido.basico(nomeRequerido)){
+
+		if (VerificaInvalido.basico(nomeRequerido)) {
 			throw new IllegalArgumentException("Nome Invalido");
 		}
 
