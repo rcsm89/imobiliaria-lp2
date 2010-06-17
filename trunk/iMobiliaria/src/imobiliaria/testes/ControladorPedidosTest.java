@@ -13,6 +13,9 @@ import imobiliaria.controladores.ControladorImovel;
 import imobiliaria.controladores.ControladorPedidos;
 import imobiliaria.controladores.ControladorTransacoes;
 import imobiliaria.entidades.Area;
+import imobiliaria.exceptions.FuncionarioNotFoundException;
+import imobiliaria.exceptions.PedidoNotFoundException;
+
 import org.junit.Test;
 
 public class ControladorPedidosTest {
@@ -53,6 +56,41 @@ public class ControladorPedidosTest {
 		} catch (Exception e) {
 			Assert.assertEquals("Imovel ja pedido", e.getMessage());
 		}
+
+		try {
+			cPedidos.adicionaPedido("-1", "101.202.303-44");
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("Registro de Imovel invalido", e.getMessage());
+		}
+
+		try {
+			cPedidos.adicionaPedido("12EE", "101.202.303-44");
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("Registro de Imovel invalido", e.getMessage());
+		}
+
+		try {
+			cPedidos.adicionaPedido("  ", "101.202.303-44");
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("Registro de Imovel invalido", e.getMessage());
+		}
+
+		try {
+			cPedidos.adicionaPedido("0", "1O1.2O2.3O3-AA");
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("CPF de Cliente invalido", e.getMessage());
+		}
+
+		try {
+			cPedidos.adicionaPedido("0", null);
+			Assert.fail();
+		} catch (Exception e) {
+			Assert.assertEquals("CPF invalido", e.getMessage());
+		}
 	}
 
 	@Test
@@ -61,8 +99,29 @@ public class ControladorPedidosTest {
 		try {
 			cPedidos.removePedido("3");
 			Assert.fail();
-		} catch (Exception e) {
+		} catch (PedidoNotFoundException e) {
 			Assert.assertEquals("Parametros invalidos", e.getMessage());
+		}
+
+		try {
+			cPedidos.removePedido("-1");
+			Assert.fail();
+		} catch (PedidoNotFoundException e) {
+			Assert.assertEquals("Parametros invalidos", e.getMessage());
+		}
+
+		try {
+			cPedidos.removePedido(null);
+			Assert.fail();
+		} catch (IllegalArgumentException e) {
+			Assert.assertEquals("Registro invalido", e.getMessage());
+		}
+		
+		try {
+			cPedidos.removePedido(" ");
+			Assert.fail();
+		} catch (IllegalArgumentException e) {
+			Assert.assertEquals("Registro invalido", e.getMessage());
 		}
 
 		Assert
@@ -74,7 +133,8 @@ public class ControladorPedidosTest {
 						cPedidos.listagemDePedido());
 
 		cPedidos.removePedido("0");
-
+		
+		// verificando se foi mesmo removido
 		Assert.assertEquals(
 				"Imovel: (1) Terreno para alugar no Altiplano! - Valor: 2500.0\n"
 						+ "Cliente: Thiago Ferreira (101.202.303-44)\n\n",
@@ -114,6 +174,20 @@ public class ControladorPedidosTest {
 								+ "Cliente: Thiago Ferreira (101.202.303-44)\n\n",
 								cPedidos.listaPedidosDeCliente("101.202.303-44"));
 		
+		try {
+			cPedidos.listaPedidosDeCliente("  ");
+			Assert.fail("Deveria ter lancado excecao");
+		} catch (IllegalArgumentException e) {
+			Assert.assertEquals("CPF invalido", e.getMessage());
+		}
+
+		try {
+			cPedidos.listaPedidosDeCliente(null);
+			Assert.fail("Deveria ter lancado excecao");
+		} catch (IllegalArgumentException e) {
+			Assert.assertEquals("CPF invalido", e.getMessage());
+		}
+		
 	}
 
 	@Test
@@ -135,8 +209,36 @@ public class ControladorPedidosTest {
 		try {
 			cPedidos.efetuaPedido("1", "99");
 			Assert.fail();
-		} catch (IllegalArgumentException e) {
+		} catch (FuncionarioNotFoundException e) {
 			Assert.assertEquals("Funcionario invalido", e.getMessage());
+		}
+
+		try {
+			cPedidos.efetuaPedido("1", null);
+			Assert.fail();
+		} catch (IllegalArgumentException e) {
+			Assert.assertEquals("Creci invalido", e.getMessage());
+		}
+
+		try {
+			cPedidos.efetuaPedido("2", "00111");
+			Assert.fail();
+		} catch (PedidoNotFoundException e) {
+			Assert.assertEquals("Pedido nao encontrado", e.getMessage());
+		}
+		
+		try {
+			cPedidos.efetuaPedido("0", "    ");
+			Assert.fail();
+		} catch (PedidoNotFoundException e) {
+			Assert.assertEquals("Pedido nao encontrado", e.getMessage());
+		}
+
+		try {
+			cPedidos.efetuaPedido("0", "00AAA");
+			Assert.fail();
+		} catch (PedidoNotFoundException e) {
+			Assert.assertEquals("Pedido nao encontrado", e.getMessage());
 		}
 
 		cPedidos.efetuaPedido("1", "00111");
