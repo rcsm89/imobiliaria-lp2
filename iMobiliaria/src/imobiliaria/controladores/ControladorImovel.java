@@ -1,8 +1,8 @@
 package imobiliaria.controladores;
 
-import imobiliara.auxiliar.EstadoImovel;
-import imobiliara.auxiliar.TipoContratual;
-import imobiliara.auxiliar.TipoImovel;
+import imobiliaria.auxiliar.EstadoImovel;
+import imobiliaria.auxiliar.TipoContratual;
+import imobiliaria.auxiliar.TipoImovel;
 import imobiliaria.entidades.Area;
 import imobiliaria.entidades.Imovel;
 import imobiliaria.exceptions.ImovelNotFoundException;

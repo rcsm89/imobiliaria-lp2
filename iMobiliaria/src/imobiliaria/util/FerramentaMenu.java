@@ -1,6 +1,6 @@
 package imobiliaria.util;
 
-import imobiliara.auxiliar.MenuInterface;
+import imobiliaria.auxiliar.MenuInterface;
 
 import java.util.LinkedList;
 

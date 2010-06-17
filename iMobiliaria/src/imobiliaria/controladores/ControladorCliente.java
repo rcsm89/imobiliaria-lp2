@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.TreeSet;
 
-import imobiliara.auxiliar.TipoImovel;
+import imobiliaria.auxiliar.TipoImovel;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.exceptions.ClienteNotFoundException;
 import imobiliaria.processamento.ColecaoClientes;

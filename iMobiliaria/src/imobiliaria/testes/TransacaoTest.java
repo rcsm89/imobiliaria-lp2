@@ -2,8 +2,8 @@ package imobiliaria.testes;
 
 import java.util.GregorianCalendar;
 
-import imobiliara.auxiliar.TipoContratual;
-import imobiliara.auxiliar.TipoImovel;
+import imobiliaria.auxiliar.TipoContratual;
+import imobiliaria.auxiliar.TipoImovel;
 import imobiliaria.entidades.Area;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.Funcionario;

@@ -2,9 +2,9 @@ package imobiliaria.entidades;
 
 import java.io.Serializable;
 
-import imobiliara.auxiliar.EstadoImovel;
-import imobiliara.auxiliar.TipoContratual;
-import imobiliara.auxiliar.TipoImovel;
+import imobiliaria.auxiliar.EstadoImovel;
+import imobiliaria.auxiliar.TipoContratual;
+import imobiliaria.auxiliar.TipoImovel;
 import imobiliaria.util.VerificaInvalido;
 
 /**

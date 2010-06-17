@@ -1,6 +1,6 @@
 package imobiliaria.entidades;
 
-import imobiliara.auxiliar.TipoLogin;
+import imobiliaria.auxiliar.TipoLogin;
 import imobiliaria.util.FormataEntrada;
 import imobiliaria.util.VerificaInvalido;
 
