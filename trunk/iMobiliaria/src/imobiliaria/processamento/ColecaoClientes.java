@@ -29,13 +29,15 @@ public class ColecaoClientes implements Serializable {
 	 *            cliente que sera Adicionado
 	 * @return True - Caso o cliente tenha sido adicionado <br>
 	 *         False - Caso o cliente ja exista na colecao
-	 * @throws Caso o cliente seja invalido
+	 * @throws Exception
+	 *             Caso o cliente seja invalido
 	 */
-	public boolean adicionaCliente(Cliente clienteASerAdicionado) throws Exception {
-		if (clienteASerAdicionado == null){
+	public boolean adicionaCliente(Cliente clienteASerAdicionado)
+			throws Exception {
+		if (clienteASerAdicionado == null) {
 			throw new IllegalArgumentException("Cliente invalido\n");
 		}
-		
+
 		if (colecaoClientes.contains(clienteASerAdicionado)) {
 			return false;
 		}
@@ -53,14 +55,14 @@ public class ColecaoClientes implements Serializable {
 	 */
 	public boolean removeCliente(String cpfASerRemovido) {
 		final int TAM_CPF_FORMATADO = 14;
-		
+
 		if (VerificaInvalido.basico(cpfASerRemovido))
 			return false;
-		
+
 		if (!(cpfASerRemovido.length() == TAM_CPF_FORMATADO)) {
 			return false;
 		}
-		
+
 		for (Cliente cliente : colecaoClientes) {
 			if (cpfASerRemovido.equals(cliente.getCpf())) {
 				return colecaoClientes.remove(cliente);
@@ -145,8 +147,8 @@ public class ColecaoClientes implements Serializable {
 	 *         igual a passada
 	 */
 	public TreeSet<Cliente> getClientesPorLetraInicial(String letra) {
-		if (VerificaInvalido.basico(letra) || letra.length() != 1 ||
-				Character.isDigit(letra.charAt(0))) {
+		if (VerificaInvalido.basico(letra) || letra.length() != 1
+				|| Character.isDigit(letra.charAt(0))) {
 			throw new IllegalArgumentException("Letra Invalida");
 		}
 

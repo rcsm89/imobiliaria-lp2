@@ -1,7 +1,5 @@
 package imobiliaria.entidades;
 
-import imobiliaria.auxiliar.EstadoImovel;
-
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -14,8 +12,8 @@ import java.util.GregorianCalendar;
 public class Pedido implements Comparable<Object> {
 
 	private Calendar dataDoPedido;
+	private Cliente cliente;
 	private Imovel imovel;
-	private Cliente comprador;
 
 	/**
 	 * Construtor da Classe
@@ -24,27 +22,17 @@ public class Pedido implements Comparable<Object> {
 	 *            Imovel que foi pedido
 	 * @param comprador
 	 *            Comprador do Imovel
-	 * @throws Exception
+	 * @throws IllegalArgumentException
+	 *             Caso Imovel ou Cliente sejam null
 	 */
 	public Pedido(Imovel imovel, Cliente comprador) {
 
-		String msgErro = "";
+		if (imovel == null || comprador == null)
+			throw new IllegalArgumentException("Imovel ou Cliente invalidos");
 
-		if (imovel == null
-				|| imovel.getEstadoDoImovel() != EstadoImovel.A_VENDA)
-			msgErro += "Imovel invalido\n";
-
-		if (comprador == null)
-			msgErro += "Comprador invalido";
-
-		if (!msgErro.equals(""))
-			throw new IllegalArgumentException(msgErro);
-
-		this.imovel = imovel;
-		this.comprador = comprador;
 		dataDoPedido = new GregorianCalendar();
-		
-		imovel.pedido();
+		cliente = comprador;
+		this.imovel = imovel;
 	}
 
 	/**
@@ -70,24 +58,25 @@ public class Pedido implements Comparable<Object> {
 	 * 
 	 * @return Cliente que fez o Pedido
 	 */
-	public Cliente getComprador() {
-		return comprador;
+	public Cliente getCliente() {
+		return cliente;
 	}
-	
-	
+
 	/**
 	 * Metodo que mostra as informacoes do Pedido
+	 * 
 	 * @return String contendo informacoes completas do Pedido
 	 */
 	public String exibeInformacao() {
-		return "Imovel: (" + getImovel().getRegistroImovel() + ") " +
-			getImovel().getNome() + " - Valor: " + 
-			getImovel().getValor() + "\n" + "Cliente: " +
-			getComprador().getNome() + " (" +
-			getComprador().getCpf() + ")";
+		return "Imovel: (" + getImovel().getRegistroImovel() + ") "
+				+ getImovel().getNome() + " - Valor: " + getImovel().getValor()
+				+ "\n" + "Cliente: " + getCliente().getNome() + " ("
+				+ getCliente().getCpf() + ")";
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
 	@Override
@@ -98,6 +87,23 @@ public class Pedido implements Comparable<Object> {
 		Pedido outroPedido = (Pedido) obj;
 
 		return dataDoPedido.compareTo(outroPedido.getDataDoPedido());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Pedido))
+			throw new IllegalArgumentException();
+
+		Pedido outroPedido = (Pedido) obj;
+
+		return outroPedido.getCliente().equals(cliente)
+				&& outroPedido.getImovel().equals(imovel);
+
 	}
 
 }

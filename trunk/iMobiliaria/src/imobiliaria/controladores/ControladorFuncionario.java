@@ -37,7 +37,7 @@ public class ControladorFuncionario implements Serializable {
 	/**
 	 * Metodo que modifica a instancia unica do Controlador de Funcionario
 	 * 
-	 * @param controlador
+	 * @param controladorFuncionario
 	 *            Nova Instancia para o Funcionario
 	 */
 	public static void setInstance(ControladorFuncionario controladorFuncionario) {
@@ -291,7 +291,7 @@ public class ControladorFuncionario implements Serializable {
 	 *            Creci do funcionario a ser removido
 	 * @return True, se o funcionario foi removido<br>
 	 *         False, caso contrario
-	 * @throws Exception
+	 * @throws IllegalArgumentException
 	 *             Caso o creci seja invalido
 	 */
 	public boolean removeFuncionario(String creci) {

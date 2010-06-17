@@ -5,6 +5,7 @@ import java.io.Serializable;
 import imobiliaria.auxiliar.EstadoImovel;
 import imobiliaria.auxiliar.TipoContratual;
 import imobiliaria.auxiliar.TipoImovel;
+import imobiliaria.exceptions.ValorInvalidoException;
 import imobiliaria.util.VerificaInvalido;
 
 /**
@@ -73,7 +74,7 @@ public class Imovel implements Serializable {
 		if (!(VerificaInvalido.pertenceAIntervalo(valor, 0.0, 999999999.0))) {
 			mensagemErro += "Valor invalido\n";
 		}
-		
+
 		if (area == null) {
 			mensagemErro += "Area invalida\n";
 		}
@@ -118,7 +119,7 @@ public class Imovel implements Serializable {
 	 * @param nome
 	 *            Novo nome do Imovel
 	 */
-	public void setNome(String nome) throws Exception {
+	public void setNome(String nome) {
 		if (VerificaInvalido.basico(nome)) {
 			throw new IllegalArgumentException("Nome invalido");
 		}
@@ -140,7 +141,7 @@ public class Imovel implements Serializable {
 	 * @param endereco
 	 *            Novo endereco do Imovel
 	 */
-	public void setEndereco(String endereco) throws Exception {
+	public void setEndereco(String endereco) {
 		if (VerificaInvalido.basico(endereco)) {
 			throw new IllegalArgumentException("Endereco invalido");
 		}
@@ -161,11 +162,13 @@ public class Imovel implements Serializable {
 	 * 
 	 * @param valor
 	 *            Novo valor do Imovel
+	 * @throws ValorInvalidoException
+	 *             Caso o valor seja menor que zero
 	 */
 
-	public void setValor(double valor) throws Exception {
+	public void setValor(double valor) throws ValorInvalidoException {
 		if (!(VerificaInvalido.pertenceAIntervalo(valor, 0, 999999999))) {
-			throw new IllegalArgumentException("Valor invalido");
+			throw new ValorInvalidoException("Valor invalido");
 		}
 		this.valor = valor;
 	}
@@ -272,7 +275,6 @@ public class Imovel implements Serializable {
 	public void alugado() {
 		estadoDoImovel = EstadoImovel.ALUGADO;
 	}
-
 
 	/**
 	 * equals da Classe<br>

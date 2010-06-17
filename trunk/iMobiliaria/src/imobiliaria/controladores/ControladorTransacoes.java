@@ -35,7 +35,8 @@ public class ControladorTransacoes implements Serializable {
 	private ArrayList<Transacao> logsFinanceiros = new ArrayList<Transacao>();
 	private ArrayList<Transacao> logsFinanceirosMensal = new ArrayList<Transacao>();
 
-	private ControladorTransacoes() {}
+	private ControladorTransacoes() {
+	}
 
 	/**
 	 * Metodo acessador da unica instancia do Controlador de Transacoes
@@ -126,7 +127,8 @@ public class ControladorTransacoes implements Serializable {
 		atualizaDataDePagamento();
 
 		if (pagouNesseMes)
-			throw new PagamentoJaEfetuadoException("Pagamento ja efetuado esse mes");
+			throw new PagamentoJaEfetuadoException(
+					"Pagamento ja efetuado esse mes");
 
 		double despesas = 0;
 		double salarioFuncionario;
@@ -147,7 +149,7 @@ public class ControladorTransacoes implements Serializable {
 
 			salarioFuncionarios.put(informacaoFuncionario, salarioFuncionario);
 		}
-		
+
 		removeDoCaixa(despesas);
 		resetaTransacoeMensais();
 		atualizaPagamentoParaAgora();
@@ -202,6 +204,7 @@ public class ControladorTransacoes implements Serializable {
 	 * @param registro
 	 *            Registro da Transacao a ser removida
 	 * @throws TransacaoNaoExistenteException
+	 *             Caso a transacao nao exista
 	 */
 	public void removeTransacao(int registro)
 			throws TransacaoNaoExistenteException {

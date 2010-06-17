@@ -95,11 +95,11 @@ public class ControladorPedidos implements Serializable {
 		if (clienteQueSolicitou == null)
 			throw new IllegalArgumentException("CPF de Cliente invalido");
 
-		if (imovelPedido.getEstadoDoImovel() == EstadoImovel.PEDIDO) {
-			throw new ImovelInvalidoException("Imovel ja pedido");
-		}
+		if (imovelPedido.getEstadoDoImovel() != EstadoImovel.A_VENDA)
+			throw new ImovelInvalidoException("Imovel precisa estar a venda");
 
 		listaPedidos.add(new Pedido(imovelPedido, clienteQueSolicitou));
+		imovelPedido.pedido();
 	}
 
 	/**
@@ -195,7 +195,7 @@ public class ControladorPedidos implements Serializable {
 		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 
 		for (Pedido p : listaPedidos) {
-			if (p.getComprador().getCpf().equals(cpf)) {
+			if (p.getCliente().getCpf().equals(cpf)) {
 				pedidos.add(p);
 			}
 		}
@@ -248,17 +248,20 @@ public class ControladorPedidos implements Serializable {
 	private void efetuaVenda(Pedido pedido, Funcionario vendedor)
 			throws ValorInvalidoException, ImovelInvalidoException {
 
-		pedido.getComprador().getHistoricoCompras().addImovel(
+		pedido.getCliente().getHistoricoCompras().addImovel(
 				pedido.getImovel());
 
 		ControladorTransacoes.getInstance().adicionaTransacao(
-				pedido.getComprador().getCpf(), vendedor.getCreci(),
+				pedido.getCliente().getCpf(), vendedor.getCreci(),
 				String.valueOf(pedido.getImovel().getRegistroImovel()));
 
 		vendedor.addImovelVendido(pedido.getImovel());
+		
 		pedido.getImovel().vendido();
+		
 		ControladorTransacoes.getInstance().adicionaAoCaixa(
 				pedido.getImovel().getValor());
+		
 		listaPedidos.remove(pedido);
 	}
 
@@ -266,7 +269,7 @@ public class ControladorPedidos implements Serializable {
 	ImovelInvalidoException, ImovelNotFoundException, ValorInvalidoException {
 
 		ControladorAlugueis.getInstance().adicionaAluguel(
-				pedido.getComprador().getCpf(),
+				pedido.getCliente().getCpf(),
 				String.valueOf(pedido.getImovel().getRegistroImovel()));
 
 		pedido.getImovel().alugado();

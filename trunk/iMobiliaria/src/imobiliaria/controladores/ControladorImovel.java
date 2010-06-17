@@ -65,8 +65,8 @@ public class ControladorImovel implements Serializable {
 	/**
 	 * Metodo responsavel por modificar um Imovel ja existente
 	 * 
-	 * @param imovel
-	 *            Representa o imovel a ser modificado
+	 * @param registro
+	 *            Representa o Registro do imovel a ser modificado
 	 * @param nome
 	 *            Representa o novo nome do imovel
 	 * @param endereco
@@ -310,7 +310,7 @@ public class ControladorImovel implements Serializable {
 	 * @return True - Caso o imovel seja removido <br>
 	 *         False - Caso ele nao seja encontrado
 	 * 
-	 * @throws - Exception Lanca excecao caso o imovel o imovel passado seja
+	 * @throws Exception Lanca excecao caso o imovel o imovel passado seja
 	 *         null ou Seja passado letras ao invers do numero de registro de um
 	 *         imovel
 	 */

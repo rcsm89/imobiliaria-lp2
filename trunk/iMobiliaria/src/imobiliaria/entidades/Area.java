@@ -1,6 +1,5 @@
 package imobiliaria.entidades;
 
-
 import imobiliaria.auxiliar.TipoArea;
 import imobiliaria.exceptions.MedidaInvalidaException;
 
@@ -36,7 +35,7 @@ public class Area implements Serializable {
 
 		if (largura <= TAM_ZERO)
 			mensagemDeErro += "Largura invalida\n";
-		
+
 		if (mensagemDeErro.length() != TAM_ZERO)
 			throw new MedidaInvalidaException(mensagemDeErro);
 
@@ -60,8 +59,11 @@ public class Area implements Serializable {
 	 * 
 	 * @param comprimento
 	 *            Novo Comprimento
+	 * @throws MedidaInvalidaException
+	 *             Caso a medida seja menor ou igual a zero
 	 */
-	public void setComprimento(double comprimento) throws Exception {
+	public void setComprimento(double comprimento)
+			throws MedidaInvalidaException {
 		final int TAM_VAZIO = 0;
 		if (comprimento <= TAM_VAZIO) {
 			throw new MedidaInvalidaException("Comprimento invalido");
@@ -81,10 +83,13 @@ public class Area implements Serializable {
 
 	/**
 	 * Metodo Modificador da Largura
+	 * 
 	 * @param largura
 	 *            Nova Largura
+	 * @throws MedidaInvalidaException
+	 *             Caso a medida seja menor ou igual a zero
 	 */
-	public void setLargura(double largura) throws Exception {
+	public void setLargura(double largura) throws MedidaInvalidaException {
 		final int TAM_VAZIO = 0;
 		if (largura <= TAM_VAZIO) {
 			throw new MedidaInvalidaException("Largura invalida");
@@ -95,6 +100,7 @@ public class Area implements Serializable {
 
 	/**
 	 * Metodo Acessador da Classificacao
+	 * 
 	 * @return Classificacao
 	 */
 	public TipoArea getClassificacao() {
@@ -102,41 +108,37 @@ public class Area implements Serializable {
 	}
 
 	/**
-	 * toString contendo informacoes da Area
-	 * (Formato Exemplo: 4.0|5.0|PEQUENA)
+	 * toString contendo informacoes da Area (Formato Exemplo: 4.0|5.0|PEQUENA)
 	 */
-	
+
 	@Override
 	public String toString() {
 		return comprimento + "x" + largura + " (" + classificacao + ")";
 	}
-	
+
 	/**
 	 * equals da Classe<br>
 	 * Duas areas sao iguais se possuirem o mesmo comprimento e largura
 	 */
-	
+
 	@Override
 	public boolean equals(Object objeto) {
 		if (!(objeto instanceof Area)) {
 			return false;
 		}
 		Area outraArea = (Area) objeto;
-		if (outraArea.getComprimento() == comprimento && outraArea.getLargura() == largura) {
+		if (outraArea.getComprimento() == comprimento
+				&& outraArea.getLargura() == largura) {
 			return true;
 		}
 		return false;
 	}
-	
-	
-	
-	
-	
+
 	/* Atualizador de Classificacao */
-	
+
 	private void atualizaClassificacao() {
 		double area = largura * comprimento;
-		
+
 		if (area <= 25) {
 			this.classificacao = TipoArea.PEQUENA;
 
@@ -150,7 +152,7 @@ public class Area implements Serializable {
 		} else {
 			this.classificacao = TipoArea.GRANDE;
 		}
-		
+
 	}
 
 }
