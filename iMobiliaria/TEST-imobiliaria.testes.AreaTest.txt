@@ -1,3 +1,0 @@
-Testsuite: imobiliaria.testes.AreaTest
-Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0,055 sec
-

@@ -1,3 +1,0 @@
-Testsuite: imobiliaria.testes.FuncionarioTest
-Tests run: 3, Failures: 0, Errors: 0, Time elapsed: 0,157 sec
-
