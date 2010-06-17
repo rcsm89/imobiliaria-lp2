@@ -176,14 +176,14 @@ public class ControladorPedidosTest {
 		
 		try {
 			cPedidos.listaPedidosDeCliente("  ");
-			Assert.fail("Deveria ter lancado excecao");
+			Assert.fail();
 		} catch (IllegalArgumentException e) {
 			Assert.assertEquals("CPF invalido", e.getMessage());
 		}
 
 		try {
 			cPedidos.listaPedidosDeCliente(null);
-			Assert.fail("Deveria ter lancado excecao");
+			Assert.fail();
 		} catch (IllegalArgumentException e) {
 			Assert.assertEquals("CPF invalido", e.getMessage());
 		}
