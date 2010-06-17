@@ -63,6 +63,9 @@ public class ControladorAlugueis implements Serializable {
 	 * @return True - caso ele tenha sido adicionado com sucesso <br>
 	 *         False - caso contrario
 	 * @throws Exception
+	 *             Caso o Cliente nao seja encontrado, se o Imovel nao existir,
+	 *             também se o Imovel nao estiver no estado Pedido e
+	 *             TipoContratual Aluguel
 	 */
 	public boolean adicionaAluguel(String cpfCliente, String registroDoImovel)
 			throws ClienteNotFoundException, ImovelInvalidoException, ImovelNotFoundException {
@@ -108,8 +111,8 @@ public class ControladorAlugueis implements Serializable {
 		}
 
 		for (Aluguel a : alugueis) {
-			if (a.getImovelAlugado().getRegistroImovel() == registroImovel) {
-				a.getImovelAlugado().a_venda();
+			if (a.getImovel().getRegistroImovel() == registroImovel) {
+				a.getImovel().a_venda();
 				return alugueis.remove(a);
 			}
 		}
@@ -134,7 +137,7 @@ public class ControladorAlugueis implements Serializable {
 		}
 
 		for (Aluguel a : alugueis) {
-			if (a.getImovelAlugado().getRegistroImovel() == registroImovel) {
+			if (a.getImovel().getRegistroImovel() == registroImovel) {
 				return a;
 			}
 		}
@@ -153,7 +156,7 @@ public class ControladorAlugueis implements Serializable {
 		double valorTotal = 0;
 
 		while (itAluguel.hasNext()) {
-			valorTotal += itAluguel.next().getImovelAlugado().getValor();
+			valorTotal += itAluguel.next().getImovel().getValor();
 		}
 
 		return valorTotal;
@@ -169,34 +172,34 @@ public class ControladorAlugueis implements Serializable {
 	public String listaAlugueisDeCliente(String cpfCliente) {
 
 		ArrayList<Aluguel> alugueisDoCliente = new ArrayList<Aluguel>();
-		
+
 		for (Aluguel a : alugueis) {
-			if (a.getAlugante().getCpf().equals(cpfCliente))
+			if (a.getCliente().getCpf().equals(cpfCliente))
 				alugueisDoCliente.add(a);
 		}
-		
+
 		return listaAlugueisDaColecao(alugueisDoCliente);
 	}
-	
+
 	/**
 	 * Metodo de Listagem dos Alugueis do Controlador
+	 * 
 	 * @return Listagem dos Alugueis do Controlador
 	 */
 	public String listaAlugueis() {
 		return listaAlugueisDaColecao(alugueis);
 	}
-	
-	
+
 	// Privados
-	
-	private String listaAlugueisDaColecao(Collection<Aluguel> colecao)  {
-		
+
+	private String listaAlugueisDaColecao(Collection<Aluguel> colecao) {
+
 		String saida = "";
-		
+
 		for (Aluguel a : colecao) {
 			saida += a.exibeInformacao() + "\n\n";
 		}
-		
+
 		return saida;
 	}
 

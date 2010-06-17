@@ -58,85 +58,45 @@ public class AluguelTest {
 			aluguel1 = new Aluguel(null, imovel2);
 			Assert.fail();
 		} catch (Exception e) {
-			Assert.assertEquals("Parametros invalidos", e.getMessage());
+			Assert.assertEquals("Imovel ou Cliente invalidos", e.getMessage());
 		}
 
 		try {
 			aluguel1 = new Aluguel(cliente1, null);
 			Assert.fail();
 		} catch (Exception e) {
-			Assert.assertEquals("Parametros invalidos", e.getMessage());
+			Assert.assertEquals("Imovel ou Cliente invalidos", e.getMessage());
 		}
 
 	}
 
 	@Test
-	public final void testGetAlugante() {
-
-		Assert.assertTrue(aluguel1.getAlugante().equals(cliente1));
-
-		Assert.assertTrue(aluguel2.getAlugante().equals(cliente2));
-
-		Assert.assertFalse(aluguel1.getAlugante().equals(cliente2));
-
-		Assert.assertFalse(aluguel2.getAlugante().equals(cliente1));
-
-	}
-
-	@Test
-	public final void testGetImovelAlugado() {
-
-		Assert.assertTrue(aluguel1.getImovelAlugado().equals(imovel1));
-
-		Assert.assertTrue(aluguel2.getImovelAlugado().equals(imovel2));
-
-		Assert.assertFalse(aluguel1.getImovelAlugado().equals(imovel2));
-
-		Assert.assertFalse(aluguel2.getImovelAlugado().equals(imovel1));
-
-	}
-
-	@Test
 	public final void testExibeInformacao() {
-
-		Assert
-				.assertEquals(
-						"Aluguel de Jean (110.220.330-40)\n"
-								+ "Imovel Alugado: (6) Casa imobiliada para Alugar - Valor: 3500.0",
+		
+		Assert.assertEquals("Informacoes do Aluguel de Jean\n" +
+				"Imovel: (2) Casa imobiliada para Alugar - Valor: 3500.0\n" +
+				"Cliente: Jean (110.220.330-40)",
 						aluguel1.exibeInformacao());
+		
+		
 
-		Assert
-				.assertEquals(
-						"Aluguel de Thiago Ferreira (101.202.303-44)\n"
-								+ "Imovel Alugado: (7) Apartamento a Venda!!! - Valor: 25000.0",
+		Assert.assertEquals("Informacoes do Aluguel de Thiago Ferreira\n" +
+				"Imovel: (3) Apartamento a Venda!!! - Valor: 25000.0\n" +
+				"Cliente: Thiago Ferreira (101.202.303-44)",
 						aluguel2.exibeInformacao());
-
+		
 	}
 
 	@Test
 	public final void testToString() {
 
-		Assert
-				.assertEquals(
-						"Alugante: Jean (110.220.330-40) Imovel: Casa imobiliada para Alugar (8)",
+		Assert.assertEquals(
+						"Alugante: Jean (110.220.330-40) Imovel: Casa imobiliada para Alugar (4)",
 						aluguel1.toString());
 
-		Assert
-				.assertEquals(
-						"Alugante: Thiago Ferreira (101.202.303-44) Imovel: Apartamento a Venda!!! (9)",
+		Assert.assertEquals(
+						"Alugante: Thiago Ferreira (101.202.303-44) Imovel: Apartamento a Venda!!! (5)",
 						aluguel2.toString());
-	}
-
-	@Test
-	public final void testEquals() {
-
-		Assert.assertTrue(aluguel1.equals(new Aluguel(cliente1, imovel1)));
-		Assert.assertTrue(aluguel2.equals(new Aluguel(cliente2, imovel2)));
-		Assert.assertFalse(aluguel1.equals(new Aluguel(cliente1, imovel2)));
-		Assert.assertFalse(aluguel1.equals(new Aluguel(cliente1, imovel2)));
-		Assert.assertFalse(aluguel1.equals(new Aluguel(cliente2, imovel2)));
-		Assert.assertFalse(aluguel2.equals(new Aluguel(cliente1, imovel2)));
-
 	}
 
 }

@@ -28,12 +28,12 @@ public class Transacao implements Serializable {
 	 *            Vendedor na Transacao
 	 * @param comprador
 	 *            Comprador na Transacao
-	 * @param valor
-	 *            Valor da Transacao
+	 * @param imovelTransacao
+	 *            Imovel da Transacao
 	 */
 	public Transacao(Funcionario vendedor, Cliente comprador,
 			Imovel imovelTransacao) {
-		
+
 		if (vendedor == null || comprador == null || imovelTransacao == null)
 			throw new IllegalArgumentException("Parametros invalidos");
 
@@ -52,13 +52,11 @@ public class Transacao implements Serializable {
 	public String exibeInformacao() {
 		return "Transacao de Registro: " + registroTransacao + "\n"
 				+ "Vendedor: " + vendedor.getNome() + " - CRECI: "
-				+ vendedor.getCreci() + "\n"
-				+ "Comprador: " + comprador.getNome()
-				+ " - CPF: " + comprador.getCpf() + "\n"
+				+ vendedor.getCreci() + "\n" + "Comprador: "
+				+ comprador.getNome() + " - CPF: " + comprador.getCpf() + "\n"
 				+ "Imovel: " + imovelTransacao.getRegistroImovel() + " - "
-				+ imovelTransacao.getNome() + "\n"
-				+ "Valor da Transacao: " + imovelTransacao.getValor()
-				+ " - Data: " + data;
+				+ imovelTransacao.getNome() + "\n" + "Valor da Transacao: "
+				+ imovelTransacao.getValor() + " - Data: " + data;
 	}
 
 	/**
@@ -77,7 +75,8 @@ public class Transacao implements Serializable {
 	public String toString() {
 		return registroTransacao + " - " + data + " - " + vendedor.getNome()
 				+ " - " + comprador.getNome() + " - Imovel: "
-				+ imovelTransacao.getRegistroImovel() + " - " + imovelTransacao.getValor();
+				+ imovelTransacao.getRegistroImovel() + " - "
+				+ imovelTransacao.getValor();
 	}
 
 	/**

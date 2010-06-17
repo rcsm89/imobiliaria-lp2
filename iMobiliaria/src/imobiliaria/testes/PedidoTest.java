@@ -81,18 +81,10 @@ public class PedidoTest {
 	public final void testConstrutor() {
 		
 		try {
-			pedido3 = new Pedido(imovel1, comprador2);
-			Assert.fail();
-		} catch (Exception e) {
-			Assert.assertEquals("Imovel invalido\n", e.getMessage());
-		}
-		
-		try {
 			pedido3 = new Pedido(imovel1, null);
 			Assert.fail();
 		} catch (Exception e) {
-			Assert.assertEquals("Imovel invalido\n" +
-					"Comprador invalido", e.getMessage());
+			Assert.assertEquals("Imovel ou Cliente invalidos", e.getMessage());
 		}
 		try {
 			pedido3 = new Pedido(null, null);
@@ -126,11 +118,11 @@ public class PedidoTest {
 	@Test
 	public final void testGetComprador() {
 		
-		Assert.assertEquals(comprador1, pedido1.getComprador());
+		Assert.assertEquals(comprador1, pedido1.getCliente());
 		
-		Assert.assertEquals(comprador1, pedido2.getComprador());
+		Assert.assertEquals(comprador1, pedido2.getCliente());
 		
-		Assert.assertEquals(comprador2, pedido3.getComprador());
+		Assert.assertEquals(comprador2, pedido3.getCliente());
 		
 	}
 
@@ -159,6 +151,19 @@ public class PedidoTest {
 		
 		Assert.assertEquals("Imovel: (17) Terreno a venda no Altiplano! - Valor: 50000.0\n" +
 				"Cliente: Thiago Ferreira (101.202.303-44)", pedido3.exibeInformacao());
+	}
+	
+	
+	@Test
+	public final void testEquals() {
+
+		Assert.assertTrue(pedido1.equals(new Pedido(imovel1, comprador1)));
+		Assert.assertTrue(pedido2.equals(new Pedido(imovel2, comprador1)));
+		Assert.assertFalse(pedido1.equals(new Pedido(imovel2, comprador1)));
+		Assert.assertFalse(pedido1.equals(new Pedido(imovel2, comprador1)));
+		Assert.assertFalse(pedido1.equals(new Pedido(imovel2, comprador2)));
+		Assert.assertFalse(pedido2.equals(new Pedido(imovel2, comprador2)));
+
 	}
 
 }

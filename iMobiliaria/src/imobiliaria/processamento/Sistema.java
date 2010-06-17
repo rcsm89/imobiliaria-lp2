@@ -20,16 +20,18 @@ import imobiliaria.util.PersistenciaDados;
 public class Sistema implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
+    private final String DIRETORIO = "";
 
-    private final String ARQUIVO_DE_IMOVEIS = "DadosImoveis.im";
-    private final String ARQUIVO_DE_CLIENTES = "DadosClientes.im";
-    private final String ARQUIVO_DE_FUNCIONARIOS = "DadosFuncionarios.im";
-    private final String ARQUIVO_DE_TRANSACOES = "DadosTransacoes.im";
-    private final String ARQUIVO_DE_PEDIDOS = "DadosPedidos.im";
-    private final String ARQUIVO_DE_ALUGUEIS = "DadosAlugueis.im";
-    private final String ARQUIVO_DE_LOGINS = "DadosLogins.im";
-    private final String ARQUIVO_DE_REGISTRO_IMOVEL = "RegistrosImovel.dat";
-    private final String ARQUIVO_DE_REGISTRO_TRANSACAO = "RegistrosTransacoes.dat";
+    private final String ARQUIVO_DE_IMOVEIS = DIRETORIO + "DadosImoveis.im";
+    private final String ARQUIVO_DE_CLIENTES = DIRETORIO + "DadosClientes.im";
+    private final String ARQUIVO_DE_FUNCIONARIOS = DIRETORIO + "DadosFuncionarios.im";
+    private final String ARQUIVO_DE_TRANSACOES = DIRETORIO + "DadosTransacoes.im";
+    private final String ARQUIVO_DE_PEDIDOS = DIRETORIO + "DadosPedidos.im";
+    private final String ARQUIVO_DE_ALUGUEIS = DIRETORIO + "DadosAlugueis.im";
+    private final String ARQUIVO_DE_LOGINS = DIRETORIO + "DadosLogins.im";
+    private final String ARQUIVO_DE_REGISTRO_IMOVEL = DIRETORIO + "RegistrosImovel.dat";
+    private final String ARQUIVO_DE_REGISTRO_TRANSACAO = DIRETORIO + "RegistrosTransacoes.dat";
 
     /* Metodos de Atualizacao */
 
