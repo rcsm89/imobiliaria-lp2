@@ -44,16 +44,6 @@ public class OperacoesInterfaceTextual {
 	}
     }
 
-    protected void historicoVendas(Funcionario func) {
-	int contador = 1;
-	System.out.println(lineSep);
-	for (Imovel imovel : func.getImoveisVendidos().getImoveis()) {
-	    System.out.println(String.format("%2d. %s", contador, imovel));
-	    contador++;
-	}
-	System.out.println(lineSep);
-    }
-
     protected void listarImoveis() {
 	System.out
 		.println(lineSep
