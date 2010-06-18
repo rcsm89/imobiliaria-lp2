@@ -5,6 +5,8 @@ import imobiliaria.auxiliar.MenuInterfaceAdmin;
 import imobiliaria.auxiliar.MenuInterfaceCliente;
 import imobiliaria.auxiliar.MenuInterfaceFuncionario;
 import imobiliaria.auxiliar.TipoLogin;
+import imobiliaria.controladores.ControladorCliente;
+import imobiliaria.controladores.ControladorFuncionario;
 import imobiliaria.controladores.ControladorLogin;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.Funcionario;
@@ -150,6 +152,7 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 				break;
 
 			case CLIENTE_CANCELAR_ALUGUEL:
+				op.cancelaAluguel();
 				break;
 
 			case CLIENTE_VERIF_DADOS:
@@ -157,7 +160,7 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 				break;
 
 			case CLIENTE_HIST_COMPRAS:
-				op.historicoCompras(cliente);
+				op.listaHistoricoDeComprasDeCliente(cliente.getCpf());
 				break;
 
 			case CLIENTE_SAIR:
@@ -355,11 +358,28 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 
 		if (ControladorLogin.getInstance().verificaLogin(userName)) {
 			Login login = ControladorLogin.getInstance().getLogin(userName);
-			return ControladorLogin.getInstance()
-					.checkPassword(login, password);
+			
+			if (ControladorLogin.getInstance()
+					.checkPassword(login, password)) {
+				setUsuario(tipo, userName);
+				return true;
+			}
 		}
 		return false;
 
+	}
+	
+	private void setUsuario(TipoLogin tipo, String username) {
+		cliente = null;
+		func = null;
+		
+		if (tipo == TipoLogin.CLIENTE) {
+			cliente = ControladorCliente.getInstance().
+			getClientePorUsername(username);
+		} else if (tipo == TipoLogin.FUNCIONARIO) {
+			func = ControladorFuncionario.getInstance().
+			getFuncionarioPorUsername(username);
+		}
 	}
 
 	// Metodos que mostram o prompt da operacao atual

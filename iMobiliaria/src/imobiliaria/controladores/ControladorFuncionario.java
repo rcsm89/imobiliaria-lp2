@@ -224,6 +224,25 @@ public class ControladorFuncionario implements Serializable {
 	}
 
 	/**
+	 * Metodo acessador de Funcionario por Username
+	 * 
+	 * @param username
+	 *            Username do Funcionario
+	 * @return Funcionario com o username passado como parametro
+	 */
+	public Funcionario getFuncionarioPorUsername(String username) {
+		if (VerificaInvalido.basico(username)) {
+			throw new IllegalArgumentException("Username invalido");
+		}
+
+		for (Funcionario func : colecaoFunc.getColecaoFuncionarios()) {
+			if (func.getLogin().getUserName().equals(username))
+				return func;
+		}
+		return null;
+	}
+
+	/**
 	 * Metodo que exibe informacoes de um Funcionario
 	 * 
 	 * @param creci
