@@ -64,6 +64,9 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 	    promptLogin();
 	    int opcao = MetodoEntrada.recebeInt();
 
+	    System.out.println(ControladorLogin.getInstance()
+		    .numLoginsCadastrados());
+
 	    switch (opcao) {
 	    case CLIENTE:
 		if (acesso(TipoLogin.CLIENTE)) {
