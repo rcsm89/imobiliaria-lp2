@@ -190,7 +190,15 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 	    promptMenuFuncionario();
 	    opcao = MetodoEntrada.recebeInt();
 
+	    // protected void listaPedidos() {
+	    // protected void HistoricoDeVendasDeFuncionario(String creci) {
+
 	    switch (opcao) {
+
+	    case FUNC_LISTAR_PEDIDOS:
+		// EH ESSE OU EH listaPedidosDeCliente(cpf)?!?!?!?!?
+		op.listaPedidos();
+		break;
 
 	    case CADASTRO_CLIENTE:
 		op.cadastroDeClientes();
