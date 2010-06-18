@@ -2,7 +2,7 @@ package imobiliaria.exceptions;
 
 /**
  * Exception para caso o Pedido nao tenha sido encontrado
- * @author Yuri
+ * @version IT02
  */
 public class PedidoNotFoundException extends Exception {
 

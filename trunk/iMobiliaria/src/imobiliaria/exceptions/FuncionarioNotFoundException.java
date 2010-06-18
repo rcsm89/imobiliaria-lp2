@@ -2,7 +2,7 @@ package imobiliaria.exceptions;
 
 /**
  * Exception para caso o Funcionario nao tenha sido encontrado
- * @author Yuri
+ * @version IT02
  */
 public class FuncionarioNotFoundException extends Exception {
 

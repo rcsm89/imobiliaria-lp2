@@ -2,8 +2,6 @@ package imobiliaria.exceptions;
 
 /**
  * Excecao para, caso o Registro de um Imovel nao Exista
- * 
- * @author Bruno Fabio de Farias Paiva
  * @version IT02
  */
 public class MedidaInvalidaException extends Exception{
