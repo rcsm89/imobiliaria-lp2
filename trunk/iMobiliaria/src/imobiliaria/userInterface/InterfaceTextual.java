@@ -190,13 +190,9 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 	    promptMenuFuncionario();
 	    opcao = MetodoEntrada.recebeInt();
 
-	    // protected void listaPedidos() {
-	    // protected void HistoricoDeVendasDeFuncionario(String creci) {
-
 	    switch (opcao) {
 
 	    case FUNC_LISTAR_PEDIDOS:
-		// EH ESSE OU EH listaPedidosDeCliente(cpf)?!?!?!?!?
 		op.listaPedidos();
 		break;
 
@@ -249,7 +245,7 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 		break;
 
 	    case FUNC_HIST_VENDAS:
-		op.historicoVendas(func);
+		op.HistoricoDeVendasDeFuncionario(func.getCreci());
 		break;
 
 	    case FUNC_SAIR:

@@ -36,7 +36,7 @@ public class FerramentaMenu implements MenuInterface {
     private static String[] opcoesMenuFuncionario3 = {
 	    // Opcoes do Funcionario
 
-	    "Efetuar um Pedido", "Verificar seus dados",
+	    "Listar Pedidos", "Efetuar um Pedido", "Verificar seus dados",
 	    "Ver Historico de Vendas" };
 
     private static String[] opcoesMenuAdmin = {
