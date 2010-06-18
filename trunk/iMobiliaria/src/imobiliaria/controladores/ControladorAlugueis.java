@@ -17,13 +17,13 @@ import java.util.Iterator;
 /**
  * Classe que ira ser o Controlador de Alugueis do Sistema
  * 
- * @author Yuri Farias
- * @version version 02
+ * @version IT02
  */
 public class ControladorAlugueis implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private static ControladorAlugueis controladorAlugueisUnico = new ControladorAlugueis();
+	private static ControladorAlugueis controladorAlugueisUnico =
+		new ControladorAlugueis();
 
 	private ArrayList<Aluguel> alugueis = new ArrayList<Aluguel>();
 
@@ -113,10 +113,10 @@ public class ControladorAlugueis implements Serializable {
 			throw new IllegalArgumentException("Registro invalido");
 		}
 
-		for (Aluguel a : alugueis) {
-			if (a.getImovel().getRegistroImovel() == registroImovel) {
-				a.getImovel().a_venda();
-				return alugueis.remove(a);
+		for (Aluguel aluguel : alugueis) {
+			if (aluguel.getImovel().getRegistroImovel() == registroImovel) {
+				aluguel.getImovel().a_venda();
+				return alugueis.remove(aluguel);
 			}
 		}
 		return false;
@@ -139,9 +139,9 @@ public class ControladorAlugueis implements Serializable {
 			throw new IllegalArgumentException("Registro invalido");
 		}
 
-		for (Aluguel a : alugueis) {
-			if (a.getImovel().getRegistroImovel() == registroImovel) {
-				return a;
+		for (Aluguel aluguel : alugueis) {
+			if (aluguel.getImovel().getRegistroImovel() == registroImovel) {
+				return aluguel;
 			}
 		}
 		return null;
@@ -176,9 +176,9 @@ public class ControladorAlugueis implements Serializable {
 
 		ArrayList<Aluguel> alugueisDoCliente = new ArrayList<Aluguel>();
 
-		for (Aluguel a : alugueis) {
-			if (a.getCliente().getCpf().equals(cpfCliente))
-				alugueisDoCliente.add(a);
+		for (Aluguel aluguel : alugueis) {
+			if (aluguel.getCliente().getCpf().equals(cpfCliente))
+				alugueisDoCliente.add(aluguel);
 		}
 
 		return listaAlugueisDaColecao(alugueisDoCliente);
@@ -199,8 +199,8 @@ public class ControladorAlugueis implements Serializable {
 
 		String saida = "";
 
-		for (Aluguel a : colecao) {
-			saida += a.exibeInformacao() + "\n\n";
+		for (Aluguel aluguel : colecao) {
+			saida += aluguel.exibeInformacao() + "\n\n";
 		}
 
 		return saida;

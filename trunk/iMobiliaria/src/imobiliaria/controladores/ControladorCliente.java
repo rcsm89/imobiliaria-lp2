@@ -14,7 +14,6 @@ import imobiliaria.util.VerificaInvalido;
  * Classe ControladorCliente que ira controlar e listar algumas opcoes sobre
  * Cliente
  * 
- * @author Thiago Ferreira Patricio
  * @version IT02
  */
 public class ControladorCliente implements Serializable {
@@ -125,9 +124,9 @@ public class ControladorCliente implements Serializable {
 			throw new IllegalArgumentException("CPF invalido");
 		}
 
-		for (Cliente c : colecaoClientes.getClientes()) {
-			if (c.getCpf().equals(cpf))
-				return c;
+		for (Cliente cliente : colecaoClientes.getClientes()) {
+			if (cliente.getCpf().equals(cpf))
+				return cliente;
 		}
 		return null;
 	}
@@ -140,20 +139,18 @@ public class ControladorCliente implements Serializable {
 	 * @return String contendo informacoes do Cliente
 	 * @throws ClienteNotFoundException
 	 *             Caso o cliente nao seja encontrado
-	 * 
-	 * 
 	 */
 	public String exibeCliente(String cpf) throws ClienteNotFoundException {
-		Cliente c = getCliente(cpf);
+		Cliente cliente = getCliente(cpf);
 
-		if (c == null) {
+		if (cliente == null) {
 			throw new ClienteNotFoundException("Cliente nao existente");
 		}
 
-		return "Nome: " + c.getNome() + " - CPF: " + c.getCpf() + "\n"
-				+ "Endereco: " + c.getEndereco() + " - Data de Nascimento: "
-				+ c.getDataNascimento() + " - Preferencia: "
-				+ c.getPreferencia();
+		return "Nome: " + cliente.getNome() + " - CPF: " + cliente.getCpf()
+				+ "\n" + "Endereco: " + cliente.getEndereco()
+				+ " - Data de Nascimento: " + cliente.getDataNascimento()
+				+ " - Preferencia: " + cliente.getPreferencia();
 	}
 
 	/**

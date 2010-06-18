@@ -16,8 +16,7 @@ import java.util.List;
 /**
  * Classe com objetivo de controlar as utilidades de um imovel.
  * 
- * @author Bruno Fabio de Farias Paiva
- * @version version 02
+ * @version IT02
  */
 public class ControladorImovel implements Serializable {
 
@@ -25,13 +24,14 @@ public class ControladorImovel implements Serializable {
 
 	private static ColecaoImoveis colecaoImovel = new ColecaoImoveis();
 
-	private static ControladorImovel controladorImovelUnico = new ControladorImovel();
+	private static ControladorImovel controladorImovelUnico = 
+		new ControladorImovel();
 
 	// Construtor
 
 	/**
 	 * Construtor privado para nao ocorrer instanciacoes da classe <br>
-	 * fora da classe.
+	 * fora da classe
 	 */
 	private ControladorImovel() {
 	}

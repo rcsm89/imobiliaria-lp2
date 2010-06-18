@@ -13,8 +13,6 @@ import imobiliaria.util.VerificaInvalido;
 /**
  * Classe ControladorFuncionario que controla e lista opcoes sobre Funcionario
  * 
- * @author Thiago Ferreira Patricio
- * 
  * @version IT02
  */
 public class ControladorFuncionario implements Serializable {
@@ -112,9 +110,7 @@ public class ControladorFuncionario implements Serializable {
 					+ "\n" + "Endereco: " + func.getEndereco()
 					+ "\nData de Nascimento: " + func.getDataNascimento()
 					+ " - Creci: " + func.getCreci() + "\n\n";
-
 		}
-
 		return saida;
 	}
 
