@@ -9,7 +9,7 @@ import imobiliaria.controladores.ControladorLogin;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.entidades.Funcionario;
 import imobiliaria.entidades.Login;
-import imobiliaria.processamento.Sistema;
+import imobiliaria.entidades.Sistema;
 import imobiliaria.util.FerramentaMenu;
 import imobiliaria.util.MetodoEntrada;
 
