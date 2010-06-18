@@ -1,12 +1,8 @@
 package imobiliaria.auxiliar;
 
 /**
- * Interface auxiliar para o menu de cliente<br>
- * Auxiliary interface for the cliente's menu
- * 
- * @author Jeanderson Barros Candido
- * @version version 02 (new)
- * 
+ * Interface auxiliar para o menu de cliente
+ * @version IT02
  */
 public interface MenuInterfaceCliente {
 

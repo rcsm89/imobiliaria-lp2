@@ -1,12 +1,8 @@
 package imobiliaria.auxiliar;
 
 /**
- * Interface auxiliar para o menu do administrador<br>
- * Auxiliary interface for the administrador's menu
- * 
- * @author Jeanderson Barros Candido
- * @version version 02 (new)
- * 
+ * Interface auxiliar para o menu do administrador
+ * @version IT02
  */
 public interface MenuInterfaceAdmin {
 

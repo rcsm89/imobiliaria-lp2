@@ -1,12 +1,8 @@
 package imobiliaria.auxiliar;
 
 /**
- * Classifica o tipo de usuario<br>
- * Classifies the user's kind
- * 
- * @author Jeanderson Barros Candido
- * @version version 01 (update)
- * 
+ * Classifica o tipo de usuario
+ * @version IT02
  */
 public enum TipoLogin {
 
