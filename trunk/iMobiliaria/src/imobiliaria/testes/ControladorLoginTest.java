@@ -84,7 +84,7 @@ public class ControladorLoginTest {
 	final int EXPECTED_SIZE = 2;
 	Assert.assertEquals(EXPECTED_SIZE, c1.numLoginsCadastrados());
 
-	Assert.assertFalse(c1.verificaLogin(lg1.getUserName()));
+	Assert.assertFalse(c1.verificaLogin("acc1"));
 	Assert.assertTrue(c1.verificaLogin(lg2.getUserName()));
 	Assert.assertTrue(c1.verificaLogin(lg3.getUserName()));
 	Assert.assertFalse(c1.verificaLogin(lg4.getUserName()));
