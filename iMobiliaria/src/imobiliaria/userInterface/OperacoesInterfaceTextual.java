@@ -7,6 +7,7 @@ import imobiliaria.controladores.ControladorAlugueis;
 import imobiliaria.controladores.ControladorCliente;
 import imobiliaria.controladores.ControladorFuncionario;
 import imobiliaria.controladores.ControladorImovel;
+import imobiliaria.controladores.ControladorLogin;
 import imobiliaria.controladores.ControladorPedidos;
 import imobiliaria.controladores.ControladorTransacoes;
 import imobiliaria.entidades.Area;
@@ -35,12 +36,12 @@ public class OperacoesInterfaceTextual {
     // METODOS DA INTERFACE DE CLIENTE
 
     protected void verificarDadosPessoais(Cliente cliente) {
-    	try {
-    		System.out.println(ControladorCliente.getInstance().exibeCliente(
-		cliente.getCpf()));
-    	} catch (ClienteNotFoundException e) {
-    		System.out.println("Cliente nao encontrado");
-    	}
+	try {
+	    System.out.println(ControladorCliente.getInstance().exibeCliente(
+		    cliente.getCpf()));
+	} catch (ClienteNotFoundException e) {
+	    System.out.println("Cliente nao encontrado");
+	}
     }
 
     protected void historicoCompras(Cliente cl) {
@@ -76,7 +77,8 @@ public class OperacoesInterfaceTextual {
 	System.out
 		.println(lineSep
 			+ "======================= Listagem de Clientes ======================="
-			+ lineSep + ControladorCliente.getInstance().listaClientes());
+			+ lineSep
+			+ ControladorCliente.getInstance().listaClientes());
     }
 
     protected void listarFuncionarios() {
@@ -84,7 +86,8 @@ public class OperacoesInterfaceTextual {
 		.println(lineSep
 			+ "===================== Listagem de Funcionarios ====================="
 			+ lineSep
-			+ ControladorFuncionario.getInstance().listaFuncionarios());
+			+ ControladorFuncionario.getInstance()
+				.listaFuncionarios());
     }
 
     protected void fazerPedido(String cpfCliente) {
@@ -98,7 +101,8 @@ public class OperacoesInterfaceTextual {
 
 	try {
 
-	    ControladorPedidos.getInstance().adicionaPedido(registroImovel, cpfCliente);
+	    ControladorPedidos.getInstance().adicionaPedido(registroImovel,
+		    cpfCliente);
 
 	} catch (Exception e) {
 
@@ -118,6 +122,8 @@ public class OperacoesInterfaceTextual {
 	boolean repeteCadastro;
 	int opcaoImovel = 0;
 	do {
+	    System.out.println(ControladorLogin.getInstance()
+		    .numLoginsCadastrados());
 	    System.out.println(lineSep
 		    + "----------------- Cadastro de Cliente -----------------"
 		    + lineSep);
@@ -163,6 +169,9 @@ public class OperacoesInterfaceTextual {
 	Cliente novoCliente = ControladorCliente.getInstance().getCliente(
 		FormataEntrada.cpf(cpf));
 
+	// Cadastro do Login
+	ControladorLogin.getInstance().adicionaLogin(novoCliente.getLogin());
+
 	System.out.println(lineSep
 		+ "=========== Cadastro Efetuado com Sucesso ============="
 		+ lineSep + lineSep + novoCliente.getLogin().toString()
@@ -196,8 +205,8 @@ public class OperacoesInterfaceTextual {
 	    creci = MetodoEntrada.recebeString("Numero do CRECI: ");
 
 	    try {
-		if (ControladorFuncionario.getInstance().adicionaFuncionario(cpf,
-			dataNascimento, endereco, nome, creci)) {
+		if (ControladorFuncionario.getInstance().adicionaFuncionario(
+			cpf, dataNascimento, endereco, nome, creci)) {
 
 		    novoFunc = ControladorFuncionario.getInstance()
 			    .getFuncionarioPorCreci(creci);
@@ -214,6 +223,8 @@ public class OperacoesInterfaceTextual {
 	    }
 
 	} while (repeteCadastro);
+
+	ControladorLogin.getInstance().adicionaLogin(novoFunc.getLogin());
 
 	System.out.println(lineSep
 		+ "=========== Cadastro Efetuado com Sucesso ============="
@@ -273,8 +284,8 @@ public class OperacoesInterfaceTextual {
 		tipoDoImovel = TipoImovel.values()[opcaoImovel - 1];
 		tipoContratual = TipoContratual.values()[opcaoContrato - 1];
 		area = new Area(comprimento, largura);
-		ControladorImovel.getInstance().addImovel(nome, endereco, valor, area,
-			tipoDoImovel, tipoContratual);
+		ControladorImovel.getInstance().addImovel(nome, endereco,
+			valor, area, tipoDoImovel, tipoContratual);
 		repeteCadastro = false;
 
 	    } catch (Exception erro) {
@@ -295,8 +306,8 @@ public class OperacoesInterfaceTextual {
     protected void verificaDadosPessoais(Funcionario func) {
 
 	System.out.println(lineSep
-		+ ControladorFuncionario.getInstance().exibeFuncionarioPorCreci(
-			func.getCreci()) + lineSep);
+		+ ControladorFuncionario.getInstance()
+			.exibeFuncionarioPorCreci(func.getCreci()) + lineSep);
 
     }
 
@@ -313,12 +324,13 @@ public class OperacoesInterfaceTextual {
 		    .recebeString("Digite o CPF (XXX.XXX.XXX-XX) do Cliente que deseja Excluir: ");
 
 	    String informacoes;
-	    
+
 	    try {
-	    informacoes = ControladorCliente.getInstance().exibeCliente(cpf);
+		informacoes = ControladorCliente.getInstance()
+			.exibeCliente(cpf);
 	    } catch (ClienteNotFoundException e) {
-	    	System.out.println("Cliente nao encontrado");
-	    	return;
+		System.out.println("Cliente nao encontrado");
+		return;
 	    }
 
 	    System.out.println(informacoes);
@@ -332,6 +344,9 @@ public class OperacoesInterfaceTextual {
 		if (ControladorCliente.getInstance().removeCliente(cpf)) {
 
 		    System.out.println("Cliente removido com Sucesso!");
+		    ControladorLogin.getInstance().removeLogin(
+			    ControladorCliente.getInstance().getCliente(cpf)
+				    .getLogin().getUserName());
 		    continuaRodandoMenu = false;
 
 		} else {
@@ -362,12 +377,12 @@ public class OperacoesInterfaceTextual {
 		.recebeString("Digite o CPF (XXX.XXX.XXX-XX) do Cliente que deseja verificar:");
 
 	String informacoes;
-	
+
 	try {
-	informacoes = ControladorCliente.getInstance().exibeCliente(cpf);
+	    informacoes = ControladorCliente.getInstance().exibeCliente(cpf);
 	} catch (ClienteNotFoundException e) {
-		System.out.println("Cliente nao encontrado");
-		return;
+	    System.out.println("Cliente nao encontrado");
+	    return;
 	}
 
 	System.out.println(informacoes + lineSep);
@@ -404,7 +419,8 @@ public class OperacoesInterfaceTextual {
 	    try {
 		switch (opcao) {
 		case 1:
-		    if (ControladorImovel.getInstance().removeImovel(registroImovel)) {
+		    if (ControladorImovel.getInstance().removeImovel(
+			    registroImovel)) {
 
 			System.out.println("Imovel removido com Sucesso!");
 			continuaRodandoMenu = false;
@@ -487,9 +503,14 @@ public class OperacoesInterfaceTextual {
 	    case 1:
 
 		try {
-		    if (ControladorFuncionario.getInstance().removeFuncionario(creci)) {
+		    if (ControladorFuncionario.getInstance().removeFuncionario(
+			    creci)) {
 
 			System.out.println("Funcionario removido com Sucesso!");
+			ControladorLogin.getInstance().removeLogin(
+				ControladorFuncionario.getInstance()
+					.getFuncionarioPorCreci(creci)
+					.getLogin().getUserName());
 			continuaRodandoMenu = false;
 
 		    } else {
@@ -560,8 +581,8 @@ public class OperacoesInterfaceTextual {
     protected void efetuarPagamento() {
 
 	try {
-	    FolhaDePagamento folhaDePagamento = ControladorTransacoes.getInstance()
-		    .efetuaPagamentoNoMes();
+	    FolhaDePagamento folhaDePagamento = ControladorTransacoes
+		    .getInstance().efetuaPagamentoNoMes();
 	    System.out.println("Folha de Pagamento do Mes:" + lineSep
 		    + folhaDePagamento.getFolhaDePagamentoString());
 
@@ -576,153 +597,157 @@ public class OperacoesInterfaceTextual {
 	System.out.println(lineSep + "Saldo Atual do Caixa: "
 		+ ControladorTransacoes.getInstance().caixa() + lineSep);
     }
-    
+
     // NOVOS METODOS!1111!11 (Yuri)
-    
+
     // Para Clientes
-    
+
     protected void listaPedidosDeCliente(String cpfCliente) {
-    	System.out.println(ControladorPedidos.getInstance().
-    			listaPedidosDeCliente(cpfCliente));
+	System.out.println(ControladorPedidos.getInstance()
+		.listaPedidosDeCliente(cpfCliente));
     }
-    
-    
+
     protected void cancelaPedido() {
-    	
-    	String registroImovel = "RECEBE UM REGISTRO DE IMOVEL";
-    	
-    	try {
-    		
-    		ControladorPedidos.getInstance().removePedido(registroImovel);
-    		
-    	} catch (PedidoNotFoundException e) {
-    		//Se nao for encontrado entra aqui
-    		
-			System.out.println("Pedido nao encontrado");
-			return;
-		} catch (Exception e) {
-			//Qualquer outro erro entra aqui
-			
-			System.out.println("Erro ao remover Pedido: " + e.getMessage());
-			return;
-		}
-    	
-    	System.out.println("Pedido removido com sucesso");
+
+	String registroImovel = "RECEBE UM REGISTRO DE IMOVEL";
+
+	try {
+
+	    ControladorPedidos.getInstance().removePedido(registroImovel);
+
+	} catch (PedidoNotFoundException e) {
+	    // Se nao for encontrado entra aqui
+
+	    System.out.println("Pedido nao encontrado");
+	    return;
+	} catch (Exception e) {
+	    // Qualquer outro erro entra aqui
+
+	    System.out.println("Erro ao remover Pedido: " + e.getMessage());
+	    return;
+	}
+
+	System.out.println("Pedido removido com sucesso");
     }
-    
+
     protected void listaAlugueisDeCliente(String cpfCliente) {
-    	System.out.println(ControladorAlugueis.getInstance().
-    			listaAlugueisDeCliente(cpfCliente));
+	System.out.println(ControladorAlugueis.getInstance()
+		.listaAlugueisDeCliente(cpfCliente));
     }
-    
+
     protected void cancelaAluguel() {
-    	
-    	String registroImovel = "RECEBE REGISTRO DO IMOVEL";
-    	
-    	// Metodo retorna boolean
-    	
-    	if (ControladorAlugueis.getInstance().removeAluguel(registroImovel)) {
-    		System.out.println("Aluguel removido com sucesso!");
-    	} else {
-    		System.out.println("Erro ao remover aluguel");
-    	}
+
+	String registroImovel = "RECEBE REGISTRO DO IMOVEL";
+
+	// Metodo retorna boolean
+
+	if (ControladorAlugueis.getInstance().removeAluguel(registroImovel)) {
+	    System.out.println("Aluguel removido com sucesso!");
+	} else {
+	    System.out.println("Erro ao remover aluguel");
+	}
     }
-    
+
     protected void listaHistoricoDeComprasDeCliente(String cpfCliente) {
-    	// Refazer no Controlador
-    	
-    	Cliente cliente = ControladorCliente.getInstance().getCliente(cpfCliente);
-    	if (cliente == null) {
-    		System.out.println("Cliente nao encontrado");
-    		return;
-    	}
-    	
-    	ArrayList<Imovel> historico =
-    		ControladorCliente.getInstance().getCliente(cpfCliente).getHistoricoCompras().getImoveis();
-    	
-    	listaHistorico(historico);
+	// Refazer no Controlador
+
+	Cliente cliente = ControladorCliente.getInstance().getCliente(
+		cpfCliente);
+	if (cliente == null) {
+	    System.out.println("Cliente nao encontrado");
+	    return;
+	}
+
+	ArrayList<Imovel> historico = ControladorCliente.getInstance()
+		.getCliente(cpfCliente).getHistoricoCompras().getImoveis();
+
+	listaHistorico(historico);
     }
-    
+
     // Para Funcionarios
-    
-    
+
     protected void listaPedidos() {
-    	
-    	System.out.println(ControladorPedidos.getInstance().listagemDePedido());
-    	
+
+	System.out.println(ControladorPedidos.getInstance().listagemDePedido());
+
     }
-    
+
     protected void HistoricoDeVendasDeFuncionario(String creci) {
-    	
-    	Funcionario funcionario =
-    		ControladorFuncionario.getInstance().getFuncionarioPorCreci(creci);
-    	if (funcionario == null) {
-    		System.out.println("Funcionario nao encontrado");
-    		return;
-    	}
-    	
-    	ArrayList<Imovel> historico =
-    		ControladorFuncionario.getInstance().getFuncionarioPorCreci(creci).getImoveisVendidos().getImoveis();
-    	
-    	listaHistorico(historico);
+
+	Funcionario funcionario = ControladorFuncionario.getInstance()
+		.getFuncionarioPorCreci(creci);
+	if (funcionario == null) {
+	    System.out.println("Funcionario nao encontrado");
+	    return;
+	}
+
+	ArrayList<Imovel> historico = ControladorFuncionario.getInstance()
+		.getFuncionarioPorCreci(creci).getImoveisVendidos()
+		.getImoveis();
+
+	listaHistorico(historico);
     }
-     
-    //PRIVADO!11
+
+    // PRIVADO!11
     private void listaHistorico(ArrayList<Imovel> historico) {
-    	if (historico.isEmpty()) {
-    		System.out.println("Historico Vazio");
-    		return;
-    	}
-    	
-    	String saida = "";
-    	for (Imovel i : historico) {
-    		saida += ControladorImovel.getInstance().exibeImovel(
-    				String.valueOf(i.getRegistroImovel())) + "\n\n";
-    	}
-    	System.out.println(saida);
+	if (historico.isEmpty()) {
+	    System.out.println("Historico Vazio");
+	    return;
+	}
+
+	String saida = "";
+	for (Imovel i : historico) {
+	    saida += ControladorImovel.getInstance().exibeImovel(
+		    String.valueOf(i.getRegistroImovel()))
+		    + "\n\n";
+	}
+	System.out.println(saida);
     }
-    
+
     // Para Admin
-    
+
     protected void listaTransacoesMensais() {
-    	
-    	System.out.println(ControladorTransacoes.getInstance().listaTransacoesMensais());
-    	
+
+	System.out.println(ControladorTransacoes.getInstance()
+		.listaTransacoesMensais());
+
     }
-    
+
     protected void listaTransacoes() {
-    	
-    	System.out.println(ControladorTransacoes.getInstance().listaTransacoes());
-    	
+
+	System.out.println(ControladorTransacoes.getInstance()
+		.listaTransacoes());
+
     }
-    
+
     protected void listaAlugueis() {
-    	
-    	System.out.println(ControladorAlugueis.getInstance().listaAlugueis());
-    	
+
+	System.out.println(ControladorAlugueis.getInstance().listaAlugueis());
+
     }
-    
+
     protected void removeTransacao() {
-    	
-    	String registroTransacao = "RECEBE REGISTRO DA TRANSACAO";
-    	
-    	// Converte pra INT!
-    	int regTransacao = Integer.parseInt(registroTransacao);
-    	
-    	try {
-			ControladorTransacoes.getInstance().removeTransacao(regTransacao);
-		} catch (TransacaoNaoExistenteException e) {
-			System.out.println("Transacao nao existente");
-		}
-    	
+
+	String registroTransacao = "RECEBE REGISTRO DA TRANSACAO";
+
+	// Converte pra INT!
+	int regTransacao = Integer.parseInt(registroTransacao);
+
+	try {
+	    ControladorTransacoes.getInstance().removeTransacao(regTransacao);
+	} catch (TransacaoNaoExistenteException e) {
+	    System.out.println("Transacao nao existente");
+	}
+
     }
-    
-    /* Falta os Metodos de Login que eu n sei oq foi adicionado, dai tu completa...
-     * Lembrando que alguns dos metodos de cliente por ex podem ser usados tanto por funcionario
-     * qto pelo admin... mesma coisa de func pra admin...
+
+    /*
+     * Falta os Metodos de Login que eu n sei oq foi adicionado, dai tu
+     * completa... Lembrando que alguns dos metodos de cliente por ex podem ser
+     * usados tanto por funcionario qto pelo admin... mesma coisa de func pra
+     * admin...
      * 
      * (O Historico ta muito mau feito ainda, vamos arrumar pra proxima IT)
      */
-    
 
 }
