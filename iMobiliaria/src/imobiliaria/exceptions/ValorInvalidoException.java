@@ -2,9 +2,7 @@ package imobiliaria.exceptions;
 
 /**
  * Excecao para caso algum valor digitado seja invalido
- * 
- * @author Yuri
- * @version versao 02
+ * @version IT02
  */
 public class ValorInvalidoException extends Exception {
 

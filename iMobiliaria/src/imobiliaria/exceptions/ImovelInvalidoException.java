@@ -2,7 +2,7 @@ package imobiliaria.exceptions;
 
 /**
  * Excecao para caso o Imovel seja Invalido
- * @author Yuri
+ * @version IT02
  */
 public class ImovelInvalidoException extends Exception {
 

@@ -2,7 +2,7 @@ package imobiliaria.exceptions;
 
 /**
  * Exception para caso o Imovel nao seja encontrado
- * @author Yuri
+ * @version IT02
  */
 public class ImovelNotFoundException extends Exception {
 

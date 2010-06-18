@@ -2,8 +2,6 @@ package imobiliaria.exceptions;
 
 /**
  * Excecao para, caso a Transacao nao Exista
- * 
- * @author Yuri
  * @version IT02
  */
 public class TransacaoNaoExistenteException extends Exception {
