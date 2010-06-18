@@ -10,7 +10,6 @@ import java.util.TreeSet;
 /**
  * Classe ColecaoClientes que guarda clientes
  * 
- * @author thiagofp
  * @version IT02
  */
 public class ColecaoClientes implements Serializable {
