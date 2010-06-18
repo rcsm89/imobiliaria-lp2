@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * Classe Area que guarda informacoes e classificacoes de uma determinada Area
  * 
- * @version IT 1.1
+ * @version IT02
  */
 public class Area implements Serializable {
 
@@ -21,9 +21,9 @@ public class Area implements Serializable {
 	 * Construtor da Classe
 	 * 
 	 * @param comprimento
-	 *            Comprimento
+	 *            Representa o Comprimento da area em questao
 	 * @param largura
-	 *            Largura
+	 *            Representa Largura da area em questao
 	 * @throws Exception
 	 *             Lanca Excecao caso Comprimento ou Largura sejam negativas
 	 */
@@ -64,7 +64,9 @@ public class Area implements Serializable {
 	 */
 	public void setComprimento(double comprimento)
 			throws MedidaInvalidaException {
+		
 		final int TAM_VAZIO = 0;
+		
 		if (comprimento <= TAM_VAZIO) {
 			throw new MedidaInvalidaException("Comprimento invalido");
 		}
@@ -108,9 +110,9 @@ public class Area implements Serializable {
 	}
 
 	/**
-	 * toString contendo informacoes da Area (Formato Exemplo: 4.0|5.0|PEQUENA)
+	 * toString contendo informacoes da Area 
+	 * (Formato Exemplo: 4.0x5.0 (PEQUENA))
 	 */
-
 	@Override
 	public String toString() {
 		return comprimento + "x" + largura + " (" + classificacao + ")";
@@ -152,7 +154,5 @@ public class Area implements Serializable {
 		} else {
 			this.classificacao = TipoArea.GRANDE;
 		}
-
 	}
-
 }

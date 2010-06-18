@@ -25,11 +25,9 @@ public class Imovel implements Serializable {
 	private double valor;
 	private Area area;
 	private int registroImovel;
-	private EstadoImovel estadoDoImovel; // bruno
+	private EstadoImovel estadoDoImovel;
 	private TipoImovel tipoDoImovel;
 	private TipoContratual tipoContratual;
-
-	// Fazer testes desses 2 Metodos!
 
 	public static int getCriadorDeRegistro() {
 		return criadorDeRegistro;

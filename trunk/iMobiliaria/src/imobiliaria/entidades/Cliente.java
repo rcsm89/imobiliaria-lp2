@@ -9,8 +9,7 @@ import java.util.Calendar;
 /**
  * Objetos desta classe sao clientes da imobiliaria
  * 
- * @author Bruno Fabio de Farias Paiva
- * @version IT01
+ * @version IT02
  */
 public class Cliente extends Usuario {
 
@@ -32,7 +31,7 @@ public class Cliente extends Usuario {
 	 * @param preferencia
 	 *            Preferencia do Imovel do Cliente
 	 * @throws Exception
-	 *             Caso algum parametro seja incorreto
+	 *             Caso algum parametro seja invalido
 	 */
 	public Cliente(String cpf, Calendar dataNascimento, String endereco,
 			String nome, TipoImovel preferencia) throws Exception {
@@ -72,11 +71,6 @@ public class Cliente extends Usuario {
 		this.preferencia = preferencia;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see imobiliaria.processamento.Pessoa#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object objeto) {
 

@@ -6,8 +6,7 @@ import java.util.GregorianCalendar;
 /**
  * Classe que guarda informacoes de um Pedido
  * 
- * @author Yuri Farias
- * @version IT 02
+ * @version IT02
  */
 public class Pedido implements Comparable<Object> {
 
@@ -38,7 +37,7 @@ public class Pedido implements Comparable<Object> {
 	/**
 	 * Metodo acessador da Data do Pedido
 	 * 
-	 * @return the dataDoPedido
+	 * @return dataDoPedido
 	 */
 	public Calendar getDataDoPedido() {
 		return dataDoPedido;
@@ -74,11 +73,6 @@ public class Pedido implements Comparable<Object> {
 				+ getCliente().getCpf() + ")";
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 */
 	public int compareTo(Object obj) {
 		if (!(obj instanceof Pedido))
 			throw new IllegalArgumentException();
@@ -87,12 +81,7 @@ public class Pedido implements Comparable<Object> {
 
 		return dataDoPedido.compareTo(outroPedido.getDataDoPedido());
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof Pedido))
@@ -102,7 +91,5 @@ public class Pedido implements Comparable<Object> {
 
 		return outroPedido.getCliente().equals(cliente)
 				&& outroPedido.getImovel().equals(imovel);
-
 	}
-
 }
