@@ -36,6 +36,7 @@ public class ControladorLoginTest {
 	// c1 = new ControladorLogin();
 	c1 = ControladorLogin.getInstance();
 	Assert.assertTrue(lg4.equals(lg1));
+	
     }
 
     /**
@@ -43,6 +44,10 @@ public class ControladorLoginTest {
      */
     @Test
     public void testAdicionaLogin() throws Exception {
+    	
+    // Administrador ja cadastrado
+    Assert.assertEquals(1, c1.numLoginsCadastrados());
+    	
 	Assert.assertTrue(c1.adicionaLogin(lg1));
 	Assert.assertTrue(c1.adicionaLogin(lg2));
 	Assert.assertTrue(c1.adicionaLogin(lg3));
@@ -51,8 +56,9 @@ public class ControladorLoginTest {
 	Assert.assertFalse(c1.adicionaLogin(lg1));
 	Assert.assertFalse(c1.adicionaLogin(lg4));
 	Assert.assertFalse(c1.adicionaLogin(null));
-
-	final int EXPECTED_SIZE = 3;
+	
+	// Administrador + 3 Adicionados
+	final int EXPECTED_SIZE = 4;
 	Assert.assertEquals(EXPECTED_SIZE, c1.numLoginsCadastrados());
     }
 
@@ -70,7 +76,7 @@ public class ControladorLoginTest {
 	Assert.assertTrue(c1.removeLogin(lg1.getUserName()));
 	Assert.assertFalse(c1.removeLogin(lg1.getUserName()));
 
-	final int EXPETCTED_SIZE = 2;
+	final int EXPETCTED_SIZE = 3;
 	Assert.assertEquals(EXPETCTED_SIZE, c1.numLoginsCadastrados());
 
     }
@@ -81,7 +87,7 @@ public class ControladorLoginTest {
     @Test
     public void testVerificaLogin() {
 
-	final int EXPECTED_SIZE = 2;
+	final int EXPECTED_SIZE = 3;
 	Assert.assertEquals(EXPECTED_SIZE, c1.numLoginsCadastrados());
 
 	Assert.assertFalse(c1.verificaLogin("acc1"));

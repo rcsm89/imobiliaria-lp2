@@ -16,6 +16,7 @@ public class ImovelNotFoundException extends Exception {
 	 */
 
 	public ImovelNotFoundException(String string) {
+		super(string);
 	}
 
 }
