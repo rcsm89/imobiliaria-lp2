@@ -79,7 +79,6 @@ public class Pedido implements Comparable<Object> {
 	 * 
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
-	@Override
 	public int compareTo(Object obj) {
 		if (!(obj instanceof Pedido))
 			throw new IllegalArgumentException();
