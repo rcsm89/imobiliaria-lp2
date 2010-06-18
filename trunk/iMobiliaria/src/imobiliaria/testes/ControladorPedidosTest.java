@@ -45,7 +45,8 @@ public class ControladorPedidosTest {
 			cPedidos.adicionaPedido("0", "101.202.303-44");
 			Assert.fail();
 		} catch (Exception e) {
-			Assert.assertEquals("Imovel precisa estar a venda", e.getMessage());
+			Assert.assertEquals("Imovel precisa estar a venda" +
+					" para poder ser pedido", e.getMessage());
 		}
 
 		cPedidos.adicionaPedido("1", "101.202.303-44");
@@ -54,7 +55,8 @@ public class ControladorPedidosTest {
 			cPedidos.adicionaPedido("1", "101.202.303-44");
 			Assert.fail();
 		} catch (Exception e) {
-			Assert.assertEquals("Imovel precisa estar a venda", e.getMessage());
+			Assert.assertEquals("Imovel precisa estar a venda" +
+					" para poder ser pedido", e.getMessage());
 		}
 
 		try {
