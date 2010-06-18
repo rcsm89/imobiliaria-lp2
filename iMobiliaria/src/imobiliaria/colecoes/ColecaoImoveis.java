@@ -1,4 +1,4 @@
-package imobiliaria.processamento;
+package imobiliaria.colecoes;
 
 import imobiliaria.auxiliar.EstadoImovel;
 import imobiliaria.auxiliar.TipoContratual;

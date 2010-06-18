@@ -2,7 +2,7 @@ package imobiliaria.entidades;
 
 import imobiliaria.auxiliar.TipoImovel;
 import imobiliaria.auxiliar.TipoLogin;
-import imobiliaria.processamento.ColecaoImoveis;
+import imobiliaria.colecoes.ColecaoImoveis;
 
 import java.util.Calendar;
 
