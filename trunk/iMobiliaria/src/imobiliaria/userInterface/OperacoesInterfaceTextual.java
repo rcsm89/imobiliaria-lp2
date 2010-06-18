@@ -18,7 +18,7 @@ import imobiliaria.entidades.Imovel;
 import imobiliaria.exceptions.ClienteNotFoundException;
 import imobiliaria.exceptions.PedidoNotFoundException;
 import imobiliaria.exceptions.TransacaoNaoExistenteException;
-import imobiliaria.processamento.Sistema;
+import imobiliaria.entidades.Sistema;
 import imobiliaria.util.FormataEntrada;
 import imobiliaria.util.MetodoEntrada;
 
