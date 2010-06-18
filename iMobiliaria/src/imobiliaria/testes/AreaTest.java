@@ -2,6 +2,7 @@ package imobiliaria.testes;
 
 import imobiliaria.auxiliar.TipoArea;
 import imobiliaria.entidades.Area;
+import imobiliaria.exceptions.MedidaInvalidaException;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,23 +21,23 @@ public class AreaTest {
     }
 
     @Test
-    public void testaExcecoes() {
+    public void testaExcecoes() throws Exception {
 	try {
 	    area1 = new Area(0, 5);
 	    Assert.fail("Deveria ter lancado excessao aqui");
-	} catch (Exception e) {
+	} catch (MedidaInvalidaException e) {
 	    Assert.assertEquals("Comprimento invalido\n", e.getMessage());
 	}
 	try {
 	    area1 = new Area(10, -1);
 	    Assert.fail("Deveria ter lancado excessao aqui");
-	} catch (Exception e) {
+	} catch (MedidaInvalidaException e) {
 	    Assert.assertEquals("Largura invalida\n", e.getMessage());
 	}
 	try {
 	    area1 = new Area(-10, 0);
 	    Assert.fail("Deveria ter lancado excessao aqui");
-	} catch (Exception e) {
+	} catch (MedidaInvalidaException e) {
 	    Assert.assertEquals(
 		    "Comprimento invalido\n" + "Largura invalida\n", e
 			    .getMessage());
@@ -50,7 +51,7 @@ public class AreaTest {
 
 	try {
 	    area1.setComprimento(25.0);
-	} catch (Exception erro) {
+	} catch (MedidaInvalidaException erro) {
 	    Assert.fail("Nao Deveria ter lancado excessao aqui");
 	}
 	/*
@@ -61,7 +62,7 @@ public class AreaTest {
 
 	try {
 	    area2.setLargura(50.0);
-	} catch (Exception erro) {
+	} catch (MedidaInvalidaException erro) {
 	    Assert.fail("Nao Deveria ter lancado excessao aqui");
 	}
 	/*
@@ -73,7 +74,7 @@ public class AreaTest {
 	try {
 	    area3.setComprimento(1.0);
 	    area3.setLargura(3.0);
-	} catch (Exception erro) {
+	} catch (MedidaInvalidaException erro) {
 	    Assert.fail("Nao Deveria ter lancado excessao aqui");
 	}
 	/*
@@ -87,14 +88,14 @@ public class AreaTest {
 	try {
 	    area1.setComprimento(-5);
 	    Assert.fail("Deveria ter lancado excessao aqui");
-	} catch (Exception e) {
+	} catch (MedidaInvalidaException e) {
 	    Assert.assertEquals("Comprimento invalido", e.getMessage());
 	}
 
 	try {
 	    area2.setLargura(0);
 	    Assert.fail("Deveria ter lancado excessao aqui");
-	} catch (Exception e) {
+	} catch (MedidaInvalidaException e) {
 	    Assert.assertEquals("Largura invalida", e.getMessage());
 	}
 
@@ -122,5 +123,18 @@ public class AreaTest {
 	Assert.assertEquals(25.0, area3.getComprimento());
 	Assert.assertEquals(30.0, area3.getLargura());
 	Assert.assertEquals(TipoArea.GRANDE, area3.getClassificacao());
+    }
+    
+    @Test
+    public void testaEquals() throws Exception {
+    	Area area4 = new Area(2,4);
+    	
+    	Assert.assertTrue( area1.equals(area4));
+    	Assert.assertFalse( area1.equals(area2));
+    	Assert.assertFalse( area1.equals(area3));
+    	Assert.assertFalse( area3.equals(area2));
+    	
+    	
+    	
     }
 }
