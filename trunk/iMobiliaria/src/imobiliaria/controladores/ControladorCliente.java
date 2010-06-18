@@ -132,6 +132,25 @@ public class ControladorCliente implements Serializable {
 	}
 
 	/**
+	 * Metodo acessador de um cliente a partir do seu username
+	 * 
+	 * @param userName
+	 *            Username do cliente
+	 * @return Cliente do username
+	 */
+	public Cliente getClientePorUsername(String userName) {
+		if (VerificaInvalido.basico(userName)) {
+			throw new IllegalArgumentException("Username invalido");
+		}
+
+		for (Cliente cliente : colecaoClientes.getClientes()) {
+			if (cliente.getLogin().getUserName().equals(userName))
+				return cliente;
+		}
+		return null;
+	}
+
+	/**
 	 * Metodo que exibe informacoes de um Cliente
 	 * 
 	 * @param cpf

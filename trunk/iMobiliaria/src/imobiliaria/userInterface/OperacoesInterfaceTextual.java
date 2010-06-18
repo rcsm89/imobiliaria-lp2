@@ -44,16 +44,6 @@ public class OperacoesInterfaceTextual {
 		}
 	}
 
-	protected void historicoCompras(Cliente cl) {
-		int contador = 1;
-		System.out.println(lineSep);
-		for (Imovel imovel : cl.getHistoricoCompras().getImoveis()) {
-			System.out.println(String.format("%2d. %s", contador, imovel));
-			contador++;
-		}
-		System.out.println(lineSep);
-	}
-
 	protected void historicoVendas(Funcionario func) {
 		int contador = 1;
 		System.out.println(lineSep);
@@ -598,7 +588,7 @@ public class OperacoesInterfaceTextual {
 				+ ControladorTransacoes.getInstance().caixa() + lineSep);
 	}
 
-	// NOVOS METODOS!1111!11 (Yuri)
+	// NOVOS METODOS!!!(Yuri)
 
 	// Para Clientes
 
@@ -609,7 +599,8 @@ public class OperacoesInterfaceTextual {
 
 	protected void cancelaPedido() {
 
-		String registroImovel = "RECEBE UM REGISTRO DE IMOVEL";
+		String registroImovel = MetodoEntrada.recebeString(
+				"Digite o registro do Imovel pedido: ");
 
 		try {
 
@@ -631,15 +622,17 @@ public class OperacoesInterfaceTextual {
 	}
 
 	protected void listaAlugueisDeCliente(String cpfCliente) {
-		System.out.println(ControladorAlugueis.getInstance()
+		
+		System.out.println(
+				"=================== Listagem de Alugueis ==================="
+				+ lineSep + ControladorAlugueis.getInstance()
 				.listaAlugueisDeCliente(cpfCliente));
 	}
 
 	protected void cancelaAluguel() {
-
-		String registroImovel = "RECEBE REGISTRO DO IMOVEL";
-
-		// Metodo retorna boolean
+		
+		String registroImovel = MetodoEntrada.recebeString("Digite o " +
+				"registro do Imovel alugado: ");
 
 		if (ControladorAlugueis.getInstance().removeAluguel(registroImovel)) {
 			System.out.println("Aluguel removido com sucesso!");
@@ -657,6 +650,8 @@ public class OperacoesInterfaceTextual {
 			System.out.println("Cliente nao encontrado");
 			return;
 		}
+		System.out.println(
+		"=================== Listagem de Historico ===================");
 
 		ArrayList<Imovel> historico = ControladorCliente.getInstance()
 				.getCliente(cpfCliente).getHistoricoCompras().getImoveis();
@@ -668,8 +663,9 @@ public class OperacoesInterfaceTextual {
 
 	protected void listaPedidos() {
 
-		System.out.println(ControladorPedidos.getInstance().listagemDePedido());
-
+		System.out.println(
+				"=================== Listagem de Pedidos ===================" + 
+				lineSep + ControladorPedidos.getInstance().listagemDePedido());
 	}
 
 	protected void HistoricoDeVendasDeFuncionario(String creci) {
@@ -680,7 +676,9 @@ public class OperacoesInterfaceTextual {
 			System.out.println("Funcionario nao encontrado");
 			return;
 		}
-
+		System.out.println(
+				"=================== Listagem de Historico ===================");
+		
 		ArrayList<Imovel> historico = ControladorFuncionario.getInstance()
 				.getFuncionarioPorCreci(creci).getImoveisVendidos()
 				.getImoveis();
@@ -707,31 +705,44 @@ public class OperacoesInterfaceTextual {
 	// Para Admin
 
 	protected void listaTransacoesMensais() {
-
-		System.out.println(ControladorTransacoes.getInstance()
+		
+		System.out.println(
+				"=================== Listagem de Transacoes ===================" +
+				lineSep + ControladorTransacoes.getInstance()
 				.listaTransacoesMensais());
 
 	}
 
 	protected void listaTransacoes() {
 
-		System.out.println(ControladorTransacoes.getInstance()
+		System.out.println(
+				"=================== Listagem de Transacoes ===================" +
+				lineSep + ControladorTransacoes.getInstance()
 				.listaTransacoes());
 
 	}
 
 	protected void listaAlugueis() {
 
-		System.out.println(ControladorAlugueis.getInstance().listaAlugueis());
+		System.out.println(
+				"=================== Listagem de Alugueis ===================" +
+				lineSep + ControladorAlugueis.getInstance().listaAlugueis());
 
 	}
 
 	protected void removeTransacao() {
 
-		String registroTransacao = "RECEBE REGISTRO DA TRANSACAO";
+		String registroTransacao = MetodoEntrada.recebeString(
+				"Digite o registro da transacao a ser removida: ");
 
 		// Converte pra INT!
-		int regTransacao = Integer.parseInt(registroTransacao);
+		int regTransacao;
+		try {
+			regTransacao = Integer.parseInt(registroTransacao);
+		} catch (Exception e) {
+			System.out.println("Registro invalido");
+			return;
+		}
 
 		try {
 			ControladorTransacoes.getInstance().removeTransacao(regTransacao);
