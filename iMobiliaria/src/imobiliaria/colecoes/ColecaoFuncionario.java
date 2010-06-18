@@ -9,7 +9,6 @@ import java.util.TreeSet;
 /**
  * Classe de colecao de funcionarios
  * 
- * @author thiagofp
  * @version IT02
  */
 public class ColecaoFuncionario implements Serializable {
@@ -64,7 +63,7 @@ public class ColecaoFuncionario implements Serializable {
 	}
 
 	/**
-	 * Retorna um funcionario que tenha um mesmo creci dado
+	 * Retorna um funcionario que tenha um creci igual ao passado
 	 * 
 	 * @param creci
 	 *            Creci do funcionario
