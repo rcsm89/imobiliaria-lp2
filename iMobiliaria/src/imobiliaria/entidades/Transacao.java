@@ -8,7 +8,7 @@ import java.util.GregorianCalendar;
 /**
  * Classe Transacao que guarda informacoes de uma Transacao Financeira
  * 
- * @author Yuri @ IT02
+ * @version IT02
  */
 public class Transacao implements Serializable {
 
@@ -18,7 +18,6 @@ public class Transacao implements Serializable {
 	private Imovel imovelTransacao;
 	private String data;
 	private int registroTransacao;
-
 	private static int criadorRegistroTransacao = 0;
 
 	/**

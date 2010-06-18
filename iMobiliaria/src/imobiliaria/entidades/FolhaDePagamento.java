@@ -6,7 +6,6 @@ import java.util.TreeMap;
 /**
  * Classe que guarda as informacoes de uma Folha de Pagamento
  * 
- * @author Yuri
  * @version IT02
  */
 public class FolhaDePagamento {
@@ -24,7 +23,8 @@ public class FolhaDePagamento {
 	 * @param novoSaldo
 	 *            Novo Saldo do Caixa
 	 */
-	public FolhaDePagamento(HashMap<String, Double> vendasFuncionarios, double novoSaldo) {
+	public FolhaDePagamento(HashMap<String, Double> vendasFuncionarios,
+			double novoSaldo) {
 		if (vendasFuncionarios == null)
 			throw new IllegalArgumentException("Parametros invalidos");
 

@@ -2,6 +2,7 @@ package imobiliaria.entidades;
 
 import imobiliaria.auxiliar.TipoLogin;
 import imobiliaria.colecoes.ColecaoImoveis;
+import imobiliaria.exceptions.ImovelInvalidoException;
 import imobiliaria.util.VerificaInvalido;
 
 import java.util.Calendar;
@@ -9,9 +10,7 @@ import java.util.Calendar;
 /**
  * Classe que cria um funcionario.
  * 
- * @author Thiago Ferreira
- * @version IT01
- * 
+ * @version IT02
  */
 public class Funcionario extends Usuario {
 
@@ -46,7 +45,7 @@ public class Funcionario extends Usuario {
 	}
 
 	/**
-	 * Acessa o creci
+	 * Metodo de acesso ao creci
 	 * 
 	 * @return O numero do creci do funcionario
 	 */
@@ -55,7 +54,7 @@ public class Funcionario extends Usuario {
 	}
 
 	/**
-	 * Acessa o total de vendas
+	 * Metodo de acesso ao total de vendas
 	 * 
 	 * @return O total de vendas do funcionario
 	 */
@@ -88,7 +87,7 @@ public class Funcionario extends Usuario {
 	 * Adiciona um imovel na lista de imoveis vendidos
 	 * 
 	 * @param imovelVendido
-	 *            Imovel vendido a ser adicionado
+	 *            Representa o Imovel vendido que sera adicionado
 	 * @return True, se o imovel foi adicionado False, caso contrario
 	 */
 	public boolean addImovelVendido(Imovel imovelVendido) {
@@ -103,10 +102,11 @@ public class Funcionario extends Usuario {
 	 * 
 	 * @param imovelVendido
 	 *            Imovel vendido a ser adicionado
+	 * @throws ImovelInvalidoException 
 	 * @throws Exception
 	 *             Lanca excecao caso imovel ja na lista de vendidos num mes
 	 */
-	public void addImovelVendidoMes(Imovel imovelVendido) throws Exception {
+	public void addImovelVendidoMes(Imovel imovelVendido) throws ImovelInvalidoException {
 		historicoVendidoMes.addImovel(imovelVendido);
 	}
 

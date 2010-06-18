@@ -10,9 +10,7 @@ import java.util.Calendar;
 /**
  * Classe que descreve uma pessoa abstrata usuaria do sistema
  * 
- * @author Jeanderson Barros Candido
- * @version IT01
- * 
+ * @version IT02
  */
 public abstract class Usuario implements Serializable, Comparable<Object> {
 
@@ -99,7 +97,7 @@ public abstract class Usuario implements Serializable, Comparable<Object> {
 	 *             <i>VerificaInvalido</i>)
 	 */
 	public void setDataNascimento(Calendar dataNascimento) throws Exception {
-		// Verif Data Nascimento
+		
 		if ((VerificaInvalido.maiorIdade(dataNascimento))
 				|| VerificaInvalido.data(dataNascimento)) {
 			throw new IllegalArgumentException("Data de nascimento invalida");
@@ -153,14 +151,13 @@ public abstract class Usuario implements Serializable, Comparable<Object> {
 	 *             (Olhar metodo <i>nome</i> da classe <i>VerificaInvalido</i>)
 	 */
 	public void setNome(String nome) throws Exception {
-		// Verif Nome
 		if (VerificaInvalido.nome(nome))
 			throw new IllegalArgumentException("Nome invalido\n");
 		this.nome = FormataEntrada.capitalize(nome);
 	}
 
 	/**
-	 * Acesso ao CPF
+	 * Metodo de acesso ao CPF
 	 * 
 	 * @return O CPF da pessoa
 	 */
@@ -169,7 +166,7 @@ public abstract class Usuario implements Serializable, Comparable<Object> {
 	}
 
 	/**
-	 * Modifica o CPF
+	 * Metodo modificador do CPF
 	 * 
 	 * @param cpf
 	 *            O CPF a ser definido
@@ -187,19 +184,9 @@ public abstract class Usuario implements Serializable, Comparable<Object> {
 		this.cpf = FormataEntrada.cpf(cpf);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public abstract boolean equals(Object obj);
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return getNome() + "|" + getCpf() + "|" + getEndereco() + "|"
@@ -216,14 +203,11 @@ public abstract class Usuario implements Serializable, Comparable<Object> {
 	}
 
 	/**
-	 * Retorna o login de um usuario<br>
-	 * Returns the user's login
+	 * Retorna o login de um usuario
 	 * 
-	 * @return O login do usuario<br>
-	 *         The user's login
+	 * @return O login do usuario
 	 */
 	public Login getLogin() {
 		return login;
 	}
-
 }
