@@ -4,7 +4,6 @@ import java.util.GregorianCalendar;
 import junit.framework.Assert;
 import imobiliaria.colecoes.ColecaoFuncionario;
 import imobiliaria.entidades.Funcionario;
-import imobiliaria.processamento.*;
 import org.junit.Before;
 import org.junit.Test;
 
