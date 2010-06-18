@@ -1,12 +1,8 @@
 package imobiliaria.auxiliar;
 
 /**
- * Interface auxiliar para o menu de funcionario<br>
- * Auxiliary interface for the funcinario's menu
- * 
- * @author Jeanderson Barros Candido
- * @version version 02 (new)
- * 
+ * Interface auxiliar para o menu de funcionario
+ * @version IT02
  */
 public interface MenuInterfaceFuncionario {
 

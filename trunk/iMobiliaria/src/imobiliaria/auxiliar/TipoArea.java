@@ -1,13 +1,9 @@
 package imobiliaria.auxiliar;
 
 /**
- * Classifica o tamanho de um imovel<br>
- * Classifies the size of a property
- * 
- * @author Jeanderson Barros Candido
- * @version version 01 (update)
- * 
- */
+ * Classifica o tamanho de um imovel
+ * @version IT02
+ */ 
 public enum TipoArea {
     GRANDE, MEDIA, PEQUENA
 }

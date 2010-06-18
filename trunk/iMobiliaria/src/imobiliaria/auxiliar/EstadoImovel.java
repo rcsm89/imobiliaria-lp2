@@ -1,12 +1,8 @@
 package imobiliaria.auxiliar;
 
 /**
- * Classifica o estado de um imovel<br>
- * Classifies the property's status
- * 
- * @author Jeanderson Barros Candido
- * @version version 01 (update)
- * 
+ * Classifica o estado de um imovel
+ * @version IT02
  */
 public enum EstadoImovel {
 
