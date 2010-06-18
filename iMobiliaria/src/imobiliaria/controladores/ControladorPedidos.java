@@ -23,7 +23,6 @@ import java.util.TreeSet;
 /**
  * Classe que Controla os Pedidos de um Sistema Imobiliario
  * 
- * @author Yuri
  * @version IT02
  */
 
@@ -35,7 +34,8 @@ public class ControladorPedidos implements Serializable {
 
 	private TreeSet<Pedido> listaPedidos = new TreeSet<Pedido>();
 
-	private static ControladorPedidos controladorPedidos = new ControladorPedidos();
+	private static ControladorPedidos controladorPedidos = 
+		new ControladorPedidos();
 
 	// Construtor
 
@@ -46,6 +46,7 @@ public class ControladorPedidos implements Serializable {
 	private ControladorPedidos() {
 	}
 
+	// Metodos
 	/**
 	 * Metodo que retorna uma instacia de pedidos
 	 * 
@@ -100,7 +101,8 @@ public class ControladorPedidos implements Serializable {
 			throw new ClienteNotFoundException("CPF de Cliente invalido");
 
 		if (imovelPedido.getEstadoDoImovel() != EstadoImovel.A_VENDA)
-			throw new ImovelInvalidoException("Imovel precisa estar a venda");
+			throw new ImovelInvalidoException("Imovel precisa estar a venda" +
+					" para poder ser pedido");
 
 		listaPedidos.add(new Pedido(imovelPedido, clienteQueSolicitou));
 		imovelPedido.pedido();
@@ -198,9 +200,9 @@ public class ControladorPedidos implements Serializable {
 
 		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 
-		for (Pedido p : listaPedidos) {
-			if (p.getCliente().getCpf().equals(cpf)) {
-				pedidos.add(p);
+		for (Pedido pedido : listaPedidos) {
+			if (pedido.getCliente().getCpf().equals(cpf)) {
+				pedidos.add(pedido);
 			}
 		}
 
