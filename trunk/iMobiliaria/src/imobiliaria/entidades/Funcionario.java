@@ -1,7 +1,7 @@
 package imobiliaria.entidades;
 
 import imobiliaria.auxiliar.TipoLogin;
-import imobiliaria.processamento.ColecaoImoveis;
+import imobiliaria.colecoes.ColecaoImoveis;
 import imobiliaria.util.VerificaInvalido;
 
 import java.util.Calendar;

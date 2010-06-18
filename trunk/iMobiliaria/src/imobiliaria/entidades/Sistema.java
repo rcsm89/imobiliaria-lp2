@@ -1,9 +1,9 @@
-package imobiliaria.processamento;
+package imobiliaria.entidades;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 import imobiliaria.controladores.*;
-import imobiliaria.entidades.Imovel;
-import imobiliaria.entidades.Transacao;
 import imobiliaria.util.PersistenciaDados;
 
 /**
@@ -46,36 +46,18 @@ public class Sistema implements Serializable {
     	
     	try {
     		
-    		ControladorImovel.setInstance((ControladorImovel)
-    				PersistenciaDados.ler(ARQUIVO_DE_IMOVEIS));
-    		
-    		ControladorCliente.setInstance((ControladorCliente)
-    				PersistenciaDados.ler(ARQUIVO_DE_CLIENTES));
-    		
-    		ControladorFuncionario.setInstance((ControladorFuncionario)
-    				PersistenciaDados.ler(ARQUIVO_DE_FUNCIONARIOS));
-    		
-    		ControladorTransacoes.setInstance((ControladorTransacoes)
-    				PersistenciaDados.ler(ARQUIVO_DE_TRANSACOES));
-    		
-    		ControladorPedidos.setInstance((ControladorPedidos)
-    				PersistenciaDados.ler(ARQUIVO_DE_PEDIDOS));
-    		
-    		ControladorAlugueis.setInstance((ControladorAlugueis)
-    				PersistenciaDados.ler(ARQUIVO_DE_ALUGUEIS));
-    		
-    		ControladorLogin.setInstance((ControladorLogin)
-    				PersistenciaDados.ler(ARQUIVO_DE_LOGINS));
-    		
-
-    		Imovel.setCriadorDeRegistro((Integer) PersistenciaDados
-    				.ler(ARQUIVO_DE_REGISTRO_IMOVEL));
-    		Transacao.setCriadorRegistroTransacao((Integer) PersistenciaDados
-    				.ler(ARQUIVO_DE_REGISTRO_TRANSACAO));
+    		atualizaControladores();
 	
+    	} catch (FileNotFoundException e) {
+    		salvarDados();
+    		atualizaControladores();
     	} catch (Exception e) {
     		System.out.println("Erro atualizando dados: " + e.getMessage());
     	}
+    	
+    	//Atualiza Datas
+    	ControladorTransacoes.getInstance().atualizaControlador();
+    	
     }
 
     /**
@@ -116,5 +98,38 @@ public class Sistema implements Serializable {
 	} catch (Exception e) {
 		System.out.println("Erro Salvando Dados: " + e.getMessage());
 	}
+    }
+    
+    
+    private void atualizaControladores() throws IOException,
+    ClassNotFoundException {
+    	
+    	ControladorImovel.setInstance((ControladorImovel)
+				PersistenciaDados.ler(ARQUIVO_DE_IMOVEIS));
+		
+		ControladorCliente.setInstance((ControladorCliente)
+				PersistenciaDados.ler(ARQUIVO_DE_CLIENTES));
+		
+		ControladorFuncionario.setInstance((ControladorFuncionario)
+				PersistenciaDados.ler(ARQUIVO_DE_FUNCIONARIOS));
+		
+		ControladorTransacoes.setInstance((ControladorTransacoes)
+				PersistenciaDados.ler(ARQUIVO_DE_TRANSACOES));
+		
+		ControladorPedidos.setInstance((ControladorPedidos)
+				PersistenciaDados.ler(ARQUIVO_DE_PEDIDOS));
+		
+		ControladorAlugueis.setInstance((ControladorAlugueis)
+				PersistenciaDados.ler(ARQUIVO_DE_ALUGUEIS));
+		
+		ControladorLogin.setInstance((ControladorLogin)
+				PersistenciaDados.ler(ARQUIVO_DE_LOGINS));
+		
+
+		Imovel.setCriadorDeRegistro((Integer) PersistenciaDados
+				.ler(ARQUIVO_DE_REGISTRO_IMOVEL));
+		Transacao.setCriadorRegistroTransacao((Integer) PersistenciaDados
+				.ler(ARQUIVO_DE_REGISTRO_TRANSACAO));
+    	
     }
 }

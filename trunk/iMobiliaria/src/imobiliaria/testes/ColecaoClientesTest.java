@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import imobiliaria.auxiliar.TipoImovel;
+import imobiliaria.colecoes.ColecaoClientes;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.processamento.*;
 import junit.framework.Assert;

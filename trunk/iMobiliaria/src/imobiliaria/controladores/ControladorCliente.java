@@ -5,9 +5,9 @@ import java.util.Calendar;
 import java.util.TreeSet;
 
 import imobiliaria.auxiliar.TipoImovel;
+import imobiliaria.colecoes.ColecaoClientes;
 import imobiliaria.entidades.Cliente;
 import imobiliaria.exceptions.ClienteNotFoundException;
-import imobiliaria.processamento.ColecaoClientes;
 import imobiliaria.util.VerificaInvalido;
 
 /**

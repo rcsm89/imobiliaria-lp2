@@ -1,4 +1,4 @@
-package imobiliaria.processamento;
+package imobiliaria.colecoes;
 
 import imobiliaria.entidades.Funcionario;
 import imobiliaria.util.VerificaInvalido;

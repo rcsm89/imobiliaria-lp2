@@ -3,11 +3,11 @@ package imobiliaria.testes;
 import imobiliaria.auxiliar.EstadoImovel;
 import imobiliaria.auxiliar.TipoContratual;
 import imobiliaria.auxiliar.TipoImovel;
+import imobiliaria.colecoes.ColecaoImoveis;
 import imobiliaria.entidades.Area;
 import imobiliaria.entidades.Imovel;
 import imobiliaria.exceptions.ImovelInvalidoException;
 import imobiliaria.exceptions.ValorInvalidoException;
-import imobiliaria.processamento.ColecaoImoveis;
 
 import java.util.ArrayList;
 

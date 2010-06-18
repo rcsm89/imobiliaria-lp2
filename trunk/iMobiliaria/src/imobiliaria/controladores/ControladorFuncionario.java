@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.TreeSet;
+
+import imobiliaria.colecoes.ColecaoFuncionario;
 import imobiliaria.entidades.Funcionario;
 import imobiliaria.exceptions.FuncionarioNotFoundException;
-import imobiliaria.processamento.ColecaoFuncionario;
 import imobiliaria.util.VerificaInvalido;
 
 /**
