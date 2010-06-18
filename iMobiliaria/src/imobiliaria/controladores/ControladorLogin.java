@@ -4,6 +4,7 @@
  */
 package imobiliaria.controladores;
 
+import imobiliaria.auxiliar.TipoLogin;
 import imobiliaria.entidades.Login;
 
 import java.io.Serializable;
@@ -31,6 +32,12 @@ public class ControladorLogin implements Serializable {
      */
     private ControladorLogin() {
 	loginsDoSistema = new HashSet<Login>();
+	try {
+	    loginsDoSistema.add(new Login("admin", "admin",
+		    TipoLogin.ADMINISTRADOR));
+	} catch (Exception erro) {
+	    System.out.println("Login adminstrativo invalido");
+	}
     }
 
     // Methods
@@ -113,14 +120,11 @@ public class ControladorLogin implements Serializable {
     // Verify
     /**
      * Veririca se o login esta cadastrado<br>
-     * Verify if the login is registered
      * 
-     * @param lg
-     *            O login a ser verificado<br>
-     *            The Login to be verified
+     * @param userName
+     *            O userName do login a ser verificado<br>
      * 
      * @return True se o login estiver cadastradro<br>
-     *         True if the login has been registered
      */
     public boolean verificaLogin(String userName) {
 	if (!(userName == null)) {
