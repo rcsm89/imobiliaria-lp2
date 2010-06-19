@@ -196,7 +196,7 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 		break;
 
 	    case LISTAR_PEDIDO_DE_UM_CLIENTE:
-		op.listaPedidosDeCliente(cpfCliente);
+		op.listaPedidosDeCliente(null);
 		break;
 
 	    case CANCELAR_ALUGUEL:
@@ -204,7 +204,7 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 		break;
 
 	    case LISTAR_ALUGUEIS_DE_UM_CLIENTE:
-		op.listaAlugueisDeCliente(cpfCliente);
+		op.listaAlugueisDeCliente(null);
 		break;
 
 	    case LISTAR_ALUGUEIS:
@@ -212,7 +212,7 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 		break;
 
 	    case VER_HIST_DE_UM_CLIENTE:
-		op.historicoDeCliente();
+		op.listaHistoricoDeComprasDeCliente(null);
 		break;
 
 	    case LISTAR_PEDIDO:
@@ -268,7 +268,7 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 		break;
 
 	    case FUNC_HIST_VENDAS:
-		op.HistoricoDeVendasDeFuncionario(func.getCreci());
+		op.verificarVendasDeUmFuncionario(func.getCreci());
 		break;
 
 	    case FUNC_SAIR:
@@ -300,7 +300,7 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 		break;
 
 	    case LISTAR_PEDIDO_DE_UM_CLIENTE:
-		op.listaPedidosDeCliente(cpfCliente);
+		op.listaPedidosDeCliente(null);
 		break;
 
 	    case LISTAR_PEDIDO:
@@ -308,11 +308,11 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 		break;
 
 	    case VER_HIST_DE_UM_CLIENTE:
-		op.verifHistoricoCliente();
+		op.listaHistoricoDeComprasDeCliente(null);
 		break;
 
 	    case LISTAR_ALUGUEIS_DE_UM_CLIENTE:
-		op.listaAlugueisDeCliente(cpfCliente);
+		op.listaAlugueisDeCliente(null);
 		break;
 
 	    case CANCELAR_ALUGUEL:
@@ -320,7 +320,7 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 		break;
 
 	    case ADMIN_VERIFICAR_VENDAS_DE_UM_FUNC:
-		op.verificarVendasDeUmFuncionario();
+		op.verificarVendasDeUmFuncionario(null);
 		break;
 
 	    case LISTAR_ALUGUEIS:
