@@ -20,39 +20,36 @@ public class FerramentaMenu implements MenuInterface {
 	    "Verificar seus dados", "Ver Historico de Compras",
 	    "Listar meus alugueis", "Cancelar um aluguel" };
 
-    private static String[] opcoesMenuFuncionario1 = {
-	    // Opcoes relacionadas a cliente (CRDU)
+    private static String[] opcoesMenuFuncionario1 = { "Cadastrar Cliente",
+	    "Listar Clientes", "Excluir Cadastro de Cliente",
+	    "Atualizar Cadastro de Cliente",
+	    "Verificar Informacoes de um Cliente",
+	    "Verificar Historico de Um Cliente" };
 
-	    "Cadastrar Cliente", "Listar Clientes",
-	    "Excluir Cadastro de Cliente", "Atualizar Cadastro de Cliente",
-	    "Verificar informacoes de um Cliente" };
-    private static String[] opcoesMenuFuncionario2 = {
-	    // Opcoes relacionadas a Imoveis (CRDU)
-
-	    "Cadastrar Imovel", "Listar Imoveis", "Excluir Cadastro de Imovel",
+    private static String[] opcoesMenuFuncionario2 = { "Cadastrar Imovel",
+	    "Listar Imoveis", "Excluir Cadastro de Imovel",
 	    "Atualizar Cadastro de Imovel",
 	    "Verificar informacoes de um Imovel" };
 
-    private static String[] opcoesMenuFuncionario3 = {
-	    // Opcoes do Funcionario
+    private static String[] opcoesMenuFuncionario4 = { "Listar Pedidos",
+	    "Listar Pedidos de um Cliente", "Efetuar um Pedido",
+	    "Cancelar um Pedido" };
 
-	    "Listar Pedidos", "Efetuar um Pedido", "Verificar seus dados",
+    private static String[] opcoesMenuFuncionario5 = { "Verificar seus dados",
 	    "Ver Historico de Vendas" };
 
-    private static String[] opcoesMenuAdmin = {
+    private static String[] opcoesMenuFuncionario3 = { "Listar Alugueis",
+	    "Listar Alugueis de um Cliente", "Cancelar Aluguel" };
 
-	    // Opcoes relacionadas a Funcionarios (CRDU) + Efetuar Pedido
-
-	    "Cadastrar Funcionario", "Listar Funcionario",
-	    "Excluir Cadastro de Funcionario",
+    private static String[] opcoesMenuAdmin = { "Cadastrar Funcionario",
+	    "Listar Funcionario", "Excluir Cadastro de Funcionario",
 	    "Atualizar Cadastro de Funcionario",
 	    "Verificar informacoes de um Funcionario",
-	    "Efetuar um Pedido",
+	    "Verificar Vendas de um Funcionario" };
 
-	    // Opcoes do Admin
-	    "Realiza Pagamento", "Ver Saldo Atual",
-	    "Listar Transacoes Mensais", "Listar Transacoes",
-	    "Remover Transacao", "Listar Alugueis" };
+    private static String[] opcoesMenuAdmin2 = { "Listar Transacoes Mensais",
+	    "Listar Transacoes", "Remover Transacao", "Realiza Pagamento",
+	    "Ver Saldo Atual do Caixa", };
 
     // Methods
 
@@ -77,7 +74,8 @@ public class FerramentaMenu implements MenuInterface {
 	} else if (tipo == FUNCIONARIO) {
 
 	    String[][] conjuntoOpcoes = { opcoesMenuFuncionario1,
-		    opcoesMenuFuncionario2, opcoesMenuFuncionario3 };
+		    opcoesMenuFuncionario2, opcoesMenuFuncionario3,
+		    opcoesMenuFuncionario4, opcoesMenuFuncionario5 };
 
 	    for (String[] tipoDaVez : conjuntoOpcoes) {
 		menu.add(lineSep);
@@ -86,7 +84,8 @@ public class FerramentaMenu implements MenuInterface {
 	    }
 	} else if (tipo == ADMINISTRADOR) {
 	    String[][] conjuntoOpcoes = { opcoesMenuFuncionario1,
-		    opcoesMenuFuncionario2, opcoesMenuAdmin };
+		    opcoesMenuFuncionario2, opcoesMenuFuncionario3,
+		    opcoesMenuFuncionario4, opcoesMenuAdmin, opcoesMenuAdmin2 };
 
 	    for (String[] tipoDaVez : conjuntoOpcoes) {
 		menu.add(lineSep);
