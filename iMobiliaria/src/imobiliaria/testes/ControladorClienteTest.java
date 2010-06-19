@@ -7,6 +7,7 @@ import junit.framework.Assert;
 import imobiliaria.auxiliar.TipoImovel;
 import imobiliaria.controladores.*;
 import imobiliaria.entidades.Cliente;
+import imobiliaria.exceptions.ClienteNotFoundException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -212,5 +213,44 @@ public class ControladorClienteTest {
 		Assert.assertFalse(controladorCliente.removeCliente(cpfNull));
 		
 	}
-
+	
+	@Test
+	public void testGetClientePorUserName() throws ClienteNotFoundException {
+		
+		/*
+		 *  ------------ ESSA PARTE DEVE SER CONSERTADA --------------------
+		 * Assert.assertEquals(controladorCliente.
+		 *		getClientePorUsername("123.456.789-12"),
+		 *		controladorCliente.exibeCliente("123.456.789-12"));
+		 * FAZER UM TESTE ONDE ESSE METODO FUNCIONE!!!
+		 *  -> FALTA TESTAR ELE FUNCIONANDO!!!
+		 * ------------------SO ATE AQUI---------------------------------
+		 */
+		
+		// esse CPF a seguir foi removido do controlador no teste passado,
+		// por isso, esta retornando null
+		Assert.assertNull(controladorCliente.
+				getClientePorUsername("123.456.789-10"));
+		
+		try{
+			controladorCliente.getClientePorUsername(null);
+			Assert.fail("Deveria Lancar Excecao aqui");
+		}catch(IllegalArgumentException e){
+			Assert.assertEquals("Username invalido", e.getMessage());
+		}
+		
+		try{
+			controladorCliente.getClientePorUsername("     ");
+			Assert.fail("Deveria Lancar Excecao aqui");
+		}catch(IllegalArgumentException e){
+			Assert.assertEquals("Username invalido", e.getMessage());
+		}
+		
+		try{
+			controladorCliente.getClientePorUsername("");
+			Assert.fail("Deveria Lancar Excecao aqui");
+		}catch(IllegalArgumentException e){
+			Assert.assertEquals("Username invalido", e.getMessage());
+		}
+	}
 }
