@@ -22,7 +22,7 @@ public class ControladorImovel implements Serializable {
 
 	// Atributos
 
-	private static ColecaoImoveis colecaoImovel = new ColecaoImoveis();
+	private ColecaoImoveis colecaoImovel = new ColecaoImoveis();
 
 	private static ControladorImovel controladorImovelUnico = 
 		new ControladorImovel();
