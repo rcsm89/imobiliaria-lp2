@@ -36,11 +36,14 @@ public class ColecaoClientes implements Serializable {
 		if (clienteASerAdicionado == null) {
 			throw new IllegalArgumentException("Cliente invalido\n");
 		}
-
-		if (colecaoClientes.contains(clienteASerAdicionado)) {
-			return false;
+		
+		
+		for (Cliente cliente : colecaoClientes) {
+			if (clienteASerAdicionado.getCpf().equals(
+					cliente.getCpf())) {
+				return false;
+			}
 		}
-
 		return colecaoClientes.add(clienteASerAdicionado);
 	}
 
