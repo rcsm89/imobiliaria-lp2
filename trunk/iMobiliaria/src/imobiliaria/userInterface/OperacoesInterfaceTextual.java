@@ -319,11 +319,12 @@ public class OperacoesInterfaceTextual {
 
 	    switch (opcao) {
 	    case 1:
+	    	
+	    Cliente cliente = ControladorCliente.getInstance().getCliente(cpf);
 		if (ControladorCliente.getInstance().removeCliente(cpf)) {
 
 		    System.out.println("Cliente removido com Sucesso!");
-		    ControladorLogin.getInstance().removeLogin(
-			    ControladorCliente.getInstance().getCliente(cpf)
+		    ControladorLogin.getInstance().removeLogin(cliente
 				    .getLogin().getUserName());
 		    continuaRodandoMenu = false;
 
