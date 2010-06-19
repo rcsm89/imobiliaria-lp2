@@ -482,14 +482,17 @@ public class OperacoesInterfaceTextual {
 	    case 1:
 
 		try {
+			
+			
+			Funcionario func = ControladorFuncionario.getInstance().
+			getFuncionarioPorCreci(creci);
+			
 		    if (ControladorFuncionario.getInstance().removeFuncionario(
 			    creci)) {
 
 			System.out.println("Funcionario removido com Sucesso!");
 			ControladorLogin.getInstance().removeLogin(
-				ControladorFuncionario.getInstance()
-					.getFuncionarioPorCreci(creci)
-					.getLogin().getUserName());
+				func.getLogin().getUserName());
 			continuaRodandoMenu = false;
 
 		    } else {
