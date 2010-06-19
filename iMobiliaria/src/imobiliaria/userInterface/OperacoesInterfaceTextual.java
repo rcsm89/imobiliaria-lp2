@@ -362,8 +362,11 @@ public class OperacoesInterfaceTextual {
 	} catch (ClienteNotFoundException e) {
 	    System.out.println("Cliente nao encontrado");
 	    return;
+	} catch (Exception e) {
+		System.out.println("Erro ao verificar dados: " + e.getMessage());
+		return;
 	}
-
+	
 	System.out.println(informacoes + lineSep);
 
     }
