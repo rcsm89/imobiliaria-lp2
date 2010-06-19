@@ -255,19 +255,13 @@ public class ControladorFuncionarioTest {
 	@Test
 	public void testGetClientePorUserName() throws Exception{
 		
-		/*
-		 *  ------------ ESSA PARTE DEVE SER CONSERTADA --------------------
-		 * Assert.assertEquals(controlFuncionario.
-		 *		getFuncionarioPorUsername("123.456.789-12"),
-		 *		controlFuncionario.exibeCliente("123.456.789-12"));
-		 * FAZER UM TESTE ONDE ESSE METODO FUNCIONE!!!
-		 *  -> lembrando aqui o nome do controlador de funcionario eh
-		 * "controlFuncionario"
-		 * 
-		 * -> FALTA TESTAR ELE FUNCIONANDO!!!
-		 * 
-		 * ------------------SO ATE AQUI---------------------------------
-		 */
+		Assert.assertEquals(
+				controlFuncionario.getFuncionarioPorCpf("123.456.789-10"),
+				controlFuncionario.getFuncionarioPorUsername("12345678910"));
+		
+		Assert.assertEquals(
+				controlFuncionario.getFuncionarioPorCreci("00222"),
+				controlFuncionario. getFuncionarioPorUsername("08924412344"));
 		
 		Assert.assertNull(controlFuncionario.
 				getFuncionarioPorUsername("123.456.789-10"));
