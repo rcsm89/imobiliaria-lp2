@@ -523,11 +523,11 @@ public class OperacoesInterfaceTextual {
 		.recebeString("Digite o CRECI do Funcionario que deseja verificar:");
 
 	String informacoes;
-
+	
 	try {
 	    informacoes = ControladorFuncionario.getInstance()
 		    .exibeFuncionarioPorCreci(creci);
-	} catch (NullPointerException e) {
+	} catch (Exception e) {
 	    System.out.println("Funcionario nao cadastrado");
 	    return;
 	}
@@ -583,7 +583,20 @@ public class OperacoesInterfaceTextual {
     // Para Clientes
 
     protected void listaPedidosDeCliente(String cpfCliente) {
-	System.out.println(ControladorPedidos.getInstance()
+    	
+    if (cpfCliente == null) {
+    	cpfCliente = MetodoEntrada.recebeString(
+    			"Digite o cpf do cliente procurado(XXX.XXX.XXX-XX): ");
+    }
+    
+    if (ControladorCliente.getInstance().getCliente(cpfCliente) == null) {
+	    System.out.println("Cliente nao encontrado");
+	    return;
+	}
+    
+    System.out
+	.println("=================== Listagem de Pedidos ==================="
+		+ lineSep + ControladorPedidos.getInstance()
 		.listaPedidosDeCliente(cpfCliente));
     }
 
@@ -612,7 +625,16 @@ public class OperacoesInterfaceTextual {
     }
 
     protected void listaAlugueisDeCliente(String cpfCliente) {
-
+    	
+    if (cpfCliente == null)
+    	cpfCliente = MetodoEntrada.recebeString(
+    			"Digite o cpf do cliente a ser verificado(XXX.XXX.XXX-XX): ");
+    
+    if (ControladorCliente.getInstance().getCliente(cpfCliente) == null) {
+	    System.out.println("Cliente nao encontrado");
+	    return;
+	}
+    
 	System.out
 		.println("=================== Listagem de Alugueis ==================="
 			+ lineSep
@@ -624,16 +646,25 @@ public class OperacoesInterfaceTextual {
 
 	String registroImovel = MetodoEntrada.recebeString("Digite o "
 		+ "registro do Imovel alugado: ");
-
+	
+	try {
 	if (ControladorAlugueis.getInstance().removeAluguel(registroImovel)) {
 	    System.out.println("Aluguel removido com sucesso!");
 	} else {
 	    System.out.println("Erro ao remover aluguel");
 	}
+	} catch (Exception e) {
+		System.out.println("Erro ao tentar remover imovel: " + e.getMessage());
+	}
     }
 
     protected void listaHistoricoDeComprasDeCliente(String cpfCliente) {
 	// Refazer no Controlador
+    
+    if (cpfCliente == null) {
+    	cpfCliente = MetodoEntrada.recebeString(
+    			"Digite o CPF do Cliente a ser verificado(XXX.XXX.XXX-XX): ");
+    }
 
 	Cliente cliente = ControladorCliente.getInstance().getCliente(
 		cpfCliente);
@@ -658,24 +689,6 @@ public class OperacoesInterfaceTextual {
 		.println("=================== Listagem de Pedidos ==================="
 			+ lineSep
 			+ ControladorPedidos.getInstance().listagemDePedido());
-    }
-
-    protected void HistoricoDeVendasDeFuncionario(String creci) {
-
-	Funcionario funcionario = ControladorFuncionario.getInstance()
-		.getFuncionarioPorCreci(creci);
-	if (funcionario == null) {
-	    System.out.println("Funcionario nao encontrado");
-	    return;
-	}
-	System.out
-		.println("=================== Listagem de Historico ===================");
-
-	ArrayList<Imovel> historico = ControladorFuncionario.getInstance()
-		.getFuncionarioPorCreci(creci).getImoveisVendidos()
-		.getImoveis();
-
-	listaHistorico(historico);
     }
 
     // Para Admin
@@ -746,19 +759,25 @@ public class OperacoesInterfaceTextual {
 	System.out.println(saida);
     }
 
-    public void verificarVendasDeUmFuncionario() {
-	// TODO Auto-generated method stub
+    protected void verificarVendasDeUmFuncionario(String creciFuncionario) {
+    if (creciFuncionario == null)
+    	creciFuncionario = MetodoEntrada.recebeString(
+    		"Digite o creci do Funcionario que deseja verificar: ");
+    	
+    Funcionario funcionario = ControladorFuncionario.getInstance()
+		.getFuncionarioPorCreci(creciFuncionario);
+	if (funcionario == null) {
+	    System.out.println("Funcionario nao encontrado");
+	    return;
+	}
 	
-    }
+	System.out
+		.println("=================== Listagem de Historico ===================");
 
-    public void verifHistoricoCliente() {
-	// TODO Auto-generated method stub
-	
-    }
+	ArrayList<Imovel> historico = funcionario.getImoveisVendidos()
+		.getImoveis();
 
-    public void historicoDeCliente() {
-	// TODO Auto-generated method stub
-	
+	listaHistorico(historico);
     }
 
     /*
