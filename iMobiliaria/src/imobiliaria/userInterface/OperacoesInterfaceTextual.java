@@ -102,8 +102,6 @@ public class OperacoesInterfaceTextual {
 	boolean repeteCadastro;
 	int opcaoImovel = 0;
 	do {
-	    System.out.println(ControladorLogin.getInstance()
-		    .numLoginsCadastrados());
 	    System.out.println(lineSep
 		    + "----------------- Cadastro de Cliente -----------------"
 		    + lineSep);
