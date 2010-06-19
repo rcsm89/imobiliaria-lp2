@@ -22,10 +22,10 @@ public class ControladorImovel implements Serializable {
 
 	// Atributos
 
-	private ColecaoImoveis colecaoImovel = new ColecaoImoveis();
-
 	private static ControladorImovel controladorImovelUnico = 
 		new ControladorImovel();
+	
+	private ColecaoImoveis colecaoImovel = null;
 
 	// Construtor
 
@@ -34,6 +34,7 @@ public class ControladorImovel implements Serializable {
 	 * fora da classe
 	 */
 	private ControladorImovel() {
+		colecaoImovel = new ColecaoImoveis();
 	}
 
 	// Metodos
@@ -297,7 +298,7 @@ public class ControladorImovel implements Serializable {
 
 		Imovel ImovelASerAdicionado = new Imovel(nome, endereco, preco, area,
 				tipoDoImovel, tipoContratual);
-
+		
 		// SuperClasse (ColecaoImovel)
 		colecaoImovel.addImovel(ImovelASerAdicionado);
 	}
