@@ -46,10 +46,10 @@ public class ControladorFuncionarioTest {
 		} catch (Exception e) {
 			Assert
 					.assertEquals(
-							"Nome invalido\nEndereco invalido\nCPF invalido\nData de nascimento invalida\n",
+							"Nome invalido\nEndereco invalido\nCPF" +
+							" invalido\nData de nascimento invalida\n",
 							e.getMessage());
 		}
-
 	}
 
 	@Test
@@ -247,7 +247,50 @@ public class ControladorFuncionarioTest {
 		Assert.assertEquals("Nome: Bruno Fabio\n" +
 				"Valor de Vendas: 0.0\n\n" +
 				"Nome: Yuri Farias Gomes\n" +
-				"Valor de Vendas: 0.0\n\n", controlFuncionario.exibeTotaisDeVendas());
+				"Valor de Vendas: 0.0\n\n", controlFuncionario.
+				exibeTotaisDeVendas());
 		
+	}
+	
+	@Test
+	public void testGetClientePorUserName() throws Exception{
+		
+		/*
+		 *  ------------ ESSA PARTE DEVE SER CONSERTADA --------------------
+		 * Assert.assertEquals(controlFuncionario.
+		 *		getFuncionarioPorUsername("123.456.789-12"),
+		 *		controlFuncionario.exibeCliente("123.456.789-12"));
+		 * FAZER UM TESTE ONDE ESSE METODO FUNCIONE!!!
+		 *  -> lembrando aqui o nome do controlador de funcionario eh
+		 * "controlFuncionario"
+		 * 
+		 * -> FALTA TESTAR ELE FUNCIONANDO!!!
+		 * 
+		 * ------------------SO ATE AQUI---------------------------------
+		 */
+		
+		Assert.assertNull(controlFuncionario.
+				getFuncionarioPorUsername("123.456.789-10"));
+		
+		try{
+			controlFuncionario.getFuncionarioPorUsername(null);
+			Assert.fail("Deveria Lancar Excecao aqui");
+		}catch(IllegalArgumentException e){
+			Assert.assertEquals("Username invalido", e.getMessage());
+		}
+		
+		try{
+			controlFuncionario.getFuncionarioPorUsername("   ");
+			Assert.fail("Deveria Lancar Excecao aqui");
+		}catch(IllegalArgumentException e){
+			Assert.assertEquals("Username invalido", e.getMessage());
+		}
+		
+		try{
+			controlFuncionario.getFuncionarioPorUsername("");
+			Assert.fail("Deveria Lancar Excecao aqui");
+		}catch(IllegalArgumentException e){
+			Assert.assertEquals("Username invalido", e.getMessage());
+		}
 	}
 }
