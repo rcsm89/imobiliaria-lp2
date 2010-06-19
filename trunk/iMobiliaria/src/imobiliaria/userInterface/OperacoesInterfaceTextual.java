@@ -256,11 +256,27 @@ public class OperacoesInterfaceTextual {
 	    // PRECO DO IMOVEL
 	    System.out.print("\nQual o preco do imovel? R$ ");
 	    valor = MetodoEntrada.recebeDouble();
-
+	    
+	    tipoDoImovel = null;
+	    switch (opcaoImovel) {
+	    case 1:
+	    	tipoDoImovel = TipoImovel.CASA;
+	    case 2:
+	    	tipoDoImovel = TipoImovel.APARTAMENTO;
+	    case 3:
+	    	tipoDoImovel = TipoImovel.TERRENO;
+	    }
+	    
+	    tipoContratual = null;
+	    switch (opcaoContrato) {
+	    case 1:
+	    	tipoContratual = TipoContratual.ALUGUEL;
+	    case 2:
+	    	tipoContratual = TipoContratual.VENDA;
+	    }
+	    
 	    // CRIACAO/CADASTRO DO IMOVEL
 	    try {
-		tipoDoImovel = TipoImovel.values()[opcaoImovel - 1];
-		tipoContratual = TipoContratual.values()[opcaoContrato - 1];
 		area = new Area(comprimento, largura);
 		ControladorImovel.getInstance().addImovel(nome, endereco,
 			valor, area, tipoDoImovel, tipoContratual);
