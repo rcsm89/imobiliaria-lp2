@@ -191,8 +191,31 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 	    opcao = MetodoEntrada.recebeInt();
 
 	    switch (opcao) {
+	    case CANCELAR_UM_PEDIDO:
+		op.cancelaPedido();
+		break;
 
-	    case FUNC_LISTAR_PEDIDOS:
+	    case LISTAR_PEDIDO_DE_UM_CLIENTE:
+		op.listaPedidosDeCliente(cpfCliente);
+		break;
+
+	    case CANCELAR_ALUGUEL:
+		op.cancelaAluguel();
+		break;
+
+	    case LISTAR_ALUGUEIS_DE_UM_CLIENTE:
+		op.listaAlugueisDeCliente(cpfCliente);
+		break;
+
+	    case LISTAR_ALUGUEIS:
+		op.listaAlugueis();
+		break;
+
+	    case VER_HIST_DE_UM_CLIENTE:
+		op.historicoDeCliente();
+		break;
+
+	    case LISTAR_PEDIDO:
 		op.listaPedidos();
 		break;
 
@@ -220,7 +243,7 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 		op.cadastroDeImovel();
 		break;
 
-	    case LISTAR_IMOVEL:
+	    case LISTAR_IMOVEIS:
 		op.listarImoveis();
 		break;
 
@@ -236,7 +259,7 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 		op.informacoesImovel();
 		break;
 
-	    case FUNC_EFETUAR_PEDIDO:
+	    case EFETUAR_UM_PEDIDO:
 		op.efetuaPedido();
 		break;
 
@@ -272,7 +295,35 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 	    opcao = MetodoEntrada.recebeInt();
 
 	    switch (opcao) {
-	    case ADMIN_LISTAR_ALUGUEIS:
+	    case CANCELAR_UM_PEDIDO:
+		op.cancelaPedido();
+		break;
+
+	    case LISTAR_PEDIDO_DE_UM_CLIENTE:
+		op.listaPedidosDeCliente(cpfCliente);
+		break;
+
+	    case LISTAR_PEDIDO:
+		op.listaPedidos();
+		break;
+
+	    case VER_HIST_DE_UM_CLIENTE:
+		op.verifHistoricoCliente();
+		break;
+
+	    case LISTAR_ALUGUEIS_DE_UM_CLIENTE:
+		op.listaAlugueisDeCliente(cpfCliente);
+		break;
+
+	    case CANCELAR_ALUGUEL:
+		op.cancelaAluguel();
+		break;
+
+	    case ADMIN_VERIFICAR_VENDAS_DE_UM_FUNC:
+		op.verificarVendasDeUmFuncionario();
+		break;
+
+	    case LISTAR_ALUGUEIS:
 		op.listaAlugueis();
 		break;
 
@@ -312,7 +363,7 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 		op.cadastroDeImovel();
 		break;
 
-	    case LISTAR_IMOVEL:
+	    case LISTAR_IMOVEIS:
 		op.listarImoveis();
 		break;
 
@@ -348,7 +399,7 @@ public class InterfaceTextual implements MenuInterfaceCliente,
 		op.verificaInformacoesFuncionario();
 		break;
 
-	    case ADMIN_EFETUAR_PEDIDO:
+	    case EFETUAR_UM_PEDIDO:
 		op.efetuaPedido();
 		break;
 
