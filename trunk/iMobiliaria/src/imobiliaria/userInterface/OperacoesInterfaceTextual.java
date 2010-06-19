@@ -683,7 +683,7 @@ public class OperacoesInterfaceTextual {
     protected void listaTransacoesMensais() {
 
 	System.out
-		.println("=================== Listagem de Transacoes ==================="
+		.println("=================== Listagem de Transacoes Mensais ==================="
 			+ lineSep
 			+ ControladorTransacoes.getInstance()
 				.listaTransacoesMensais());
@@ -744,6 +744,21 @@ public class OperacoesInterfaceTextual {
 		    + "\n\n";
 	}
 	System.out.println(saida);
+    }
+
+    public void verificarVendasDeUmFuncionario() {
+	// TODO Auto-generated method stub
+	
+    }
+
+    public void verifHistoricoCliente() {
+	// TODO Auto-generated method stub
+	
+    }
+
+    public void historicoDeCliente() {
+	// TODO Auto-generated method stub
+	
     }
 
     /*
