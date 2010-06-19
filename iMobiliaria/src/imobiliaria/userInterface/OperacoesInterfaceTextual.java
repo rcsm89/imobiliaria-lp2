@@ -559,7 +559,7 @@ public class OperacoesInterfaceTextual {
 	    System.out.println("Pedido Efetuado com Sucesso!");
 	} catch (Exception e) {
 	    System.out
-		    .println("Impossivel efetuar Pedido - Informacoes Invalidas");
+		    .println("Impossivel efetuar Pedido: " + e.getMessage());
 	}
     }
 
