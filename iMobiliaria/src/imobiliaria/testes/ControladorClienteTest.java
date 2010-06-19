@@ -217,15 +217,9 @@ public class ControladorClienteTest {
 	@Test
 	public void testGetClientePorUserName() throws ClienteNotFoundException {
 		
-		/*
-		 *  ------------ ESSA PARTE DEVE SER CONSERTADA --------------------
-		 * Assert.assertEquals(controladorCliente.
-		 *		getClientePorUsername("123.456.789-12"),
-		 *		controladorCliente.exibeCliente("123.456.789-12"));
-		 * FAZER UM TESTE ONDE ESSE METODO FUNCIONE!!!
-		 *  -> FALTA TESTAR ELE FUNCIONANDO!!!
-		 * ------------------SO ATE AQUI---------------------------------
-		 */
+		Assert.assertEquals(
+				controladorCliente.getCliente("123.456.789-12"),
+				controladorCliente.getClientePorUsername("12345678912"));
 		
 		// esse CPF a seguir foi removido do controlador no teste passado,
 		// por isso, esta retornando null
