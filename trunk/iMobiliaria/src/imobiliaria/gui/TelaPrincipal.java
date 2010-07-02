@@ -12,6 +12,7 @@
 package imobiliaria.gui;
 
 import imobiliaria.auxiliar.TipoLogin;
+import imobiliaria.controladores.ControladorLogin;
 import imobiliaria.entidades.Sistema;
 
 import javax.swing.JOptionPane;
@@ -202,6 +203,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Campos de login ou senha não" +
                     " podem estar vazio\n\n Por favor, digite novamente.",
                     "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+        boolean loga = false;
+
+        if (ControladorLogin.getInstance().verificaLogin(login)) {
+            if (ControladorLogin.getInstance().
+                    getLogin(login).getSenha().equals(senha)) {
+                loga = true;
+            }
+        }
+
+
+        if (loga) {
+           // muda de tela, faz algo pra logar, seila! rs! =P
         }
 
 //        if (rdbAdmin.isSelected()){
