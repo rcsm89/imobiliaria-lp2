@@ -30,60 +30,67 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="butSair" min="-2" pref="94" max="-2" attributes="0"/>
+              <Component id="JB_Sair" min="-2" pref="94" max="-2" attributes="0"/>
               <EmptySpace pref="401" max="32767" attributes="0"/>
-              <Component id="butCadCliente" min="-2" max="-2" attributes="0"/>
+              <Component id="JB_CadCliente" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lbLogoImob" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="JL_ImobLogo" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="lbLogin" min="-2" max="-2" attributes="0"/>
+                              <Component id="JL_Login" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="txtFieldLogin" pref="154" max="32767" attributes="2"/>
+                              <Component id="JTF_Login" pref="154" max="32767" attributes="2"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="lbSenha" min="-2" max="-2" attributes="0"/>
+                              <Component id="JL_Senha" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="senhaField" pref="154" max="32767" attributes="2"/>
+                              <Component id="JPF_senha" pref="154" max="32767" attributes="2"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                      <Component id="butLogar" min="-2" pref="106" max="-2" attributes="0"/>
+                      <Component id="JB_LogIn" min="-2" pref="106" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="211" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="211" max="-2" attributes="0"/>
+              <Component id="JL_Erro" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="460" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <Component id="JL_ImobLogo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+              <Component id="JL_Erro" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-              <Component id="lbLogoImob" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lbLogin" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtFieldLogin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JL_Login" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JTF_Login" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lbSenha" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="senhaField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JL_Senha" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JPF_senha" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="butLogar" min="-2" max="-2" attributes="0"/>
+              <Component id="JB_LogIn" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="31" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="butCadCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="butSair" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JB_CadCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JB_Sair" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -91,34 +98,34 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="lbLogoImob">
+    <Component class="javax.swing.JLabel" name="JL_ImobLogo">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imobiliaria/images/iMobLogo.png"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbLogin">
+    <Component class="javax.swing.JLabel" name="JL_Login">
       <Properties>
         <Property name="text" type="java.lang.String" value="Login:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbSenha">
+    <Component class="javax.swing.JLabel" name="JL_Senha">
       <Properties>
         <Property name="text" type="java.lang.String" value="Senha:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="senhaField">
+    <Component class="javax.swing.JPasswordField" name="JPF_senha">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="Digite sua senha aqui"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtFieldLogin">
+    <Component class="javax.swing.JTextField" name="JTF_Login">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="Digite seu login aqui"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="butCadCliente">
+    <Component class="javax.swing.JButton" name="JB_CadCliente">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imobiliaria/images/addIcon.png"/>
@@ -130,10 +137,10 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butCadClienteActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JB_CadClienteActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="butSair">
+    <Component class="javax.swing.JButton" name="JB_Sair">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imobiliaria/images/exitIcon.png"/>
@@ -145,10 +152,10 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butSairActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JB_SairActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="butLogar">
+    <Component class="javax.swing.JButton" name="JB_LogIn">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imobiliaria/images/loginIcon.png"/>
@@ -160,8 +167,18 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butLogarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JB_LogInActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="JL_Erro">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="13" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
