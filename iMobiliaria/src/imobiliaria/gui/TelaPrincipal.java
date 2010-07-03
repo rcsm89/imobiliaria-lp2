@@ -13,11 +13,7 @@ package imobiliaria.gui;
 
 import imobiliaria.auxiliar.TipoLogin;
 import imobiliaria.controladores.ControladorLogin;
-import imobiliaria.entidades.Sistema;
-
-import javax.swing.JOptionPane;
-import javax.swing.JRootPane;
-import javax.swing.UIManager;
+import imobiliaria.entidades.Login;
 
 /**
  * GUI para tela principal
@@ -41,58 +37,62 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         butGroupLogin = new javax.swing.ButtonGroup();
-        lbLogoImob = new javax.swing.JLabel();
-        lbLogin = new javax.swing.JLabel();
-        lbSenha = new javax.swing.JLabel();
-        senhaField = new javax.swing.JPasswordField();
-        txtFieldLogin = new javax.swing.JTextField();
-        butCadCliente = new javax.swing.JButton();
-        butSair = new javax.swing.JButton();
-        butLogar = new javax.swing.JButton();
+        JL_ImobLogo = new javax.swing.JLabel();
+        JL_Login = new javax.swing.JLabel();
+        JL_Senha = new javax.swing.JLabel();
+        JPF_senha = new javax.swing.JPasswordField();
+        JTF_Login = new javax.swing.JTextField();
+        JB_CadCliente = new javax.swing.JButton();
+        JB_Sair = new javax.swing.JButton();
+        JB_LogIn = new javax.swing.JButton();
+        JL_Erro = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("iMobiliaria");
         setResizable(false);
 
-        lbLogoImob.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/iMobLogo.png"))); // NOI18N
+        JL_ImobLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/iMobLogo.png"))); // NOI18N
 
-        lbLogin.setText("Login:");
+        JL_Login.setText("Login:");
 
-        lbSenha.setText("Senha:");
+        JL_Senha.setText("Senha:");
 
-        senhaField.setToolTipText("Digite sua senha aqui");
+        JPF_senha.setToolTipText("Digite sua senha aqui");
 
-        txtFieldLogin.setToolTipText("Digite seu login aqui");
+        JTF_Login.setToolTipText("Digite seu login aqui");
 
-        butCadCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/addIcon.png"))); // NOI18N
-        butCadCliente.setText("Cadastrar cliente");
-        butCadCliente.setToolTipText("Ir para cadastro de cliente");
-        butCadCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        butCadCliente.addActionListener(new java.awt.event.ActionListener() {
+        JB_CadCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/addIcon.png"))); // NOI18N
+        JB_CadCliente.setText("Cadastrar cliente");
+        JB_CadCliente.setToolTipText("Ir para cadastro de cliente");
+        JB_CadCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JB_CadCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butCadClienteActionPerformed(evt);
+                JB_CadClienteActionPerformed(evt);
             }
         });
 
-        butSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/exitIcon.png"))); // NOI18N
-        butSair.setText("Sair");
-        butSair.setToolTipText("Sai do programa");
-        butSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        butSair.addActionListener(new java.awt.event.ActionListener() {
+        JB_Sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/exitIcon.png"))); // NOI18N
+        JB_Sair.setText("Sair");
+        JB_Sair.setToolTipText("Sai do programa");
+        JB_Sair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JB_Sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butSairActionPerformed(evt);
+                JB_SairActionPerformed(evt);
             }
         });
 
-        butLogar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/loginIcon.png"))); // NOI18N
-        butLogar.setText("Logar");
-        butLogar.setToolTipText("Clique aqui para entrar na sua conta");
-        butLogar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        butLogar.addActionListener(new java.awt.event.ActionListener() {
+        JB_LogIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/loginIcon.png"))); // NOI18N
+        JB_LogIn.setText("Logar");
+        JB_LogIn.setToolTipText("Clique aqui para entrar na sua conta");
+        JB_LogIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JB_LogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butLogarActionPerformed(evt);
+                JB_LogInActionPerformed(evt);
             }
         });
+
+        JL_Erro.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        JL_Erro.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,75 +100,74 @@ public class TelaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(butSair, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JB_Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 401, Short.MAX_VALUE)
-                .addComponent(butCadCliente)
+                .addComponent(JB_CadCliente)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(210, 210, 210)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbLogoImob)
+                    .addComponent(JL_ImobLogo)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbLogin)
+                                .addComponent(JL_Login)
                                 .addGap(25, 25, 25)
-                                .addComponent(txtFieldLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
+                                .addComponent(JTF_Login, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbSenha)
+                                .addComponent(JL_Senha)
                                 .addGap(18, 18, 18)
-                                .addComponent(senhaField, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)))
+                                .addComponent(JPF_senha, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)))
                         .addGap(33, 33, 33))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(76, 76, 76)
-                        .addComponent(butLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(JB_LogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(211, 211, 211))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(211, 211, 211)
+                .addComponent(JL_Erro)
+                .addContainerGap(460, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(JL_ImobLogo)
+                .addGap(4, 4, 4)
+                .addComponent(JL_Erro)
                 .addGap(22, 22, 22)
-                .addComponent(lbLogoImob)
-                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbLogin)
-                    .addComponent(txtFieldLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JL_Login)
+                    .addComponent(JTF_Login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbSenha)
-                    .addComponent(senhaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JL_Senha)
+                    .addComponent(JPF_senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(butLogar)
+                .addComponent(JB_LogIn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(butCadCliente)
-                    .addComponent(butSair))
+                    .addComponent(JB_CadCliente)
+                    .addComponent(JB_Sair))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void butCadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCadClienteActionPerformed
-//        new CadastraCliente().setVisible(true);
-//        dispose();
+    private void JB_CadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_CadClienteActionPerformed
+     // Opcao para CADASTRAR CLIENTE
+        dispose();
 
-    }//GEN-LAST:event_butCadClienteActionPerformed
+    }//GEN-LAST:event_JB_CadClienteActionPerformed
 
-    private void butSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butSairActionPerformed
+    private void JB_SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SairActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_butSairActionPerformed
+    }//GEN-LAST:event_JB_SairActionPerformed
 
-    private void butLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butLogarActionPerformed
-        String login = txtFieldLogin.getText();
-        String senha = senhaField.getText();
-
-        if(senha.replace(" ", "").equals("") ||
-                login.replace(" ", "").equals("")){
-            JOptionPane.showMessageDialog(null, "Campos de login ou senha não" +
-                    " podem estar vazio\n\n Por favor, digite novamente.",
-                    "Erro", JOptionPane.ERROR_MESSAGE);
-        }
+    private void JB_LogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_LogInActionPerformed
+        String login = JTF_Login.getText();
+        String senha = JPF_senha.getText();
 
         boolean loga = false;
 
@@ -179,35 +178,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         }
 
-
+        Login tipoLoginUsuario = ControladorLogin.getInstance().getLogin(senha);
         if (loga) {
-           // muda de tela, faz algo pra logar, seila! rs! =P
+            JL_Erro.setText("");
+            if (tipoLoginUsuario.getTipoLogin() == TipoLogin.ADMINISTRADOR) {
+                // Opcao para ADMIN
+                dispose();
+
+            } else if (tipoLoginUsuario.getTipoLogin() == TipoLogin.CLIENTE) {
+                // Opcao para CLIENTE
+                dispose();
+
+            } else if (tipoLoginUsuario.getTipoLogin() == TipoLogin.FUNCIONARIO) {
+                // Opcao para FUNCIONARIO
+                dispose();
+            }
+
+        } else {
+            JL_Erro.setText("Nome de login ou senha digitados são incorretos.");
         }
 
-//        if (rdbAdmin.isSelected()){
-//            if(sistema.login(login, senha, TipoLogin.ADMINISTRADOR)){
-//                new AdministradorGUI().setVisible(true);
-//                dispose();
-//        }
-//
-//
-//        } else if (rdbCliente.isSelected()){
-//            if(sistema.login(login, senha, TipoLogin.CLIENTE)){
-//                new ClienteGUI().setVisible(true);
-//                dispose();
-//            }
-//        } else if (rdbFunc.isSelected()){
-//            if(sistema.login(login, senha, TipoLogin.FUNCIONARIO)){
-//                new FuncionarioGUI().setVisible(true);
-//                dispose();
-//            }
-//
-//
-//        }
-
-
-        
-    }//GEN-LAST:event_butLogarActionPerformed
+    }//GEN-LAST:event_JB_LogInActionPerformed
 
     /**
     * @param args the command line arguments
@@ -221,17 +212,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton butCadCliente;
+    private javax.swing.JButton JB_CadCliente;
+    private javax.swing.JButton JB_LogIn;
+    private javax.swing.JButton JB_Sair;
+    private javax.swing.JLabel JL_Erro;
+    private javax.swing.JLabel JL_ImobLogo;
+    private javax.swing.JLabel JL_Login;
+    private javax.swing.JLabel JL_Senha;
+    private javax.swing.JPasswordField JPF_senha;
+    private javax.swing.JTextField JTF_Login;
     private javax.swing.ButtonGroup butGroupLogin;
-    private javax.swing.JButton butLogar;
-    private javax.swing.JButton butSair;
-    private javax.swing.JLabel lbLogin;
-    private javax.swing.JLabel lbLogoImob;
-    private javax.swing.JLabel lbSenha;
-    private javax.swing.JPasswordField senhaField;
-    private javax.swing.JTextField txtFieldLogin;
     // End of variables declaration//GEN-END:variables
     // Atributos
-    private Sistema sistema;
+    
  // Fim de declaracao de atributos
 }
