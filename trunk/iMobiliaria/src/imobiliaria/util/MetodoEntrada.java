@@ -138,7 +138,7 @@ public class MetodoEntrada {
 		else if (nomeMes == "Outubro"){ return 9; }
 		else if (nomeMes == "Novembro"){ return 10; }
 		else if (nomeMes == "Dezembro"){ return 11; }
-		return 0;
+		return -1;
 	}
 
 }
