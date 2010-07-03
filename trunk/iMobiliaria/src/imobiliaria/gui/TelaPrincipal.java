@@ -11,9 +11,9 @@
 
 package imobiliaria.gui;
 
-import imobiliaria.auxiliar.TipoLogin;
-import imobiliaria.controladores.ControladorLogin;
-import imobiliaria.entidades.Login;
+import imobiliaria.auxiliar.*;
+import imobiliaria.controladores.*;
+import imobiliaria.entidades.*;
 
 /**
  * GUI para tela principal
@@ -25,6 +25,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
 
         initComponents();
+
+        Sistema sis = new Sistema();
+	try {
+	    sis.atualizaDados();
+	} catch (Exception e) {
+	    System.out.println("Erro: " + e.getMessage());
+	}
     }
 
     /** This method is called from within the constructor to
@@ -91,7 +98,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        JL_Erro.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        JL_Erro.setFont(new java.awt.Font("Arial", 0, 13));
         JL_Erro.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -157,6 +164,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void JB_CadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_CadClienteActionPerformed
      // Opcao para CADASTRAR CLIENTE
+        new CadastraCliente().setVisible(true);
         dispose();
 
     }//GEN-LAST:event_JB_CadClienteActionPerformed
@@ -168,28 +176,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void JB_LogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_LogInActionPerformed
         String login = JTF_Login.getText();
         String senha = JPF_senha.getText();
+        
 
         boolean loga = false;
-
+        
         if (ControladorLogin.getInstance().verificaLogin(login)) {
-            if (ControladorLogin.getInstance().
-                    getLogin(login).getSenha().equals(senha)) {
+            if (ControladorLogin.getInstance().getLogin(login).getSenha().equals(senha)) {
                 loga = true;
             }
         }
-
-        Login tipoLoginUsuario = ControladorLogin.getInstance().getLogin(senha);
+        
         if (loga) {
             JL_Erro.setText("");
-            if (tipoLoginUsuario.getTipoLogin() == TipoLogin.ADMINISTRADOR) {
+            TipoLogin tipoLoginUsuario = ControladorLogin.getInstance().getLogin(login).getTipoLogin();
+            
+            if (tipoLoginUsuario == TipoLogin.ADMINISTRADOR) {
                 // Opcao para ADMIN
                 dispose();
 
-            } else if (tipoLoginUsuario.getTipoLogin() == TipoLogin.CLIENTE) {
+            } else if (tipoLoginUsuario == TipoLogin.CLIENTE) {
                 // Opcao para CLIENTE
                 dispose();
 
-            } else if (tipoLoginUsuario.getTipoLogin() == TipoLogin.FUNCIONARIO) {
+            } else if (tipoLoginUsuario == TipoLogin.FUNCIONARIO) {
                 // Opcao para FUNCIONARIO
                 dispose();
             }
