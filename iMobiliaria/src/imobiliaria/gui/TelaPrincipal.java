@@ -27,16 +27,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     /** Creates new form TelaPrincipal */
     public TelaPrincipal() {
-  	  setUndecorated(true);  
-  	  getRootPane().setWindowDecorationStyle(JRootPane.FRAME);
-    	
-    	try{
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-			
-		}
-		catch(Exception e){
-			System.out.println("Nimbus isn't available");
-		}
+
         initComponents();
     }
 
@@ -58,15 +49,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         butCadCliente = new javax.swing.JButton();
         butSair = new javax.swing.JButton();
         butLogar = new javax.swing.JButton();
-        rdbCliente = new javax.swing.JRadioButton();
-        rdbFunc = new javax.swing.JRadioButton();
-        rdbAdmin = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("iMobiliaria");
         setResizable(false);
 
-        lbLogoImob.setIcon(new javax.swing.ImageIcon("/home/thiagofp/workspace/iMobiliaria/img/iMobLogo.png")); // NOI18N
+        lbLogoImob.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/iMobLogo.png"))); // NOI18N
 
         lbLogin.setText("Login:");
 
@@ -76,6 +64,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         txtFieldLogin.setToolTipText("Digite seu login aqui");
 
+        butCadCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/addIcon.png"))); // NOI18N
         butCadCliente.setText("Cadastrar cliente");
         butCadCliente.setToolTipText("Ir para cadastro de cliente");
         butCadCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -85,6 +74,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        butSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/exitIcon.png"))); // NOI18N
         butSair.setText("Sair");
         butSair.setToolTipText("Sai do programa");
         butSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -94,6 +84,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        butLogar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/loginIcon.png"))); // NOI18N
         butLogar.setText("Logar");
         butLogar.setToolTipText("Clique aqui para entrar na sua conta");
         butLogar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -103,63 +94,42 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        butGroupLogin.add(rdbCliente);
-        rdbCliente.setSelected(true);
-        rdbCliente.setText("Cliente");
-        rdbCliente.setToolTipText("Escolha uma das opções de login");
-
-        butGroupLogin.add(rdbFunc);
-        rdbFunc.setText("Funcionário");
-        rdbFunc.setToolTipText("Escolha uma das opções de login");
-
-        butGroupLogin.add(rdbAdmin);
-        rdbAdmin.setText("Administrador");
-        rdbAdmin.setToolTipText("Escolha uma das opções de login");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(216, Short.MAX_VALUE)
-                .addComponent(lbLogoImob)
-                .addGap(205, 205, 205))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(444, Short.MAX_VALUE)
-                .addComponent(butSair, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(butSair, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 401, Short.MAX_VALUE)
                 .addComponent(butCadCliente)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(221, 221, 221)
+                .addGap(210, 210, 210)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbLogoImob)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbLogin)
-                        .addGap(25, 25, 25)
-                        .addComponent(txtFieldLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbLogin)
+                                .addGap(25, 25, 25)
+                                .addComponent(txtFieldLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbSenha)
+                                .addGap(18, 18, 18)
+                                .addComponent(senhaField, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)))
+                        .addGap(33, 33, 33))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbSenha)
-                        .addGap(18, 18, 18)
-                        .addComponent(senhaField, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)))
-                .addGap(233, 233, 233))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(203, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(butLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(rdbCliente)
-                        .addGap(18, 18, 18)
-                        .addComponent(rdbFunc)))
-                .addGap(18, 18, 18)
-                .addComponent(rdbAdmin)
-                .addGap(159, 159, 159))
+                        .addGap(76, 76, 76)
+                        .addComponent(butLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(211, 211, 211))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addComponent(lbLogoImob)
-                .addGap(37, 37, 37)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbLogin)
                     .addComponent(txtFieldLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -167,14 +137,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbSenha)
                     .addComponent(senhaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rdbCliente)
-                    .addComponent(rdbFunc)
-                    .addComponent(rdbAdmin))
                 .addGap(18, 18, 18)
                 .addComponent(butLogar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(butCadCliente)
                     .addComponent(butSair))
@@ -263,9 +228,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lbLogin;
     private javax.swing.JLabel lbLogoImob;
     private javax.swing.JLabel lbSenha;
-    private javax.swing.JRadioButton rdbAdmin;
-    private javax.swing.JRadioButton rdbCliente;
-    private javax.swing.JRadioButton rdbFunc;
     private javax.swing.JPasswordField senhaField;
     private javax.swing.JTextField txtFieldLogin;
     // End of variables declaration//GEN-END:variables
