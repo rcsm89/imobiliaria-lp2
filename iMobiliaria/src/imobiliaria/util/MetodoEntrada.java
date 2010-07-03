@@ -122,5 +122,23 @@ public class MetodoEntrada {
 		return data;
 
 	}
+	
+	// Para a interface
+	public static int recebeMesPeloNome(String nomeMes){
+		
+		if(nomeMes == "Janeiro"){ return 0;	}
+		else if (nomeMes == "Fevereiro"){ return 1; }
+		else if (nomeMes == "Março"){ return 2; }
+		else if (nomeMes == "Abril"){ return 3; }
+		else if (nomeMes == "Maio"){ return 4; }
+		else if (nomeMes == "Junho"){ return 5; }
+		else if (nomeMes == "Julho"){ return 6; }
+		else if (nomeMes == "Agosto"){ return 7; }
+		else if (nomeMes == "Setembro"){ return 8; }
+		else if (nomeMes == "Outubro"){ return 9; }
+		else if (nomeMes == "Novembro"){ return 10; }
+		else if (nomeMes == "Dezembro"){ return 11; }
+		return 0;
+	}
 
 }
