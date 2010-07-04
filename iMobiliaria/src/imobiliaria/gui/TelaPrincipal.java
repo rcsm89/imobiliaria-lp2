@@ -195,7 +195,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 dispose();
 
             } else if (tipoLoginUsuario == TipoLogin.CLIENTE) {
-                // Opcao para CLIENTE
+            	new InterfaceCliente().setVisible(true);
                 dispose();
 
             } else if (tipoLoginUsuario == TipoLogin.FUNCIONARIO) {
