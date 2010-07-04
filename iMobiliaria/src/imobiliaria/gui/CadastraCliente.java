@@ -33,6 +33,7 @@ public class CadastraCliente extends javax.swing.JFrame {
     public CadastraCliente() {
         sis = new Sistema();
 	initComponents();
+        setLocationRelativeTo(null);
         try {
 	    sis.atualizaDados();
 	} catch (Exception e) {

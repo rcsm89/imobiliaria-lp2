@@ -25,7 +25,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
 
         initComponents();
-
+        setLocationRelativeTo(null);
         Sistema sis = new Sistema();
 	try {
 	    sis.atualizaDados();
