@@ -191,7 +191,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             TipoLogin tipoLoginUsuario = ControladorLogin.getInstance().getLogin(login).getTipoLogin();
             
             if (tipoLoginUsuario == TipoLogin.ADMINISTRADOR) {
-                // Opcao para ADMIN
+                new InterfaceAdmin().setVisible(true);
                 dispose();
 
             } else if (tipoLoginUsuario == TipoLogin.CLIENTE) {
