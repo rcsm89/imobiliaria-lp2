@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * CadastraCliente.java
  *
  * Created on 06/06/2010, 23:05:21
@@ -25,20 +20,20 @@ import javax.swing.JOptionPane;
 
 /**
  * Gui para Cadastramento de clientes
- * @author thiagofp
+ * @author Thiago Ferreira
  */
 public class CadastraCliente extends javax.swing.JFrame {
     private Sistema sis;
     /** Creates new form CadastraCliente */
     public CadastraCliente() {
         sis = new Sistema();
-	initComponents();
+        initComponents();
         setLocationRelativeTo(null);
         try {
-	    sis.atualizaDados();
-	} catch (Exception e) {
-	    System.out.println("Erro: " + e.getMessage());
-	}
+            sis.atualizaDados();
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
     }
 
     /** This method is called from within the constructor to
@@ -78,7 +73,7 @@ public class CadastraCliente extends javax.swing.JFrame {
         JCB_Mes = new javax.swing.JComboBox();
         JCB_Dia = new javax.swing.JComboBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("iMobiliaria - Cadastramento de Cliente");
         setResizable(false);
 
@@ -365,7 +360,7 @@ public class CadastraCliente extends javax.swing.JFrame {
      * de datas de nascimentos validas para seremcselecionadas pelo usuario,
      */
     private static String[] datasNascimentoValidas(){
-    	Calendar hoje = new GregorianCalendar();
+        Calendar hoje = new GregorianCalendar();
         int MAIORDEIDADE = 18;
         int IDADELIMITE = 90;
         int primeiroAnoValido = hoje.get(Calendar.YEAR) - MAIORDEIDADE;
