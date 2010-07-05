@@ -75,9 +75,9 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jToggleButton4 = new javax.swing.JToggleButton();
-        jButton17 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
         Ajuda = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -97,7 +97,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel1.setText("Menu de Administração");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(10, 10, 210, 30);
@@ -129,7 +129,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         jPanel1.add(jButton4);
         jButton4.setBounds(10, 100, 130, 23);
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel9.setText("Clientes");
         jPanel1.add(jLabel9);
         jLabel9.setBounds(10, 10, 67, 17);
@@ -138,7 +138,6 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         jPanel1.setBounds(10, 70, 150, 170);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel2.setName("null"); // NOI18N
         jPanel2.setLayout(null);
 
         jButton6.setText("Excluir");
@@ -157,7 +156,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         jPanel2.add(jButton8);
         jButton8.setBounds(10, 70, 130, 23);
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel7.setText("Funcionarios");
         jPanel2.add(jLabel7);
         jLabel7.setBounds(10, 10, 100, 17);
@@ -172,7 +171,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel3.setLayout(null);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel4.setText("Imoveis");
         jPanel3.add(jLabel4);
         jLabel4.setBounds(10, 10, 100, 17);
@@ -211,7 +210,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel4.setLayout(null);
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel11.setText("Financeiro");
         jPanel4.add(jLabel11);
         jLabel11.setBounds(10, 10, 90, 17);
@@ -274,7 +273,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel5.setLayout(null);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel5.setText("Logins do Sistema");
         jPanel5.add(jLabel5);
         jLabel5.setBounds(10, 10, 150, 17);
@@ -301,26 +300,26 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel6.setLayout(null);
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel10.setText("Alugueis e Pedidos");
         jPanel6.add(jLabel10);
         jLabel10.setBounds(10, 10, 140, 17);
 
         jToggleButton4.setText("Listar Alugueis");
         jPanel6.add(jToggleButton4);
-        jToggleButton4.setBounds(40, 40, 170, 23);
-
-        jButton17.setText("BOTAOSEMFUNCAO");
-        jPanel6.add(jButton17);
-        jButton17.setBounds(40, 80, 170, 23);
+        jToggleButton4.setBounds(40, 80, 170, 23);
 
         jButton18.setText("Listar Pedidos");
         jPanel6.add(jButton18);
-        jButton18.setBounds(260, 40, 170, 23);
+        jButton18.setBounds(260, 80, 170, 23);
 
-        jButton19.setText("BOTAOSEMFUNCAO");
-        jPanel6.add(jButton19);
-        jButton19.setBounds(260, 80, 170, 23);
+        jLabel15.setText("Numero Total de Pedidos: XX");
+        jPanel6.add(jLabel15);
+        jLabel15.setBounds(260, 50, 170, 14);
+
+        jLabel16.setText("Numero Total de Alugueis: XX");
+        jPanel6.add(jLabel16);
+        jLabel16.setBounds(40, 50, 170, 14);
 
         getContentPane().add(jPanel6);
         jPanel6.setBounds(10, 390, 470, 130);
@@ -409,9 +408,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
@@ -430,6 +427,8 @@ public class InterfaceAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
