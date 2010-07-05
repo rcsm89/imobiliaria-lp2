@@ -17,7 +17,7 @@ import imobiliaria.entidades.*;
 
 /**
  * GUI para tela principal
- * @author thiagofp
+ * @author Thiago Ferreira 
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
