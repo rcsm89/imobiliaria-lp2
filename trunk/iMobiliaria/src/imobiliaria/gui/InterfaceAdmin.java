@@ -285,7 +285,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
             return;
         }
 
-        new InterfaceListagem("Ultima Folha de Pagamento",
+        new InterfaceListagem("Folha de Pagamento", "Ultima Folha de Pagamento",
                 ControladorTransacoes.getInstance().getUltimaFolhaDePagamento()
                 .getFolhaDePagamentoString()).setVisible(true);
     }//GEN-LAST:event_JB_VerFolhaDePagamentoActionPerformed
@@ -303,13 +303,13 @@ public class InterfaceAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_JB_MenuFuncionariosActionPerformed
 
     private void JB_ListaTransacoesMensaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ListaTransacoesMensaisActionPerformed
-        new InterfaceListagem("Transacoes Mensais",
+        new InterfaceListagem("Transacoes", "Listagem de Transacoes Mensais",
                 ControladorTransacoes.getInstance().listaTransacoesMensais())
                 .setVisible(true);
     }//GEN-LAST:event_JB_ListaTransacoesMensaisActionPerformed
 
     private void JB_ListaPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ListaPedidosActionPerformed
-        new InterfaceListagem("Pedidos", ControladorPedidos.getInstance()
+        new InterfaceListagem("Pedidos", "Listagem de Pedidos", ControladorPedidos.getInstance()
                 .listagemDePedido()).setVisible(true);
     }//GEN-LAST:event_JB_ListaPedidosActionPerformed
 

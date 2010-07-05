@@ -18,12 +18,13 @@ package imobiliaria.gui;
 public class InterfaceListagem extends javax.swing.JFrame {
 
     /** Creates new form InterfaceListagem */
-    public InterfaceListagem(String listagemDe, String lista) {
+    public InterfaceListagem(String titulo, String listagemDe, String lista) {
         initComponents();
         setLocationRelativeTo(null);
 
-        JL_ListagemDe.setText("Listagem de " + listagemDe);
+        JL_ListagemDe.setText(listagemDe);
         JTA_Lista.setText(lista);
+        setTitle(titulo);
     }
 
     /** This method is called from within the constructor to
@@ -68,7 +69,7 @@ public class InterfaceListagem extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfaceListagem("Teste", "LISTANDO NADA").setVisible(true);
+                new InterfaceListagem("Titulo", "Listagem de Teste", "LISTANDO NADA").setVisible(true);
             }
         });
     }
