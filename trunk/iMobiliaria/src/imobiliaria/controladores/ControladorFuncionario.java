@@ -256,6 +256,10 @@ public class ControladorFuncionario implements Serializable {
 
 		Funcionario func = getFuncionarioPorCreci(creci);
 
+                if (func == null) {
+                    return null;
+                }
+
 		return "Nome: " + func.getNome() + "\nCreci: " + func.getCreci()
 				+ "\nCpf: " + func.getCpf() + "\nData de Nascimento: "
 				+ func.getDataNascimento() + "\nEndereco: "
@@ -316,9 +320,12 @@ public class ControladorFuncionario implements Serializable {
 		}
 		for (Funcionario func : colecaoFunc.getColecaoFuncionarios()) {
 			if (func.getCreci().equals(creci)) {
-				return colecaoFunc.getColecaoFuncionarios().remove(func);
+                            return colecaoFunc.getColecaoFuncionarios().remove(func);
 			}
 		}
+
+
+
 		return false;
 	}
 

@@ -286,4 +286,13 @@ public class ControladorPedidos implements Serializable {
 		listaPedidos.remove(pedido);
 	}
 
+
+    /**
+     * Metodo acessador da quantidade de pedidos
+     * @return int
+     */
+    public int numPedidos() {
+        return listaPedidos.size();
+    }
+
 }
