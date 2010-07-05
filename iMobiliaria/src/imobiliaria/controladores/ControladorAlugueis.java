@@ -193,6 +193,16 @@ public class ControladorAlugueis implements Serializable {
 		return listaAlugueisDaColecao(alugueis);
 	}
 
+
+        /**
+         * Metodo acessador da quantidade de alugueis
+         * @return int
+         */
+
+        public int numAlugueis() {
+            return alugueis.size();
+        }
+
 	// Privados
 
 	private String listaAlugueisDaColecao(Collection<Aluguel> colecao) {

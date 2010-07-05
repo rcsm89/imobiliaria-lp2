@@ -8,6 +8,7 @@ import imobiliaria.entidades.Transacao;
 import imobiliaria.exceptions.PagamentoJaEfetuadoException;
 import imobiliaria.exceptions.TransacaoNaoExistenteException;
 import imobiliaria.exceptions.ValorInvalidoException;
+import imobiliaria.util.FormataEntrada;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -34,8 +35,21 @@ public class ControladorTransacoes implements Serializable {
 	private ArrayList<Transacao> logsFinanceiros = new ArrayList<Transacao>();
 	private ArrayList<Transacao> logsFinanceirosMensal = new ArrayList<Transacao>();
 
+        private FolhaDePagamento ultimaFolhaDePagamento = null;
+
 	private ControladorTransacoes() {
 	}
+
+        /**
+         * Metodo acessador da data do ultimo pagamento efetuado
+         * @return String contendo data
+         */
+
+        public String getDataUltimoPagamento() {
+            if (ultimoPagamento.equals(new GregorianCalendar(1990, 0, 0)))
+                return "Nenhum pagamento efetuado";
+            return FormataEntrada.data(ultimoPagamento);
+        }
 
 	/**
 	 * Metodo acessador da unica instancia do Controlador de Transacoes
@@ -153,7 +167,10 @@ public class ControladorTransacoes implements Serializable {
 		resetaTransacoeMensais();
 		atualizaPagamentoParaAgora();
 
-		return new FolhaDePagamento(salarioFuncionarios, caixa());
+                ultimaFolhaDePagamento = new FolhaDePagamento
+                        (salarioFuncionarios, caixa());
+
+		return ultimaFolhaDePagamento;
 	}
 
 	// Transacoes
@@ -262,6 +279,15 @@ public class ControladorTransacoes implements Serializable {
 		atualizaDataDePagamento();
 
 	}
+
+        /**
+         * Metodo que retorna a ultima folha de pagamento efetuada
+         * @return FolhaDePagamento
+         */
+
+        public FolhaDePagamento getUltimaFolhaDePagamento() {
+            return ultimaFolhaDePagamento;
+        }
 
 	/* Metodos Privados */
 

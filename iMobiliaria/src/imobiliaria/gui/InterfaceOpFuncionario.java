@@ -86,8 +86,8 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
         JB_ExcluirFunc = new javax.swing.JButton();
         JB_VerHistoricoFunc = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Opções Cliente");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Opções Funcionarios");
         setResizable(false);
 
         JP_VerInfo.setLayout(null);
@@ -132,7 +132,7 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
 
         JL_NumFuncCad.setText("XX");
         JP_VerInfo.add(JL_NumFuncCad);
-        JL_NumFuncCad.setBounds(430, 60, 50, 14);
+        JL_NumFuncCad.setBounds(420, 60, 50, 14);
 
         jTabbedPane1.addTab("Listagem de Funcionarios", JP_VerInfo);
 
@@ -327,13 +327,15 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
                 JTF_cpf.getText().replace(".", "").replace("-", ""),
                 data, JTF_Endereco.getText(), JTF_Nome.getText());
 
+        JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!",
+                    "Salvar Dados", JOptionPane.INFORMATION_MESSAGE);
+        atualizaFuncionarios();
+
         } catch (Exception e) {
             MostraErro(e);
         }
 
-        JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!",
-                    "Salvar Dados", JOptionPane.INFORMATION_MESSAGE);
-        atualizaFuncionarios();
+        
 }//GEN-LAST:event_JB_SalvaDadosFuncActionPerformed
 
     private void JB_SelectFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SelectFuncionarioActionPerformed
@@ -365,7 +367,7 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
 }//GEN-LAST:event_JB_VoltarActionPerformed
 
     private void JB_CadasFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_CadasFuncActionPerformed
-        //new CadastraFuncionario().setVisible(true);
+        new CadastraFuncionario().setVisible(true);
 }//GEN-LAST:event_JB_CadasFuncActionPerformed
 
 
@@ -436,6 +438,9 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
 
     private void atualizaFuncionarios(){
 
+        JL_NumFuncCad.setText(ControladorFuncionario.getInstance()
+                .getColecaoFuncionario().getNumFuncionarios() + "");
+
         JTA_ListagemTotal.setText(ControladorFuncionario.getInstance().
                     listaFuncionarios());
 
@@ -476,6 +481,9 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
             MostraErro(e);
         }
         }
+
+        sis.salvarDados();
+
     }
     
     private String[] listaParaCBox(Collection<Funcionario> funcs) {
