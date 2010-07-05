@@ -229,10 +229,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel JL_Login;
     private javax.swing.JLabel JL_Senha;
     private javax.swing.JPasswordField JPF_senha;
-    private javax.swing.JTextField JTF_Login;
+    private javax.swing.JTextField JTF_Login;//VAI PRECISAR SER STATIC
     private javax.swing.ButtonGroup butGroupLogin;
     // End of variables declaration//GEN-END:variables
     // Atributos
     
+/*    public static String getLoginAtual(){
+    	return JTF_Login.getText(); 
+    	METODO NECESSARIO PARA PEGAR OS DADOS QUE SERAO PRINTADOS
+    	NA TELA DOS DADOS DE CLIENTE; - PEGAR O CLIENTE PELO LOGIN DELE. 
+    }
+*/    
  // Fim de declaracao de atributos
 }
