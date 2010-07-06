@@ -1,5 +1,6 @@
 package imobiliaria.entidades;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.TreeMap;
 
@@ -8,7 +9,7 @@ import java.util.TreeMap;
  * 
  * @version IT02
  */
-public class FolhaDePagamento {
+public class FolhaDePagamento implements Serializable {
 
 	private HashMap<String, Double> vendasFuncionarios;
 	private double saldoAnterior;

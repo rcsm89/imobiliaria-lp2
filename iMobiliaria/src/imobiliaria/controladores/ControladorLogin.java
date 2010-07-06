@@ -155,4 +155,21 @@ public class ControladorLogin implements Serializable {
 		}
 		return false;
 	}
+
+    /**
+     * Metodo para listagem de logins a partir de uma lista
+     * @return Lista contendo informacoes dos Logins
+     */
+
+    public String[] getListaLogins() {
+        String[] saida = new String[loginsDoSistema.size()];
+
+        int cont = 0;
+
+        for (Login login : loginsDoSistema) {
+            saida[cont] = login.getUserName();
+            cont++;
+        }
+        return saida;
+    }
 }

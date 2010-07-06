@@ -16,6 +16,7 @@ import imobiliaria.controladores.ControladorLogin;
 import imobiliaria.controladores.ControladorPedidos;
 import imobiliaria.controladores.ControladorTransacoes;
 import imobiliaria.entidades.FolhaDePagamento;
+import imobiliaria.entidades.Sistema;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -25,15 +26,20 @@ import javax.swing.JOptionPane;
  */
 public class InterfaceAdmin extends javax.swing.JFrame {
 
+    private Sistema sis = new Sistema();
+
     /** Creates new form InterfaceAdmin */
     public InterfaceAdmin() {
-        initComponents();
 
-        if (ControladorTransacoes.getInstance().pagouNesseMes()) {
-            JL_Pagamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/okIcon.png")));
-        } else {
-            JL_Pagamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/exitIcon.png")));
+        try {
+        sis.atualizaDados();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro:\n" + e.getMessage(),
+                    "Erro ao Atualizar Dados", JOptionPane.ERROR_MESSAGE);
+
         }
+
+        initComponents();
 
         setLocationRelativeTo(null);
 
@@ -65,14 +71,13 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         JB_EfetuaPagamento = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        JCB_Logins = new javax.swing.JComboBox();
         JB_VerInfoLogin = new javax.swing.JButton();
         JL_NumTotalLogins = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        JB_ListaAlugueis = new javax.swing.JToggleButton();
         JB_ListaPedidos = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        JCB_Alugueis = new javax.swing.JComboBox();
         JB_CancelarAluguel = new javax.swing.JButton();
         JB_VerInfoAluguel = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -80,7 +85,8 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         JB_VerInfoPedido = new javax.swing.JButton();
         JB_EfetuarPedido = new javax.swing.JButton();
-        jComboBox4 = new javax.swing.JComboBox();
+        JCB_Pedidos = new javax.swing.JComboBox();
+        JB_ListaAlugueis = new javax.swing.JButton();
         JB_MenuImoveis = new javax.swing.JButton();
         JB_MenuClientes = new javax.swing.JButton();
         JB_MenuFuncionarios = new javax.swing.JButton();
@@ -133,6 +139,11 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         JL_Pagamento.setBounds(420, 10, 40, 30);
 
         JB_ListaTransacoes.setText("Lista Transacoes");
+        JB_ListaTransacoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_ListaTransacoesActionPerformed(evt);
+            }
+        });
         jPanel4.add(JB_ListaTransacoes);
         JB_ListaTransacoes.setBounds(250, 60, 190, 23);
 
@@ -146,6 +157,11 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         JB_ListaTransacoesMensais.setBounds(30, 60, 190, 23);
 
         JB_EfetuaPagamento.setText("Efetua Pagamento");
+        JB_EfetuaPagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_EfetuaPagamentoActionPerformed(evt);
+            }
+        });
         jPanel4.add(JB_EfetuaPagamento);
         JB_EfetuaPagamento.setBounds(250, 90, 190, 23);
 
@@ -160,9 +176,9 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         jPanel5.add(jLabel5);
         jLabel5.setBounds(10, 10, 150, 17);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Login1", "Login2", "Login3", "Login4" }));
-        jPanel5.add(jComboBox2);
-        jComboBox2.setBounds(10, 70, 230, 22);
+        JCB_Logins.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Login1", "Login2", "Login3", "Login4" }));
+        jPanel5.add(JCB_Logins);
+        JCB_Logins.setBounds(10, 70, 230, 22);
 
         JB_VerInfoLogin.setText("Verificar Info");
         jPanel5.add(JB_VerInfoLogin);
@@ -183,10 +199,6 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         jPanel6.add(jLabel10);
         jLabel10.setBounds(10, 10, 140, 17);
 
-        JB_ListaAlugueis.setText("Listar Alugueis");
-        jPanel6.add(JB_ListaAlugueis);
-        JB_ListaAlugueis.setBounds(10, 140, 170, 50);
-
         JB_ListaPedidos.setText("Listar Pedidos");
         JB_ListaPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,9 +208,9 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         jPanel6.add(JB_ListaPedidos);
         JB_ListaPedidos.setBounds(10, 40, 170, 50);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "InfoPedido1", "InfoPedido2", "InfoPedido3" }));
-        jPanel6.add(jComboBox1);
-        jComboBox1.setBounds(200, 140, 260, 22);
+        JCB_Alugueis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "InfoPedido1", "InfoPedido2", "InfoPedido3" }));
+        jPanel6.add(JCB_Alugueis);
+        JCB_Alugueis.setBounds(200, 140, 260, 22);
 
         JB_CancelarAluguel.setText("Cancelar");
         jPanel6.add(JB_CancelarAluguel);
@@ -228,9 +240,18 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         jPanel6.add(JB_EfetuarPedido);
         JB_EfetuarPedido.setBounds(200, 70, 80, 23);
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "InfoPedido1", "InfoPedido2", "InfoPedido3" }));
-        jPanel6.add(jComboBox4);
-        jComboBox4.setBounds(200, 40, 260, 22);
+        JCB_Pedidos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "InfoPedido1", "InfoPedido2", "InfoPedido3" }));
+        jPanel6.add(JCB_Pedidos);
+        JCB_Pedidos.setBounds(200, 40, 260, 22);
+
+        JB_ListaAlugueis.setText("Lista Alugueis");
+        JB_ListaAlugueis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_ListaAlugueisActionPerformed(evt);
+            }
+        });
+        jPanel6.add(JB_ListaAlugueis);
+        JB_ListaAlugueis.setBounds(10, 130, 170, 50);
 
         getContentPane().add(jPanel6);
         jPanel6.setBounds(10, 280, 470, 240);
@@ -313,8 +334,62 @@ public class InterfaceAdmin extends javax.swing.JFrame {
                 .listagemDePedido()).setVisible(true);
     }//GEN-LAST:event_JB_ListaPedidosActionPerformed
 
+    private void JB_ListaTransacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ListaTransacoesActionPerformed
+        new InterfaceListagem("Transacoes", "Listagem de Transacoes",
+                ControladorTransacoes.getInstance().listaTransacoes())
+                .setVisible(true);
+    }//GEN-LAST:event_JB_ListaTransacoesActionPerformed
+
+    private void JB_EfetuaPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_EfetuaPagamentoActionPerformed
+
+        try {
+        FolhaDePagamento folha = ControladorTransacoes.getInstance().
+                efetuaPagamentoNoMes();
+
+        new InterfaceListagem("Folha de Pagamento", "Ultima Folha de Pagamento",
+                folha.getFolhaDePagamentoString()).setVisible(true);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao Efetuar Pagamento:\n\n"
+                    + e.getMessage(),
+                    "Pagamento", JOptionPane.ERROR_MESSAGE);
+        }
+        atualizaInterface();
+    }//GEN-LAST:event_JB_EfetuaPagamentoActionPerformed
+
+    private void JB_ListaAlugueisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ListaAlugueisActionPerformed
+        new InterfaceListagem("Alugueis", "Listagem de Alugueis", ControladorAlugueis.getInstance()
+                .listaAlugueis()).setVisible(true);
+    }//GEN-LAST:event_JB_ListaAlugueisActionPerformed
+
+
+    private void preencheCBox() {
+
+        JCB_Alugueis.removeAllItems();
+        for (String info : ControladorAlugueis.getInstance().getListaAlugueis())
+            JCB_Alugueis.addItem(info);
+
+        JCB_Logins.removeAllItems();
+
+        for (String loginInfo : ControladorLogin.getInstance().getListaLogins())
+            JCB_Logins.addItem(loginInfo);
+
+        JCB_Pedidos.removeAllItems();
+        for (String infoPedido : ControladorPedidos.getInstance().getListaPedidos())
+            JCB_Pedidos.addItem(infoPedido);
+
+        
+    }
 
     private void atualizaInterface() {
+
+        preencheCBox();
+
+        if (ControladorTransacoes.getInstance().pagouNesseMes()) {
+            JL_Pagamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/okIcon.png")));
+        } else {
+            JL_Pagamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/exitIcon.png")));
+        }
 
         JL_DataUltimoPagamento.setText("Data do Ultimo Pagamento Efetuado: " +
                 ControladorTransacoes.getInstance().getDataUltimoPagamento());
@@ -332,6 +407,9 @@ public class InterfaceAdmin extends javax.swing.JFrame {
                 String.format("%.2f", ControladorTransacoes.getInstance().caixa()));
 
 
+        preencheCBox();
+
+        sis.salvarDados();
     }
 
     /**
@@ -350,7 +428,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
     private javax.swing.JButton JB_EfetuaPagamento;
     private javax.swing.JButton JB_EfetuarPedido;
     private javax.swing.JButton JB_ExcluirPedido;
-    private javax.swing.JToggleButton JB_ListaAlugueis;
+    private javax.swing.JButton JB_ListaAlugueis;
     private javax.swing.JButton JB_ListaPedidos;
     private javax.swing.JButton JB_ListaTransacoes;
     private javax.swing.JButton JB_ListaTransacoesMensais;
@@ -361,15 +439,15 @@ public class InterfaceAdmin extends javax.swing.JFrame {
     private javax.swing.JButton JB_VerInfoAluguel;
     private javax.swing.JButton JB_VerInfoLogin;
     private javax.swing.JButton JB_VerInfoPedido;
+    private javax.swing.JComboBox JCB_Alugueis;
+    private javax.swing.JComboBox JCB_Logins;
+    private javax.swing.JComboBox JCB_Pedidos;
     private javax.swing.JLabel JL_DataUltimoPagamento;
     private javax.swing.JLabel JL_NumTotalAlugueis;
     private javax.swing.JLabel JL_NumTotalLogins;
     private javax.swing.JLabel JL_NumTotalPedidos;
     private javax.swing.JLabel JL_Pagamento;
     private javax.swing.JLabel JL_SaldoAtualCaixa;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
