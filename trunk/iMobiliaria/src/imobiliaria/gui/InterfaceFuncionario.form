@@ -27,49 +27,44 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="12" pref="12" max="12" attributes="0"/>
-                      <Component id="JB_Cliente" linkSize="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="JB_Imovel" linkSize="1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
-                      <Component id="JL_Option" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="1">
-                          <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="JL_Ola" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="12" pref="12" max="12" attributes="0"/>
-                                  <Component id="JL_BoasVindas" min="-2" pref="265" max="-2" attributes="0"/>
+                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="JB_Cliente" min="-2" pref="120" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="JB_Imovel" min="-2" pref="120" max="-2" attributes="0"/>
+                              <EmptySpace min="90" pref="90" max="90" attributes="0"/>
+                              <Component id="JL_Option" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="JB_VerDados" alignment="1" min="-2" pref="145" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="JB_Aluguel" min="-2" pref="120" max="-2" attributes="0"/>
+                                      <Component id="JB_Pedido" min="-2" pref="120" max="-2" attributes="0"/>
+                                      <Component id="JB_Voltar" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="184" max="-2" attributes="0"/>
+                                  <Component id="JL_Logo" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="JB_VerDados" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="JB_Aluguel" linkSize="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="JB_Pedido" linkSize="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="JB_Voltar" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="1">
+                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="JL_Ola" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="209" max="-2" attributes="0"/>
-                          <Component id="JL_Logo" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="12" pref="12" max="12" attributes="0"/>
+                              <Component id="JL_BoasVindas" min="-2" pref="265" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -77,43 +72,39 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="JL_Ola" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="JL_Ola" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="6" pref="6" max="6" attributes="0"/>
                       <Component id="JL_BoasVindas" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="JB_VerDados" max="32767" attributes="1"/>
+                  <Component id="JB_VerDados" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="26" pref="26" max="26" attributes="0"/>
-                      <Component id="JB_Cliente" linkSize="2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="30" pref="30" max="30" attributes="0"/>
-                      <Component id="JB_Imovel" linkSize="2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="21" pref="21" max="21" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="1">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="JL_Option" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <EmptySpace min="34" pref="34" max="34" attributes="0"/>
+              <Component id="JB_Cliente" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="JB_Aluguel" linkSize="2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="JB_Pedido" linkSize="2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="9" pref="9" max="9" attributes="0"/>
+                      <Component id="JB_Imovel" min="-2" pref="41" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="JL_Option" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="21" pref="21" max="21" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="1">
+                      <Component id="JB_Aluguel" min="-2" pref="41" max="-2" attributes="0"/>
+                      <EmptySpace min="18" pref="18" max="18" attributes="0"/>
+                      <Component id="JB_Pedido" min="-2" pref="41" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="JB_Voltar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="JL_Logo" min="-2" pref="190" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="383" max="32767" attributes="0"/>
-              <Component id="JB_Voltar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -156,6 +147,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="JB_Aluguel">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/imobiliaria/images/noteIcon.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Alugu&#xe9;is"/>
       </Properties>
       <Events>
@@ -166,6 +160,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="JB_Pedido">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/imobiliaria/images/pedidoIcon.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Pedidos"/>
       </Properties>
       <Events>
@@ -176,11 +173,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="JB_VerDados">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Verifique seus dados"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/imobiliaria/images/info2icon.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Seus dados"/>
       </Properties>
       <Events>
         <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JB_VerDadosMouseExited"/>
         <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JB_VerDadosMouseEntered"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JB_VerDadosActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="JL_Logo">
@@ -214,6 +215,11 @@
     <Component class="javax.swing.JLabel" name="JL_BoasVindas">
       <Properties>
         <Property name="text" type="java.lang.String" value="Bem-vindo as op&#xe7;&#xf5;es de funcion&#xe1;rio"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nome do Funcionario"/>
       </Properties>
     </Component>
   </SubComponents>

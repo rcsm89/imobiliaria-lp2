@@ -11,16 +11,28 @@
 
 package imobiliaria.gui;
 
+import imobiliaria.controladores.*;
+import imobiliaria.entidades.*;
+
 /**
  *
  * @author Thiago Ferreira
  */
 public class InterfaceFuncionario extends javax.swing.JFrame {
+    private String nomeFunc;
 
     /** Creates new form InterfaceFuncionario */
-    public InterfaceFuncionario() {
+    public InterfaceFuncionario(String nomeFunc) {
+        this.nomeFunc = nomeFunc;
         initComponents();
+        jLabel1.setText(nomeFunc);
         setLocationRelativeTo(null);
+        Sistema sis = new Sistema();
+	try {
+	    sis.atualizaDados();
+	} catch (Exception e) {
+	    System.out.println("Erro: " + e.getMessage());
+	}
     }
 
     /** This method is called from within the constructor to
@@ -42,12 +54,13 @@ public class InterfaceFuncionario extends javax.swing.JFrame {
         JB_Voltar = new javax.swing.JButton();
         JL_Option = new javax.swing.JLabel();
         JL_BoasVindas = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Opções Funcionario");
         setResizable(false);
 
-        JL_Ola.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        JL_Ola.setFont(new java.awt.Font("Arial", 0, 14));
         JL_Ola.setText("Olá,");
 
         JB_Cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/addIcon.png"))); // NOI18N
@@ -83,6 +96,7 @@ public class InterfaceFuncionario extends javax.swing.JFrame {
             }
         });
 
+        JB_Aluguel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/noteIcon.png"))); // NOI18N
         JB_Aluguel.setText("Aluguéis");
         JB_Aluguel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -98,6 +112,7 @@ public class InterfaceFuncionario extends javax.swing.JFrame {
             }
         });
 
+        JB_Pedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/pedidoIcon.png"))); // NOI18N
         JB_Pedido.setText("Pedidos");
         JB_Pedido.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -113,13 +128,19 @@ public class InterfaceFuncionario extends javax.swing.JFrame {
             }
         });
 
-        JB_VerDados.setText("Verifique seus dados");
+        JB_VerDados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/info2icon.png"))); // NOI18N
+        JB_VerDados.setText("Seus dados");
         JB_VerDados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 JB_VerDadosMouseExited(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 JB_VerDadosMouseEntered(evt);
+            }
+        });
+        JB_VerDados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_VerDadosActionPerformed(evt);
             }
         });
 
@@ -141,10 +162,12 @@ public class InterfaceFuncionario extends javax.swing.JFrame {
             }
         });
 
-        JL_Option.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        JL_Option.setFont(new java.awt.Font("DejaVu Sans", 0, 14));
         JL_Option.setText("Escolha uma das opções.");
 
         JL_BoasVindas.setText("Bem-vindo as opções de funcionário");
+
+        jLabel1.setText("Nome do Funcionario");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,76 +177,64 @@ public class InterfaceFuncionario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(JB_Cliente))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JB_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JB_Imovel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(90, 90, 90)
+                                .addComponent(JL_Option))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(JB_VerDados, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(JB_Aluguel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(JB_Pedido, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(JB_Voltar))
+                                    .addGap(184, 184, 184)
+                                    .addComponent(JL_Logo)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(JB_Imovel)
-                        .addGap(115, 115, 115)
-                        .addComponent(JL_Option))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(JL_Ola)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(12, 12, 12)
-                                    .addComponent(JL_BoasVindas, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JB_VerDados))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(JB_Aluguel))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(JB_Pedido))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(JB_Voltar)))
-                            .addGap(209, 209, 209)
-                            .addComponent(JL_Logo))))
-                .addGap(21, 21, 21))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(JL_BoasVindas, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {JB_Aluguel, JB_Cliente, JB_Imovel, JB_Pedido});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(JL_Ola)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JL_Ola)
+                            .addComponent(jLabel1))
+                        .addGap(6, 6, 6)
                         .addComponent(JL_BoasVindas))
-                    .addComponent(JB_VerDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(JB_Cliente)
-                        .addGap(30, 30, 30)
-                        .addComponent(JB_Imovel)
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JL_Option)
-                        .addGap(55, 55, 55)))
+                    .addComponent(JB_VerDados))
+                .addGap(34, 34, 34)
+                .addComponent(JB_Cliente)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(JB_Aluguel)
+                        .addGap(9, 9, 9)
+                        .addComponent(JB_Imovel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JL_Option))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(JB_Aluguel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(JB_Pedido))
+                        .addComponent(JB_Pedido, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JB_Voltar))
                     .addComponent(JL_Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(383, Short.MAX_VALUE)
-                .addComponent(JB_Voltar)
-                .addContainerGap())
+                .addGap(12, 12, 12))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {JB_Aluguel, JB_Cliente, JB_Imovel, JB_Pedido});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -243,10 +254,14 @@ public class InterfaceFuncionario extends javax.swing.JFrame {
 
     private void JB_PedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_PedidoActionPerformed
         // Opcoes de pedido
+        new InterfaceListagem("Pedidos", "Listagem de Pedidos", ControladorPedidos.getInstance()
+                .listagemDePedido()).setVisible(true);
     }//GEN-LAST:event_JB_PedidoActionPerformed
 
     private void JB_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_VoltarActionPerformed
         // Voltar a telaprincipal
+        new TelaPrincipal().setVisible(true);
+        dispose();
     }//GEN-LAST:event_JB_VoltarActionPerformed
 
     private void JB_ClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_ClienteMouseEntered
@@ -281,7 +296,7 @@ public class InterfaceFuncionario extends javax.swing.JFrame {
 
     private void JB_PedidoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_PedidoMouseEntered
        JL_Option.setForeground(new java.awt.Color(255, 0, 0));
-       JL_Option.setText("Clique para abrir as opções de pedidos");
+       JL_Option.setText("Clique para abrir a listagem de pedidos");
     }//GEN-LAST:event_JB_PedidoMouseEntered
 
     private void JB_PedidoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JB_PedidoMouseExited
@@ -309,13 +324,18 @@ public class InterfaceFuncionario extends javax.swing.JFrame {
        JL_Option.setText(TEXTOCENTRAL);
     }//GEN-LAST:event_JB_VerDadosMouseExited
 
+    private void JB_VerDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_VerDadosActionPerformed
+        Funcionario func = ControladorFuncionario.getInstance().getFuncionarioPorNome(nomeFunc);
+        new InterfaceDadosFuncionario(func).setVisible(true);
+    }//GEN-LAST:event_JB_VerDadosActionPerformed
+
     /**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfaceFuncionario().setVisible(true);
+                new InterfaceFuncionario("Funcionario default").setVisible(true);
             }
         });
     }
@@ -331,6 +351,7 @@ public class InterfaceFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel JL_Logo;
     private javax.swing.JLabel JL_Ola;
     private javax.swing.JLabel JL_Option;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
     private String TEXTOCENTRAL = "Escolha uma das opções.";
 }
