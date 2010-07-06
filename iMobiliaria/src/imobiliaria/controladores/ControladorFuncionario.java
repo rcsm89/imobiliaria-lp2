@@ -224,6 +224,21 @@ public class ControladorFuncionario implements Serializable {
 	}
 
 	/**
+	 * Metodo Acessador de um Funcionario
+	 * 
+	 * @param nome
+	 *            Nome do Funcionario a ser retornado
+	 * @return Funcionario ou null, caso nao exista
+	 */
+	public Funcionario getFuncionarioPorNome(String nome) {
+		for (Funcionario func : colecaoFunc.getColecaoFuncionarios()) {
+			if (func.getNome().equals(nome))
+				return func;
+		}
+		return null;
+	}
+
+	/**
 	 * Metodo acessador de Funcionario por Username
 	 * 
 	 * @param username
