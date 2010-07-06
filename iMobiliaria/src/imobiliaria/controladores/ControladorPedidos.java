@@ -203,36 +203,39 @@ public class ControladorPedidos implements Serializable {
 		for (Pedido pedido : listaPedidos) {
 			if (pedido.getCliente().getCpf().equals(cpf)) {
 				pedidos.add(pedido);
+				
 			}
 		}
+		
 
 		return listaPedidos(pedidos);
 	}
 	
 	/**
-	 * Metodo que retorna um array de pedidos, <br>
+	 * Metodo que retorna um array de imoveis pedidos, <br>
 	 * auxilia na interface
 	 * @param cpf
 	 * 		Cpf do cliente
 	 * @return
-	 * 		Array de pedidos
+	 * 		Array de imoveis pedidos
 	 */
-	public String[] listaDePedidosGUI(String cpf){
-		if (VerificaInvalido.basico(cpf)){
-			throw new IllegalArgumentException("CPF invalido");
-		}
-		ArrayList<String> pedidos = new ArrayList<String>(); //para melhor manipulacao
-		String[] pedidosCliente = new String[listaPedidos.size()];
+	public Imovel[] listaDePedidosGUI(String cpf){
+		Imovel[] imoveisCliente;
 		
+		ArrayList<Imovel> pedidos = new ArrayList<Imovel>();
+
 		for (Pedido pedido : listaPedidos) {
-			pedidos.add( pedido.exibeInformacao() );
-		}
-		if (!(pedidos.isEmpty())){
-			for (int i = 0; i < pedidos.size(); i++) {
-				pedidosCliente[i] = pedidos.get(i);
+			if (pedido.getCliente().getCpf().equals(cpf)) {
+				pedidos.add(pedido.getImovel());
 			}
 		}
-		return pedidosCliente;
+		
+		imoveisCliente = new Imovel[pedidos.size()];
+		for (int i = 0; i < pedidos.size(); i++) {
+			imoveisCliente[i] = pedidos.get(i);
+		}
+		return imoveisCliente;
+		
 	}
 
 	/**

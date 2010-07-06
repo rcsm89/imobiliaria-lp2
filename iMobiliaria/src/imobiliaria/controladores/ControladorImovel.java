@@ -272,6 +272,15 @@ public class ControladorImovel implements Serializable {
 		return listaImoveis(colecaoImovel.getImoveis(nome));
 	}
 
+	
+	// TALVEZ DELETAR
+	/**
+	 * Lista imoveis de uma colecao de imoveis
+	 * @param colecaoImoveis
+	 * 		Colecao de imoveis a ser listada
+	 * @return
+	 * 		String da cole
+	 */
 	public String listaImoveis(ColecaoImoveis colecaoImoveis){
 		return listaImoveis(colecaoImoveis.getImoveis());
 	}
