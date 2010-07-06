@@ -87,8 +87,23 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         JList_ImovelHist = new javax.swing.JList();
         JB_VerHistorico = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        JList_Pedido = new javax.swing.JList();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        JB_VerPedidos = new javax.swing.JButton();
+        JTF_ProcuraNomePedido = new javax.swing.JTextField();
+        JB_ProcuraPedido = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        JCB_ListaPedidos = new javax.swing.JComboBox();
+        JB_SelectClientePed = new javax.swing.JButton();
+        JB_EfetuarPedido = new javax.swing.JButton();
+        JB_CancelarPed = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Opções Cliente");
         setResizable(false);
 
@@ -145,6 +160,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
 
         JTF_ProcuraNome.setToolTipText("Digite o nome do cliente desejado");
 
+        JB_Procura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/procuraIcon.png"))); // NOI18N
         JB_Procura.setText("Procurar");
         JB_Procura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,7 +209,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
                     .addGroup(JP_VerInfoLayout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(JB_DelCliente)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addGroup(JP_VerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JB_Voltar)
                     .addComponent(JB_CadCliente))
@@ -294,6 +310,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
 
         jLabel7.setText("Procurar por nome:");
 
+        JB_ProcuraInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/procuraIcon.png"))); // NOI18N
         JB_ProcuraInfo.setText("Procurar");
         JB_ProcuraInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -393,6 +410,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
 
         jLabel4.setText("Procurar por nome:");
 
+        JB_ProcuraHist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/procuraIcon.png"))); // NOI18N
         JB_ProcuraHist.setText("Procurar");
         JB_ProcuraHist.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -415,14 +433,14 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -476,15 +494,165 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Historico de cliente", JB_HistoCliente);
 
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de clientes"));
+
+        JList_Pedido.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "< Você não possui nenhum cliente adicionado >" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane5.setViewportView(JList_Pedido);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel9.setText("Procurar por nome:");
+
+        jLabel6.setText("Selecione um  cliente");
+
+        jLabel8.setText("e veja os seus pedidos:");
+
+        JB_VerPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/homeIcon.png"))); // NOI18N
+        JB_VerPedidos.setText("Ver pedidos");
+        JB_VerPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_VerPedidosActionPerformed(evt);
+            }
+        });
+
+        JB_ProcuraPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/procuraIcon.png"))); // NOI18N
+        JB_ProcuraPedido.setText("Procurar");
+        JB_ProcuraPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_ProcuraPedidoActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Pedidos:");
+
+        JCB_ListaPedidos.setMaximumRowCount(5);
+        JCB_ListaPedidos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "< Sem nenhum pedido >" }));
+
+        JB_SelectClientePed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/okIcon.png"))); // NOI18N
+        JB_SelectClientePed.setText("Selecionar cliente");
+        JB_SelectClientePed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_SelectClientePedActionPerformed(evt);
+            }
+        });
+
+        JB_EfetuarPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/pedidoIcon.png"))); // NOI18N
+        JB_EfetuarPedido.setText("Efetuar");
+        JB_EfetuarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_EfetuarPedidoActionPerformed(evt);
+            }
+        });
+
+        JB_CancelarPed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/exitIcon.png"))); // NOI18N
+        JB_CancelarPed.setText("Cancelar");
+        JB_CancelarPed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_CancelarPedActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel6Layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(JTF_ProcuraNomePedido, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(JB_ProcuraPedido))
+                                    .addComponent(JB_SelectClientePed))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel6Layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(JB_VerPedidos))
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel6))
+                                .addGap(47, 47, 47))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel6Layout.createSequentialGroup()
+                                        .addComponent(JB_EfetuarPedido)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(JB_CancelarPed))
+                                    .addComponent(JCB_ListaPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(263, 263, 263))))))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JB_VerPedidos))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JTF_ProcuraNomePedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JB_ProcuraPedido)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JB_SelectClientePed)))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JCB_ListaPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JB_CancelarPed)
+                    .addComponent(JB_EfetuarPedido))
+                .addContainerGap(70, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Pedidos", jPanel6);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -535,49 +703,6 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
     /*
      * --- ABA: Informacoes do cliente
      */
-    private void JB_ProcuraInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ProcuraInfoActionPerformed
-        atualizaClientes();
-    }//GEN-LAST:event_JB_ProcuraInfoActionPerformed
-
-    private void JB_SalvaDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SalvaDadosActionPerformed
-        String nomeCpf = JList_ClienteInfo.getSelectedValue().toString();
-        String soCpf = nomeCpf.substring(nomeCpf.lastIndexOf(" "), nomeCpf.length());
-        boolean clienteModificadoOK = false;
-        try{
-            Cliente clienteMod = ControladorCliente.getInstance().getCliente(soCpf.trim());
-            clienteMod.setNome(JTF_Nome.getText());
-            clienteMod.setEndereco(JTF_Endereco.getText());
-            sis.salvarDados();
-            clienteModificadoOK = true;
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao tentar remover cliente",
-                    "Erro Ao Remover Cliente", JOptionPane.ERROR_MESSAGE);
-        }
-
-        if(clienteModificadoOK){
-            atualizaClientes();
-        }
-         
-    }//GEN-LAST:event_JB_SalvaDadosActionPerformed
-
-    private void JB_SelectClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SelectClienteActionPerformed
-        
-        try{
-            String nomeCpf = JList_ClienteInfo.getSelectedValue().toString();
-            String soCpf = nomeCpf.substring(nomeCpf.lastIndexOf(" "), nomeCpf.length());
-            Cliente clienteMod = ControladorCliente.getInstance().getCliente(soCpf.trim());
-            JTF_Nome.setText(clienteMod.getNome());
-            JTF_Endereco.setText(clienteMod.getEndereco());
-            JL_CpfCliente.setText(clienteMod.getCpf());
-            JL_DataCliente.setText(clienteMod.getDataNascimento());
-        }catch (Exception ex){
-            JOptionPane.showMessageDialog(null, " Cliente Inválido",
-                    "Erro Ao Escolher Cliente", JOptionPane.ERROR_MESSAGE);
-        }
-        
-    }//GEN-LAST:event_JB_SelectClienteActionPerformed
-
     private void JB_VerHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_VerHistoricoActionPerformed
         // VER HISTORICO
         try{
@@ -606,7 +731,11 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_JB_VerHistoricoActionPerformed
-
+    private String[] mostraPedidos(Cliente cliente){
+        String[] pedidos = ControladorPedidos.getInstance().listaDePedidosGUI(cliente.getCpf());
+        return pedidos;
+    }
+    
     private String[] mostraImoveis(Cliente cliente){
         String[] imoveis;
         ColecaoImoveis historicoCliente = cliente.getHistoricoCompras();
@@ -626,10 +755,91 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
         return imoveis;
     }
 
-
     private void JB_ProcuraHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ProcuraHistActionPerformed
         atualizaClientes();
     }//GEN-LAST:event_JB_ProcuraHistActionPerformed
+
+    private void JB_VerPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_VerPedidosActionPerformed
+        try{
+            String nomeCpf = JList_ClienteInfo.getSelectedValue().toString();
+            String soCpf = nomeCpf.substring(nomeCpf.lastIndexOf(" "), nomeCpf.length());
+            new InterfaceListagem("Pedidos", "Listagem de Pedidos do Cliente", ControladorPedidos.getInstance()
+                    .listaPedidosDeCliente(soCpf)).setVisible(true);
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(null, " Cliente Inválido",
+                    "Erro Ao Escolher Cliente", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_JB_VerPedidosActionPerformed
+
+    private void JB_SalvaDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SalvaDadosActionPerformed
+        String nomeCpf = JList_ClienteInfo.getSelectedValue().toString();
+        String soCpf = nomeCpf.substring(nomeCpf.lastIndexOf(" "), nomeCpf.length());
+        boolean clienteModificadoOK = false;
+        try{
+            Cliente clienteMod = ControladorCliente.getInstance().getCliente(soCpf.trim());
+            clienteMod.setNome(JTF_Nome.getText());
+            clienteMod.setEndereco(JTF_Endereco.getText());
+            sis.salvarDados();
+            clienteModificadoOK = true;
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao tentar remover cliente",
+                    "Erro Ao Remover Cliente", JOptionPane.ERROR_MESSAGE);
+        }
+
+        if(clienteModificadoOK){
+            atualizaClientes();
+        }
+    }//GEN-LAST:event_JB_SalvaDadosActionPerformed
+
+    private void JB_SelectClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SelectClienteActionPerformed
+
+        try{
+            String nomeCpf = JList_ClienteInfo.getSelectedValue().toString();
+            String soCpf = nomeCpf.substring(nomeCpf.lastIndexOf(" "), nomeCpf.length());
+            Cliente clienteMod = ControladorCliente.getInstance().getCliente(soCpf.trim());
+            JTF_Nome.setText(clienteMod.getNome());
+            JTF_Endereco.setText(clienteMod.getEndereco());
+            JL_CpfCliente.setText(clienteMod.getCpf());
+            JL_DataCliente.setText(clienteMod.getDataNascimento());
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(null, " Cliente Inválido",
+                    "Erro Ao Escolher Cliente", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_JB_SelectClienteActionPerformed
+
+    private void JB_ProcuraInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ProcuraInfoActionPerformed
+        atualizaClientes();
+}//GEN-LAST:event_JB_ProcuraInfoActionPerformed
+
+    private void JB_ProcuraPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ProcuraPedidoActionPerformed
+        atualizaClientes();
+    }//GEN-LAST:event_JB_ProcuraPedidoActionPerformed
+
+    private void JB_SelectClientePedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SelectClientePedActionPerformed
+        
+        //JCB_Mes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Janeiro", "Fevereiro"}));
+        
+        try{
+            String nomeCpf = JList_ClienteInfo.getSelectedValue().toString();
+            String soCpf = nomeCpf.substring(nomeCpf.lastIndexOf(" "), nomeCpf.length());
+            Cliente clientePedi = ControladorCliente.getInstance().getCliente(soCpf.trim());
+            JCB_ListaPedidos.setModel(new javax.swing.DefaultComboBoxModel( mostraImoveis(clientePedi)  ));
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(null, " Cliente Inválido",
+                    "Erro Ao Escolher Cliente", JOptionPane.ERROR_MESSAGE);
+        }
+
+        
+    }//GEN-LAST:event_JB_SelectClientePedActionPerformed
+
+    private void JB_EfetuarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_EfetuarPedidoActionPerformed
+        JCB_ListaPedidos.getSelectedItem().toString();
+    }//GEN-LAST:event_JB_EfetuarPedidoActionPerformed
+
+    private void JB_CancelarPedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_CancelarPedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JB_CancelarPedActionPerformed
     
     /*
      * Metodo de Busca por nomes
@@ -671,6 +881,8 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
         final String nome = JTF_ProcuraNome.getText();
         final String nomeInfo = JTF_ProcuraNomeInf.getText();
         final String nomeHist = JTF_ProcuraClienteIm.getText();
+        final String nomePed = JTF_ProcuraNomePedido.getText();
+
         //mostraClientes(nome);
         JList_Cliente.setModel(new javax.swing.AbstractListModel() {
             String[] strings = mostraClientes(nome);
@@ -686,6 +898,12 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
 
         JList_ClienteHist.setModel(new javax.swing.AbstractListModel() {
             String[] strings = mostraClientes(nomeHist);
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+
+        JList_Pedido.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = mostraClientes(nomePed);
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -707,15 +925,21 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JB_CadCliente;
+    private javax.swing.JButton JB_CancelarPed;
     private javax.swing.JButton JB_DelCliente;
+    private javax.swing.JButton JB_EfetuarPedido;
     private javax.swing.JPanel JB_HistoCliente;
     private javax.swing.JButton JB_Procura;
     private javax.swing.JButton JB_ProcuraHist;
     private javax.swing.JButton JB_ProcuraInfo;
+    private javax.swing.JButton JB_ProcuraPedido;
     private javax.swing.JButton JB_SalvaDados;
     private javax.swing.JButton JB_SelectCliente;
+    private javax.swing.JButton JB_SelectClientePed;
     private javax.swing.JButton JB_VerHistorico;
+    private javax.swing.JButton JB_VerPedidos;
     private javax.swing.JButton JB_Voltar;
+    private javax.swing.JComboBox JCB_ListaPedidos;
     private javax.swing.JLabel JL_CpfCliente;
     private javax.swing.JLabel JL_DataCliente;
     private javax.swing.JLabel JL_ProcuraNome;
@@ -723,6 +947,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
     private javax.swing.JList JList_ClienteHist;
     private javax.swing.JList JList_ClienteInfo;
     private javax.swing.JList JList_ImovelHist;
+    private javax.swing.JList JList_Pedido;
     private javax.swing.JPanel JP_AttCad;
     private javax.swing.JPanel JP_VerInfo;
     private javax.swing.JTextField JTF_Endereco;
@@ -730,21 +955,29 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
     private javax.swing.JTextField JTF_ProcuraClienteIm;
     private javax.swing.JTextField JTF_ProcuraNome;
     private javax.swing.JTextField JTF_ProcuraNomeInf;
+    private javax.swing.JTextField JTF_ProcuraNomePedido;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 

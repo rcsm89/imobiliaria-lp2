@@ -199,7 +199,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 dispose();
 
             } else if (tipoLoginUsuario == TipoLogin.FUNCIONARIO) {
-                // Opcao para FUNCIONARIO
+                Funcionario func = ControladorFuncionario.getInstance().getFuncionarioPorUsername(login);
+                new InterfaceFuncionario(func.getNome()).setVisible(true);
                 dispose();
             }
 
