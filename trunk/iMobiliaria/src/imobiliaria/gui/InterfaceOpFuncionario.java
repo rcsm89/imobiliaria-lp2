@@ -100,7 +100,7 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
             }
         });
         JP_VerInfo.add(JB_CadasFunc);
-        JB_CadasFunc.setBounds(430, 350, 210, 35);
+        JB_CadasFunc.setBounds(420, 350, 220, 37);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Listagem Total"));
         jPanel1.setLayout(null);
@@ -124,15 +124,15 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
             }
         });
         JP_VerInfo.add(JB_Voltar);
-        JB_Voltar.setBounds(430, 400, 210, 35);
+        JB_Voltar.setBounds(420, 400, 220, 35);
 
-        jLabel4.setText("Numero de Funcionarios cadastrados:");
+        jLabel4.setText("Funcionarios cadastrados:");
         JP_VerInfo.add(jLabel4);
-        jLabel4.setBounds(420, 40, 230, 14);
+        jLabel4.setBounds(420, 40, 230, 15);
 
         JL_NumFuncCad.setText("XX");
         JP_VerInfo.add(JL_NumFuncCad);
-        JL_NumFuncCad.setBounds(420, 60, 50, 14);
+        JL_NumFuncCad.setBounds(420, 60, 50, 15);
 
         jTabbedPane1.addTab("Listagem de Funcionarios", JP_VerInfo);
 
@@ -146,63 +146,64 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
         jScrollPane2.setViewportView(JTA_ListFunc);
 
         jPanel2.add(jScrollPane2);
-        jScrollPane2.setBounds(10, 20, 400, 140);
+        jScrollPane2.setBounds(10, 20, 410, 140);
 
         JP_AttCad.add(jPanel2);
-        jPanel2.setBounds(10, 11, 420, 170);
+        jPanel2.setBounds(10, 11, 430, 170);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Informacao"));
         jPanel3.setLayout(null);
 
         jLabel1.setText("Nome:");
         jPanel3.add(jLabel1);
-        jLabel1.setBounds(10, 30, 60, 14);
+        jLabel1.setBounds(10, 30, 60, 15);
         jPanel3.add(JTF_Nome);
-        JTF_Nome.setBounds(90, 30, 310, 20);
+        JTF_Nome.setBounds(110, 30, 310, 25);
 
         jLabel2.setText("Endereço:");
         jPanel3.add(jLabel2);
-        jLabel2.setBounds(10, 60, 60, 14);
+        jLabel2.setBounds(10, 60, 90, 15);
         jPanel3.add(JTF_Endereco);
-        JTF_Endereco.setBounds(90, 60, 310, 20);
+        JTF_Endereco.setBounds(110, 60, 310, 25);
 
         jLabel3.setText("Cpf:");
         jPanel3.add(jLabel3);
-        jLabel3.setBounds(10, 90, 40, 14);
+        jLabel3.setBounds(10, 90, 40, 15);
 
         jLabel5.setText("Nascimento:");
         jPanel3.add(jLabel5);
-        jLabel5.setBounds(10, 120, 80, 14);
+        jLabel5.setBounds(10, 120, 100, 15);
 
         jLabel8.setText("Login:");
         jPanel3.add(jLabel8);
-        jLabel8.setBounds(10, 150, 50, 14);
+        jLabel8.setBounds(10, 150, 90, 20);
 
         jLabel9.setText("Senha:");
         jPanel3.add(jLabel9);
-        jLabel9.setBounds(220, 150, 60, 14);
+        jLabel9.setBounds(240, 150, 60, 15);
 
         JTF_cpf.setText("000.000.000-00");
         jPanel3.add(JTF_cpf);
-        JTF_cpf.setBounds(90, 90, 310, 20);
+        JTF_cpf.setBounds(110, 90, 310, 25);
 
         JTF_Nascimento.setText("00/00/000");
         jPanel3.add(JTF_Nascimento);
-        JTF_Nascimento.setBounds(90, 120, 310, 20);
+        JTF_Nascimento.setBounds(110, 120, 310, 25);
         jPanel3.add(JTF_Login);
-        JTF_Login.setBounds(90, 150, 120, 20);
+        JTF_Login.setBounds(110, 150, 120, 25);
         jPanel3.add(JTF_Senha);
-        JTF_Senha.setBounds(280, 150, 120, 20);
+        JTF_Senha.setBounds(300, 150, 120, 25);
 
         JP_AttCad.add(jPanel3);
-        jPanel3.setBounds(10, 240, 420, 190);
+        jPanel3.setBounds(10, 240, 430, 190);
 
         jLabel7.setText("Procurar por nome:");
         JP_AttCad.add(jLabel7);
-        jLabel7.setBounds(450, 30, 140, 14);
+        jLabel7.setBounds(450, 30, 140, 15);
         JP_AttCad.add(JTF_ProcuraFuncInfo);
-        JTF_ProcuraFuncInfo.setBounds(450, 50, 190, 20);
+        JTF_ProcuraFuncInfo.setBounds(450, 50, 190, 25);
 
+        JB_ProcuraFuncInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/procuraIcon.png"))); // NOI18N
         JB_ProcuraFuncInfo.setText("Procurar");
         JB_ProcuraFuncInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,7 +211,7 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
             }
         });
         JP_AttCad.add(JB_ProcuraFuncInfo);
-        JB_ProcuraFuncInfo.setBounds(540, 80, 100, 23);
+        JB_ProcuraFuncInfo.setBounds(450, 80, 190, 40);
 
         JB_SelectFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/okIcon.png"))); // NOI18N
         JB_SelectFuncionario.setText("Selecionar");
@@ -230,15 +231,15 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
             }
         });
         JP_AttCad.add(JB_SalvaDadosFunc);
-        JB_SalvaDadosFunc.setBounds(450, 300, 180, 31);
+        JB_SalvaDadosFunc.setBounds(450, 300, 180, 33);
 
         jLabel10.setText("Funcionario:");
         JP_AttCad.add(jLabel10);
-        jLabel10.setBounds(20, 200, 80, 14);
+        jLabel10.setBounds(10, 200, 100, 15);
 
         JCB_ListFunc.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         JP_AttCad.add(JCB_ListFunc);
-        JCB_ListFunc.setBounds(100, 200, 330, 22);
+        JCB_ListFunc.setBounds(110, 200, 320, 25);
 
         JB_ExcluirFunc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/exitIcon.png"))); // NOI18N
         JB_ExcluirFunc.setText("Excluir");
@@ -248,7 +249,7 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
             }
         });
         JP_AttCad.add(JB_ExcluirFunc);
-        JB_ExcluirFunc.setBounds(450, 350, 180, 31);
+        JB_ExcluirFunc.setBounds(450, 350, 180, 34);
 
         JB_VerHistoricoFunc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/homeIcon.png"))); // NOI18N
         JB_VerHistoricoFunc.setText("Ver historico");
@@ -258,7 +259,7 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
             }
         });
         JP_AttCad.add(JB_VerHistoricoFunc);
-        JB_VerHistoricoFunc.setBounds(450, 250, 180, 31);
+        JB_VerHistoricoFunc.setBounds(450, 250, 180, 34);
 
         jTabbedPane1.addTab("Informacoes", JP_AttCad);
 
