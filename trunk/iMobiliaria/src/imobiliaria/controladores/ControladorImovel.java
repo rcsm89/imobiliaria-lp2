@@ -5,6 +5,7 @@ import imobiliaria.auxiliar.TipoContratual;
 import imobiliaria.auxiliar.TipoImovel;
 import imobiliaria.colecoes.ColecaoImoveis;
 import imobiliaria.entidades.Area;
+import imobiliaria.entidades.Funcionario;
 import imobiliaria.entidades.Imovel;
 import imobiliaria.exceptions.ImovelNotFoundException;
 import imobiliaria.exceptions.ValorInvalidoException;
@@ -271,7 +272,9 @@ public class ControladorImovel implements Serializable {
 		return listaImoveis(colecaoImovel.getImoveis(nome));
 	}
 
-	/* Modificacao que eu falei (Yuri) */
+	public String listaImoveis(ColecaoImoveis colecaoImoveis){
+		return listaImoveis(colecaoImoveis.getImoveis());
+	}
 
 	/**
 	 * Metodo que adiciona um imovel no Controlador a partir de suas informacoes

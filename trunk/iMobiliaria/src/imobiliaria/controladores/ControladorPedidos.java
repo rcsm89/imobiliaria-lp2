@@ -208,6 +208,32 @@ public class ControladorPedidos implements Serializable {
 
 		return listaPedidos(pedidos);
 	}
+	
+	/**
+	 * Metodo que retorna um array de pedidos, <br>
+	 * auxilia na interface
+	 * @param cpf
+	 * 		Cpf do cliente
+	 * @return
+	 * 		Array de pedidos
+	 */
+	public String[] listaDePedidosGUI(String cpf){
+		if (VerificaInvalido.basico(cpf)){
+			throw new IllegalArgumentException("CPF invalido");
+		}
+		ArrayList<String> pedidos = new ArrayList<String>(); //para melhor manipulacao
+		String[] pedidosCliente = new String[listaPedidos.size()];
+		
+		for (Pedido pedido : listaPedidos) {
+			pedidos.add( pedido.exibeInformacao() );
+		}
+		if (!(pedidos.isEmpty())){
+			for (int i = 0; i < pedidos.size(); i++) {
+				pedidosCliente[i] = pedidos.get(i);
+			}
+		}
+		return pedidosCliente;
+	}
 
 	/**
 	 * Metodo de Listagem para Todos os Pedidos do Controlador
@@ -234,6 +260,7 @@ public class ControladorPedidos implements Serializable {
 		}
 		return saida;
 	}
+	
 
 	private Pedido getPedido(String registroImovel) {
 		int registro;
