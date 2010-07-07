@@ -27,6 +27,11 @@ public class InterfaceDadosCliente extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Dados De Cliente");
+        JL_NomeDoCliente.setText(cliente.getNome());
+        JL_CpfDoCliente.setText(cliente.getCpf());
+        JL_EnderecoDoCliente.setText(cliente.getEndereco());
+        JL_NascimentoDoCliente.setText(cliente.getDataNascimento());
+        JL_PreferenciaDoCliente.setText(cliente.getPreferencia().toString());
     }
 
     /** This method is called from within the constructor to
