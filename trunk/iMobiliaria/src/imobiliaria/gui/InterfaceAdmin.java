@@ -561,12 +561,11 @@ public class InterfaceAdmin extends javax.swing.JFrame implements InterfaceOpIF 
         if (JCB_Pedidos.getSelectedItem() == null) {
             JOptionPane.showMessageDialog(null, "Nenhum Pedido Selecionado",
                     "Efetuar Pedido", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-
         Pedido pedido = (Pedido) JCB_Pedidos.getSelectedItem();
 
         new InterfaceRecebeCreci(pedido, this).setVisible(true);
-
     }//GEN-LAST:event_JB_EfetuarPedidoActionPerformed
 
     private void JB_DeslogaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_DeslogaActionPerformed
