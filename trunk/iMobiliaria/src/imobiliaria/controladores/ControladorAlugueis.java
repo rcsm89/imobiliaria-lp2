@@ -230,4 +230,14 @@ public class ControladorAlugueis implements Serializable {
         }
         return saida;
     }
+    
+    //Metodo feito para interface Grafica
+    public Aluguel[] listaAlugueisGUI(Cliente cliente){
+		Aluguel[] alugueisGui = new Aluguel[alugueis.size()];
+		
+		for (int i = 0; i < alugueis.size(); i++) {
+			alugueisGui[i] = alugueis.get(i);
+		}		
+		return alugueisGui;
+	}
 }

@@ -195,6 +195,16 @@ public class ControladorImovel implements Serializable {
 
 		return saida;
 	}
+	
+	//Metodo feito para interface Grafica
+	public Imovel[] listaImoveisGUI(){
+		Imovel[] imoveis = new Imovel[colecaoImovel.getImoveis().size()];
+		
+		for (int i = 0; i < colecaoImovel.getImoveis().size(); i++) {
+			imoveis[i] = colecaoImovel.getImoveis().get(i);
+		}		
+		return imoveis;
+	}
 
 	/**
 	 * Metodo responsavel por listar todos os imoveis
