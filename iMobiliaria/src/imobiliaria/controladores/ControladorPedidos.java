@@ -105,6 +105,7 @@ public class ControladorPedidos implements Serializable {
 					" para poder ser pedido");
 
 		listaPedidos.add(new Pedido(imovelPedido, clienteQueSolicitou));
+		
 		imovelPedido.pedido();
 	}
 
@@ -181,8 +182,9 @@ public class ControladorPedidos implements Serializable {
 
 		if (pedido == null)
 			throw new PedidoNotFoundException("Parametros invalidos");
-
-		pedido.getImovel().a_venda();
+		
+		
+		ControladorImovel.getInstance().getImovel(pedido.getImovel().getRegistroImovel() + "").a_venda();
 		listaPedidos.remove(pedido);
 	}
 
@@ -284,8 +286,11 @@ public class ControladorPedidos implements Serializable {
 	private void efetuaVenda(Pedido pedido, Funcionario vendedor)
 			throws ValorInvalidoException, ImovelInvalidoException {
 
-		pedido.getCliente().getHistoricoCompras().addImovel(
-				pedido.getImovel());
+		//pedido.getCliente().getHistoricoCompras().addImovel(
+			//	pedido.getImovel());
+		
+		ControladorCliente.getInstance().getCliente(pedido.getCliente().getCpf())
+			.getHistoricoCompras().addImovel(pedido.getImovel());
 
 		ControladorTransacoes.getInstance().adicionaTransacao(
 				pedido.getCliente().getCpf(), vendedor.getCreci(),
@@ -309,8 +314,6 @@ public class ControladorPedidos implements Serializable {
 				String.valueOf(pedido.getImovel().getRegistroImovel()));
 
 		pedido.getImovel().alugado();
-		
-		System.out.println("aluguel");
 		
 		ControladorTransacoes.getInstance().adicionaAoCaixa(
 				pedido.getImovel().getValor());

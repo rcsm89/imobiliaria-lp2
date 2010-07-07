@@ -577,7 +577,6 @@ public class InterfaceAdmin extends javax.swing.JFrame implements InterfaceOpIF 
     private void preencheCBox() {
 
         JCB_Alugueis.removeAllItems();
-        System.out.println(ControladorAlugueis.getInstance().listaAlugueis());
         for (Aluguel a : ControladorAlugueis.getInstance().getListaAlugueis())
             JCB_Alugueis.addItem(a);
 
