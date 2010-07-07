@@ -1,5 +1,6 @@
 package imobiliaria.entidades;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -8,8 +9,9 @@ import java.util.GregorianCalendar;
  * 
  * @version IT02
  */
-public class Pedido implements Comparable<Object> {
+public class Pedido implements Comparable<Object>, Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Calendar dataDoPedido;
 	private Cliente cliente;
 	private Imovel imovel;

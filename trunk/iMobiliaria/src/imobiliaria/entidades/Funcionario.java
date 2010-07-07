@@ -116,6 +116,20 @@ public class Funcionario extends Usuario {
 	public void resetaImoveisVendidosMes() {
 		historicoVendidoMes.getImoveis().clear();
 	}
+	
+	/**
+	 * Metodo que retorna informacoes do Funcionario formatadas
+	 * @return Informacoes do Funcionario (String)
+	 */
+	public String exibeInformacao() {
+		return "Nome: " + getNome() + " - CPF: " + getCpf()
+		+ "\n" + "Endereco: " + getEndereco()
+		+ "\nData de Nascimento: " + getDataNascimento()
+		+ " - Creci: " + getCreci();
+		
+		
+	}
+	
 
 	@Override
 	public boolean equals(Object obj) {

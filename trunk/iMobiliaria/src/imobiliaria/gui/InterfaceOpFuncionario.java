@@ -469,7 +469,7 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
             for (Funcionario f : ControladorFuncionario.getInstance()
                 .getColecaoFuncionario().getFuncionarioPorNome(JTF_ProcuraFuncInfo
                 .getText())) {
-                info += f.toString() + "\n";
+                info += f.exibeInformacao() + "\n";
                 }
 
         JTA_ListFunc.setText(info);
