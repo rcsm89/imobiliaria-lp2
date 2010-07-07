@@ -247,6 +247,11 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
         jLabel10.setBounds(10, 200, 100, 15);
 
         JCB_ListFunc.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JCB_ListFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCB_ListFuncActionPerformed(evt);
+            }
+        });
         JP_AttCad.add(JCB_ListFunc);
         JCB_ListFunc.setBounds(110, 200, 320, 25);
 
@@ -379,6 +384,10 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
     private void JB_CadasFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_CadasFuncActionPerformed
         new CadastraFuncionario(this).setVisible(true);
 }//GEN-LAST:event_JB_CadasFuncActionPerformed
+
+    private void JCB_ListFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCB_ListFuncActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JCB_ListFuncActionPerformed
 
 
 
