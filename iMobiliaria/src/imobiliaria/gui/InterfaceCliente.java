@@ -11,7 +11,8 @@
 
 package imobiliaria.gui;
 
-import imobiliaria.entidades.Cliente;
+import imobiliaria.entidades.*;
+import imobiliaria.controladores.*;
 
 /**
  * @author bruno
@@ -75,7 +76,7 @@ public class InterfaceCliente extends javax.swing.JFrame {
         });
 
         JLI_PedidosCliente.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "Não há pedidos na sua conta" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -152,6 +153,11 @@ public class InterfaceCliente extends javax.swing.JFrame {
     private void JB_DeslogaActionPerformed(java.awt.event.ActionEvent evt) {
         new TelaPrincipal().setVisible(true);
         dispose();
+    }
+
+    private Imovel[] mostraPedidos(Cliente cliente){
+        Imovel[] pedidos = ControladorPedidos.getInstance().listaDePedidosGUI(cliente.getCpf());
+        return pedidos;
     }
 
     /**
