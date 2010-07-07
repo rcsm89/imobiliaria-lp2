@@ -80,6 +80,9 @@ public class InterfaceOpClientes extends javax.swing.JFrame{
         JB_ProcuraInfo = new javax.swing.JButton();
         JB_SelectCliente = new javax.swing.JButton();
         JB_SalvaDados = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         JB_HistoCliente = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -101,17 +104,12 @@ public class InterfaceOpClientes extends javax.swing.JFrame{
         JB_VerPedidos = new javax.swing.JButton();
         JTF_ProcuraNomePedido = new javax.swing.JTextField();
         JB_ProcuraPedido = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        JCB_ListaPedidos = new javax.swing.JComboBox();
         JB_SelectClientePed = new javax.swing.JButton();
-        JB_EfetuarPedido = new javax.swing.JButton();
-        JB_CancelarPed = new javax.swing.JButton();
-        JL_Creci = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Opções Cliente");
         setResizable(false);
+        getContentPane().setLayout(null);
 
         JB_CadCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/addIcon.png"))); // NOI18N
         JB_CadCliente.setText("Cadastrar cliente");
@@ -330,6 +328,12 @@ public class InterfaceOpClientes extends javax.swing.JFrame{
             }
         });
 
+        jLabel12.setText("Escolha um cliente");
+
+        jLabel13.setText("e modifique seus");
+
+        jLabel14.setText("dados, e salve");
+
         javax.swing.GroupLayout JP_AttCadLayout = new javax.swing.GroupLayout(JP_AttCad);
         JP_AttCad.setLayout(JP_AttCadLayout);
         JP_AttCadLayout.setHorizontalGroup(
@@ -338,13 +342,17 @@ public class InterfaceOpClientes extends javax.swing.JFrame{
                 .addContainerGap()
                 .addGroup(JP_AttCadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(JP_AttCadLayout.createSequentialGroup()
-                        .addGroup(JP_AttCadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(JP_AttCadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JB_SalvaDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JB_SelectCliente)))
+                            .addComponent(jLabel14)
+                            .addGroup(JP_AttCadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel13)
+                                .addGroup(JP_AttCadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12)
+                                    .addGroup(JP_AttCadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(JB_SalvaDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(JB_SelectCliente))))))
                     .addGroup(JP_AttCadLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -352,6 +360,9 @@ public class InterfaceOpClientes extends javax.swing.JFrame{
                         .addGap(18, 18, 18)
                         .addComponent(JB_ProcuraInfo)))
                 .addContainerGap())
+            .addGroup(JP_AttCadLayout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(197, 197, 197))
         );
 
         JP_AttCadLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {JB_SalvaDados, JB_SelectCliente});
@@ -360,20 +371,25 @@ public class InterfaceOpClientes extends javax.swing.JFrame{
             JP_AttCadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JP_AttCadLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(JP_AttCadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(JTF_ProcuraNomeInf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JB_ProcuraInfo))
+                .addGap(26, 26, 26)
                 .addGroup(JP_AttCadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(JP_AttCadLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                         .addComponent(JB_SelectCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JB_SalvaDados))
-                    .addGroup(JP_AttCadLayout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(JP_AttCadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(JTF_ProcuraNomeInf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JB_ProcuraInfo))
-                        .addGap(26, 26, 26)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -536,11 +552,6 @@ public class InterfaceOpClientes extends javax.swing.JFrame{
             }
         });
 
-        jLabel10.setText("Pedidos:");
-
-        JCB_ListaPedidos.setMaximumRowCount(5);
-        JCB_ListaPedidos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "< Sem nenhum pedido >" }));
-
         JB_SelectClientePed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/okIcon.png"))); // NOI18N
         JB_SelectClientePed.setText("Selecionar cliente");
         JB_SelectClientePed.addActionListener(new java.awt.event.ActionListener() {
@@ -548,26 +559,6 @@ public class InterfaceOpClientes extends javax.swing.JFrame{
                 JB_SelectClientePedActionPerformed(evt);
             }
         });
-
-        JB_EfetuarPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/pedidoIcon.png"))); // NOI18N
-        JB_EfetuarPedido.setText("Efetuar");
-        JB_EfetuarPedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JB_EfetuarPedidoActionPerformed(evt);
-            }
-        });
-
-        JB_CancelarPed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/exitIcon.png"))); // NOI18N
-        JB_CancelarPed.setText("Cancelar");
-        JB_CancelarPed.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JB_CancelarPedActionPerformed(evt);
-            }
-        });
-
-        JL_Creci.setText("0");
-
-        jLabel11.setText("Seu CRECI:");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -580,36 +571,21 @@ public class InterfaceOpClientes extends javax.swing.JFrame{
                         .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel6Layout.createSequentialGroup()
-                                        .addComponent(JB_EfetuarPedido)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(JB_CancelarPed))
-                                    .addComponent(JCB_ListaPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(JB_SelectClientePed)
-                                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel10)
-                                        .addGroup(jPanel6Layout.createSequentialGroup()
-                                            .addComponent(jLabel9)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(JTF_ProcuraNomePedido, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(JB_ProcuraPedido))))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                            .addComponent(JB_SelectClientePed)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JTF_ProcuraNomePedido, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JB_ProcuraPedido)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addComponent(jLabel6)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel6Layout.createSequentialGroup()
-                                    .addComponent(jLabel11)
-                                    .addGap(53, 53, 53)
-                                    .addComponent(JL_Creci))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
                                 .addComponent(JB_VerPedidos)))
                         .addGap(47, 47, 47))))
         );
@@ -633,33 +609,13 @@ public class InterfaceOpClientes extends javax.swing.JFrame{
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(JB_SelectClientePed)))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JL_Creci)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JCB_ListaPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JB_CancelarPed)
-                    .addComponent(JB_EfetuarPedido))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Pedidos", jPanel6);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        getContentPane().add(jTabbedPane1);
+        jTabbedPane1.setBounds(0, 0, 668, 574);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -731,7 +687,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame{
             
 
         }catch (Exception ex){
-            JOptionPane.showMessageDialog(null, " Cliente Inválido",
+            JOptionPane.showMessageDialog(null, " Cliente Inválido\nVocê deve escolher um cliente",
                     "Erro Ao Escolher Cliente", JOptionPane.ERROR_MESSAGE);
         }
 
@@ -779,63 +735,39 @@ public class InterfaceOpClientes extends javax.swing.JFrame{
 
     private void JB_SalvaDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SalvaDadosActionPerformed
         String nomeCpf = JList_ClienteInfo.getSelectedValue().toString();
-        if (nomeCpf==null){
-                JOptionPane.showMessageDialog(null, "ERRO",
-                    "Você deve escolher um cliente", JOptionPane.ERROR_MESSAGE);
-         }
-
         String soCpf = nomeCpf.substring(nomeCpf.lastIndexOf(" "), nomeCpf.length());
         boolean clienteModificadoOK = false;
+        Calendar data;
+
         try{
             Cliente clienteMod = ControladorCliente.getInstance().getCliente(soCpf.trim());
-            
-
             clienteMod.setNome(JTF_Nome.getText());
             clienteMod.setEndereco(JTF_Endereco.getText());
-            clienteMod.setCpf( JTF_CpfCliente.getText());
-            Calendar data;
+            
+            String cpfSemPonto = JTF_CpfCliente.getText().replace(".", "");
+            String cpf = cpfSemPonto.replace("-", "");
+            clienteMod.setCpf(cpf);
 
-            try {
             String[] nascimento = JTF_Data.getText().split("/");
             data = new GregorianCalendar(Integer.parseInt(nascimento[2]),
                     Integer.parseInt(nascimento[1]) - 1,
                     Integer.parseInt(nascimento[0]));
-            } catch (Exception e) {
-                throw new Exception("Data Invalida!");
-            }
+            clienteMod.setDataNascimento(data);
+
+
 
             sis.salvarDados();
             clienteModificadoOK = true;
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "ERRO",
-                    "Erro ao salvar dados", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao salvar dados",
+                    "ERRO", JOptionPane.ERROR_MESSAGE);
         }
 
         if(clienteModificadoOK){
             atualiza();
         }
-        /*
-         if (funcSelecionado == null) {
-            MostraErro(new Exception("Funcionario nao selecionado"));
-            return;
-        }
 
-        try {
-
-
-        ControladorFuncionario.getInstance().modificaFuncionario(funcSelecionado.getCreci(),
-                JTF_cpf.getText().replace(".", "").replace("-", ""),
-                data, JTF_Endereco.getText(), JTF_Nome.getText());
-
-        JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!",
-                    "Salvar Dados", JOptionPane.INFORMATION_MESSAGE);
-        atualizaFuncionarios();
-
-        } catch (Exception e) {
-            MostraErro(e);
-        }
-         */
     }//GEN-LAST:event_JB_SalvaDadosActionPerformed
 
     private void JB_SelectClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SelectClienteActionPerformed
@@ -849,7 +781,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame{
             JTF_Data.setText(clienteMod.getDataNascimento());
             
         }catch (Exception ex){
-            JOptionPane.showMessageDialog(null, " Cliente Inválido",
+            JOptionPane.showMessageDialog(null, " Cliente Inválido\nEscolha um cliente na lista",
                     "Erro Ao Escolher Cliente", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_JB_SelectClienteActionPerformed
@@ -867,7 +799,10 @@ public class InterfaceOpClientes extends javax.swing.JFrame{
             String nomeCpf = JList_Pedido.getSelectedValue().toString();
             String soCpf = nomeCpf.substring(nomeCpf.lastIndexOf(" "), nomeCpf.length());
             Cliente clientePedi = ControladorCliente.getInstance().getCliente(soCpf.trim());
-            JCB_ListaPedidos.setModel(new javax.swing.DefaultComboBoxModel( mostraImoveis(clientePedi)  ));
+
+            Imovel[] pedidos = ControladorPedidos.getInstance().listaDePedidosGUI(clientePedi.getCpf());
+            System.out.print(pedidos.length);
+
         }catch (Exception ex){
             JOptionPane.showMessageDialog(null, " Cliente Inválido",
                     "Erro Ao Escolher Cliente", JOptionPane.ERROR_MESSAGE);
@@ -875,34 +810,6 @@ public class InterfaceOpClientes extends javax.swing.JFrame{
 
         
     }//GEN-LAST:event_JB_SelectClientePedActionPerformed
-
-    private void JB_EfetuarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_EfetuarPedidoActionPerformed
-        new InterfaceRecebeCreci(JL_Creci);
-        String creci = JL_Creci.getText();
-        Funcionario func;
-        func = ControladorFuncionario.getInstance().getFuncionarioPorCreci(creci.trim());
-        
-        Imovel imovelPedido = (Imovel) JCB_ListaPedidos.getSelectedItem();
-        
-        try {
-            ControladorPedidos.getInstance().efetuaPedido(String.valueOf(imovelPedido.getRegistroImovel()), func.getCreci());
-            sis.salvarDados();
-        } catch (Exception ex) {
-            Logger.getLogger(InterfaceOpClientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-    }//GEN-LAST:event_JB_EfetuarPedidoActionPerformed
-
-    private void JB_CancelarPedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_CancelarPedActionPerformed
-        
-        try{
-            Imovel imovelPedido = (Imovel) JCB_ListaPedidos.getSelectedItem();
-            ControladorPedidos.getInstance().removePedido(null);
-        }catch (Exception ex){
-
-        }
-    }//GEN-LAST:event_JB_CancelarPedActionPerformed
     
     /*
      * Metodo de Busca por nomes
@@ -988,9 +895,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JB_CadCliente;
-    private javax.swing.JButton JB_CancelarPed;
     private javax.swing.JButton JB_DelCliente;
-    private javax.swing.JButton JB_EfetuarPedido;
     private javax.swing.JPanel JB_HistoCliente;
     private javax.swing.JButton JB_Procura;
     private javax.swing.JButton JB_ProcuraHist;
@@ -1002,8 +907,6 @@ public class InterfaceOpClientes extends javax.swing.JFrame{
     private javax.swing.JButton JB_VerHistorico;
     private javax.swing.JButton JB_VerPedidos;
     private javax.swing.JButton JB_Voltar;
-    private javax.swing.JComboBox JCB_ListaPedidos;
-    private javax.swing.JLabel JL_Creci;
     private javax.swing.JLabel JL_ProcuraNome;
     private javax.swing.JList JList_Cliente;
     private javax.swing.JList JList_ClienteHist;
@@ -1021,8 +924,9 @@ public class InterfaceOpClientes extends javax.swing.JFrame{
     private javax.swing.JTextField JTF_ProcuraNomeInf;
     private javax.swing.JTextField JTF_ProcuraNomePedido;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
