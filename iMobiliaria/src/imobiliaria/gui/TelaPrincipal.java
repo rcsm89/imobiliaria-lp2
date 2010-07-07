@@ -5,7 +5,7 @@
 
 /*
  * TelaPrincipal.java
- *
+ *|
  * Created on 06/06/2010, 21:20:25
  */
 
