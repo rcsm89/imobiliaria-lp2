@@ -32,6 +32,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 	} catch (Exception e) {
 	    System.out.println("Erro: " + e.getMessage());
 	}
+
     }
 
     /** This method is called from within the constructor to

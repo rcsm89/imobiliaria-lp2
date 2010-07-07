@@ -268,24 +268,24 @@ public class OperacoesInterfaceTextual {
 	    }
 	    
 	    tipoContratual = null;
-	    switch (opcaoContrato) {
-	    case 1:
+	    if (opcaoContrato == 1) {
 	    	tipoContratual = TipoContratual.ALUGUEL;
-	    case 2:
+	    } else if (opcaoContrato == 2) {
 	    	tipoContratual = TipoContratual.VENDA;
 	    }
 	    
 	    // CRIACAO/CADASTRO DO IMOVEL
 	    try {
-		area = new Area(comprimento, largura);
-		ControladorImovel.getInstance().addImovel(nome, endereco,
-			valor, area, tipoDoImovel, tipoContratual);
-		repeteCadastro = false;
+			area = new Area(comprimento, largura);
+			
+			ControladorImovel.getInstance().addImovel(nome, endereco,
+				valor, area, tipoDoImovel, tipoContratual);
+			repeteCadastro = false;
 
 	    } catch (Exception erro) {
-		System.out.println("\n=========== AVISO =============\n"
-			+ erro.getMessage());
-		repeteCadastro = true;
+			System.out.println("\n=========== AVISO =============\n"
+				+ erro.getMessage());
+			repeteCadastro = true;
 	    }
 
 	} while (repeteCadastro);
