@@ -243,7 +243,16 @@ public class InterfaceCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_JB_FazPedidoActionPerformed
 
     private void JB_CancelaPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_CancelaPedidoActionPerformed
-        // TODO add your handling code here:
+        Imovel imovelPedido = (Imovel) JLI_ImoveisImob.getSelectedValue();
+        System.out.print(imovelPedido.toString());
+        try{
+            ControladorPedidos.getInstance().removePedido(imovelPedido.getRegistroImovel() + "");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Registro de Imóvel Invalido!",
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        atualizaPedidos();
+        sis.salvarDados();
     }//GEN-LAST:event_JB_CancelaPedidoActionPerformed
 
     private void JB_CancelaAluguelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_CancelaAluguelActionPerformed
