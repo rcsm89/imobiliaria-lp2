@@ -83,4 +83,15 @@ public class Cliente extends Usuario {
 		return getCpf().equals(outroCliente.getCpf());
 
 	}
+	
+	//Metodo feito para interface Grafica
+	public Imovel[] listaHistoricoGui(){
+		Imovel[] historico = new Imovel[historicoCompras.getImoveis().size()];
+		
+		for (int i = 0; i < historicoCompras.getImoveis().size(); i++) {
+			historico[i] = historicoCompras.getImoveis().get(i);
+		}		
+		return historico;
+		
+	}
 }
