@@ -1,5 +1,7 @@
 package imobiliaria.userInterface;
 
+import imobiliaria.gui.TelaPrincipal;
+
 /**
  * Main do Sistema
  * 
@@ -16,7 +18,8 @@ public class Main {
      */
     public static void main(String[] args) {
 
-	InterfaceTextual ui = new InterfaceTextual();
-	ui.interfaceComUsuario();
+	TelaPrincipal ui = new TelaPrincipal();
+	ui.setVisible(true);
+	//ui.interfaceComUsuario();
     }
 }
