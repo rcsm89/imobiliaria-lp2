@@ -182,7 +182,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void JB_CadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_CadClienteActionPerformed
      // Opcao para CADASTRAR CLIENTE
         new CadastraCliente().setVisible(true);
-        dispose();
+        
 
     }//GEN-LAST:event_JB_CadClienteActionPerformed
 

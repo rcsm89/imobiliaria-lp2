@@ -256,7 +256,6 @@ public class CadastraCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JB_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_VoltarActionPerformed
-        new TelaPrincipal().setVisible(true);
         dispose();
     }//GEN-LAST:event_JB_VoltarActionPerformed
  
