@@ -11,15 +11,21 @@
 
 package imobiliaria.gui;
 
+import imobiliaria.entidades.Cliente;
+
 /**
  * @author bruno
  */
 public class InterfaceCliente extends javax.swing.JFrame {
 
+	//Atributos
+	Cliente cliente;
     /** Creates new form InterfaceCliente */
-    public InterfaceCliente() {
+    public InterfaceCliente(Cliente cliente) {
+    	this.cliente = cliente;
         initComponents();
         setLocationRelativeTo(null);
+        setTitle("Bem Vindo Cliente");
     }
 
     /** This method is called from within the constructor to
@@ -31,6 +37,9 @@ public class InterfaceCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
+    	final String formataNomeInicio = "- ";
+    	final String formataNomeFim = " -";
+    	String nomeFormatado = formataNomeInicio + cliente.getNome() + formataNomeFim;
         JL_Cliente = new javax.swing.JLabel();
         JL_NomeDeCliente = new javax.swing.JLabel();
         JB_VerificaDadosCliente = new javax.swing.JButton();
@@ -42,22 +51,23 @@ public class InterfaceCliente extends javax.swing.JFrame {
         JLI_AlugueisCliente = new javax.swing.JList();
         jScrollPane1 = new javax.swing.JScrollPane();
         JLI_HistComprasCliente = new javax.swing.JList();
-
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         JL_Cliente.setText("CLIENTE");
-
-        JL_NomeDeCliente.setText("- Bruno Fábio de Farias Paiva -");
+        
+        JL_NomeDeCliente.setText(nomeFormatado);
 
         JB_VerificaDadosCliente.setText("Verificar Seus Dados");
+        JB_VerificaDadosCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/procuraIcon.png")));
         JB_VerificaDadosCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JB_VerificaDadosClienteActionPerformed(evt);
             }
         });
 
-        JB_Desloga.setIcon(new javax.swing.ImageIcon("/home/bruno/workspacelcc3/iMobiliaria/src/imobiliaria/images/exitIcon.png")); // NOI18N
         JB_Desloga.setText("Deslogar");
+        JB_Desloga.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/backIcon.png")));
         JB_Desloga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JB_DeslogaActionPerformed(evt);
@@ -135,10 +145,9 @@ public class InterfaceCliente extends javax.swing.JFrame {
 
     private void JB_VerificaDadosClienteActionPerformed(java.awt.event.ActionEvent evt) {
         setVisible(false);
-        new InterfaceDadosCliente().setVisible(true);
-        
+        new InterfaceDadosCliente(cliente).setVisible(true);
 
-}
+    }
 
     private void JB_DeslogaActionPerformed(java.awt.event.ActionEvent evt) {
         new TelaPrincipal().setVisible(true);
@@ -151,7 +160,7 @@ public class InterfaceCliente extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfaceCliente().setVisible(true);
+                new InterfaceCliente(null).setVisible(true);
             }
         });
     }
@@ -169,7 +178,5 @@ public class InterfaceCliente extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration
-
-    //JL_NomeDeCliente = Cliente.getNome();
     
 }
