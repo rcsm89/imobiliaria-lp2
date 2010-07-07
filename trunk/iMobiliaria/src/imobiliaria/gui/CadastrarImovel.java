@@ -11,6 +11,12 @@
 
 package imobiliaria.gui;
 
+import imobiliaria.auxiliar.TipoContratual;
+import imobiliaria.auxiliar.TipoImovel;
+import imobiliaria.controladores.ControladorImovel;
+import imobiliaria.entidades.Area;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jeanderson
@@ -46,7 +52,7 @@ public class CadastrarImovel extends javax.swing.JFrame {
         jR_Terreno = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        jR_VENDA = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -115,9 +121,9 @@ public class CadastrarImovel extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Tipo do Contrato ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        buttonGroup2.add(jRadioButton1);
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("Venda");
+        buttonGroup2.add(jR_VENDA);
+        jR_VENDA.setSelected(true);
+        jR_VENDA.setText("Venda");
 
         buttonGroup2.add(jRadioButton2);
         jRadioButton2.setText("Aluguel");
@@ -129,7 +135,7 @@ public class CadastrarImovel extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jR_VENDA, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -137,7 +143,7 @@ public class CadastrarImovel extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jR_VENDA, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(40, Short.MAX_VALUE))
@@ -182,9 +188,19 @@ public class CadastrarImovel extends javax.swing.JFrame {
 
         jB_EfetuarCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/okIcon.png"))); // NOI18N
         jB_EfetuarCadastro.setText("Efetuar Cadastro");
+        jB_EfetuarCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_EfetuarCadastroActionPerformed(evt);
+            }
+        });
 
         jB_Voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/backIcon.png"))); // NOI18N
         jB_Voltar.setText("Voltar");
+        jB_Voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_VoltarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -199,15 +215,15 @@ public class CadastrarImovel extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jT_Endereco, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
-                            .addComponent(jT_Descricao, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+                            .addComponent(jT_Endereco, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+                            .addComponent(jT_Descricao, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
                             .addComponent(jT_Preco, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(78, 78, 78))
             .addGroup(layout.createSequentialGroup()
@@ -225,7 +241,7 @@ public class CadastrarImovel extends javax.swing.JFrame {
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(12, 12, 12)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,6 +280,57 @@ public class CadastrarImovel extends javax.swing.JFrame {
         setBounds((screenSize.width-640)/2, (screenSize.height-480)/2, 640, 480);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jB_EfetuarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_EfetuarCadastroActionPerformed
+        // TODO add your handling code here:
+        String descricao = jT_Descricao.getText();
+        String endereco = jT_Endereco.getText();
+
+        double preco = -10;
+        double largura = 0;
+        double comprimento = 0;
+        Area area = null;
+
+        TipoImovel tipoImovel = null;
+        if (jR_Apartamento.isSelected())
+            tipoImovel = TipoImovel.APARTAMENTO;
+        if (jR_Casa.isSelected())
+            tipoImovel = TipoImovel.CASA;
+        else
+            tipoImovel = TipoImovel.TERRENO;
+
+        TipoContratual tipoContratual = null;
+        if (jR_VENDA.isSelected())
+            tipoContratual = TipoContratual.VENDA;
+        else
+            tipoContratual = TipoContratual.ALUGUEL;
+
+        try {
+            preco = Double.parseDouble(jT_Preco.getText());
+            largura = Double.parseDouble(jT_Largura.getText());
+            comprimento = Double.parseDouble(jT_Comprimento.getText());
+            area = new Area(comprimento, largura);
+
+        } catch (Exception erro) {
+            jT_Preco.setText("Valor invalido");
+            jT_Largura.setText("Valor invalido");
+            jT_Comprimento.setText("Valor invalido");
+
+        }
+        try {
+            ControladorImovel.getInstance().addImovel(endereco, endereco, preco, area, tipoImovel, tipoContratual);
+
+        } catch (Exception erro) {
+                 JOptionPane.showMessageDialog(null, "Erro ao Efetuar Cadastro:\n\n"
+                    + erro.getMessage(),
+                    "Cadastro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jB_EfetuarCadastroActionPerformed
+
+    private void jB_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_VoltarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jB_VoltarActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -293,7 +360,7 @@ public class CadastrarImovel extends javax.swing.JFrame {
     private javax.swing.JRadioButton jR_Apartamento;
     private javax.swing.JRadioButton jR_Casa;
     private javax.swing.JRadioButton jR_Terreno;
-    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jR_VENDA;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JTextField jT_Comprimento;
     private javax.swing.JTextField jT_Descricao;
