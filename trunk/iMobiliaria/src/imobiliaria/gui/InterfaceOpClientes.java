@@ -788,7 +788,10 @@ public class InterfaceOpClientes extends javax.swing.JFrame implements Interface
     }//GEN-LAST:event_JB_VerPedidosActionPerformed
 
     private void JB_SalvaDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SalvaDadosActionPerformed
-        String nomeCpf = JList_ClienteInfo.getSelectedValue().toString();
+        if (JList_ClienteInfo.getSelectedValue() == null){
+        	return;
+        }
+    	String nomeCpf = JList_ClienteInfo.getSelectedValue().toString();
         String soCpf = nomeCpf.substring(nomeCpf.lastIndexOf(" "), nomeCpf.length());
         boolean clienteModificadoOK = false;
         Calendar data;
