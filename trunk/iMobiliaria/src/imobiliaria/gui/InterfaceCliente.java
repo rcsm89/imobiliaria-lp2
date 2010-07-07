@@ -234,7 +234,6 @@ public class InterfaceCliente extends javax.swing.JFrame {
 
     private void JB_FazPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_FazPedidoActionPerformed
         Imovel imovelPedido = (Imovel) JLI_ImoveisImob.getSelectedValue();
-        System.out.print(imovelPedido.toString());
         try{
             ControladorPedidos.getInstance().adicionaPedido(imovelPedido.getRegistroImovel() + "", cliente.getCpf());
         }catch(Exception e){
