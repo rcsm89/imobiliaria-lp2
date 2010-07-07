@@ -54,8 +54,6 @@ public class InterfaceOpImovel extends javax.swing.JFrame {
         jT_ListagemImoveis.setEditable(false);
         jT_ListagemImoveis.setRows(5);
         jScrollPane1.setViewportView(jT_ListagemImoveis);
-        String imoveis =  ControladorImovel.getInstance().listaImoveis();
-        jT_ListagemImoveis.setText(imoveis);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -165,6 +163,7 @@ public class InterfaceOpImovel extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new InterfaceOpImovel().setVisible(true);
+                
             }
         });
     }
