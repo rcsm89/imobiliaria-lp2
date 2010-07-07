@@ -15,6 +15,8 @@ import imobiliaria.controladores.*;
 import imobiliaria.entidades.*;
 import imobiliaria.colecoes.*;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +26,7 @@ import javax.swing.JOptionPane;
  *
  * @author Thiago Ferreira
  */
-public class InterfaceOpClientes extends javax.swing.JFrame {
+public class InterfaceOpClientes extends javax.swing.JFrame{
     private Sistema sis;
     /** Creates new form InterfaceOpClientes */
     public InterfaceOpClientes() {
@@ -36,7 +38,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
 	}
         initComponents();
         setLocationRelativeTo(null);
-        atualizaClientes();
+        atualiza();
         
     }
 
@@ -70,15 +72,14 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         JTF_Endereco = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        JL_CpfCliente = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        JL_DataCliente = new javax.swing.JLabel();
+        JTF_CpfCliente = new javax.swing.JTextField();
+        JTF_Data = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         JTF_ProcuraNomeInf = new javax.swing.JTextField();
         JB_ProcuraInfo = new javax.swing.JButton();
         JB_SelectCliente = new javax.swing.JButton();
         JB_SalvaDados = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         JB_HistoCliente = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -178,7 +179,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
         JP_VerInfoLayout.setHorizontalGroup(
             JP_VerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JP_VerInfoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(JP_VerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JP_VerInfoLayout.createSequentialGroup()
                         .addGroup(JP_VerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -214,7 +215,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
                     .addGroup(JP_VerInfoLayout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(JB_DelCliente)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                 .addGroup(JP_VerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JB_Voltar)
                     .addComponent(JB_CadCliente))
@@ -240,7 +241,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -258,11 +259,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
 
         jLabel3.setText("Cpf:");
 
-        JL_CpfCliente.setText("000.000.000-00");
-
         jLabel5.setText("Nascimento:");
-
-        JL_DataCliente.setText("00/00/0000");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -271,22 +268,18 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(JTF_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JTF_Endereco)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JL_CpfCliente)
-                            .addComponent(JL_DataCliente))))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(JTF_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JTF_Endereco))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(JTF_Data, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(JTF_CpfCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -303,11 +296,11 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(JL_CpfCliente))
+                    .addComponent(JTF_CpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(JL_DataCliente))
+                    .addComponent(JTF_Data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -337,9 +330,6 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/loginIcon.png"))); // NOI18N
-        jButton1.setText("Mudar login");
-
         javax.swing.GroupLayout JP_AttCadLayout = new javax.swing.GroupLayout(JP_AttCad);
         JP_AttCad.setLayout(JP_AttCadLayout);
         JP_AttCadLayout.setHorizontalGroup(
@@ -353,10 +343,8 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(JP_AttCadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addGroup(JP_AttCadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(JB_SalvaDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(JB_SelectCliente))))
+                            .addComponent(JB_SalvaDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JB_SelectCliente)))
                     .addGroup(JP_AttCadLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -366,7 +354,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        JP_AttCadLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {JB_SalvaDados, JB_SelectCliente, jButton1});
+        JP_AttCadLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {JB_SalvaDados, JB_SelectCliente});
 
         JP_AttCadLayout.setVerticalGroup(
             JP_AttCadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -374,8 +362,6 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(JP_AttCadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(JP_AttCadLayout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JB_SelectCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JB_SalvaDados))
@@ -391,7 +377,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        JP_AttCadLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {JB_SalvaDados, JB_SelectCliente, jButton1});
+        JP_AttCadLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {JB_SalvaDados, JB_SelectCliente});
 
         jTabbedPane1.addTab("Informações do cliente", JP_AttCad);
 
@@ -449,7 +435,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -479,7 +465,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
                             .addComponent(JB_ProcuraHist))))
                 .addGap(18, 18, 18)
                 .addComponent(JB_VerHistorico)
-                .addGap(69, 69, 69))
+                .addGap(77, 77, 77))
         );
         JB_HistoClienteLayout.setVerticalGroup(
             JB_HistoClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -518,7 +504,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -596,7 +582,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanel6Layout.createSequentialGroup()
                                         .addComponent(JB_EfetuarPedido)
@@ -615,7 +601,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
                                             .addComponent(JTF_ProcuraNomePedido, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(JB_ProcuraPedido))))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addComponent(jLabel6)
@@ -659,7 +645,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JB_CancelarPed)
                     .addComponent(JB_EfetuarPedido))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Pedidos", jPanel6);
@@ -688,7 +674,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_JB_CadClienteActionPerformed
 
     private void JB_ProcuraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ProcuraActionPerformed
-        atualizaClientes();
+        atualiza();
     }//GEN-LAST:event_JB_ProcuraActionPerformed
 
     private void JB_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_VoltarActionPerformed
@@ -713,7 +699,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
         }
 
         if(clienteRemovidoOK){
-            atualizaClientes();
+            atualiza();
         }
 
     }//GEN-LAST:event_JB_DelClienteActionPerformed
@@ -776,7 +762,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
     }
 
     private void JB_ProcuraHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ProcuraHistActionPerformed
-        atualizaClientes();
+        atualiza();
     }//GEN-LAST:event_JB_ProcuraHistActionPerformed
 
     private void JB_VerPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_VerPedidosActionPerformed
@@ -793,35 +779,75 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
 
     private void JB_SalvaDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SalvaDadosActionPerformed
         String nomeCpf = JList_ClienteInfo.getSelectedValue().toString();
+        if (nomeCpf==null){
+                JOptionPane.showMessageDialog(null, "ERRO",
+                    "Você deve escolher um cliente", JOptionPane.ERROR_MESSAGE);
+         }
+
         String soCpf = nomeCpf.substring(nomeCpf.lastIndexOf(" "), nomeCpf.length());
         boolean clienteModificadoOK = false;
         try{
             Cliente clienteMod = ControladorCliente.getInstance().getCliente(soCpf.trim());
+            
+
             clienteMod.setNome(JTF_Nome.getText());
             clienteMod.setEndereco(JTF_Endereco.getText());
+            clienteMod.setCpf( JTF_CpfCliente.getText());
+            Calendar data;
+
+            try {
+            String[] nascimento = JTF_Data.getText().split("/");
+            data = new GregorianCalendar(Integer.parseInt(nascimento[2]),
+                    Integer.parseInt(nascimento[1]) - 1,
+                    Integer.parseInt(nascimento[0]));
+            } catch (Exception e) {
+                throw new Exception("Data Invalida!");
+            }
+
             sis.salvarDados();
             clienteModificadoOK = true;
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao tentar remover cliente",
-                    "Erro Ao Remover Cliente", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ERRO",
+                    "Erro ao salvar dados", JOptionPane.ERROR_MESSAGE);
         }
 
         if(clienteModificadoOK){
-            atualizaClientes();
+            atualiza();
         }
+        /*
+         if (funcSelecionado == null) {
+            MostraErro(new Exception("Funcionario nao selecionado"));
+            return;
+        }
+
+        try {
+
+
+        ControladorFuncionario.getInstance().modificaFuncionario(funcSelecionado.getCreci(),
+                JTF_cpf.getText().replace(".", "").replace("-", ""),
+                data, JTF_Endereco.getText(), JTF_Nome.getText());
+
+        JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!",
+                    "Salvar Dados", JOptionPane.INFORMATION_MESSAGE);
+        atualizaFuncionarios();
+
+        } catch (Exception e) {
+            MostraErro(e);
+        }
+         */
     }//GEN-LAST:event_JB_SalvaDadosActionPerformed
 
     private void JB_SelectClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SelectClienteActionPerformed
-
         try{
             String nomeCpf = JList_ClienteInfo.getSelectedValue().toString();
             String soCpf = nomeCpf.substring(nomeCpf.lastIndexOf(" "), nomeCpf.length());
             Cliente clienteMod = ControladorCliente.getInstance().getCliente(soCpf.trim());
             JTF_Nome.setText(clienteMod.getNome());
             JTF_Endereco.setText(clienteMod.getEndereco());
-            JL_CpfCliente.setText(clienteMod.getCpf());
-            JL_DataCliente.setText(clienteMod.getDataNascimento());
+            JTF_CpfCliente.setText(clienteMod.getCpf());
+            JTF_Data.setText(clienteMod.getDataNascimento());
+            
         }catch (Exception ex){
             JOptionPane.showMessageDialog(null, " Cliente Inválido",
                     "Erro Ao Escolher Cliente", JOptionPane.ERROR_MESSAGE);
@@ -829,11 +855,11 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_JB_SelectClienteActionPerformed
 
     private void JB_ProcuraInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ProcuraInfoActionPerformed
-        atualizaClientes();
+        atualiza();
 }//GEN-LAST:event_JB_ProcuraInfoActionPerformed
 
     private void JB_ProcuraPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ProcuraPedidoActionPerformed
-        atualizaClientes();
+        atualiza();
     }//GEN-LAST:event_JB_ProcuraPedidoActionPerformed
 
     private void JB_SelectClientePedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SelectClientePedActionPerformed
@@ -914,7 +940,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
 	return clientes;
     }
 
-    public void atualizaClientes(){
+    public void atualiza(){
         final String nome = JTF_ProcuraNome.getText();
         final String nomeInfo = JTF_ProcuraNomeInf.getText();
         final String nomeHist = JTF_ProcuraClienteIm.getText();
@@ -977,9 +1003,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
     private javax.swing.JButton JB_VerPedidos;
     private javax.swing.JButton JB_Voltar;
     private javax.swing.JComboBox JCB_ListaPedidos;
-    private javax.swing.JLabel JL_CpfCliente;
     private javax.swing.JLabel JL_Creci;
-    private javax.swing.JLabel JL_DataCliente;
     private javax.swing.JLabel JL_ProcuraNome;
     private javax.swing.JList JList_Cliente;
     private javax.swing.JList JList_ClienteHist;
@@ -988,13 +1012,14 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
     private javax.swing.JList JList_Pedido;
     private javax.swing.JPanel JP_AttCad;
     private javax.swing.JPanel JP_VerInfo;
+    private javax.swing.JTextField JTF_CpfCliente;
+    private javax.swing.JTextField JTF_Data;
     private javax.swing.JTextField JTF_Endereco;
     private javax.swing.JTextField JTF_Nome;
     private javax.swing.JTextField JTF_ProcuraClienteIm;
     private javax.swing.JTextField JTF_ProcuraNome;
     private javax.swing.JTextField JTF_ProcuraNomeInf;
     private javax.swing.JTextField JTF_ProcuraNomePedido;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
