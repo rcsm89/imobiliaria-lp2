@@ -245,11 +245,11 @@ public class InterfaceFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_JB_ClienteActionPerformed
 
     private void JB_ImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ImovelActionPerformed
-        // Opcoes de imovel
+        new InterfaceOpImovel().setVisible(true);
     }//GEN-LAST:event_JB_ImovelActionPerformed
 
     private void JB_AluguelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_AluguelActionPerformed
-        // Opcoes de aluguel
+        new InterfaceListagem("Alugueis", "Listagem de Aluguéis", ControladorAlugueis.getInstance().listaAlugueis()).setVisible(true);
     }//GEN-LAST:event_JB_AluguelActionPerformed
 
     private void JB_PedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_PedidoActionPerformed

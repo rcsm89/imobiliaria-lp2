@@ -38,10 +38,12 @@ public class InterfaceCliente extends javax.swing.JFrame {
 	}
         setLocationRelativeTo(null);
         setTitle("Bem Vindo Cliente");
+        JL_NomeDoCliente.setText("- Cliente: "+cliente.getNome() + " -");
         atualizaImoveis();
         atualizaPedidos();
         atualizaAlugueis();
         atualizaHistorico();
+        
     }
 
     /** This method is called from within the constructor to
@@ -202,7 +204,6 @@ public class InterfaceCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private Imovel[] mostraImoveis(){
-
         Imovel[] imoveis = ControladorImovel.getInstance().listaImoveisGUI();
         return imoveis;
     }
@@ -210,7 +211,7 @@ public class InterfaceCliente extends javax.swing.JFrame {
     public void atualizaImoveis(){
 
         JLI_ImoveisImob.setModel(new javax.swing.AbstractListModel() {
-            final Imovel[] strings = mostraImoveis();
+            Imovel[] strings = mostraImoveis();
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -240,8 +241,11 @@ public class InterfaceCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Registro de Imóvel Invalido!",
                     "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        atualizaPedidos();
         sis.salvarDados();
+        atualizaImoveis();
+        atualizaPedidos();
+        atualizaAlugueis();
+        atualizaHistorico();
     }//GEN-LAST:event_JB_FazPedidoActionPerformed
 
     private Aluguel[] mostraAlugueis(Cliente cliente){
@@ -275,20 +279,34 @@ public class InterfaceCliente extends javax.swing.JFrame {
     }
 
     private void JB_CancelaPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_CancelaPedidoActionPerformed
-        Imovel imovelPedido = (Imovel) JLI_ImoveisImob.getSelectedValue();
-        System.out.print(imovelPedido.toString());
+        Imovel imovelPedido = (Imovel) JLI_Pedidos.getSelectedValue();
+        
         try{
             ControladorPedidos.getInstance().removePedido(imovelPedido.getRegistroImovel() + "");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Registro de Imóvel Invalido!",
                     "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        atualizaPedidos();
         sis.salvarDados();
+        atualizaImoveis();
+        atualizaPedidos();
+        atualizaAlugueis();
+        atualizaHistorico();
     }//GEN-LAST:event_JB_CancelaPedidoActionPerformed
 
     private void JB_CancelaAluguelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_CancelaAluguelActionPerformed
-        // TODO add your handling code here:
+        Imovel imovelAcancelar = (Imovel) JLI_ImoveisImob.getSelectedValue();
+        try{
+            ControladorAlugueis.getInstance().removeAluguel(imovelAcancelar.getRegistroImovel()+ "");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Registro de Imóvel Invalido!",
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        sis.salvarDados();
+        atualizaImoveis();
+        atualizaPedidos();
+        atualizaAlugueis();
+        atualizaHistorico();
     }//GEN-LAST:event_JB_CancelaAluguelActionPerformed
 
     private void JB_DeslogaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_DeslogaActionPerformed
