@@ -13,6 +13,7 @@ package imobiliaria.gui;
 
 import imobiliaria.entidades.Cliente;
 import imobiliaria.controladores.*;
+import imobiliaria.entidades.Aluguel;
 import imobiliaria.entidades.Imovel;
 import imobiliaria.entidades.Sistema;
 import javax.swing.JOptionPane;
@@ -39,6 +40,8 @@ public class InterfaceCliente extends javax.swing.JFrame {
         setTitle("Bem Vindo Cliente");
         atualizaImoveis();
         atualizaPedidos();
+        atualizaAlugueis();
+        atualizaHistorico();
     }
 
     /** This method is called from within the constructor to
@@ -241,6 +244,36 @@ public class InterfaceCliente extends javax.swing.JFrame {
         atualizaPedidos();
         sis.salvarDados();
     }//GEN-LAST:event_JB_FazPedidoActionPerformed
+
+    private Aluguel[] mostraAlugueis(Cliente cliente){
+        Aluguel[] alugueis = ControladorAlugueis.getInstance().listaAlugueisGUI(cliente);
+        return alugueis;
+    }
+
+    public void atualizaAlugueis(){
+
+        JLI_Alugueis.setModel(new javax.swing.AbstractListModel() {
+            final Aluguel[] strings = mostraAlugueis(cliente);
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+
+    }
+
+    private Imovel[] mostraHistorico(Cliente cliente){
+        Imovel[] compras = cliente.listaHistoricoGui();
+        return compras;
+    }
+
+    public void atualizaHistorico(){
+
+        JLI_ComprasDoCliente.setModel(new javax.swing.AbstractListModel() {
+            final Imovel[] strings = mostraHistorico(cliente);
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+
+    }
 
     private void JB_CancelaPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_CancelaPedidoActionPerformed
         Imovel imovelPedido = (Imovel) JLI_ImoveisImob.getSelectedValue();
