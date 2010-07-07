@@ -887,7 +887,8 @@ public class InterfaceOpClientes extends javax.swing.JFrame implements Interface
         ControladorPedidos.getInstance().removePedido(
                 ((Pedido) JCB_Pedido.getSelectedItem()).getImovel()
                 .getRegistroImovel() + "");
-
+        sis.salvarDados();
+        atualiza();
             JOptionPane.showMessageDialog(null, "Pedido Removido com Sucesso",
                     "Pedido", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {

@@ -397,7 +397,7 @@ public class InterfaceAdmin extends javax.swing.JFrame implements InterfaceOpIF 
     }//GEN-LAST:event_JB_VerFolhaDePagamentoActionPerformed
 
     private void JB_MenuImoveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_MenuImoveisActionPerformed
-        // TODO add your handling code here:
+        new InterfaceOpImovel().setVisible(true);
     }//GEN-LAST:event_JB_MenuImoveisActionPerformed
 
     private void JB_MenuClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_MenuClientesActionPerformed
@@ -502,7 +502,8 @@ public class InterfaceAdmin extends javax.swing.JFrame implements InterfaceOpIF 
         ControladorPedidos.getInstance().removePedido(
                 ((Pedido) JCB_Pedidos.getSelectedItem()).getImovel()
                 .getRegistroImovel() + "");
-
+        sis.salvarDados();
+        atualiza();
             JOptionPane.showMessageDialog(null, "Pedido Removido com Sucesso",
                     "Pedido", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
