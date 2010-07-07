@@ -26,8 +26,9 @@ public class ControladorTransacoes implements Serializable {
 	private static ControladorTransacoes controladorTransacoesUnico = new ControladorTransacoes();
 
 	private static final long serialVersionUID = 1L;
-	private final double SALARIO_DEFAULT = 1500;
-	private final double COMISSAO = 0.03;
+        
+	private double salario = 1500;
+	private double comissao = 0.03;
 
 	private Calendar ultimoPagamento = new GregorianCalendar(1990, 0, 0);
 	private boolean pagouNesseMes = false;
@@ -155,7 +156,7 @@ public class ControladorTransacoes implements Serializable {
 
 		for (String informacaoFuncionario : vendasFuncionarios.keySet()) {
 
-			salarioFuncionario = SALARIO_DEFAULT + COMISSAO
+			salarioFuncionario = salario + comissao
 					* vendasFuncionarios.get(informacaoFuncionario);
 
 			despesas += salarioFuncionario;
@@ -329,5 +330,21 @@ public class ControladorTransacoes implements Serializable {
 	private void resetaTransacoeMensais() {
 		logsFinanceirosMensal.clear();
 	}
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+
+    public double getComissao() {
+        return comissao;
+    }
+
+    public void setComissao(double comissao) {
+        this.comissao = comissao;
+    }
 
 }

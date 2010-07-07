@@ -27,10 +27,14 @@ import javax.swing.JOptionPane;
 public class InterfaceOpFuncionario extends javax.swing.JFrame {
     private Sistema sis;
     private Funcionario funcSelecionado = null;
+    private InterfaceAdmin interfaceAdmin;
+
 
     /** Creates new form InterfaceOpClientes */
-    public InterfaceOpFuncionario() {
+    public InterfaceOpFuncionario(InterfaceAdmin interfaceAdmin) {
         sis = new Sistema();
+
+        this.interfaceAdmin = interfaceAdmin;
 	try {
 	    sis.atualizaDados();
 	} catch (Exception e) {
@@ -291,6 +295,10 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
         if (funcSelecionado != null) {
             if (ControladorFuncionario.getInstance().removeFuncionario(
                     funcSelecionado.getCreci())) {
+
+                ControladorLogin.getInstance().removeLogin(
+                        funcSelecionado.getLogin().getUserName());
+
                 JOptionPane.showMessageDialog(null, "Funcionario removido"
                         + " com Sucesso!",
                     "Remocao", JOptionPane.INFORMATION_MESSAGE);
@@ -336,9 +344,7 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
         ControladorFuncionario.getInstance().modificaFuncionario(funcSelecionado.getCreci(),
                 JTF_cpf.getText().replace(".", "").replace("-", ""),
                 data, JTF_Endereco.getText(), JTF_Nome.getText());
-
-        JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!",
-                    "Salvar Dados", JOptionPane.INFORMATION_MESSAGE);
+        
         atualizaFuncionarios();
 
         } catch (Exception e) {
@@ -448,6 +454,8 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
 
     public void atualizaFuncionarios(){
 
+        interfaceAdmin.atualizaInterface();
+
         JL_NumFuncCad.setText(ControladorFuncionario.getInstance()
                 .getColecaoFuncionario().getNumFuncionarios() + "");
 
@@ -552,7 +560,7 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfaceOpFuncionario().setVisible(true);
+                new InterfaceOpFuncionario(new InterfaceAdmin()).setVisible(true);
                 
             }
         });

@@ -11,7 +11,6 @@
 
 package imobiliaria.gui;
 
-import imobiliaria.auxiliar.TipoLogin;
 import imobiliaria.controladores.ControladorAlugueis;
 import imobiliaria.controladores.ControladorLogin;
 import imobiliaria.controladores.ControladorPedidos;
@@ -21,7 +20,7 @@ import imobiliaria.entidades.FolhaDePagamento;
 import imobiliaria.entidades.Login;
 import imobiliaria.entidades.Pedido;
 import imobiliaria.entidades.Sistema;
-import javax.swing.ImageIcon;
+import imobiliaria.exceptions.ValorInvalidoException;
 import javax.swing.JOptionPane;
 
 /**
@@ -77,7 +76,6 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         JCB_Logins = new javax.swing.JComboBox();
         JL_NumTotalLogins = new javax.swing.JLabel();
-        JB_ModLogin = new javax.swing.JButton();
         JB_InfoLogin = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -98,6 +96,11 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         JL_NumTotalPedidos = new javax.swing.JLabel();
         JL_NumTotalAlugueis = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        JTF_Salario = new javax.swing.JTextField();
+        JTF_Comissao = new javax.swing.JTextField();
+        JB_SalvarSalario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 580));
@@ -119,7 +122,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/iMobLogo.png"))); // NOI18N
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(510, 100, 250, 200);
+        jLabel6.setBounds(510, 10, 250, 200);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel4.setLayout(null);
@@ -129,7 +132,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         jPanel4.add(jLabel11);
         jLabel11.setBounds(10, 10, 90, 16);
 
-        JL_DataUltimoPagamento.setText("Data do Ultimo Pagamento Efetuado: XX/XX/XXXX");
+        JL_DataUltimoPagamento.setText("Ultimo Pagamento Efetuado: XX/XX/XXXX");
         jPanel4.add(JL_DataUltimoPagamento);
         JL_DataUltimoPagamento.setBounds(10, 30, 450, 15);
 
@@ -142,7 +145,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         jPanel4.add(JB_VerFolhaDePagamento);
         JB_VerFolhaDePagamento.setBounds(10, 90, 220, 27);
         jPanel4.add(JL_Pagamento);
-        JL_Pagamento.setBounds(420, 10, 40, 30);
+        JL_Pagamento.setBounds(430, 10, 40, 30);
 
         JB_ListaTransacoes.setText("Lista Transacoes");
         JB_ListaTransacoes.addActionListener(new java.awt.event.ActionListener() {
@@ -190,16 +193,6 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         jPanel5.add(JL_NumTotalLogins);
         JL_NumTotalLogins.setBounds(10, 50, 220, 15);
 
-        JB_ModLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/pedidoIcon.png"))); // NOI18N
-        JB_ModLogin.setText("Modificar");
-        JB_ModLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JB_ModLoginActionPerformed(evt);
-            }
-        });
-        jPanel5.add(JB_ModLogin);
-        JB_ModLogin.setBounds(120, 120, 130, 40);
-
         JB_InfoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/info2icon.png"))); // NOI18N
         JB_InfoLogin.setText("Info");
         JB_InfoLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -208,7 +201,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
             }
         });
         jPanel5.add(JB_InfoLogin);
-        JB_InfoLogin.setBounds(10, 120, 100, 40);
+        JB_InfoLogin.setBounds(10, 120, 240, 40);
 
         getContentPane().add(jPanel5);
         jPanel5.setBounds(500, 360, 260, 170);
@@ -345,6 +338,28 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(560, 480, 2, 2);
 
+        jLabel3.setText("Salario Atual: (R$)");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(500, 200, 150, 15);
+
+        jLabel7.setText("Comissao: (%)");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(500, 230, 150, 15);
+        getContentPane().add(JTF_Salario);
+        JTF_Salario.setBounds(650, 200, 100, 25);
+        getContentPane().add(JTF_Comissao);
+        JTF_Comissao.setBounds(650, 230, 100, 25);
+
+        JB_SalvarSalario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/saveIcon.png"))); // NOI18N
+        JB_SalvarSalario.setText("Salvar");
+        JB_SalvarSalario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_SalvarSalarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JB_SalvarSalario);
+        JB_SalvarSalario.setBounds(500, 260, 250, 33);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -374,7 +389,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_JB_MenuClientesActionPerformed
 
     private void JB_MenuFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_MenuFuncionariosActionPerformed
-        new InterfaceOpFuncionario().setVisible(true);
+        new InterfaceOpFuncionario(this).setVisible(true);
     }//GEN-LAST:event_JB_MenuFuncionariosActionPerformed
 
     private void JB_ListaTransacoesMensaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ListaTransacoesMensaisActionPerformed
@@ -494,11 +509,38 @@ public class InterfaceAdmin extends javax.swing.JFrame {
                     "Login", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_JB_InfoLoginActionPerformed
 
-    private void JB_ModLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ModLoginActionPerformed
-        new InterfaceModificaLogin(
-                ControladorLogin.getInstance().getLogin(JCB_Logins.getSelectedItem() + "")
-                ).setVisible(true);
-    }//GEN-LAST:event_JB_ModLoginActionPerformed
+    private void JB_SalvarSalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SalvarSalarioActionPerformed
+
+        double novoSalario;
+        double novaComissao;
+
+        try {
+
+            novoSalario = Double.parseDouble(JTF_Salario.getText());
+            novaComissao = Double.parseDouble(JTF_Comissao.getText())/100;
+
+            if (novoSalario < 0 || novaComissao < 0) {
+                throw new ValorInvalidoException("Valor Invalido");
+            }
+
+
+            ControladorTransacoes.getInstance().setComissao(novaComissao);
+            ControladorTransacoes.getInstance().setSalario(novoSalario);
+
+            JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!",
+                    "Salario e Comissao", JOptionPane.INFORMATION_MESSAGE);
+        } catch (ValorInvalidoException e) {
+            JOptionPane.showMessageDialog(null, "Valores nao podem ser negativos",
+                    "Salario e Comissao", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Valores Invalidos",
+                    "Salario e Comissao", JOptionPane.ERROR_MESSAGE);
+        }
+
+        atualizaInterface();
+
+
+    }//GEN-LAST:event_JB_SalvarSalarioActionPerformed
 
 
     private void preencheCBox() {
@@ -519,9 +561,12 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         
     }
 
-    private void atualizaInterface() {
+    public void atualizaInterface() {
 
         preencheCBox();
+
+        JTF_Salario.setText(ControladorTransacoes.getInstance().getSalario() + "");
+        JTF_Comissao.setText((ControladorTransacoes.getInstance().getComissao()*100) + "");
 
         if (ControladorTransacoes.getInstance().pagouNesseMes()) {
             JL_Pagamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/okIcon.png")));
@@ -529,7 +574,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
             JL_Pagamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/exitIcon.png")));
         }
 
-        JL_DataUltimoPagamento.setText("Data do Ultimo Pagamento Efetuado: " +
+        JL_DataUltimoPagamento.setText("Ultimo Pagamento Efetuado: " +
                 ControladorTransacoes.getInstance().getDataUltimoPagamento());
 
         JL_NumTotalAlugueis.setText("Numero Total de Alugueis: " +
@@ -574,7 +619,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
     private javax.swing.JButton JB_MenuClientes;
     private javax.swing.JButton JB_MenuFuncionarios;
     private javax.swing.JButton JB_MenuImoveis;
-    private javax.swing.JButton JB_ModLogin;
+    private javax.swing.JButton JB_SalvarSalario;
     private javax.swing.JButton JB_VerFolhaDePagamento;
     private javax.swing.JButton JB_VerInfoAluguel;
     private javax.swing.JButton JB_VerInfoPedido;
@@ -587,13 +632,17 @@ public class InterfaceAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel JL_NumTotalPedidos;
     private javax.swing.JLabel JL_Pagamento;
     private javax.swing.JLabel JL_SaldoAtualCaixa;
+    private javax.swing.JTextField JTF_Comissao;
+    private javax.swing.JTextField JTF_Salario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
