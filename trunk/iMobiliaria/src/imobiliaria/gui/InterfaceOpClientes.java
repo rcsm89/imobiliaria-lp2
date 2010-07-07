@@ -16,6 +16,8 @@ import imobiliaria.entidades.*;
 import imobiliaria.colecoes.*;
 import java.util.ArrayList;
 import java.util.TreeSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -102,6 +104,8 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
         JB_SelectClientePed = new javax.swing.JButton();
         JB_EfetuarPedido = new javax.swing.JButton();
         JB_CancelarPed = new javax.swing.JButton();
+        JL_Creci = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Opções Cliente");
@@ -179,8 +183,8 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
                         .addGroup(JP_VerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JP_VerInfoLayout.createSequentialGroup()
                                 .addComponent(JL_ProcuraNome)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JTF_ProcuraNome, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(JTF_ProcuraNome, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(JB_Procura))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JP_VerInfoLayout.createSequentialGroup()
@@ -217,8 +221,6 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
         );
 
         JP_VerInfoLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {JB_CadCliente, JB_Voltar});
-
-        JP_VerInfoLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {JB_Procura, JTF_ProcuraNome});
 
         jTabbedPane1.addTab("Listagem de cliente", JP_VerInfo);
 
@@ -570,6 +572,10 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
             }
         });
 
+        JL_Creci.setText("0");
+
+        jLabel11.setText("Seu CRECI:");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -581,35 +587,38 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
                         .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel6Layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(JTF_ProcuraNomePedido, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(JB_ProcuraPedido))
-                                    .addComponent(JB_SelectClientePed))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel6Layout.createSequentialGroup()
-                                        .addGap(12, 12, 12)
-                                        .addComponent(JB_VerPedidos))
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel6))
-                                .addGap(47, 47, 47))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanel6Layout.createSequentialGroup()
                                         .addComponent(JB_EfetuarPedido)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(JB_CancelarPed))
-                                    .addComponent(JCB_ListaPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(263, 263, 263))))))
+                                    .addComponent(JCB_ListaPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(JB_SelectClientePed)
+                                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel10)
+                                        .addGroup(jPanel6Layout.createSequentialGroup()
+                                            .addComponent(jLabel9)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(JTF_ProcuraNomePedido, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(JB_ProcuraPedido))))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel6)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel6Layout.createSequentialGroup()
+                                    .addComponent(jLabel11)
+                                    .addGap(53, 53, 53)
+                                    .addComponent(JL_Creci))
+                                .addComponent(JB_VerPedidos)))
+                        .addGap(47, 47, 47))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -633,13 +642,17 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
                         .addComponent(JB_SelectClientePed)))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JL_Creci)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JCB_ListaPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JB_CancelarPed)
                     .addComponent(JB_EfetuarPedido))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Pedidos", jPanel6);
@@ -731,8 +744,8 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_JB_VerHistoricoActionPerformed
-    private String[] mostraPedidos(Cliente cliente){
-        String[] pedidos = ControladorPedidos.getInstance().listaDePedidosGUI(cliente.getCpf());
+    private Imovel[] mostraPedidos(Cliente cliente){
+        Imovel[] pedidos = ControladorPedidos.getInstance().listaDePedidosGUI(cliente.getCpf());
         return pedidos;
     }
     
@@ -817,11 +830,8 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_JB_ProcuraPedidoActionPerformed
 
     private void JB_SelectClientePedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SelectClientePedActionPerformed
-        
-        //JCB_Mes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Janeiro", "Fevereiro"}));
-        
         try{
-            String nomeCpf = JList_ClienteInfo.getSelectedValue().toString();
+            String nomeCpf = JList_Pedido.getSelectedValue().toString();
             String soCpf = nomeCpf.substring(nomeCpf.lastIndexOf(" "), nomeCpf.length());
             Cliente clientePedi = ControladorCliente.getInstance().getCliente(soCpf.trim());
             JCB_ListaPedidos.setModel(new javax.swing.DefaultComboBoxModel( mostraImoveis(clientePedi)  ));
@@ -834,11 +844,30 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_JB_SelectClientePedActionPerformed
 
     private void JB_EfetuarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_EfetuarPedidoActionPerformed
-        JCB_ListaPedidos.getSelectedItem().toString();
+        new InterfaceRecebeCreci(JL_Creci);
+        String creci = JL_Creci.getText();
+        Funcionario func;
+        func = ControladorFuncionario.getInstance().getFuncionarioPorCreci(creci.trim());
+        
+        Imovel imovelPedido = (Imovel) JCB_ListaPedidos.getSelectedItem();
+        try {
+            ControladorPedidos.getInstance().efetuaPedido(String.valueOf(imovelPedido.getRegistroImovel()), func.getCreci());
+            sis.salvarDados();
+        } catch (Exception ex) {
+            Logger.getLogger(InterfaceOpClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }//GEN-LAST:event_JB_EfetuarPedidoActionPerformed
 
     private void JB_CancelarPedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_CancelarPedActionPerformed
-        // TODO add your handling code here:
+        
+        try{
+            Imovel imovelPedido = (Imovel) JCB_ListaPedidos.getSelectedItem();
+            ControladorPedidos.getInstance().removePedido(null);
+        }catch (Exception ex){
+
+        }
     }//GEN-LAST:event_JB_CancelarPedActionPerformed
     
     /*
@@ -941,6 +970,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
     private javax.swing.JButton JB_Voltar;
     private javax.swing.JComboBox JCB_ListaPedidos;
     private javax.swing.JLabel JL_CpfCliente;
+    private javax.swing.JLabel JL_Creci;
     private javax.swing.JLabel JL_DataCliente;
     private javax.swing.JLabel JL_ProcuraNome;
     private javax.swing.JList JList_Cliente;
@@ -958,6 +988,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
     private javax.swing.JTextField JTF_ProcuraNomePedido;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

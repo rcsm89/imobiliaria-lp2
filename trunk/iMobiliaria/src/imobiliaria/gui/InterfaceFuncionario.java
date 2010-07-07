@@ -57,7 +57,7 @@ public class InterfaceFuncionario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Opções Funcionario");
+        setTitle("Bem-vindo funcionário");
         setResizable(false);
 
         JL_Ola.setFont(new java.awt.Font("Arial", 0, 14));
