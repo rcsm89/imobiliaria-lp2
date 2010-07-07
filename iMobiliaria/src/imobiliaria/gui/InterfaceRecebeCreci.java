@@ -59,7 +59,7 @@ public class InterfaceRecebeCreci extends javax.swing.JFrame {
         JTF_Creci = new javax.swing.JTextField();
         JB_OK = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setText("Digite o CRECI do funcionário:");
@@ -110,10 +110,11 @@ public class InterfaceRecebeCreci extends javax.swing.JFrame {
     public void retornaNome(){
         String creci = JTF_Creci.getText();
         Funcionario func;
+        try {
         func = ControladorFuncionario.getInstance().getFuncionarioPorCreci(creci.trim());
-        if (func == null){
-            JOptionPane.showMessageDialog(null, " Funcionário Inválido",
-                    "Funcionário não existente", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Funcionário Inválido",
+                    "CRECI", JOptionPane.ERROR_MESSAGE);
             return;
         }
         try {
