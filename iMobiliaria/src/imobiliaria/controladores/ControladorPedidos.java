@@ -310,6 +310,8 @@ public class ControladorPedidos implements Serializable {
 
 		pedido.getImovel().alugado();
 		
+		System.out.println("aluguel");
+		
 		ControladorTransacoes.getInstance().adicionaAoCaixa(
 				pedido.getImovel().getValor());
 		
