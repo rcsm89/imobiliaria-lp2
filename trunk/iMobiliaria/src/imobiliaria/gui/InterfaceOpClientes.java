@@ -78,6 +78,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
         JB_ProcuraInfo = new javax.swing.JButton();
         JB_SelectCliente = new javax.swing.JButton();
         JB_SalvaDados = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         JB_HistoCliente = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -336,6 +337,9 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/loginIcon.png"))); // NOI18N
+        jButton1.setText("Mudar login");
+
         javax.swing.GroupLayout JP_AttCadLayout = new javax.swing.GroupLayout(JP_AttCad);
         JP_AttCad.setLayout(JP_AttCadLayout);
         JP_AttCadLayout.setHorizontalGroup(
@@ -349,8 +353,10 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(JP_AttCadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JB_SalvaDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JB_SelectCliente)))
+                            .addComponent(jButton1)
+                            .addGroup(JP_AttCadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(JB_SalvaDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(JB_SelectCliente))))
                     .addGroup(JP_AttCadLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -360,31 +366,32 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        JP_AttCadLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {JB_SalvaDados, JB_SelectCliente});
+        JP_AttCadLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {JB_SalvaDados, JB_SelectCliente, jButton1});
 
         JP_AttCadLayout.setVerticalGroup(
             JP_AttCadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JP_AttCadLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JP_AttCadLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(JP_AttCadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(JP_AttCadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(JP_AttCadLayout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JB_SelectCliente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JB_SalvaDados))
+                    .addGroup(JP_AttCadLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(JP_AttCadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(JTF_ProcuraNomeInf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(JB_ProcuraInfo))
                         .addGap(26, 26, 26)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JP_AttCadLayout.createSequentialGroup()
-                        .addComponent(JB_SelectCliente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JB_SalvaDados)
-                        .addGap(50, 50, 50))))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
-        JP_AttCadLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {JB_SalvaDados, JB_SelectCliente});
+        JP_AttCadLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {JB_SalvaDados, JB_SelectCliente, jButton1});
 
         jTabbedPane1.addTab("Informações do cliente", JP_AttCad);
 
@@ -850,6 +857,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
         func = ControladorFuncionario.getInstance().getFuncionarioPorCreci(creci.trim());
         
         Imovel imovelPedido = (Imovel) JCB_ListaPedidos.getSelectedItem();
+        
         try {
             ControladorPedidos.getInstance().efetuaPedido(String.valueOf(imovelPedido.getRegistroImovel()), func.getCreci());
             sis.salvarDados();
@@ -986,6 +994,7 @@ public class InterfaceOpClientes extends javax.swing.JFrame {
     private javax.swing.JTextField JTF_ProcuraNome;
     private javax.swing.JTextField JTF_ProcuraNomeInf;
     private javax.swing.JTextField JTF_ProcuraNomePedido;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
