@@ -28,9 +28,11 @@ import javax.swing.JOptionPane;
 public class InterfaceRecebeCreci extends javax.swing.JFrame {
     private Pedido pedido;
     private Sistema sis;
+    private InterfaceOpIF tela;
     /** Creates new form InterfaceRecebeCreci */
-    public InterfaceRecebeCreci(Pedido pedido) {
+    public InterfaceRecebeCreci(Pedido pedido, InterfaceOpIF tela) {
         sis = new Sistema();
+        this.tela = tela;
 	try {
 	    sis.atualizaDados();
 	} catch (Exception e) {
@@ -58,6 +60,7 @@ public class InterfaceRecebeCreci extends javax.swing.JFrame {
         JB_OK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Digite o CRECI do funcionário:");
 
@@ -125,6 +128,7 @@ public class InterfaceRecebeCreci extends javax.swing.JFrame {
         }
 
         sis.salvarDados();
+        tela.atualiza();
         dispose();
     }
 
@@ -134,7 +138,7 @@ public class InterfaceRecebeCreci extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfaceRecebeCreci(null).setVisible(true);
+                new InterfaceRecebeCreci(null,null).setVisible(true);
             }
         });
     }

@@ -27,7 +27,7 @@ import javax.swing.JOptionPane;
  *
  * @author Convidado
  */
-public class InterfaceAdmin extends javax.swing.JFrame {
+public class InterfaceAdmin extends javax.swing.JFrame implements InterfaceOpIF {
 
     private Sistema sis = new Sistema();
 
@@ -46,7 +46,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
 
         setLocationRelativeTo(null);
 
-        atualizaInterface();
+        atualiza();
 
 
     }
@@ -439,7 +439,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
                     + e.getMessage(),
                     "Pagamento", JOptionPane.ERROR_MESSAGE);
         }
-        atualizaInterface();
+        atualiza();
     }//GEN-LAST:event_JB_EfetuaPagamentoActionPerformed
 
     private void JB_ListaAlugueisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ListaAlugueisActionPerformed
@@ -552,7 +552,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
                     "Salario e Comissao", JOptionPane.ERROR_MESSAGE);
         }
 
-        atualizaInterface();
+        atualiza();
 
 
     }//GEN-LAST:event_JB_SalvarSalarioActionPerformed
@@ -565,7 +565,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
 
         Pedido pedido = (Pedido) JCB_Pedidos.getSelectedItem();
 
-        new InterfaceRecebeCreci(pedido).setVisible(true);
+        new InterfaceRecebeCreci(pedido, this).setVisible(true);
 
     }//GEN-LAST:event_JB_EfetuarPedidoActionPerformed
 
@@ -594,7 +594,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         
     }
 
-    public void atualizaInterface() {
+    public void atualiza() {
 
         preencheCBox();
 

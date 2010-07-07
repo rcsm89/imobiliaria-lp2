@@ -448,7 +448,7 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
 
     public void atualizaFuncionarios(){
 
-        interfaceAdmin.atualizaInterface();
+        interfaceAdmin.atualiza();
 
         JL_NumFuncCad.setText(ControladorFuncionario.getInstance()
                 .getColecaoFuncionario().getNumFuncionarios() + "");
