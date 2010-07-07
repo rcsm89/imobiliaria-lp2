@@ -75,11 +75,11 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         JTF_cpf = new javax.swing.JTextField();
         JTF_Nascimento = new javax.swing.JTextField();
-        JTF_Login = new javax.swing.JTextField();
-        JTF_Senha = new javax.swing.JPasswordField();
+        JL_LoginFunc = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        JL_Creci = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         JTF_ProcuraFuncInfo = new javax.swing.JTextField();
         JB_ProcuraFuncInfo = new javax.swing.JButton();
@@ -183,10 +183,6 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
         jPanel3.add(jLabel8);
         jLabel8.setBounds(10, 150, 90, 20);
 
-        jLabel9.setText("Senha:");
-        jPanel3.add(jLabel9);
-        jLabel9.setBounds(240, 150, 60, 15);
-
         JTF_cpf.setText("000.000.000-00");
         jPanel3.add(JTF_cpf);
         JTF_cpf.setBounds(110, 90, 310, 25);
@@ -194,10 +190,18 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
         JTF_Nascimento.setText("00/00/000");
         jPanel3.add(JTF_Nascimento);
         JTF_Nascimento.setBounds(110, 120, 310, 25);
-        jPanel3.add(JTF_Login);
-        JTF_Login.setBounds(110, 150, 120, 25);
-        jPanel3.add(JTF_Senha);
-        JTF_Senha.setBounds(300, 150, 120, 25);
+
+        JL_LoginFunc.setText(" ");
+        jPanel3.add(JL_LoginFunc);
+        JL_LoginFunc.setBounds(110, 150, 150, 15);
+
+        jLabel9.setText("CRECI:");
+        jPanel3.add(jLabel9);
+        jLabel9.setBounds(280, 150, 70, 15);
+
+        JL_Creci.setText("000000");
+        jPanel3.add(JL_Creci);
+        JL_Creci.setBounds(343, 150, 70, 15);
 
         JP_AttCad.add(jPanel3);
         jPanel3.setBounds(10, 240, 430, 190);
@@ -331,16 +335,6 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
                 throw new Exception("Data Invalida!");
             }
 
-
-            if (!funcSelecionado.getLogin().getUserName().equals(JTF_Login.getText())
-                    && ControladorLogin.getInstance().verificaLogin(
-                    JTF_Login.getText()))
-                throw new Exception("Login ja cadastrado!");
-
-
-        funcSelecionado.getLogin().mudarLogin(JTF_Login.getText());
-        funcSelecionado.getLogin().mudarSenha(JTF_Senha.getText());
-
         ControladorFuncionario.getInstance().modificaFuncionario(funcSelecionado.getCreci(),
                 JTF_cpf.getText().replace(".", "").replace("-", ""),
                 data, JTF_Endereco.getText(), JTF_Nome.getText());
@@ -370,8 +364,8 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
         JTF_cpf.setText(func.getCpf());
         JTF_Endereco.setText(func.getEndereco());
         JTF_Nascimento.setText(func.getDataNascimento());
-        JTF_Login.setText(func.getLogin().getUserName());
-        JTF_Senha.setText(func.getLogin().getSenha());
+        JL_LoginFunc.setText(func.getLogin().getUserName());
+        JL_Creci.setText(func.getCreci());
 }//GEN-LAST:event_JB_SelectFuncionarioActionPerformed
 
     private void JB_ProcuraFuncInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ProcuraFuncInfoActionPerformed
@@ -575,17 +569,17 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton JB_VerHistoricoFunc;
     private javax.swing.JButton JB_Voltar;
     private javax.swing.JComboBox JCB_ListFunc;
+    private javax.swing.JLabel JL_Creci;
+    private javax.swing.JLabel JL_LoginFunc;
     private javax.swing.JLabel JL_NumFuncCad;
     private javax.swing.JPanel JP_AttCad;
     private javax.swing.JPanel JP_VerInfo;
     private javax.swing.JTextArea JTA_ListFunc;
     private javax.swing.JTextArea JTA_ListagemTotal;
     private javax.swing.JTextField JTF_Endereco;
-    private javax.swing.JTextField JTF_Login;
     private javax.swing.JTextField JTF_Nascimento;
     private javax.swing.JTextField JTF_Nome;
     private javax.swing.JTextField JTF_ProcuraFuncInfo;
-    private javax.swing.JPasswordField JTF_Senha;
     private javax.swing.JTextField JTF_cpf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

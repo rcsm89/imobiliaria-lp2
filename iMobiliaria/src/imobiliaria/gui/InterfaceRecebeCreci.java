@@ -12,8 +12,12 @@
 package imobiliaria.gui;
 
 import imobiliaria.controladores.ControladorFuncionario;
+import imobiliaria.controladores.ControladorPedidos;
 import imobiliaria.entidades.Funcionario;
+import imobiliaria.entidades.Pedido;
 import imobiliaria.entidades.Sistema;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -22,17 +26,17 @@ import javax.swing.JOptionPane;
  * @author thiagofp
  */
 public class InterfaceRecebeCreci extends javax.swing.JFrame {
-    private JLabel label;
+    private Pedido pedido;
     private Sistema sis;
     /** Creates new form InterfaceRecebeCreci */
-    public InterfaceRecebeCreci(JLabel label) {
+    public InterfaceRecebeCreci(Pedido pedido) {
         sis = new Sistema();
 	try {
 	    sis.atualizaDados();
 	} catch (Exception e) {
 	    System.out.println("Erro: " + e.getMessage());
 	}
-        this.label = label;
+        this.pedido = pedido;
         setVisible(true);
         initComponents();
         setLocationRelativeTo(null);
@@ -109,8 +113,18 @@ public class InterfaceRecebeCreci extends javax.swing.JFrame {
                     "Funcionário não existente", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        try {
+            ControladorPedidos.getInstance().efetuaPedido(pedido.getImovel().getRegistroImovel() + "", func.getCreci());
 
-        label.setText(creci);
+            JOptionPane.showMessageDialog(null, "Pedido efetuado com sucesso!",
+                    "Pedido", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao efetuar pedido:\n\n" + ex.getMessage(),
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+        sis.salvarDados();
         dispose();
     }
 
