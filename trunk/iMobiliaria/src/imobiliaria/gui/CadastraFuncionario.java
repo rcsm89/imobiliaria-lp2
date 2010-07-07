@@ -6,8 +6,6 @@
 
 package imobiliaria.gui;
 
-
-import imobiliaria.auxiliar.*;
 import imobiliaria.controladores.*;
 import imobiliaria.entidades.*;
 import imobiliaria.util.*;
@@ -298,7 +296,8 @@ public class CadastraFuncionario extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastraFuncionario(new InterfaceOpFuncionario()).setVisible(true);
+                new CadastraFuncionario(new InterfaceOpFuncionario(
+                        new InterfaceAdmin())).setVisible(true);
             }
         });
     }
