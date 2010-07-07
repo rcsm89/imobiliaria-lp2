@@ -330,12 +330,12 @@ public class ControladorPedidos implements Serializable {
      * Metodo para listagem de pedidos a partir de uma lista
      * @return Lista contendo informacoes dos Pedidos
      */
-    public String[] getListaPedidos() {
-        String[] saida = new String[numPedidos()];
+    public Pedido[] getListaPedidos() {
+        Pedido[] saida = new Pedido[numPedidos()];
 
         int cont = 0;
         for (Pedido p : listaPedidos) {
-            saida[cont] = p.toString();
+            saida[cont] = p;
         }
         return saida;
     }

@@ -87,11 +87,17 @@ public class Pedido implements Comparable<Object>, Serializable {
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof Pedido))
-			throw new IllegalArgumentException();
+			return false;
 
 		Pedido outroPedido = (Pedido) obj;
 
 		return outroPedido.getCliente().equals(cliente)
 				&& outroPedido.getImovel().equals(imovel);
 	}
+	
+	public String toString() {
+		return getCliente().getNome() +" (" + getCliente().getCpf() + ") - (" +
+		getImovel().getRegistroImovel() + ") " + getImovel().getNome();
+	}
+	
 }

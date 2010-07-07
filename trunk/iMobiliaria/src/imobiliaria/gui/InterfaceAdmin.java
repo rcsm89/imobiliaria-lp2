@@ -107,7 +107,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel1.setText("Menu de Administração");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(10, 10, 510, 30);
@@ -222,7 +222,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
             }
         });
         jPanel6.add(JB_ListaPedidos);
-        JB_ListaPedidos.setBounds(270, 20, 190, 30);
+        JB_ListaPedidos.setBounds(270, 10, 190, 30);
 
         JCB_Alugueis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "InfoPedido1", "InfoPedido2", "InfoPedido3" }));
         jPanel6.add(JCB_Alugueis);
@@ -254,7 +254,7 @@ public class InterfaceAdmin extends javax.swing.JFrame {
 
         jLabel9.setText("Efetuar Pedidos:");
         jPanel6.add(jLabel9);
-        jLabel9.setBounds(10, 40, 270, 15);
+        jLabel9.setBounds(10, 40, 140, 15);
 
         JB_VerInfoPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/info2icon.png"))); // NOI18N
         JB_VerInfoPedido.setText("Info");
@@ -268,6 +268,11 @@ public class InterfaceAdmin extends javax.swing.JFrame {
 
         JB_EfetuarPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/okIcon.png"))); // NOI18N
         JB_EfetuarPedido.setText("Efetuar");
+        JB_EfetuarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_EfetuarPedidoActionPerformed(evt);
+            }
+        });
         jPanel6.add(JB_EfetuarPedido);
         JB_EfetuarPedido.setBounds(10, 90, 160, 40);
 
@@ -449,7 +454,6 @@ public class InterfaceAdmin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Nenhum Pedido Selecionado",
                     "Pedido", JOptionPane.ERROR_MESSAGE);
             return;
-
         }
 
         JOptionPane.showMessageDialog(null, "Informacao do Pedido:\n\n" +
@@ -542,12 +546,25 @@ public class InterfaceAdmin extends javax.swing.JFrame {
 
     }//GEN-LAST:event_JB_SalvarSalarioActionPerformed
 
+    private void JB_EfetuarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_EfetuarPedidoActionPerformed
+        if (JCB_Pedidos.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(null, "Nenhum Pedido Selecionado",
+                    "Efetuar Pedido", JOptionPane.ERROR_MESSAGE);
+        }
+
+        Pedido pedido = (Pedido) JCB_Pedidos.getSelectedItem();
+
+        new InterfaceRecebeCreci(pedido).setVisible(true);
+
+    }//GEN-LAST:event_JB_EfetuarPedidoActionPerformed
+
 
     private void preencheCBox() {
 
         JCB_Alugueis.removeAllItems();
-        for (String info : ControladorAlugueis.getInstance().getListaAlugueis())
-            JCB_Alugueis.addItem(info);
+        System.out.println(ControladorAlugueis.getInstance().listaAlugueis());
+        for (Aluguel a : ControladorAlugueis.getInstance().getListaAlugueis())
+            JCB_Alugueis.addItem(a);
 
         JCB_Logins.removeAllItems();
 
@@ -555,8 +572,8 @@ public class InterfaceAdmin extends javax.swing.JFrame {
             JCB_Logins.addItem(loginInfo);
 
         JCB_Pedidos.removeAllItems();
-        for (String infoPedido : ControladorPedidos.getInstance().getListaPedidos())
-            JCB_Pedidos.addItem(infoPedido);
+        for (Pedido p : ControladorPedidos.getInstance().getListaPedidos())
+            JCB_Pedidos.addItem(p);
 
         
     }
