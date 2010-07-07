@@ -11,9 +11,6 @@
 
 package imobiliaria.gui;
 
-import imobiliaria.controladores.ControladorImovel;
-import imobiliaria.entidades.Imovel;
-
 /**
  *
  * @author jeanderson
