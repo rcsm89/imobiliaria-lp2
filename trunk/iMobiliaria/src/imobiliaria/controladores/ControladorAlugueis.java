@@ -218,14 +218,14 @@ public class ControladorAlugueis implements Serializable {
 
 
     /**
-     * Metodo que retorna uma lista contendo informacoes dos alugueis
-     * @return String[] de Informacoes dos Alugueis
+     * Metodo que retorna uma lista contendo os alugueis
+     * @return Aluguel[] de Informacoes dos Alugueis
      */
-    public String[] getListaAlugueis() {
-        String[] saida = new String[alugueis.size()];
+    public Aluguel[] getListaAlugueis() {
+        Aluguel[] saida = new Aluguel[alugueis.size()];
         int cont = 0;
         for (Aluguel a : alugueis) {
-            saida[cont] = a.toString();
+            saida[cont] = a;
             cont++;        
         }
         return saida;
