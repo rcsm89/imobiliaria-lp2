@@ -142,6 +142,7 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
         jPanel2.setLayout(null);
 
         JTA_ListFunc.setColumns(20);
+        JTA_ListFunc.setEditable(false);
         JTA_ListFunc.setRows(5);
         jScrollPane2.setViewportView(JTA_ListFunc);
 
@@ -278,7 +279,11 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JB_VerHistoricoFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_VerHistoricoFuncActionPerformed
-        // TODO add your handling code here:
+        if (funcSelecionado != null) {
+            new InterfaceDadosFuncionario(funcSelecionado).setVisible(true);
+        } else {
+            MostraErro(new Exception("Funcionario nao selecionado"));
+        }
 }//GEN-LAST:event_JB_VerHistoricoFuncActionPerformed
 
     private void JB_ExcluirFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ExcluirFuncActionPerformed
@@ -292,14 +297,18 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
                 funcSelecionado = null;
                 atualizaFuncionarios();
             }
+        } else {
+            MostraErro(new Exception("Funcionario nao selecionado"));
         }
 }//GEN-LAST:event_JB_ExcluirFuncActionPerformed
 
     private void JB_SalvaDadosFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SalvaDadosFuncActionPerformed
 
 
-        if (funcSelecionado == null)
+        if (funcSelecionado == null) {
+            MostraErro(new Exception("Funcionario nao selecionado"));
             return;
+        }
 
         try {
 
@@ -368,7 +377,7 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
 }//GEN-LAST:event_JB_VoltarActionPerformed
 
     private void JB_CadasFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_CadasFuncActionPerformed
-        new CadastraFuncionario().setVisible(true);
+        new CadastraFuncionario(this).setVisible(true);
 }//GEN-LAST:event_JB_CadasFuncActionPerformed
 
 
@@ -437,7 +446,7 @@ public class InterfaceOpFuncionario extends javax.swing.JFrame {
 	return clientes;
     }*/
 
-    private void atualizaFuncionarios(){
+    public void atualizaFuncionarios(){
 
         JL_NumFuncCad.setText(ControladorFuncionario.getInstance()
                 .getColecaoFuncionario().getNumFuncionarios() + "");

@@ -24,9 +24,12 @@ import javax.swing.JOptionPane;
  */
 public class CadastraFuncionario extends javax.swing.JFrame {
     private Sistema sis;
+    private InterfaceOpFuncionario telaAntiga;
+
     /** Creates new form CadastraCliente */
-    public CadastraFuncionario() {
+    public CadastraFuncionario(InterfaceOpFuncionario telaAntiga) {
         sis = new Sistema();
+        this.telaAntiga = telaAntiga;
         initComponents();
         setLocationRelativeTo(null);
 
@@ -279,7 +282,6 @@ public class CadastraFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JB_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_VoltarActionPerformed
-        new TelaPrincipal().setVisible(true);
         dispose();
     }//GEN-LAST:event_JB_VoltarActionPerformed
  
@@ -313,6 +315,9 @@ public class CadastraFuncionario extends javax.swing.JFrame {
                   + "Login: " + novoFunc.getLogin().getUserName() + "\n" +
                   "Senha: " + novoFunc.getLogin().getSenha(),
                     "Cadastro Efetuado", JOptionPane.INFORMATION_MESSAGE);
+
+
+            telaAntiga.atualizaFuncionarios();
 
             dispose();
 
@@ -349,7 +354,7 @@ public class CadastraFuncionario extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastraFuncionario().setVisible(true);
+                new CadastraFuncionario(new InterfaceOpFuncionario()).setVisible(true);
             }
         });
     }
