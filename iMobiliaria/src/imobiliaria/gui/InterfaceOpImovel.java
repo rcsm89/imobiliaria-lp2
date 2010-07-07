@@ -11,15 +11,30 @@
 
 package imobiliaria.gui;
 
+import imobiliaria.controladores.ControladorImovel;
+import imobiliaria.entidades.Imovel;
+import imobiliaria.entidades.Sistema;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jeanderson
  */
 public class InterfaceOpImovel extends javax.swing.JFrame {
-
+    private Sistema sis;
     /** Creates new form InterfaceOpImovel */
     public InterfaceOpImovel() {
+        sis = new Sistema();
+	try {
+	    sis.atualizaDados();
+	} catch (Exception e) {
+	    System.out.println("Erro: " + e.getMessage());
+	}
         initComponents();
+        setLocationRelativeTo(null);
+        atualizaImoveis();
     }
 
     /** This method is called from within the constructor to
@@ -35,11 +50,29 @@ public class InterfaceOpImovel extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jT_ListagemImoveis = new javax.swing.JTextArea();
+        JLI_ImoveisTotal = new javax.swing.JList();
         JB_Voltar = new javax.swing.JButton();
         jB_CadastroImovel = new javax.swing.JButton();
         jB_ExcluirCadastro = new javax.swing.JButton();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jC_Imoveis = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jT_TipoImovel = new javax.swing.JTextField();
+        jT_Area = new javax.swing.JTextField();
+        jT_Contrato = new javax.swing.JTextField();
+        jT_Endereco = new javax.swing.JTextField();
+        jT_Descricao = new javax.swing.JTextField();
+        jL_Sit = new javax.swing.JLabel();
+        jL_EstadoImovel = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jL_Preco = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Opções Imóveis");
@@ -47,10 +80,12 @@ public class InterfaceOpImovel extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(" Listagem Total "));
 
-        jT_ListagemImoveis.setColumns(20);
-        jT_ListagemImoveis.setEditable(false);
-        jT_ListagemImoveis.setRows(5);
-        jScrollPane1.setViewportView(jT_ListagemImoveis);
+        JLI_ImoveisTotal.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(JLI_ImoveisTotal);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -58,7 +93,7 @@ public class InterfaceOpImovel extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -86,24 +121,32 @@ public class InterfaceOpImovel extends javax.swing.JFrame {
 
         jB_ExcluirCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/exitIcon.png"))); // NOI18N
         jB_ExcluirCadastro.setText("Excluir Imóvel");
+        jB_ExcluirCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_ExcluirCadastroActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/iMobLogo.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(jLabel1)
+                        .addGap(129, 129, 129)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jB_ExcluirCadastro)
-                            .addComponent(jB_CadastroImovel)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(408, Short.MAX_VALUE)
-                        .addComponent(JB_Voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                            .addComponent(JB_Voltar, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                            .addComponent(jB_ExcluirCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jB_CadastroImovel))
+                        .addGap(18, 18, 18)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {JB_Voltar, jB_CadastroImovel, jB_ExcluirCadastro});
@@ -111,34 +154,170 @@ public class InterfaceOpImovel extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jB_CadastroImovel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jB_ExcluirCadastro)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
-                .addComponent(JB_Voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jB_ExcluirCadastro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JB_Voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(93, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addContainerGap())))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {JB_Voltar, jB_CadastroImovel, jB_ExcluirCadastro});
 
         jTabbedPane1.addTab("Listagem de Imóveis", jPanel1);
-        jTabbedPane1.addTab("Informações", jTabbedPane2);
+
+        jC_Imoveis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jC_ImoveisActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Selecione o Imóvel:");
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Dados ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        jLabel3.setText("Descrição:");
+
+        jLabel4.setText("Endereço:");
+
+        jLabel5.setText("Contrato:");
+
+        jLabel6.setText("Tipo do Imóvel:");
+
+        jLabel7.setText("Área:");
+
+        jT_TipoImovel.setEditable(false);
+
+        jT_Area.setEditable(false);
+
+        jT_Contrato.setEditable(false);
+
+        jT_Endereco.setEditable(false);
+
+        jT_Descricao.setEditable(false);
+
+        jL_Sit.setText("Situação do Imóvel:");
+
+        jL_EstadoImovel.setForeground(new java.awt.Color(255, 0, 0));
+        jL_EstadoImovel.setText(" ");
+
+        jLabel8.setText("Preço:");
+
+        jL_Preco.setText(" ");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jT_TipoImovel, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jL_Preco, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jT_Contrato, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jL_Sit)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jL_EstadoImovel, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jT_Area, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jT_Endereco)
+                    .addComponent(jT_Descricao, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jT_Area, jT_Contrato, jT_TipoImovel});
+
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jT_Descricao, jT_Endereco});
+
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jT_Descricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jT_Endereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jT_Contrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jL_Sit)
+                    .addComponent(jL_EstadoImovel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jT_TipoImovel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(jL_Preco))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jT_Area, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jC_Imoveis, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, 0, 605, Short.MAX_VALUE))
+                .addGap(31, 31, 31))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jC_Imoveis, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(319, 319, 319))
+        );
+
+        jTabbedPane1.addTab("Informações", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -151,8 +330,63 @@ public class InterfaceOpImovel extends javax.swing.JFrame {
     private void jB_CadastroImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_CadastroImovelActionPerformed
         // TODO add your handling code here:
         new CadastrarImovel().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jB_CadastroImovelActionPerformed
 
+    private void jB_ExcluirCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_ExcluirCadastroActionPerformed
+        // TODO add your handling code here:
+
+        Imovel imovelExcluir = (Imovel) JLI_ImoveisTotal.getSelectedValue();
+        JOptionPane.showMessageDialog(null, "O seguinte imovel está sendo excluido:\n\n"
+                + "Descrição: " + imovelExcluir.getNome()
+                + "\nEndereço:" + imovelExcluir.getEndereco()
+                + "\nRegistro:" + imovelExcluir.getRegistroImovel() + "\n\n",
+                    "Confirmar Exclusão", JOptionPane.YES_OPTION);
+
+        String registro = imovelExcluir.getRegistroImovel() + "";
+        try {
+            ControladorImovel.getInstance().removeImovel(registro);
+        } catch (Exception ex) {
+            Logger.getLogger(InterfaceOpImovel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        sis.salvarDados();
+        atualizaImoveis();
+
+        
+    }//GEN-LAST:event_jB_ExcluirCadastroActionPerformed
+
+    private void jC_ImoveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jC_ImoveisActionPerformed
+        // TODO add your handling code here:
+        Imovel imvSelected = (Imovel) jC_Imoveis.getSelectedItem();
+        jT_Area.setText(imvSelected.getArea().toString());
+        jT_Contrato.setText(imvSelected.getTipoContratual().toString());
+        jT_Descricao.setText(imvSelected.getNome());
+        jT_Endereco.setText(imvSelected.getEndereco());
+        jT_TipoImovel.setText(imvSelected.getTipoDoImovel().toString());
+        jL_EstadoImovel.setText(imvSelected.getEstadoDoImovel().toString());
+        jL_Preco.setText("R$ " + imvSelected.getValor());
+   
+    }//GEN-LAST:event_jC_ImoveisActionPerformed
+
+    private Imovel[] mostraImoveis(){
+
+        Imovel[] imoveis = ControladorImovel.getInstance().listaImoveisGUI();
+        
+        return imoveis;
+    }
+
+    public void atualizaImoveis(){
+        jC_Imoveis.removeAllItems();
+        for (Imovel imv : mostraImoveis())
+            jC_Imoveis.addItem(imv);
+
+        JLI_ImoveisTotal.setModel(new javax.swing.AbstractListModel() {
+            final Imovel[] strings = mostraImoveis();
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+
+    }
     /**
     * @param args the command line arguments
     */
@@ -167,14 +401,32 @@ public class InterfaceOpImovel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JB_Voltar;
+    private javax.swing.JList JLI_ImoveisTotal;
     private javax.swing.JButton jB_CadastroImovel;
     private javax.swing.JButton jB_ExcluirCadastro;
+    private javax.swing.JComboBox jC_Imoveis;
+    private javax.swing.JLabel jL_EstadoImovel;
+    private javax.swing.JLabel jL_Preco;
+    private javax.swing.JLabel jL_Sit;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jT_ListagemImoveis;
+    private javax.swing.JTextField jT_Area;
+    private javax.swing.JTextField jT_Contrato;
+    private javax.swing.JTextField jT_Descricao;
+    private javax.swing.JTextField jT_Endereco;
+    private javax.swing.JTextField jT_TipoImovel;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
     // End of variables declaration//GEN-END:variables
 
 }

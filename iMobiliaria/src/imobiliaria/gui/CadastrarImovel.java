@@ -15,6 +15,7 @@ import imobiliaria.auxiliar.TipoContratual;
 import imobiliaria.auxiliar.TipoImovel;
 import imobiliaria.controladores.ControladorImovel;
 import imobiliaria.entidades.Area;
+import imobiliaria.entidades.Sistema;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,9 +23,15 @@ import javax.swing.JOptionPane;
  * @author jeanderson
  */
 public class CadastrarImovel extends javax.swing.JFrame {
-
+    private Sistema sis;
     /** Creates new form CadastrarImovel */
     public CadastrarImovel() {
+        sis = new Sistema();
+	try {
+	    sis.atualizaDados();
+	} catch (Exception e) {
+	    System.out.println("Erro: " + e.getMessage());
+	}
         initComponents();
     }
 
@@ -284,6 +291,7 @@ public class CadastrarImovel extends javax.swing.JFrame {
         // TODO add your handling code here:
         String descricao = jT_Descricao.getText();
         String endereco = jT_Endereco.getText();
+        boolean ok = true;
 
         double preco = -10;
         double largura = 0;
@@ -310,24 +318,34 @@ public class CadastrarImovel extends javax.swing.JFrame {
             comprimento = Double.parseDouble(jT_Comprimento.getText());
             area = new Area(comprimento, largura);
 
+
         } catch (Exception erro) {
             jT_Preco.setText("Valor invalido");
             jT_Largura.setText("Valor invalido");
             jT_Comprimento.setText("Valor invalido");
+            ok = false;
 
         }
         try {
-            ControladorImovel.getInstance().addImovel(endereco, endereco, preco, area, tipoImovel, tipoContratual);
+            ControladorImovel.getInstance().addImovel(descricao, endereco, preco, area, tipoImovel, tipoContratual);
+            sis.salvarDados();
 
         } catch (Exception erro) {
                  JOptionPane.showMessageDialog(null, "Erro ao Efetuar Cadastro:\n\n"
                     + erro.getMessage(),
                     "Cadastro", JOptionPane.ERROR_MESSAGE);
+                 ok = false;
         }
+        if (ok) {
+           new InterfaceOpImovel().setVisible(true);
+           dispose();
+        }
+
     }//GEN-LAST:event_jB_EfetuarCadastroActionPerformed
 
     private void jB_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_VoltarActionPerformed
         // TODO add your handling code here:
+        new InterfaceOpImovel().setVisible(true);
         dispose();
     }//GEN-LAST:event_jB_VoltarActionPerformed
 
