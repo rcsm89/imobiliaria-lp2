@@ -153,11 +153,22 @@ public class InterfaceModificaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JB_SalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SalvaActionPerformed
+        if (ControladorLogin.getInstance().getLogin(JTF_Login.getText()) == null
+                || login.getUserName().equals(JTF_Login.getText())) {
         login.mudarLogin(JTF_Login.getText());
         login.mudarSenha(JTF_senha.getText());
 
         JOptionPane.showMessageDialog(null, "Login modificado com sucesso!",
                     "Salvar Dados", JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Login ja existente!",
+                    "Salvar Dados", JOptionPane.ERROR_MESSAGE);
+
+        }
+
+        
     }//GEN-LAST:event_JB_SalvaActionPerformed
 
     private void JB_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_VoltarActionPerformed
