@@ -196,12 +196,23 @@ public class ControladorImovel implements Serializable {
 		return saida;
 	}
 	
-	//Metodo feito para interface Grafica
+	
+	/**
+	 * Metodo Responsavel por Auxiliar a Interface para listar os imoveis 
+	 * na JList Dos Imoveis
+	 * 
+	 * @return Um Array De Imoveis, contendo todos os imoveis que estao a venda
+	 * na nossa Imobiliaria. 
+	 *
+	 */
 	public Imovel[] listaImoveisGUI(){
-		Imovel[] imoveis = new Imovel[colecaoImovel.getImoveis(EstadoImovel.A_VENDA).size()];
+		Imovel[] imoveis = new Imovel[colecaoImovel.getImoveis(EstadoImovel.
+				A_VENDA).size()];
 		
-		for (int i = 0; i < colecaoImovel.getImoveis(EstadoImovel.A_VENDA).size(); i++) {
-			imoveis[i] = colecaoImovel.getImoveis(EstadoImovel.A_VENDA).get(i);
+		for (int i = 0; i < colecaoImovel.getImoveis(EstadoImovel.A_VENDA).
+		size(); i++) {
+			imoveis[i] = colecaoImovel.getImoveis(EstadoImovel.A_VENDA).
+			get(i);
 		}		
 		return imoveis;
 	}
