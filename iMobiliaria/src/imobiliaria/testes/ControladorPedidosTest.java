@@ -1,9 +1,5 @@
 package imobiliaria.testes;
 
-import java.util.GregorianCalendar;
-
-import junit.framework.Assert;
-
 import imobiliaria.auxiliar.EstadoImovel;
 import imobiliaria.auxiliar.TipoContratual;
 import imobiliaria.auxiliar.TipoImovel;
@@ -15,6 +11,10 @@ import imobiliaria.controladores.ControladorTransacoes;
 import imobiliaria.entidades.Area;
 import imobiliaria.exceptions.FuncionarioNotFoundException;
 import imobiliaria.exceptions.PedidoNotFoundException;
+
+import java.util.GregorianCalendar;
+
+import junit.framework.Assert;
 
 import org.junit.Test;
 
@@ -252,4 +252,13 @@ public class ControladorPedidosTest {
 		Assert.assertEquals(3300, ControladorTransacoes.getInstance().caixa(),
 				0.005);
 	}
+	
+	@Test
+	public final void testListaDePedidosGUI() {
+		Assert.assertEquals( ControladorPedidos.getInstance().
+			listaDePedidosGUI("101.202.303-44").length, 
+			ControladorPedidos.getInstance().
+			listaPedidosDeCliente("101.202.303-44").length());
+	}
+	
 }

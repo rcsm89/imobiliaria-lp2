@@ -6,7 +6,6 @@ import imobiliaria.auxiliar.TipoImovel;
 import imobiliaria.controladores.ControladorImovel;
 import imobiliaria.entidades.Area;
 import junit.framework.Assert;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -617,4 +616,61 @@ public class ControladorImovelTest {
 			Assert.assertEquals("Imovel Invalido", e.getMessage());
 		}
 	}
+	
+	@Test
+	public void testaListaImoveisPraGui() {
+		nomeIm1 = "Casa imobiliada para Vender";
+		enderecoIm1 = "Rua Joaquim Caroca, Bodocongo, Num 2471, CG/PB"; 
+		precoIm1 = 3500.0;
+		try {
+			areaIm1 = new Area(30, 20);
+		} catch (Exception e) {
+			Assert.fail("Nao Deveria Chegar aqui");
+		}
+		tipoDoImovel1 = TipoImovel.CASA;
+		tipoDeContrato1 = TipoContratual.VENDA;
+		try{
+		controladorImovel.addImovel(nomeIm1, enderecoIm1, precoIm1, areaIm1,
+				tipoDoImovel1, tipoDeContrato1);
+		}catch(Exception e ){
+			Assert.fail("Nao Deveria Chegar aqui");
+		}
+		
+		nomeIm2 = "Apartamento a Venda!!!";
+		enderecoIm2 = "Rua Fernando Luiz Henrique dos Santos Altiplano," +
+		" num 2831, JP/PB, Ed. Java, apto 1300"; 
+		precoIm2 = 2500.0;
+		try {
+			areaIm2 = new Area(4, 6);
+		} catch (Exception e) {
+			Assert.fail("Nao Deveria Chegar aqui");
+		}
+		tipoDoImovel2 = TipoImovel.APARTAMENTO;
+		tipoDeContrato2 = TipoContratual.VENDA;
+		try{
+		controladorImovel.addImovel(nomeIm2, enderecoIm2, precoIm2, areaIm2,
+				tipoDoImovel2, tipoDeContrato2);
+		}catch(Exception e ){
+			Assert.fail("Nao Deveria Chegar aqui");
+		}
+		
+		Assert.assertEquals(controladorImovel.listaImoveisGUI().length, 2);
+		
+		try {
+			controladorImovel.removeImovel("10");
+		} catch (Exception e) {
+			Assert.fail("Nao Deveria Chegar aqui");
+		}
+		
+		Assert.assertEquals(controladorImovel.listaImoveisGUI().length, 1);
+		
+		try {
+			controladorImovel.removeImovel("9");
+		} catch (Exception e) {
+			Assert.fail("Nao Deveria Chegar aqui");
+		}
+		
+		Assert.assertEquals(controladorImovel.listaImoveisGUI().length, 0);
+	}
+
 }

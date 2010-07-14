@@ -214,10 +214,10 @@ public class ControladorPedidos implements Serializable {
 	}
 	
 	/**
-	 * Metodo que retorna um array de imoveis pedidos, <br>
-	 * auxilia na interface
+	 * Metodo que retorna um array de imoveis pedidos, para 
+	 * auxiliar na interface
 	 * @param cpf
-	 * 		Cpf do cliente
+	 * 		Cpf do cliente formatado
 	 * @return
 	 * 		Array de imoveis pedidos
 	 */

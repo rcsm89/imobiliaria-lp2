@@ -115,11 +115,11 @@ public class InterfaceAdmin extends javax.swing.JFrame implements InterfaceOpIF 
 
         jLabel2.setText("Bem Vindo!");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(10, 40, 560, 17);
+        jLabel2.setBounds(10, 40, 560, 15);
 
         JL_SaldoAtualCaixa.setText("Saldo Atual do Caixa: 00,00");
         getContentPane().add(JL_SaldoAtualCaixa);
-        JL_SaldoAtualCaixa.setBounds(10, 540, 260, 17);
+        JL_SaldoAtualCaixa.setBounds(10, 540, 260, 15);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/iMobLogo.png"))); // NOI18N
         getContentPane().add(jLabel6);
@@ -131,11 +131,11 @@ public class InterfaceAdmin extends javax.swing.JFrame implements InterfaceOpIF 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel11.setText("Financeiro");
         jPanel4.add(jLabel11);
-        jLabel11.setBounds(10, 10, 90, 17);
+        jLabel11.setBounds(10, 10, 90, 16);
 
         JL_DataUltimoPagamento.setText("Ultimo Pagamento Efetuado: XX/XX/XXXX");
         jPanel4.add(JL_DataUltimoPagamento);
-        JL_DataUltimoPagamento.setBounds(10, 30, 450, 17);
+        JL_DataUltimoPagamento.setBounds(10, 30, 450, 15);
 
         JB_VerFolhaDePagamento.setText("Ver Folha de Pagamento");
         JB_VerFolhaDePagamento.addActionListener(new java.awt.event.ActionListener() {
@@ -144,7 +144,7 @@ public class InterfaceAdmin extends javax.swing.JFrame implements InterfaceOpIF 
             }
         });
         jPanel4.add(JB_VerFolhaDePagamento);
-        JB_VerFolhaDePagamento.setBounds(10, 90, 220, 29);
+        JB_VerFolhaDePagamento.setBounds(10, 90, 220, 31);
         jPanel4.add(JL_Pagamento);
         JL_Pagamento.setBounds(430, 10, 40, 30);
 
@@ -155,7 +155,7 @@ public class InterfaceAdmin extends javax.swing.JFrame implements InterfaceOpIF 
             }
         });
         jPanel4.add(JB_ListaTransacoes);
-        JB_ListaTransacoes.setBounds(240, 60, 210, 29);
+        JB_ListaTransacoes.setBounds(240, 60, 210, 31);
 
         JB_ListaTransacoesMensais.setText("Lista Transacoes Mensais");
         JB_ListaTransacoesMensais.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +164,7 @@ public class InterfaceAdmin extends javax.swing.JFrame implements InterfaceOpIF 
             }
         });
         jPanel4.add(JB_ListaTransacoesMensais);
-        JB_ListaTransacoesMensais.setBounds(10, 60, 220, 29);
+        JB_ListaTransacoesMensais.setBounds(10, 60, 220, 31);
 
         JB_EfetuaPagamento.setText("Efetua Pagamento");
         JB_EfetuaPagamento.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +173,7 @@ public class InterfaceAdmin extends javax.swing.JFrame implements InterfaceOpIF 
             }
         });
         jPanel4.add(JB_EfetuaPagamento);
-        JB_EfetuaPagamento.setBounds(240, 90, 210, 29);
+        JB_EfetuaPagamento.setBounds(240, 90, 210, 31);
 
         getContentPane().add(jPanel4);
         jPanel4.setBounds(10, 130, 470, 130);
@@ -184,15 +184,15 @@ public class InterfaceAdmin extends javax.swing.JFrame implements InterfaceOpIF 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel5.setText("Logins do Sistema");
         jPanel5.add(jLabel5);
-        jLabel5.setBounds(10, 10, 240, 17);
+        jLabel5.setBounds(10, 10, 240, 16);
 
         JCB_Logins.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Login1", "Login2", "Login3", "Login4" }));
         jPanel5.add(JCB_Logins);
-        JCB_Logins.setBounds(10, 80, 240, 27);
+        JCB_Logins.setBounds(10, 80, 240, 25);
 
         JL_NumTotalLogins.setText("Numero Total de Logins: XX");
         jPanel5.add(JL_NumTotalLogins);
-        JL_NumTotalLogins.setBounds(10, 50, 220, 17);
+        JL_NumTotalLogins.setBounds(10, 50, 220, 15);
 
         JB_InfoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/info2icon.png"))); // NOI18N
         JB_InfoLogin.setText("Info");
@@ -213,7 +213,7 @@ public class InterfaceAdmin extends javax.swing.JFrame implements InterfaceOpIF 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel10.setText("Alugueis e Pedidos");
         jPanel6.add(jLabel10);
-        jLabel10.setBounds(10, 10, 190, 17);
+        jLabel10.setBounds(10, 10, 190, 16);
 
         JB_ListaPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/noteIcon.png"))); // NOI18N
         JB_ListaPedidos.setText("Listar Pedidos");
@@ -227,7 +227,7 @@ public class InterfaceAdmin extends javax.swing.JFrame implements InterfaceOpIF 
 
         JCB_Alugueis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "InfoPedido1", "InfoPedido2", "InfoPedido3" }));
         jPanel6.add(JCB_Alugueis);
-        JCB_Alugueis.setBounds(10, 170, 450, 27);
+        JCB_Alugueis.setBounds(10, 170, 450, 25);
 
         JB_VerInfoAluguel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/info2icon.png"))); // NOI18N
         JB_VerInfoAluguel.setText("Info");
@@ -241,7 +241,7 @@ public class InterfaceAdmin extends javax.swing.JFrame implements InterfaceOpIF 
 
         jLabel4.setText("Informacoes de Alugueis: ");
         jPanel6.add(jLabel4);
-        jLabel4.setBounds(10, 150, 260, 17);
+        jLabel4.setBounds(10, 150, 260, 15);
 
         JB_ExcluirPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/exitIcon.png"))); // NOI18N
         JB_ExcluirPedido.setText("Excluir");
@@ -255,7 +255,7 @@ public class InterfaceAdmin extends javax.swing.JFrame implements InterfaceOpIF 
 
         jLabel9.setText("Efetuar Pedidos:");
         jPanel6.add(jLabel9);
-        jLabel9.setBounds(10, 40, 140, 17);
+        jLabel9.setBounds(10, 40, 140, 15);
 
         JB_VerInfoPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/info2icon.png"))); // NOI18N
         JB_VerInfoPedido.setText("Info");
@@ -279,7 +279,7 @@ public class InterfaceAdmin extends javax.swing.JFrame implements InterfaceOpIF 
 
         JCB_Pedidos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "InfoPedido1", "InfoPedido2", "InfoPedido3" }));
         jPanel6.add(JCB_Pedidos);
-        JCB_Pedidos.setBounds(10, 60, 450, 27);
+        JCB_Pedidos.setBounds(10, 60, 450, 25);
 
         JB_ListaAlugueis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/noteIcon.png"))); // NOI18N
         JB_ListaAlugueis.setText("Lista Alugueis");
@@ -336,25 +336,25 @@ public class InterfaceAdmin extends javax.swing.JFrame implements InterfaceOpIF 
 
         JL_NumTotalPedidos.setText("Numero Total de Pedidos: XX");
         getContentPane().add(JL_NumTotalPedidos);
-        JL_NumTotalPedidos.setBounds(500, 300, 260, 17);
+        JL_NumTotalPedidos.setBounds(500, 300, 260, 15);
 
         JL_NumTotalAlugueis.setText("Numero Total de Alugueis: XX");
         getContentPane().add(JL_NumTotalAlugueis);
-        JL_NumTotalAlugueis.setBounds(500, 320, 260, 17);
+        JL_NumTotalAlugueis.setBounds(500, 320, 260, 15);
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(560, 480, 2, 2);
 
         jLabel3.setText("Salario Atual: (R$)");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(500, 200, 150, 17);
+        jLabel3.setBounds(500, 200, 150, 15);
 
         jLabel7.setText("Comissao: (%)");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(500, 230, 150, 17);
+        jLabel7.setBounds(500, 230, 150, 15);
         getContentPane().add(JTF_Salario);
-        JTF_Salario.setBounds(650, 200, 100, 27);
+        JTF_Salario.setBounds(650, 200, 100, 25);
         getContentPane().add(JTF_Comissao);
-        JTF_Comissao.setBounds(650, 230, 100, 27);
+        JTF_Comissao.setBounds(650, 230, 100, 25);
 
         JB_SalvarSalario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/saveIcon.png"))); // NOI18N
         JB_SalvarSalario.setText("Salvar");
@@ -364,7 +364,7 @@ public class InterfaceAdmin extends javax.swing.JFrame implements InterfaceOpIF 
             }
         });
         getContentPane().add(JB_SalvarSalario);
-        JB_SalvarSalario.setBounds(500, 260, 110, 33);
+        JB_SalvarSalario.setBounds(500, 260, 110, 37);
 
         JB_Desloga.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imobiliaria/images/backIcon.png"))); // NOI18N
         JB_Desloga.setText("Deslogar");

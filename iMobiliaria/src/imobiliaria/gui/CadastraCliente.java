@@ -283,7 +283,11 @@ public class CadastraCliente extends javax.swing.JFrame {
         Calendar dataNascimento = new GregorianCalendar(ano,mes,dia);
 
         try {
-            ControladorCliente.getInstance().adicionaCliente(cpf, dataNascimento, endereco, nome, preferencia);
+            if(!(ControladorCliente.getInstance().adicionaCliente(cpf, dataNascimento, endereco, nome, preferencia))){
+                JOptionPane.showMessageDialog(null, "CPF já existente",
+                    "Erro Ao Cadastrar", JOptionPane.ERROR_MESSAGE);
+                    return;
+            }
             Cliente novoCliente = ControladorCliente.getInstance().getCliente(
                     FormataEntrada.cpf(cpf));
 
@@ -294,8 +298,9 @@ public class CadastraCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Verifique se esses campos foram\n" +
                     "preenchidos corretamente:\n\n" +ex.getMessage(),
                     "Erro Ao Cadastrar", JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(CadastraCliente.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
+
 
         if (cadastroOK){
           JOptionPane.showMessageDialog(null, CADASTROEFETUADO,
@@ -365,7 +370,6 @@ public class CadastraCliente extends javax.swing.JFrame {
     "Seu login é seu cpf:\n" +
     "   Neste formato: 12345678910\n" +
     "Sua senha é sua data de nascimento\n" +
-    "   Neste formato: 01011991\n\n" +
-    "Você pode mudar seu login/senha quando desejar";
+    "   Neste formato: 01011991\n\n";
     // Fim de declaracao de atributos
 }
